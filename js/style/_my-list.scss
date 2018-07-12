@@ -1,0 +1,33 @@
+.my-list {
+  .button-nav {
+    .text-left {
+      text-align: left;
+      font-size: 38*$rem;
+      line-height: 1.74;
+      letter-spacing: 0.3*$rem;
+      color: #e6e6e6;
+      font-weight: normal;
+    }
+    .total {
+      font-size: 38*$rem;
+      letter-spacing: -1*$rem;
+      float: right;
+      color: #e6e6e6;;
+      margin-right: 20*$rem;
+      font-weight: normal;
+    }
+    &.focused {
+      .text-left {
+        font-size: 40*$rem;
+        font-weight: 600;
+        color: #333333;
+      }
+      .total {
+        font-size: 40*$rem;
+        color: #333333;
+        font-weight: normal;
+      }
+    }
+  }
+
+}

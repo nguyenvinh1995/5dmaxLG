@@ -1,0 +1,442 @@
+// home page
+
+.home_page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  overflow: hidden;
+}
+
+.home_slider {
+  .item {
+    position: relative;
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('../images/overlay.png');
+      pointer-events: none;
+    }
+  }
+}
+
+.slider_article {
+  position: absolute;
+  z-index: 9;
+  top: 170*$rem;
+  left: 140*$rem;
+  width: 35%;
+  header {
+    height: 170*$rem;
+    img {
+      max-height: 170*$rem;
+      width: auto !important;
+    }
+  }
+  .content {
+    margin-top: 30*$rem;
+    font-size: 30*$rem;
+    line-height: 36*$rem;
+    h4 {
+      letter-spacing: 0.2*$rem;
+      font-weight: bold;
+      margin: 0 0 8*$rem;
+    }
+    p {
+      letter-spacing: 0.3*$rem;
+      margin-top: 10*$rem;
+      margin-bottom: 0;
+      @include ellipsis(30*$rem, 1.2, 3);
+    }
+  }
+}
+
+.group_btn {
+  position: absolute;
+  top: 570*$rem;
+  left: 140*$rem;
+  z-index: 999;
+  @include transition(0.5s);
+  .watch, .detail {
+    width: 165*$rem;
+    height: 60*$rem;
+    line-height: 60*$rem;
+    padding: 0;
+    text-align: center;
+    font-size: 30*$rem;
+    border-radius: 4*$rem;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    color: #e5e5e5;
+    background-color: rgba(32, 32, 32, 0.64);
+    @extend %transition;
+    &.focused {
+      color: #333;
+      background-color: #fff;
+      .img-watch {
+        width: 48*$rem;
+        height: 48*$rem;
+        background: url('../images/ic-detail-play-nomal-copy-2@3x2.png') no-repeat;
+        background-size: 100% 100%;
+      }
+      .text {
+        color: #333;
+      }
+    }
+  }
+  .watch {
+    .img-watch {
+      position: absolute;
+      top: 6*$rem;
+      width: 48*$rem;
+      height: 48*$rem;
+      //display: inline-block;
+      background: url('../images/ic-detail-play-nomal-copy-2@3x1.png') no-repeat;
+      background-size: 100% 100%;
+      //border-radius: 100%;
+      overflow: hidden;
+      margin-left: -5*$rem;
+      //&:before {
+      //	content: "";
+      //	display: inline-block;
+      //	width: 36*$rem;
+      //	height: 36*$rem;
+      //	background-color: #fff;
+      //	position: absolute;
+      //	top: 1*$rem;
+      //	left: 1*$rem;
+      //	border-radius: 100%;
+      //	z-index: -1;
+      //}
+    }
+    .text {
+      color: #e5e5e5;
+      font-size: 30*$rem;
+      margin-left: 55*$rem;
+    }
+  }
+  .detail {
+    margin-left: 30*$rem;
+    font-size: 29*$rem;
+  }
+}
+
+.hidden_opacity {
+  opacity: 0 !important;
+}
+
+.visible_opacity {
+  opacity: 1 !important;
+}
+
+.block_bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  @include transition(0.7s);
+}
+
+.list_movies {
+  margin-left: 140*$rem;
+  padding-bottom: 20*$rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &.overlay .item:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+.list_title {
+  font-size: 35*$rem;
+  margin: 0 0 10*$rem;
+  text-align: left;
+  text-transform: capitalize;
+}
+
+.movies {
+  @extend %clearfix;
+  height: 200*$rem;
+  width: 1920*$rem;
+  .item {
+    float: left;
+    margin-right: 8*$rem;
+    border: solid 3*$rem transparent;
+    width: 350*$rem;
+    height: 197*$rem;
+    overflow: hidden;
+    position: relative;
+    @extend %box-sizing;
+    @extend %transition;
+    &.focused {
+      border: solid 3*$rem #fff;
+      opacity: 1;
+    }
+    > div {
+      width: 100%;
+      height: 100%;
+      background-size: 100% 100% !important;
+      opacity: 0.8;
+    }
+  }
+}
+
+@-webkit-keyframes upBtn {
+  0%, 100% {
+    margin-top: 5*$rem;
+  }
+  50% {
+    margin-top: 15*$rem;
+  }
+}
+
+@keyframes upBtn {
+  0%, 100% {
+    margin-top: 5*$rem;
+  }
+  50% {
+    margin-top: 15*$rem;
+  }
+}
+
+.scroll_up_wrapper {
+  text-align: center;
+}
+
+.scroll_up {
+  display: inline-block;
+  margin: auto;
+  text-align: center;
+  span {
+    display: block;
+    font-size: 20*$rem;
+    margin-top: 5*$rem;
+  }
+  &.focused span {
+    -webkit-animation: upBtn .5s infinite;
+    animation: upBtn .5s infinite;
+  }
+}
+
+.list_movies_wrapper {
+  height: 525*$rem;
+  //height: 220*$rem;
+  overflow: hidden;
+}
+
+.transform_default {
+  transform: translate3d(0, 260*$rem, 0);
+}
+
+.movie_article_wrapper {
+  height: 768*$rem;
+  // background-image: url();
+  background-position: right top !important;
+  background-repeat: no-repeat !important;
+  background-size: 1452*$rem 768*$rem !important;
+  position: relative;
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 250*$rem;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/spotlight-gradient@3x.png');
+    pointer-events: none;
+  }
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -5*$rem;
+    left: 0;
+    width: 100%;
+    height: 210*$rem;
+    background: linear-gradient(to top, #000, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.3), transparent);
+  }
+}
+
+.movie_article {
+  padding-top: 68*$rem;
+  margin-left: 140*$rem;
+  width: 35%;
+  position: relative;
+  z-index: 100;
+  h3 {
+    font-size: 53*$rem;
+    font-weight: bold;
+    letter-spacing: 0.3*$rem;
+    color: #fff;
+    margin: 0 0 5*$rem;
+  }
+  .meta {
+    font-size: 24*$rem;
+    color: #999;
+    margin-top: 3*$rem;
+    span {
+      display: inline-block;
+      font-family: verdana !important;
+      & + span {
+        margin-left: 20*$rem;
+      }
+    }
+  }
+  .episode {
+    border-radius: 4*$rem;
+    background-color: #333;
+    padding: 1*$rem 6*$rem;
+  }
+  .content {
+    font-size: 30*$rem;
+    line-height: 1.2;
+    letter-spacing: .3*$rem;
+    color: #999;
+    margin: 25*$rem 0 0;
+    @include ellipsis(30*$rem, 1.2, 4);
+  }
+}
+
+//.list-scroll-wrapper-menu {
+//	transform: translate3d(0*$rem, 0*$rem, 0*$rem) !important;
+//}
+#list_container,
+.list-scroll-wrapper {
+  @include transition(0.3s);
+}
+
+#list_container_rent,
+.list-scroll-wrapper {
+  @include transition(0.3s);
+}
+
+#list_container.lastCategory {
+  @include transition(0s);
+}
+
+#list_container_rent.lastCategory {
+  @include transition(0s);
+}
+
+.video-trailer {
+  position: absolute !important;
+  width: 1452*$rem !important;
+  height: 768*$rem !important;
+  top: -5*$rem !important;
+  //right: -45*$rem;
+  right: 0;
+  @include transition(0.3s);
+}
+
+.trailer {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.background-none {
+  background: none !important;
+  @include transition(0.3s);
+}
+
+.display-trailer {
+  display: none;
+  //@include transition(0.3s);
+}
+
+.btn-back-img {
+  width: 120*$rem;
+  height: 50*$rem;
+  background: url('../images/up_to_top.gif') no-repeat;
+  pointer-events: none;
+  background-size: 100% 100%;
+}
+
+.btn-up-to-top {
+  position: absolute;
+  left: 47%;
+  top: 67%;
+  z-index: 100;
+}
+
+.btn-up-to-top:before {
+  position: absolute;
+  bottom: -32*$rem;
+  left: 59%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  content: 'Tài khoản & Danh mục';
+  opacity: 0.6;
+  width: 300*$rem;
+  font-size: 30*$rem;
+}
+
+//.btn-up-to-top:after {
+//  position: absolute;
+//  left: 50%;
+//  top: 50%;
+//  -webkit-transform: translate(-50%, -50%);
+//  -ms-transform: translate(-50%, -50%);
+//  transform: translate(-50%, -50%);
+//}
+
+.btn-down-home {
+  position: absolute;
+  bottom: 30*$rem;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg);
+  z-index: 100;
+}
+
+.text-process {
+  float: right;
+  font-size: 30*$rem;
+  width: 100*$rem !important;
+  //height: 24*$rem;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #a8a8a8;
+  white-space: nowrap;
+  margin-top: -13%;
+  margin-left: -50px;
+}
+
+.opacity0 {
+  opacity: 0;
+  margin: 0*$rem !important;
+}
+
+.font70 {
+  font-size: 90*$rem !important;
+  white-space: nowrap !important;
+  margin-top: 10% !important;
+  margin-bottom: -1% !important;
+}
+
+.scroll-movie {
+  overflow: hidden;
+  width: 10000*$rem;
+  height: 100%;
+}

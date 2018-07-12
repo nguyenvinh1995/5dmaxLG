@@ -1,0 +1,99 @@
+<div class="setup_page full_page">
+    <div class="setting">
+        <div class="navigation">
+            <h3>Thiết lập</h3>
+            <div class="nav">
+                <button id="item_setup" focusable="{ depth : {{$root.depth.list.val}},name:'Account' }"
+                        ng-show="vm.isLogin" on-focused="vm.changeTab(1)">Tài khoản
+                </button>
+                <button id="quality" focusable="{ depth : {{$root.depth.list.val}},name:'Quality'}"
+                        on-focused="vm.changeTab(2)">Chất lượng
+                </button>
+                <button id="logout" focusable="{ depth : {{$root.depth.list.val}} }" ng-if="vm.isLogin"
+                        on-selected="vm.logout()" on-focused="vm.changeTab(3)">Đăng xuất
+                </button>
+                <button focusable="{ depth : {{$root.depth.list.val}} }" on-selected="vm.login()" ng-if="!vm.isLogin"
+                        on-focused="vm.changeTab(4)">Đăng nhập
+                </button>
+            </div>
+        </div>
+        <div class="content">
+            <div class="setup_account" ng-show="current_tab === 1 ||current_tab === 3 ||current_tab === 4 ">
+                <div class="account">
+                    <div class="avatar"></div>
+                    <p class="phone">{{vm.detaiUser.name}}</p>
+                </div>
+                <div class="packages_wrapper" ng-show="current_tab === 1">
+                    <p class="title">Gói cước</p>
+                    <caph-list direction="vertical" container-class="pakages" items="item in vm.listPackage"
+                               id="list_package">
+                        <div class="item-package">
+                            <div id="pakage_{{item.id}}" class="pakage" ng-class="::item.status == 1 ? 'paid' : ''"
+                                 focusable="{ depth : $root.depth.list.val, nextFocus : { left: $first ? 'Account':'', up : 'null'} }"
+                                 on-selected="vm.selectPackage(item)">
+                                <span class="name">{{::item.name}}</span>
+                                <span class="fee">{{::item.fee}}/{{::item.cycle}}</span>
+                            </div>
+                        </div>
+                    </caph-list>
+                </div>
+            </div>
+            <div class="setup_quality" ng-show="current_tab === 2">
+                <div class="quality_icon"></div>
+                <div>
+                    <button class="quality_select" id="button_quality"
+                            focusable="{ depth : {{$root.depth.list.val}}, nextFocus : { left:'Quality', up : 'null'}, name:'ShowQuality'}"
+                            on-selected="vm.showQuality()">{{vm.name}}<span></span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="quality_selection full_page display-none">
+    <div class="quality">
+        <div class="options">
+            <button class="first-item"
+                    focusable="{ depth : $root.depth.list.val}"
+                    on-selected="vm.qualityAuto()">Tự động<span></span></button>
+        </div>
+        <caph-list direction="horizontal" container-class="options item-option" items="item in vm.listQuality">
+            <button focusable="{ depth : $root.depth.list.val}"
+                    on-selected="vm.quality(item)">{{item.name}}<span></span></button>
+        </caph-list>
+    </div>
+</div>
+
+<!-- dialog -->
+<div id="dialog_setup" class="dialog-2 dialog_setup full_page hidden dialog_hide popup">
+    <div class="dialog_inner">
+        <div class="content">
+            <h1 class="title"></h1>
+            <p class="content"></p>
+        </div>
+        <div class="action">
+            <button id="btn_approve" focusable="{depth : $root.depth.dialog.val}" on-selected="vm.approve()">ĐỒNG Ý
+            </button>
+            <button id="btn_cancle" focusable="{depth : $root.depth.dialog.val , initialFocus : true}"
+                    on-selected="vm.cancel()">HỦY
+            </button>
+        </div>
+    </div>
+</div>
+<div id="dialog_logout" class="dialog-2 dialog_logout full_page hidden dialog_hide popup">
+    <div class="dialog_inner">
+        <div class="content">
+            <h1 class="title">Đăng xuất</h1>
+            <p class="content">Bạn có muốn đăng xuất không?</p>
+        </div>
+        <div class="action">
+            <button id="btn_approve_out" focusable="{depth : $root.depth.dialog.val}" on-selected="vm.approveLogout()">
+                ĐỒNG Ý
+            </button>
+            <button id="btn_cancle_out" focusable="{depth : $root.depth.dialog.val , initialFocus : true}"
+                    on-selected="vm.cancel()">HỦY
+            </button>
+        </div>
+    </div>
+</div>
+<!-- end dialog -->

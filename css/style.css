@@ -1,0 +1,22 @@
+* {
+    font-family: SFUIDisplay;
+}
+
+body {
+    margin: 0px auto;
+    background-color:#000;
+}
+
+.contents {
+	display: flex;
+	display: -webkit-flex;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	height:320px;
+}
+.display-block{
+	display: block;
+}
+.display-none{
+	display: none;
+}

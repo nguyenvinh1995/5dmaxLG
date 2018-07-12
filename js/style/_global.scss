@@ -1,0 +1,203 @@
+@font-face {
+    font-family: SFUIDisplay;
+    //src: url('../../js/fonts/SFUIDisplay-Regular.otf');
+    src: url('../fonts/SFUIDisplay-Regular.otf');
+}
+
+%clearfix {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+%transition {
+  transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+}
+
+%box-sizing {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+@mixin opacity($opacity) {
+    /* IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+ $opacity * 100 + ")";    
+    /* Netscape */
+    -moz-opacity: $opacity;
+    /* Safari 1.x */
+    -khtml-opacity: $opacity;
+    /* Good browsers */
+    opacity: $opacity;
+  }
+
+
+  @mixin transition($time) {
+    transition: all $time ease-in-out;
+    -ms-transition: all $time ease-in-out;
+    -webkit-transition: all $time ease-in-out;
+    -moz-transition: all $time ease-in-out;
+  } 
+
+  @mixin transform($transformx) {
+    -webkit-transform: $transformx;
+    -moz-transform: $transformx;
+    -ms-transform: $transformx;
+    -o-transform: $transformx;
+    transform: $transformx;
+  }
+
+  @mixin scale($scale) {
+    @include transform(scale($scale));
+  }
+
+  @mixin skew($skew) {
+    @include transform(skew($skew));
+  }
+
+  @mixin rotate($rotate) {
+    @include transform(rotate($rotate));
+  }
+
+
+
+  @mixin translateX($translateX) {
+    @include transform(translateX($translateX));
+  }
+
+  @mixin translateY($translateY) {
+    @include transform(translateY($translateY));
+  }
+
+  @mixin translate($x, $y){
+ -ms-transform: translate($x,$y); /* IE 9 */
+ -webkit-transform: translate($x,$y); /* Safari */
+ transform: translate($x,$y);
+}
+@mixin skewX($skewX){
+   -ms-transform: skewX($skewX); /* IE 9 */
+   -webkit-transform: skewX($skewX); /* Safari */
+   transform: skewX($skewX);
+ }
+
+
+ @mixin placeholder($color, $font-family, $font-size, $font-style, $text-transform){
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: $color;
+      font-family: $font-family;
+      font-size: $font-size;
+      font-style: $font-style;
+      text-transform: $text-transform;
+    }
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: $color;
+    font-family: $font-family;
+    font-size: $font-size;
+    font-style: $font-style;
+    text-transform: $text-transform;
+  }
+  &:-ms-input-placeholder { /* IE 10+ */
+    color: $color;
+    font-family: $font-family;
+    font-size: $font-size;
+    font-style: $font-style;
+    text-transform: $text-transform;
+  }
+  &:-moz-placeholder { /* Firefox 18- */
+    color: $color;
+    font-family: $font-family;
+    font-size: $font-size;
+    font-style: $font-style;
+    text-transform: $text-transform;
+  }
+}
+
+@mixin ellipsis($font-size, $line-height, $lines-to-show) {
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
+  font-size: $font-size;
+  line-height: $line-height;
+  -webkit-line-clamp: $lines-to-show;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+::selection, ::-moz-selection {
+  background: blue;
+  color: #fff;
+  text-shadow: none;
+}
+
+$red: #FF0000;
+
+// Units veriables
+$rem: 1rem/32;
+
+html, body {
+  overflow-x: hidden;
+  position: relative;
+  color: #fff;
+  font-family: SFUIDisplay !important;
+  @extend .full_page;
+  overflow: hidden;
+  font-size: 32px;
+  @media screen and (max-width: 1280px) {
+    font-size: 21.3333333px !important;
+  }
+}
+
+.clearfix {
+  @extend %clearfix;
+}
+
+.full_page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+.hidden {
+  display: none !important;
+}
+.message span {
+  display: none;
+  border-radius: 70*$rem;
+  border: 1*$rem solid #333333;
+  background-color: #333333;
+  min-width: 500*$rem;
+  height: auto;
+  z-index: 99999;
+  position: fixed;
+  font-size: 35*$rem;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 25*$rem 35*$rem 25*$rem 35*$rem;
+}
+
+.content_text {
+  font-weight:bold;
+  font-size:5em;
+  color:#fff;
+}
+.movies{
+  height: 200*$rem;
+  width: 100vw;
+}
+.item-movies{
+  height: 920*$rem;
+  width: 1113*$rem;
+}
+

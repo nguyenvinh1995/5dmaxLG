@@ -1,0 +1,45 @@
+<div class="avplayer_page full_page display-block">
+    <caph-media ng-cloak id="player" class="player" ng-class="" ischannel="isChannel" subtitle="setting.subTitle">
+        <!--<div id="videoMainPlay" class="video-container videoMainPlay" id="av-container" style="height: 1080px">-->
+            <!--<object id='av-player' type='application/avplayer'></object>-->
+        <!--</div>-->
+        <video id=av-player class="video-js vjs-default-skin">
+        </video>
+        <div id="controls_bar" class="controls-bar" ng-class="{'fade-out': isPlaying}"
+             ng-mouseover="setMediaControllerTimer()">
+            <div id="play_btn" focusable="{initialFocus: true, depth : $root.depth.player.val } "
+                 on-selected="playPauseHandle()">
+                <div class="btn" ng-class="{'icon_pause': isPlaying, 'icon_play': !isPlaying}"></div>
+            </div>
+
+            <div class="play-position"></div>
+            <div id="progress_bar" class="video-progress-bar-wrapper">
+                <div class="progress-bar-bkgd video">
+                    <div class="progress-bar-marker video"></div>
+                </div>
+            </div>
+
+            <div class="end-position"></div>
+        </div>
+        <article class="movie_article" ng-class="{'fade-out': isPlaying}">
+            <h3>{{::detailMovie.name}}</h3>
+            <div class="episode_number">{{detailMovie.alias}}</div>
+            <p class="content">{{detailMovie.description}}</p>
+        </article>
+    </caph-media>
+</div>
+<div class="display-none relate_film_background" id ="avplayer_suggest">
+    <div class='background' style="background-image: url({{vm.bannerItem}}) !important;">
+        <div class="movie-current" style="background-image: url({{vm.imgCurrentItem}}) !important;">
+        </div>
+        <div class="back"></div><span class="text">Quay lại</span>
+        <div class="movie_suggetion">
+            <article class="slider_article">
+                <header><img ng-src="{{vm.logoItem}}" width="" height="" alt="">
+                </header>
+                <button id="detail-sugget" on-selected="vm.selectItem()" focusable="{depth : $root.depth.player.val }">Chi Tiết</button>
+            </article>
+        </div>
+    </div>
+</div>
+

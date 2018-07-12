@@ -1,0 +1,335 @@
+.search-page {
+  top: 60*$rem;
+  @extend .full_page;
+  //h1 {
+  //  width: 280*$rem;
+  //  height: 66*$rem;
+  //  opacity: 0.4;
+  //  font-size: 57*$rem;
+  //  font-weight: 500;
+  //  font-style: normal;
+  //  font-stretch: normal;
+  //  line-height: 1.16;
+  //  letter-spacing: 0.2*$rem;
+  //  text-align: left;
+  //  color: #ffffff;
+  //  margin-top: 50*$rem;
+  //  margin-left: 104*$rem;
+  //}
+  .search-input {
+    text-align: center;
+    //.img-search {
+    //  left: 6%;
+    //  margin: 11*$rem 0 0 1*$rem;
+    //  width: 48*$rem;
+    //  height: 48*$rem;
+    //  background: url('../images/search@3x.png') no-repeat;
+    //  background-size: 100% 100%;
+    //  position: absolute;
+    //}
+    .input input {
+      border: none;
+      width: 1080*$rem;
+      height: 70*$rem;
+      border-radius: 5*$rem;
+      background-color: #000;
+      padding-left: 10*$rem;
+      font-size: 38*$rem;
+      color: #ccc;
+      margin-right: 70*$rem;
+      text-transform: capitalize;
+      @extend %transition;
+      @include placeholder(#ccc, SamsungOne, 38*$rem, normal, '');
+      &::-webkit-input-placeholder {
+        @extend %transition;
+      }
+      &.focused {
+        border: none;
+        color: #fff;
+        @include placeholder(#fff, SamsungOne, '', '', '');
+      }
+    }
+    .input.focused {
+      input {
+        border: 3*$rem solid #ffffff;
+      }
+    }
+  }
+  .text {
+    font-size: 32*$rem;
+    margin-top: 30%;
+    margin-left: 30%;
+    color: #fff;
+  }
+  .search-movie {
+    width: 1095*$rem;
+    margin-left: 5%;
+    height: 915*$rem;
+    margin-top: 1%;
+    position: relative;
+    overflow: hidden;
+    .item-movie {
+      width: 350*$rem;
+      height: 197*$rem;
+      border: 3*$rem solid transparent;
+      margin-bottom: 35*$rem;
+      margin-right: 8*$rem;
+      opacity: 0.5;
+      @extend %transition;
+      .item {
+        width: 350*$rem;
+        height: 197*$rem;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        @extend %transition;
+      }
+      &.focused {
+        border: 3*$rem solid #ffffff;
+        opacity: 1;
+      }
+    }
+  }
+
+  .keyboard_content {
+    width: 100%;
+    height: 900*$rem;
+    margin-top: 0*$rem !important;
+    background-color: transparent;
+    ul {
+      list-style-type: none;
+      padding: 20*$rem;
+      margin-top: -20*$rem;
+      margin-left: 45*$rem;
+      li {
+        border-radius: 5*$rem;
+      }
+      .num {
+        color: rgba(241, 233, 233, 0.4);
+        font-weight: 500;
+        font-size: 36*$rem;
+        text-align: center;
+        padding: 7*$rem 7*$rem 7*$rem 7*$rem;
+        margin-left: 2*$rem;
+        margin-right: 2*$rem;
+        width: 10%;
+        margin-bottom: 7*$rem;
+        display: inline-table;
+        background-color: #282828;
+        border: 3*$rem solid #282828;
+        border-radius: 5*$rem;
+      }
+      .space {
+        width: 41% !important;
+      }
+      .delete {
+        width: 41% !important;
+      }
+      .num.focused {
+        border: 3*$rem solid #fff;
+        color: #fff;
+      }
+    }
+    .key-image {
+      margin-bottom: 7*$rem;
+      .btn-del, .btn-space {
+        background-color: #282828;
+        border-radius: 5*$rem;
+        border: 3*$rem solid #282828;
+        width: 241*$rem;
+        height: 66*$rem;
+        &.focused {
+          border: 3*$rem solid #fff;
+          .search-del {
+            opacity: 1;
+          }
+          .search-space {
+            opacity: 1;
+          }
+        }
+        .search-del {
+          opacity: 0.4;
+          background-repeat: no-repeat;
+          background-image: url(../images/key-del.png);
+          width: 55*$rem;
+          height: 31*$rem;
+          background-size: 100% 100%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          position: absolute;
+        }
+        .search-space {
+          opacity: 0.4;
+          background-repeat: no-repeat;
+          background-image: url(../images/key-space.png);
+          width: 94*$rem;
+          height: 24*$rem;
+          background-size: 100% 100%;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+    .btn-back {
+      padding: 15*$rem 184*$rem 15*$rem 195*$rem;
+      color: #ffffff;
+      font-size: 32*$rem;
+      border: 3*$rem solid #282828;
+      margin-bottom: 30*$rem;
+      border-radius: 5*$rem;
+      margin-left: -40*$rem;
+      background-color: #282828;
+      color: rgba(241, 233, 233, 0.4);
+
+    }
+    .btn-back.focused {
+      color: #fff;
+      border: 3*$rem solid #fff;
+    }
+    .hotkey {
+      margin-left: 45*$rem;
+      width: 100%;
+      height: 300*$rem;
+      overflow: scroll;
+      .item-hotkey {
+        width: 100%;
+        height: 300*$rem;
+        .item-key {
+          border-radius: 5*$rem;
+          width: 69.5%;
+          height: 40*$rem;
+          margin: -20*$rem 10*$rem 16*$rem 30*$rem;
+          padding: 13*$rem;
+          font-size: 36*$rem;
+          border: 3*$rem solid transparent;
+        }
+        .item-key.focused {
+          border: 3*$rem solid #fff;
+        }
+      }
+    }
+  }
+
+  /* bootstrap classes */
+  .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9 {
+    position: relative;
+    min-height: 1*$rem;
+    //padding-right: 15*$rem;
+    //padding-left: 15*$rem;
+    float: left
+  }
+  //.col-4 {
+  //  width: 32% !important;
+  //}
+  //.margin-left-66 {
+  //  margin-left: 66*$rem !important;
+  //}
+  //.margin-left-1 {
+  //  margin-left: 1% !important;
+  //}
+  .col-lg-12 {
+    width: 100%
+  }
+
+  .col-lg-11 {
+    width: 91.66666667%
+  }
+
+  .col-lg-10 {
+    width: 83.33333333%
+  }
+
+  .col-lg-9 {
+    width: 75%
+  }
+
+  .col-lg-8 {
+    width: 66.66666667%
+  }
+
+  .col-lg-7 {
+    width: 58.33333333%
+  }
+
+  .col-lg-6 {
+    width: 50%
+  }
+
+  .col-lg-5 {
+    width: 41.66666667%
+  }
+
+  .col-lg-4 {
+    width: 33.33333333%
+  }
+
+  .col-lg-3 {
+    width: 25%
+  }
+
+  .col-lg-2 {
+    width: 16.66666667%
+  }
+
+  .col-lg-1 {
+    width: 8.33333333%
+  }
+
+  .col-lg-offset-12 {
+    margin-left: 100%
+  }
+
+  .col-lg-offset-11 {
+    margin-left: 91.66666667%
+  }
+
+  .col-lg-offset-10 {
+    margin-left: 83.33333333%
+  }
+
+  .col-lg-offset-9 {
+    margin-left: 75%
+  }
+
+  .col-lg-offset-8 {
+    margin-left: 66.66666667%
+  }
+
+  .col-lg-offset-7 {
+    margin-left: 58.33333333%
+  }
+
+  .col-lg-offset-6 {
+    margin-left: 50%
+  }
+
+  .col-lg-offset-5 {
+    margin-left: 41.66666667%
+  }
+
+  .col-lg-offset-4 {
+    margin-left: 33.33333333%
+  }
+
+  .col-lg-offset-3 {
+    margin-left: 25%
+  }
+
+  .col-lg-offset-2 {
+    margin-left: 16.66666667%
+  }
+
+  .col-lg-offset-1 {
+    margin-left: 8.33333333%
+  }
+
+  .col-lg-offset-0 {
+    margin-left: 0
+  }
+
+  /* end bootstrap classes*/
+
+}
+

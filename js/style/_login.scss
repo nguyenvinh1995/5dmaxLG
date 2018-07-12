@@ -1,0 +1,537 @@
+// login page
+
+.login_page {
+  background: url('../images/app_background.jpg') no-repeat;
+  background-size: cover;
+  .inner {
+    padding: 90*$rem;
+  }
+  .logo {
+    display: inline-block;
+    width: 400*$rem;
+    height: 80*$rem;
+    background: url('../images/logo.png') no-repeat;
+    background-size: 100% 100%;
+  }
+}
+
+.login_screen {
+  h1 {
+    font-size: 80*$rem;
+    letter-spacing: 0.8*$rem;
+    margin-top: 120*$rem;
+    margin-bottom: 20*$rem;
+  }
+  p {
+    font-size: 36*$rem;
+    letter-spacing: 0.4*$rem;
+    color: #e6e6e6;
+    margin: 0;
+  }
+  button {
+    margin-top: 195*$rem;
+    width: 500*$rem;
+    height: 76*$rem;
+    line-height: 76*$rem;
+    padding: 0;
+    outline: none !important;
+    border: none;
+    border-radius: 4*$rem;
+    background-color: #ff0000;
+    text-align: center;
+    font-size: 38*$rem;
+    letter-spacing: 0.3*$rem;
+    color: #e6e6e6;
+    & .focused {
+      background-color: #333;
+    }
+  }
+}
+
+.login {
+  text-align: left !important;
+  margin-top: 200*$rem !important;
+  button {
+    font-size: 32*$rem !important;
+    height: 80*$rem !important;
+  }
+  .form-login {
+    margin-top: 0 !important;
+    .btn-fisrt {
+      width: 540*$rem !important;
+      margin-right: 20*$rem !important;
+    }
+    .btn-second {
+      width: 540*$rem !important;
+    }
+  }
+}
+
+.login_form {
+  text-align: center;
+  margin-top: 170*$rem;
+  input {
+    @extend %transition;
+    border-radius: 6*$rem;
+    background-color: rgba(77, 77, 77, 0.6);
+    width: 546*$rem;
+    height: 66*$rem;
+    // line-height: 66*$rem;
+    padding: 0 20*$rem;
+    color: #e6e6e6;
+    letter-spacing: 0.3px;
+    font-size: 38*$rem;
+    border: none;
+    margin-top: 3*$rem;
+    @include placeholder(#fff, SamsungOne, '', '', '');
+    &.focused {
+      width: 574*$rem;
+      height: 70*$rem;
+      // line-height: 70*$rem;
+      background-color: #fff;
+      box-shadow: 0 18*$rem 24*$rem 0 rgba(0, 0, 0, 0.07);
+      color: #999;
+      font-size: 39*$rem;
+      margin-top: 0;
+      @include placeholder(#999, SamsungOne, '', '', '');
+    }
+  }
+  .form_input {
+    height: 71*$rem;
+    & + .form_input {
+      margin-top: 15*$rem;
+    }
+    &.capcha {
+      margin-top: 18*$rem;
+      > div {
+        display: inline-block;
+        width: 586*$rem;
+        white-space: nowrap;
+      }
+      input {
+        width: 390*$rem;
+        float: left;
+        margin-right: 6*$rem;
+        &.focused {
+          width: 418*$rem;
+          margin-left: -14*$rem;
+        }
+      }
+      .img_capcha {
+        width: 150*$rem;
+        height: 72*$rem;
+        display: inline-block;
+        border-radius: 6*$rem;
+        margin-top: 3*$rem;
+      }
+    }
+  }
+
+  .form_btn {
+    height: 76*$rem;
+    button {
+      display: inline-block;
+      width: 360*$rem;
+      height: 68*$rem;
+      line-height: 68*$rem;
+      border-radius: 6*$rem;
+      //background-color: #333333;
+      background-color: rgba(225, 225, 225, 0.5);
+      color: #fff;
+      font-size: 38*$rem;
+      padding: 0;
+      outline: none;
+      border: none;
+      //@extend %transition;
+      margin-top: 4*$rem;
+      &.focused {
+        background-color: $red;
+        //width: 402*$rem;
+        //height: 76*$rem;
+        margin-top: 0;
+        color: #fff;
+      }
+    }
+  }
+  .submit_btn {
+    margin-top: 75*$rem;
+    margin-bottom: 25*$rem;
+  }
+}
+
+input:focus, button:focus {
+  outline: none;
+}
+
+.login_page.login_code_page {
+  text-align: center;
+  position: relative;
+  background: none;
+  &:before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url('../images/app_background.jpg') no-repeat;
+    -webkit-filter: blur(40*$rem);
+    filter: blur(40*$rem);
+  }
+  > * {
+    position: relative;
+    margin: 0;
+  }
+  .intro {
+    font-size: 30*$rem;
+    padding-top: 150*$rem;
+    span {
+      display: block;
+      font-size: 80*$rem;
+      margin: 5*$rem 0;
+    }
+  }
+  .code {
+    font-size: 150*$rem;
+    margin: 120*$rem 0;
+    font-weight: bold;
+  }
+  .note {
+    font-size: 36*$rem;
+  }
+}
+
+.trial {
+  text-align: center;
+  margin-top: 50*$rem;
+  .title-trial {
+    font-size: 48*$rem;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    color: #ffffff;
+  }
+  .step {
+    p {
+      font-size: 36*$rem;
+      font-weight: 500;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.72;
+      letter-spacing: normal;
+      color: #ffffff;
+    }
+    .input {
+      width: 629*$rem;
+      height: 80*$rem;
+      opacity: 0.64;
+      border-radius: 4*$rem;
+      background-color: #3f3e3e;
+      border: solid 3*$rem #ffffff;
+      margin-right: 20*$rem;
+    }
+  }
+  .key_broard {
+    margin-top: 30*$rem;
+    ul {
+      list-style-type: none;
+      padding: 20*$rem;
+      margin-top: -20*$rem;
+      li {
+        border-radius: 5*$rem;
+      }
+      .num {
+        color: rgba(241, 233, 233, 0.4);
+        font-weight: 500;
+        font-size: 36*$rem;
+        text-align: center;
+        padding: 7*$rem 7*$rem 7*$rem 7*$rem;
+        margin-left: 2*$rem;
+        margin-right: 2*$rem;
+        width: 3%;
+        margin-bottom: 7*$rem;
+        display: inline-table;
+        background-color: transparent;
+        border: 3*$rem solid transparent;
+        border-radius: 5*$rem;
+        &.focused {
+          border: 3*$rem solid #ffffff;
+          color: #ffffff;
+          opacity: 1;
+        }
+      }
+    }
+    .del {
+      //left: 44%;
+      position: relative;
+      border: 3*$rem solid transparent;
+      padding: 10.4*$rem 40*$rem 10.4*$rem 40*$rem;
+      .del-img {
+        width: 48*$rem;
+        height: 28*$rem;
+        object-fit: contain;
+        opacity: 0.8;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-image: url(../images/space-copy@3x.png);
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        @include translate(-50%, -50%);
+      }
+      &.focused {
+        border: 3*$rem solid #fff;
+      }
+    }
+
+    .del-all {
+      opacity: 0.8;
+      font-size: 32*$rem;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #ffffff;
+      //margin-right: -120*$rem;
+      border: 3*$rem solid transparent;
+      padding: 10*$rem;
+      &.focused {
+        border: 3*$rem solid #fff;
+      }
+    }
+  }
+  button {
+    width: 540*$rem;
+    height: 80*$rem;
+    background-color: rgba(225, 225, 225, 0.4);
+    font-size: 32*$rem;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+    border-radius: 4*$rem;
+    left: 36%;
+    position: absolute;
+    margin-top: 40*$rem;
+    border: none;
+    &.focused {
+      background-color: $red;
+    }
+  }
+}
+
+.trial-step {
+  .step1 {
+    display: none !important;
+  }
+  .step2 {
+    display: block !important;
+  }
+  .continue {
+    display: none !important;
+  }
+  .Login {
+    display: block !important;
+  }
+}
+
+.page_login {
+  float: right;
+  width: 45%;
+  margin-top: 40*$rem !important;
+  h1 {
+    text-align: left;
+    font-size: 48*$rem;
+    margin-bottom: 60*$rem;
+    margin-left: 12%;
+  }
+}
+
+.content-left {
+  width: 45%;
+  height: 646*$rem;
+  opacity: 0.86;
+  border-radius: 2*$rem;
+  background-color: #414141;
+  margin-top: 3%;
+  position: absolute;
+  .key-broard {
+    width: 100%;
+    height: 52%;
+    //margin-left: 20*$rem;
+    margin-bottom: 30*$rem;
+    ul {
+      margin-top: 50*$rem;
+      margin-right: 20*$rem;
+      width: 93%;
+      .num {
+        color: rgba(241, 233, 233, 0.5);
+        font-weight: 500;
+        font-size: 48*$rem;
+        text-align: center;
+        padding: 7*$rem 7*$rem 7*$rem 7*$rem;
+        margin-right: 2*$rem;
+        width: 6%;
+        margin-bottom: 8*$rem;
+        display: inline-table;
+        background-color: #6f6f6f;
+        border: 3*$rem solid #6f6f6f;
+        border-radius: 5*$rem;
+        &.focused {
+          border: 3*$rem solid #ffffff;
+          background-color: #414141;
+          color: rgba(255, 255, 255, 1);
+        }
+        .space-icon {
+          background-image: url(../images/space@3x.png);
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+          margin: 0;
+          position: absolute;
+          width: 356*$rem;
+          height: 27*$rem;
+          top: 50%;
+          left: 50%;
+          @include translate(-50%, -50%);
+          opacity: 0.4;
+        }
+        .del-icon {
+          background-image: url(../images/key-del.png);
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+          margin: 0;
+          position: absolute;
+          width: 72*$rem;
+          height: 40*$rem;
+          top: 50%;
+          left: 50%;
+          @include translate(-50%, -50%);
+          opacity: 0.4;
+        }
+        .capslock-icon {
+          background-image: url(../images/space-copy-3@3x.png);
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+          margin: 0;
+          position: absolute;
+          width: 50*$rem;
+          height: 41*$rem;
+          top: 50%;
+          left: 50%;
+          @include translate(-50%, -50%);
+          opacity: 0.4;
+        }
+        &.focused .capslock-icon, &.focused .del-icon, &.focused .space-icon {
+          opacity: 1;
+        }
+      }
+      .capslock {
+        //padding: 2*$rem 7*$rem 4*$rem 7*$rem;
+        width: 15.7%;
+        height: 65*$rem;
+        &.focused {
+          color: rgba(255, 255, 255, 1);
+          border: 3*$rem solid #ffffff;
+          background-color: #414141;
+        }
+      }
+      .space-num {
+        //padding: 1*$rem 7*$rem 1*$rem 7*$rem;
+        width: 43.9%;
+        margin-bottom: 7*$rem;
+        height: 65*$rem;
+        &.focused {
+          color: rgba(255, 255, 255, 1);
+          border: 3*$rem solid #ffffff;
+          background-color: #414141;
+        }
+      }
+    }
+  }
+}
+
+.hide-pass::before {
+  content: 'Hiển thị password';
+  font-size: 32*$rem;
+}
+
+.show-pass::before {
+  content: 'Ẩn password';
+  font-size: 32*$rem;
+}
+
+.img-relative {
+  position: relative;
+}
+
+.top36 {
+  top: 36*$rem !important;
+}
+
+.top34 {
+  top: 37*$rem !important;
+}
+
+.margintop-85 {
+  margin-top: -85.5*$rem !important;
+  height: 18% !important;
+}
+
+.content-symbol {
+  .symbol {
+    display: block;
+    @extend %transition;
+  }
+  .no-capslock, .capslock {
+    display: none;
+    @extend %transition;
+  }
+}
+
+.content-capslock {
+  .capslock {
+    display: block;
+    @extend %transition;
+  }
+  .no-capslock, .symbol {
+    display: none;
+    @extend %transition;
+  }
+}
+
+.content-no-capslock {
+  .no-capslock {
+    display: block;
+    @extend %transition;
+  }
+  .capslock, .symbol {
+    display: none;
+    @extend %transition;
+  }
+}
+
+.show-input {
+  display: block !important;
+  input {
+    border: 3*$rem solid rgba(255, 255, 255, 0.4);
+  }
+}
+
+.hide {
+  display: none !important;
+}
+
+.padding-symbol {
+  padding: 7*$rem 7*$rem 6*$rem 5*$rem !important;
+}
+
+.padding-cap {
+  padding: 6*$rem 5*$rem 0 7*$rem !important;
+}

@@ -1,0 +1,44 @@
+<div class="movie-detail genres2">
+    <caph-list container-class="tab-left" direction="vertical" items="item in vm.category">
+        <div class="item">
+            <button id="category_seri_{{item.id}}"
+                    focusable="{depth : $root.depth.list.val, nextFocus : { down : $last ? 'null' :''}}"
+                    data-focusable-name="{{item.name}}" class="button-nav"
+                    ng-class="$index === 0 ? 'category_seri_active':''"
+                    on-focused="vm.showFilm(true, item.id, item )"
+                    on-blurred="vm.blur(item)">{{::item.name}}
+            </button>
+        </div>
+    </caph-list>
+    <div class="title-movie">
+        <p class="name-movie">{{vm.item.name}}</p>
+        <div class="time-movie">
+            <span ng-if="vm.item.year_of_product !== null ">{{vm.item.year_of_product}}</span>
+            <span class="age" ng-if="vm.item.content_filter !== null && vm.item.content_filter !== ''">{{vm.item.content_filter}}</span>
+            <span class="des"
+                  ng-if="vm.item.attributes === '1' && vm.item.duration !== null && vm.item.duration !== ''">{{vm.item.duration}} phút</span>
+        </div>
+        <div class="des-movie">
+            <p class="descrition-movie">
+                {{vm.item.description}}
+            </p>
+        </div>
+    </div>
+    <div class="tab-right">
+        <div class="img-arrow-left display-none"></div>
+        <div class="background-movie"
+             style="background-image: url({{(vm.srcImg === '') ? vm.content[0].imageForTVLarge : vm.srcImg}})">
+            <div class="gradient-img"></div>
+            <div class="caph-list-movie">
+                <caph-list container-class="list-movie" direction="vertical" items="item in vm.content" id="list-movie" loop="true">
+                    <div class="item-wrapper" focusable="{ depth : $root.depth.list.val, nextFocus: { left : $index % vm.itemInPage === 0 ? '{{vm.currentItem.name}}' : '' }}"
+                         on-focused="vm.showFilm(false, null, item)"
+                         on-selected="vm.selectMovie(item)" ng-class="{ 'itemFirst' : $first }">
+                        <div class="item-movie"
+                             style="background-image: url({{item.coverImageH}})"></div>
+                    </div>
+                </caph-list>
+            </div>
+        </div>
+    </div>
+</div>

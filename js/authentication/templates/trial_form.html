@@ -1,0 +1,48 @@
+<div class="splash_page full_page">
+    <div class="inner">
+        <div><img class="logo" src="./js/images/logo.png" width="" height="" alt=""></div>
+        <div class="loading_icon">
+        </div>
+    </div>
+</div>
+<div class="login_page full_page">
+    <div class="inner" style="text-align: center !important;">
+        <div class="logo"></div>
+        <div class="login_form trial" id="trial">
+            <h1 class="title-trial">Đăng ký để được miễn phí sử dụng 1 tháng</h1>
+            <div class="form-input">
+                <div class="step step1 display-block" id="step1">
+                    <p>Bước 1: Nhập số điện thoại</p>
+                    <input type="text" class="input" placeholder="Số điện thoại" ng-model="vm.phoneNumber">
+                </div>
+                <div class="step step2 display-none" id="step2">
+                    <p>Bước 2: Nhập mã OTP</p>
+                    <input type="text" class="input" placeholder="Mã xác nhận" ng-model="vm.Otp">
+                </div>
+            </div>
+            <div class="key_broard">
+                <ul>
+                    <li class="num" id="initFocusKeybroad"
+                        focusable="{depth:$root.depth.login.val , name:'initFocus' , initialFocus : true }"
+                        on-selected="vm.enterText('1')">1
+                    </li>
+                    <li class="num" focusable="{depth : $root.depth.login.val}" on-selected="vm.enterText('2')">2</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val}" on-selected="vm.enterText('3')">3</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val}" on-selected="vm.enterText('4')">4</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val}" on-selected="vm.enterText('5')">5</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val}" on-selected="vm.enterText('6')">6</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val}" on-selected="vm.enterText('7')">7</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val}" on-selected="vm.enterText('8')">8</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val}" on-selected="vm.enterText('9')">9</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val}" on-selected="vm.enterText('0')">0</li>
+                </ul>
+                <span focusable="{depth : $root.depth.login.val}" on-selected="vm.Del()" class="del">
+                    <div class="del-img"></div>
+                </span>
+                <span focusable="{depth : $root.depth.login.val}" on-selected="vm.DelAll()" class="del-all">Xoá tất cả</span>
+            </div>
+            <button class="display-block continue"  focusable="{depth : $root.depth.login.val}" on-selected="vm.continue()">Tiếp tục</button>
+            <button class="display-none Login"  focusable="{depth : $root.depth.login.val}" on-selected="vm.login()">Đăng nhập</button>
+        </div>
+    </div>
+</div>
