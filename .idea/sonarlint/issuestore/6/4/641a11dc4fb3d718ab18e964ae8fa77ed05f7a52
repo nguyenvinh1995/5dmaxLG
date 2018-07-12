@@ -1,0 +1,16 @@
+
+Pjavascript:S1854"6Remove this useless assignment to local variable "key"(»Å†
+X'javascript:FunctionDefinitionInsideLoop"'Define this function outside of a loop.(©ïåÖ
+X'javascript:FunctionDefinitionInsideLoop"'Define this function outside of a loop.(ª¡ï
+ijavascript:S3523"OReview this "Function" call and make sure its arguments are properly validated.(İÙé
+Wjavascript:UnusedVariable"4Remove the declaration of the unused 'key' variable.(»Å†
+fjavascript:S2589"LRefactor this code so that this expression does not always evaluate to true.(Éä³•
+Ojavascript:UnusedVariable",Remove unused function 'directiveLinkingFn'.(»ÄÕ
+X'javascript:FunctionDefinitionInsideLoop"'Define this function outside of a loop.(Âì´î
+kjavascript:S1764"LCorrect one of the identical sub-expressions on both sides of operator "!=="(ËúîĞûÿÿÿÿ
+…javascript:S4165"kReview this useless assignment: "combinedState" already holds the assigned value along all execution paths.(¡¯×İ
+‚javascript:S1871"cEither merge this case with the identical one on line "15559" or change one of the implementations.(ÓæÎŸÿÿÿÿÿ
+ijavascript:S2259"JTypeError can be thrown as "isolateScope" might be null or undefined here.(‘œõ­üÿÿÿÿ
+]'javascript:FunctionDefinitionInsideLoop"'Define this function outside of a loop.( œ©Åøÿÿÿÿ
+}javascript:S1871"cEither merge this case with the identical one on line "16126" or change one of the implementations.(Ûİ™Ë
+Ljavascript:UnusedVariable"*Remove unused function 'nodesetLinkingFn'.(•øæ
