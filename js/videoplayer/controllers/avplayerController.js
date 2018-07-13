@@ -762,7 +762,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
             // else {
             $rootScope.isPlaying = true;
             currentPlayingTime = player.currentTime();
-            console.log('xxxxxx',currentPlayingTime);
+            console.log('xxxxxx', currentPlayingTime);
             updateCurrentProgress(currentPlayingTime);
             // }
 
@@ -780,13 +780,15 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
             }
         });
         player.on('ended', function () {
-            console.log("success");
+            console.log("success",TizenAVPlayer.currentTrack,TizenAVPlayer.mediaList.length);
             if (TizenAVPlayer.currentTrack < TizenAVPlayer.mediaList.length - 1) {
                 TizenAVPlayer.nextVideo();
                 isNext = true;
                 console.log('next video');
+                if (TizenAVPlayer.currentTrack === TizenAVPlayer.mediaList.length) {
+                    $rootScope.changeView();
+                }
             } else {
-                // $rootScope.changeView();
                 WebOsPlayer.pause();
                 checkSuggestMovie();
             }
@@ -795,8 +797,6 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
             // setCurrentTime(player);
         })
     }
-
-
 }
 
 

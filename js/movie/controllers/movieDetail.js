@@ -503,14 +503,14 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
             var item = services.itemFromListMovie;
             var timeFocus = setInterval(function () {
                 if (item == null) {
-                    focusController.focus($('.active_list_film'));
-                    if ($('.active_list_film').hasClass('focused') && $state.current.name == 'movieList') {
+                    focusController.focus($('.list_0'));
+                    if ($('.list_0').hasClass('focused') && $state.current.name == 'movieList') {
                         services.itemFromListMovie == null;
                         clearInterval(timeFocus);
                     }
                 } else {
-                    focusController.focus($('.list_' + item.id));
-                    if ($('.list_' + item.id).hasClass('focused') && $state.current.name == 'movieList') {
+                    focusController.focus($('.list_0'));
+                    if ($('.list_0').hasClass('focused') && $state.current.name == 'movieList') {
                         clearInterval(timeFocus);
                         services.itemFromListMovie == null;
                     }
@@ -572,7 +572,7 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
         })
     }
 
-    // $scope.$on('$viewContentLoaded', function(event) {
-    //     initFocus();
-    // })
+    $scope.$on('$viewContentLoaded', function(event) {
+        // initFocus();
+    })
 }

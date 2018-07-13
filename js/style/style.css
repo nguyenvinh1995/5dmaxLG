@@ -1960,7 +1960,7 @@ input:focus, button:focus {
           background-color: #fff;
           font-weight: 600; }
   .setup_page .content {
-    width: calc(100% - 700px);
+    width: calc(100% - 420px);
     height: 100vh;
     display: inline-block;
     float: right;

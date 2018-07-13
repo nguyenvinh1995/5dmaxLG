@@ -9,11 +9,11 @@
         <div class="season-movie">
             <span class="season">Season 1</span>
             <span class="lap-total">{{::vm.ep}} tập</span>
-        </div>
+        </div>fisrt
     </div>
     <div class="part-movie">
         <caph-list id="list_item" container-class="item-movie" direction="vertical" items="item in vm.listFilms" wrapper-class="wrapper_item_list" initial-item-index="{{index_item}}">
-            <div id="" class="item list_{{item.id}}" focusable="{depth : $root.depth.listMovie.val}"
+            <div id="" class="item"  ng-class="{'list_0' : $first }" focusable="{depth : $root.depth.listMovie.val}"
                  on-selected="vm.playMovie(item)" ng-class="item.alias === 'Tập 1' ? 'active_list_film': '' ">
                 <img class="img-movie" src="{{item.coverImage}}" height="" width="" alt="">
                 <div class="des-movie">
