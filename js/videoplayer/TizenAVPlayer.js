@@ -52,21 +52,21 @@ TizenAVPlayer.initialize = function (mediaConfig) {
 
 };
 
-TizenAVPlayer.setVerimarix = function () {
-    console.log(this.UID);
-    var drmParam = {
-        CompanyName: "Viettel",
-        IPTV: null,
-        Web: "27.67.49.248:80",
-        UID: this.UID
-    };
-
-    try {
-        webapis.avplay.setDrm("VERIMATRIX", "Initialize", JSON.stringify(drmParam));
-    } catch (e) {
-        console.log(e);
-    }
-};
+// TizenAVPlayer.setVerimarix = function () {
+//     console.log(this.UID);
+//     var drmParam = {
+//         CompanyName: "Viettel",
+//         IPTV: null,
+//         Web: "27.67.49.248:80",
+//         UID: this.UID
+//     };
+//
+//     try {
+//         webapis.avplay.setDrm("VERIMATRIX", "Initialize", JSON.stringify(drmParam));
+//     } catch (e) {
+//         console.log(e);
+//     }
+// };
 
 
 TizenAVPlayer.stop = function () {
@@ -124,23 +124,23 @@ TizenAVPlayer.stop = function () {
 //     // this.executeAction({action: 'play'});
 // };
 
-TizenAVPlayer.playTrailer = function (videoUrl) {
-    this.openVideo(videoUrl);
-    this.executeAction({
-        action: 'change-size',
-        arg: {
-            left: 515,
-            width: 1452,
-            height: 768,
-            delay: 0
-        }
-    });
-    this.prepareVideoSync();
-    if (!this.active4K()) {
-        console.log("Device not support play 4K video");
-    }
-    this.executeAction({action: 'play'});
-};
+// TizenAVPlayer.playTrailer = function (videoUrl) {
+//     this.openVideo(videoUrl);
+//     this.executeAction({
+//         action: 'change-size',
+//         arg: {
+//             left: 515,
+//             width: 1452,
+//             height: 768,
+//             delay: 0
+//         }
+//     });
+//     this.prepareVideoSync();
+//     if (!this.active4K()) {
+//         console.log("Device not support play 4K video");
+//     }
+//     this.executeAction({action: 'play'});
+// };
 
 /*
 @ method: TizenAVPlayer.addEvents

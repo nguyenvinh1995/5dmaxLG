@@ -19,8 +19,7 @@ function listMoviesCtrl($scope, services, focusController, FocusConstant, FocusU
         vm.category = data.categories;
         console.log(vm.category);
         initFocus();
-        utilities.hideLoading();
-
+        // utilities.hideLoading();
     });
     vm.showFilm = function (bool, id, item) {
         if (bool === true && id != null) {
@@ -61,6 +60,7 @@ function listMoviesCtrl($scope, services, focusController, FocusConstant, FocusU
             focusController.focus($('.category_movie_active'));
             if ($('.category_movie_active').hasClass('focused')) {
                 clearInterval(timeFocus);
+                utilities.hideLoading();
             }
         }, 100);
     }
@@ -84,6 +84,7 @@ function listMoviesCtrl($scope, services, focusController, FocusConstant, FocusU
     // }
 
     $scope.$on('$viewContentLoaded', function () {
+        initFocus()
     })
 
 }

@@ -29,7 +29,7 @@ function myListCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
                     if(res.responseCode == utilities.errorCode.success){
                         getMyList();
                     }else{
-                        utilities.hideLoading();
+                        // utilities.hideLoading();
                         utilities.showMessenge(utilities.tokenExpireMessenger, true);
                         $rootScope.errorVerify = true;
                         $state.go('login_form');
@@ -50,7 +50,7 @@ function myListCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
                     if(res.responseCode == utilities.errorCode.success){
                         getHistory();
                     }else{
-                        utilities.hideLoading();
+                        // utilities.hideLoading();
                         $rootScope.errorVerify = true;
                         utilities.showMessenge(utilities.tokenExpireMessenger, true);
                         $state.go('login_form');
@@ -141,6 +141,7 @@ function myListCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
             focusController.focus($('#film_history'));
             if ($('#film_history').hasClass('focused')) {
                 clearInterval(timeFocus);
+                utilities.hideLoading();
             }
         }, 100)
     }

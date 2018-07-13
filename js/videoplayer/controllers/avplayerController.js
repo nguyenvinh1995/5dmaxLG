@@ -327,7 +327,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
     //     });
     // }
 
-    function updateCurrentProgress(currentTime, $rootScope) {
+    function updateCurrentProgress(currentTime) {
         currentTime = currentTime < 0 ? 0 : currentTime > WebOsPlayer.duration ? WebOsPlayer.duration : currentTime;
 
         var timeLeft = WebOsPlayer.duration - currentTime;
@@ -346,6 +346,8 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
 
         if (Math.min(currentTime, WebOsPlayer.duration) === WebOsPlayer.duration) {
             progressBarMarkerElement.css('width', progressBarBkgdElement.width() + '%');
+            // progressBarMarkerElement.css('width', progress + '%');
+            // progressDot.css('margin-left', (progress) + '%');
             return;
         }
 
@@ -760,7 +762,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
             // else {
             $rootScope.isPlaying = true;
             currentPlayingTime = player.currentTime();
-            console.log('xxxxxx');
+            console.log('xxxxxx',currentPlayingTime);
             updateCurrentProgress(currentPlayingTime);
             // }
 
@@ -789,7 +791,6 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                 checkSuggestMovie();
             }
         });
-
         player.on('canplay', function () {
             // setCurrentTime(player);
         })

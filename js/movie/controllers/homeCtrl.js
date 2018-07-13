@@ -454,7 +454,8 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
     }
 
     vm.approveExit = function () {
-        tizen.application.getCurrentApplication().exit();
+        // tizen.application.getCurrentApplication().exit();
+        webOS.platformBack();
     };
 
     vm.cancel = function () {

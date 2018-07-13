@@ -44,7 +44,6 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
             lengthCategory = vm.homeFilms.length - 1;
             lastCategory = vm.homeFilms.length;
             angular.element(document.getElementById('list_container_rent')).append($compile(raw)($scope));
-            utilities.hideLoading();
 
         //     if ($('.first_category_item').hasClass('focused')) {
         //         clearInterval(timeFocus);
@@ -92,7 +91,7 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
                 vm.currentCategory = 1;
             }
             if (category > vm.currentCategory) {
-                var val = (category - 1) * (heightCategory + 168);
+                var val = (category - 1) * (heightCategory + 167);
                 if (category == lengthCategory && !lastCategory) {
                     val -= heightCategory;
                     $('#list_container_rent').addClass('lastCategory');
@@ -104,10 +103,9 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
                 vm.currentCategory = category;
             }
             /*key up*/
-
             if (category < vm.currentCategory && category > 1) {
                 $('#list_container_rent').removeClass('lastCategory');
-                var val = (category - 1) * (heightCategory + 168);
+                var val = (category - 1) * (heightCategory + 167);
                 $('#list_container_rent').css({
                     transform: 'translate3d(0, -' + val + 'px,0)'
                 });
@@ -160,6 +158,7 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
             focusController.focus($('.first_category_items'));
             if ($('.first_category_items').hasClass('focused')) {
                 clearInterval(timeFocus);
+                utilities.hideLoading();
             }
         }, 100);
     }
