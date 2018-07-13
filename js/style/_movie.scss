@@ -437,6 +437,6 @@
 
 .scroll-movie {
   overflow: hidden;
-  width: 10000*$rem;
+  width: 10000*$rem !important;
   height: 100%;
 }

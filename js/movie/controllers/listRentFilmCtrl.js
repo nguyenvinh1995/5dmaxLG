@@ -31,8 +31,8 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
                     + '<p class="list_title">{{vm.homeFilms[' + i + '].name}}</p>'
                     + '<div class="movies scroll-movie">'
                     + '<div class="list-scroll-wrapper" ng-repeat="obj in vm.homeFilms[' + i + '].content" > '
-                    + '<div class="item" ng-class="{ \'first_category_item\' : !$index && ' + i + ' == 1}"'
-                    + 'focusable="{name:\'menu-rent-' + i + '-{{$index}}\',depth : $root.depth.list.val , nextFocus : { up : ' + i + ' == 1  ? \'btn_pl\' : \'\',right : $last ? \'menu-rent-' + i + '-0\' : \'{{\'menu-rent-' + i + '-\' + ($index + 1)}}\'}}"'
+                    + '<div class="item" ng-class="{ \'first_category_items\' : !$index && ' + i + ' == 1}"'
+                    + 'focusable="{name:\'menu-rent-' + i + '-{{$index}}\',depth : $root.depth.list.val , nextFocus : { up : ' + i + ' == 1  ? \'btn_pl\' : \'\',right : $last ? \'menu-rent-' + i + '-0\' : \'{{\'menu-rent-' + i + '-\' + ($index + 1)}}\',down: $last ? \'\' : \'menu-rent-' + (i+1) + '-0\'}}"'
                     + 'on-selected="vm.selectMovie(obj)" on-blurred="vm.blurItem($event, $originalEvent, ' + i + ' , obj , $index )" on-focused="vm.focusItem($event, $originalEvent, 4, obj , $index,' + i + ')">'
                     + '<div id="test" style="background:url(\'{{obj.coverImageH ? obj.coverImageH : obj.coverImage}}\') no-repeat"></div>'
                     + '</div>'
@@ -92,7 +92,7 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
                 vm.currentCategory = 1;
             }
             if (category > vm.currentCategory) {
-                var val = (category - 1) * (heightCategory + 248);
+                var val = (category - 1) * (heightCategory + 168);
                 if (category == lengthCategory && !lastCategory) {
                     val -= heightCategory;
                     $('#list_container_rent').addClass('lastCategory');
@@ -107,7 +107,7 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
 
             if (category < vm.currentCategory && category > 1) {
                 $('#list_container_rent').removeClass('lastCategory');
-                var val = (category - 1) * (heightCategory + 248);
+                var val = (category - 1) * (heightCategory + 168);
                 $('#list_container_rent').css({
                     transform: 'translate3d(0, -' + val + 'px,0)'
                 });
@@ -157,8 +157,8 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
     function initFocus() {
         utilities.showLoading();
         var timeFocus = setInterval(function () {
-            focusController.focus($('.first_category_item'));
-            if ($('.first_category_item').hasClass('focused')) {
+            focusController.focus($('.first_category_items'));
+            if ($('.first_category_items').hasClass('focused')) {
                 clearInterval(timeFocus);
             }
         }, 100);

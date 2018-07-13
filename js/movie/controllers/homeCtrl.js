@@ -30,14 +30,13 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
                 + '<div class="movies scroll-movie">'
                 + '<div class="list-scroll-wrapper" ng-repeat="obj in vm.homeFilms[' + i + '].content" > '
                 + '<div class="item" ng-class="{ \'first_category\' : !$index && ' + i + ' == 1}"'
-                + 'focusable="{name:\'menu-type-' + i + '-{{$index}}\',depth : $root.depth.main.val , nextFocus : { up : ' + i + ' == 1  ? \'btn_play\' : \'\',right : $last ? \'menu-type-' + i + '-0\' : \'\'}}"'
+                + 'focusable="{name:\'menu-type-' + i + '-{{$index}}\',depth : $root.depth.main.val , nextFocus : { up : ' + i + ' == 1  ? \'btn_play\' : \'\',right : $last ? \'menu-type-' + i + '-0\' : \'\',down: $last ? \'\' : \'menu-type-' + (i+1) + '-0\'}}"'
                 + 'on-selected="vm.selectMovie(obj)" on-blurred="vm.blurItem($event, $originalEvent, ' + i + ' , obj , $index )" on-focused="vm.focusItem($event, $originalEvent, 4, obj , $index,' + i + ')">'
                 + '<div id="test" style="background:url(\'{{obj.coverImageH ? obj.coverImageH : obj.coverImage}}\') no-repeat"></div>'
                 + '</div>'
                 + '</div>'
                 + '</div>'
                 + '</div>'
-
         }
         lengthCategory = vm.homeFilms.length - 1;
         angular.element(document.getElementById('list_container')).append($compile(raw)($scope));
@@ -61,7 +60,6 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
             } else if (currentIndexBanner == vm.banner.length - 1) {
                 currentIndexBanner = 0;
             }
-
             currentBannerItem = vm.banner[currentIndexBanner];
             //console.log(currentBannerItem);
             services.backgroundMenu = currentBannerItem.imageForTVLarge;
@@ -127,6 +125,10 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         $("#group_btn").removeClass('hidden_opacity');
         $(".movie_article_wrapper").removeClass('background-none');
         $(".btn-up-to-top").removeClass('display-none').addClass('display-block');
+        clearTimeout(vm.ShowGif);
+        $("#av-container").addClass('display-trainer');
+        $("#av-player").addClass('display-trainer');
+        WebOsPlayer.player.dispose();
     };
 
 ///// Detail-Button
@@ -272,7 +274,6 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
                 transform: 'translateX(0px)'
             });
         }
-
     };
 
 
@@ -318,7 +319,6 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
 ///// Trailer-Home
 
     function avPlayerListenerCallback(player) {
-
         player.on('loadedmetadata', function () {
             console.log('done!');
         });

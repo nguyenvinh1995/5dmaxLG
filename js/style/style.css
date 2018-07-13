@@ -478,7 +478,7 @@ html, body {
 
 .scroll-movie {
   overflow: hidden;
-  width: 312.5rem;
+  width: 312.5rem !important;
   height: 100%; }
 
 @font-face {
