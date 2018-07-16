@@ -1538,7 +1538,7 @@ input:focus, button:focus {
       padding-left: 0.3125rem;
       font-size: 1.1875rem;
       color: #ccc;
-      margin-right: 2.1875rem;
+      margin-right: 4.0625rem;
       text-transform: capitalize; }
       .search-page .search-input .input input::-webkit-input-placeholder {
         /* Chrome/Opera/Safari */
@@ -1608,7 +1608,7 @@ input:focus, button:focus {
     color: #fff; }
   .search-page .search-movie {
     width: 34.21875rem;
-    margin-left: 5%;
+    margin-left: 2%;
     height: 28.59375rem;
     margin-top: 1%;
     position: relative;
@@ -1646,8 +1646,6 @@ input:focus, button:focus {
         font-size: 1.125rem;
         text-align: center;
         padding: 0.21875rem 0.21875rem 0.21875rem 0.21875rem;
-        margin-left: 0.0625rem;
-        margin-right: 0.0625rem;
         width: 10%;
         margin-bottom: 0.21875rem;
         display: inline-table;
@@ -1667,7 +1665,7 @@ input:focus, button:focus {
         background-color: #282828;
         border-radius: 0.15625rem;
         border: 0.09375rem solid #282828;
-        width: 7.53125rem;
+        width: 7.15625rem;
         height: 2.0625rem; }
         .search-page .keyboard_content .key-image .btn-del.focused, .search-page .keyboard_content .key-image .btn-space.focused {
           border: 0.09375rem solid #fff; }
@@ -1702,7 +1700,7 @@ input:focus, button:focus {
           -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%); }
     .search-page .keyboard_content .btn-back {
-      padding: 0.46875rem 5.75rem 0.46875rem 6.09375rem;
+      padding: 0.46875rem 5.625rem 0.46875rem 5.625rem;
       color: #ffffff;
       font-size: 1rem;
       border: 0.09375rem solid #282828;
@@ -1714,23 +1712,34 @@ input:focus, button:focus {
     .search-page .keyboard_content .btn-back.focused {
       color: #fff;
       border: 0.09375rem solid #fff; }
-    .search-page .keyboard_content .hotkey {
-      margin-left: 1.40625rem;
+  .search-page .hotkey {
+    margin-left: 1.40625rem;
+    width: 100%;
+    height: 28.125rem;
+    position: absolute !important;
+    top: 58% !important; }
+    .search-page .hotkey .item-hotkey {
       width: 100%;
-      height: 9.375rem;
-      overflow: scroll; }
-      .search-page .keyboard_content .hotkey .item-hotkey {
+      height: 28.125rem;
+      overflow: hidden; }
+      .search-page .hotkey .item-hotkey .caph-list-wrapper {
         width: 100%;
-        height: 9.375rem; }
-        .search-page .keyboard_content .hotkey .item-hotkey .item-key {
+        height: 27.8125rem; }
+        .search-page .hotkey .item-hotkey .caph-list-wrapper .item-key {
+          position: absolute;
           border-radius: 0.15625rem;
           width: 69.5%;
           height: 1.25rem;
-          margin: -0.625rem 0.3125rem 0.5rem 0.9375rem;
+          margin: 0rem 0.3125rem 0.5rem 0.9375rem;
           padding: 0.40625rem;
           font-size: 1.125rem;
           border: 0.09375rem solid transparent; }
-        .search-page .keyboard_content .hotkey .item-hotkey .item-key.focused {
+          .search-page .hotkey .item-hotkey .caph-list-wrapper .item-key .item {
+            white-space: nowrap;
+            overflow: hidden;
+            -o-text-overflow: ellipsis;
+            text-overflow: ellipsis; }
+        .search-page .hotkey .item-hotkey .caph-list-wrapper .item-key.focused {
           border: 0.09375rem solid #fff; }
   .search-page .col-lg-1, .search-page .col-lg-10, .search-page .col-lg-11, .search-page .col-lg-12, .search-page .col-lg-2, .search-page .col-lg-3, .search-page .col-lg-4, .search-page .col-lg-5, .search-page .col-lg-6, .search-page .col-lg-7, .search-page .col-lg-8, .search-page .col-lg-9 {
     position: relative;
@@ -1786,6 +1795,22 @@ input:focus, button:focus {
     margin-left: 8.33333333%; }
   .search-page .col-lg-offset-0 {
     margin-left: 0; }
+
+.display-no-top .keyboard_content {
+  top: -60% !important;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out; }
+
+.display-no-top .hotkey {
+  top: 10% !important;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out; }
 
 .caph-list-movie {
   position: absolute;
@@ -2401,8 +2426,22 @@ input:focus, button:focus {
   top: 0;
   left: 0;
   z-index: 99999; }
+  .dialog-2 .img-popup {
+    width: 12.5rem;
+    height: 2.5rem;
+    background: url("../images/logo.png") no-repeat;
+    background-size: 100% 100%;
+    top: 20%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    /* IE 9 */
+    -webkit-transform: translate(-50%, -50%);
+    /* Safari */
+    transform: translate(-50%, -50%);
+    position: absolute; }
   .dialog-2 .dialog_inner {
-    width: 28.125rem;
+    width: 100vw;
+    height: 75vh;
     display: inline-block;
     position: absolute;
     top: 50%;
@@ -2413,40 +2452,44 @@ input:focus, button:focus {
     /* Safari */
     transform: translate(-50%, -50%);
     padding: 1.25rem 1.5625rem 0.9375rem 1.5625rem;
-    background-color: #fff;
+    background-color: #000;
     border-radius: 0.3125rem;
     -webkit-box-shadow: 0 0.28125rem 0.75rem 0 rgba(0, 0, 0, 0.2);
     box-shadow: 0 0.28125rem 0.75rem 0 rgba(0, 0, 0, 0.2); }
   .dialog-2 .content {
-    letter-spacing: 0.00937rem; }
+    letter-spacing: 0.00937rem;
+    text-align: center;
+    margin-top: 6.25rem; }
     .dialog-2 .content h1 {
       font-size: 1.65625rem;
       font-weight: 600;
       margin: 0;
-      color: #000; }
+      color: #fff;
+      margin-bottom: 6.25rem; }
     .dialog-2 .content p {
-      font-size: 0.9375rem;
-      color: #000;
+      margin-left: 16%;
+      width: 68%;
+      font-size: 1.1875rem;
+      color: #fff;
       margin-top: 0.46875rem; }
   .dialog-2 .action {
-    margin-top: 1.5625rem;
+    margin-top: 6.25rem;
     text-align: center; }
     .dialog-2 .action button {
-      float: right;
       margin: 0rem 0.625rem;
-      width: 6.25rem;
-      height: 1.875rem;
+      width: 15.625rem;
+      height: 2.375rem;
       line-height: 1.875rem;
-      font-size: 0.9375rem;
+      font-size: 1.1875rem;
       text-align: center;
       padding: 0;
       border: none;
-      color: #00CCFF;
+      color: #fff;
       border-radius: 0.125rem;
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.4);
       display: inline-block; }
       .dialog-2 .action button.focused {
-        background-color: #dddddd; }
+        background-color: #f80026; }
 
 .splash_page {
   background: #000; }

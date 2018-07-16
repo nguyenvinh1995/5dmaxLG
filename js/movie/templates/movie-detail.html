@@ -22,9 +22,9 @@
             <button id="btn_continue" class="button-common" focusable="{depth : $root.depth.detail.val }"
                     ng-show="vm.viewContinue" on-selected="vm.goToPlayer(true)">
                 <!--<div id="progress_bar" class="video-progress-bar">-->
-                    <!--<div class="progress-bar-bkgd video">-->
-                        <!--<div class="progress-bar-marker video"></div>-->
-                    <!--</div>-->
+                <!--<div class="progress-bar-bkgd video">-->
+                <!--<div class="progress-bar-marker video"></div>-->
+                <!--</div>-->
                 <!--</div>-->
                 <span class="img-tool img-continue"></span>
                 <span class="text-btn">Xem tiếp </span>
@@ -48,23 +48,22 @@
             </button>
         </div>
     </div>
-    <div id="popup_movie_detail" class="dialog full_page hidden popup_movie_detail">
-        <div class="dialog_inner">
-            <div class="content">
-                <div>
-                    <h1 class="title_messenger"></h1>
-                    <p class="messenger"></p>
-                </div>
-            </div>
-            <div class="action">
-                <div>
-                    <button class="yes_buy_detail" focusable="{depth : depth.dialog.val}" on-selected="vm.yes()">Đồng
-                        ý
-                    </button>
-                    <button id="cancel_buy" class="cancel_buy_detail" focusable="{depth : depth.dialog.val}"
-                            on-selected="vm.cancel()">Bỏ Qua
-                    </button>
-                </div>
-            </div>
+</div>
+
+<div id="popup_movie_detail" class="dialog-2 full_page hidden popup_movie_detail">
+    <div class="dialog_inner">
+        <div class="img-popup"></div>
+        <div class="content">
+            <h1 class="title_messenger"></h1>
+            <p class="messenger"></p>
+        </div>
+        <div class="action">
+            <button class="yes_buy_detail" focusable="{depth : depth.dialog.val}" on-selected="vm.yes()">Đồng
+                ý
+            </button>
+            <button id="cancel_buy" class="cancel_buy_detail" focusable="{depth : depth.dialog.val}"
+                    on-selected="vm.cancel()">Bỏ Qua
+            </button>
         </div>
     </div>
+</div>

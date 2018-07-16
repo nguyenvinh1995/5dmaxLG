@@ -1,4 +1,4 @@
-<div class="search-page">
+<div class="search-page" id="search">
     <!--<h1 class="col-lg-12">Tìm Kiếm</h1>-->
     <div class="keyboard_content col-lg-4">
         <div class="col-lg-offset-2 col-lg-12">
@@ -6,12 +6,12 @@
             </button>
         </div>
         <div class="col-lg-12 key-image">
-            <div class="btn-space col-lg-6" style="margin-left: 3.28125rem"
+            <div class="btn-space col-lg-6" style="margin-left: 2.1rem"
                  focusable="{depth : $root.depth.search.val, name: 'key-space'}"
                  data-focusable-next-focus-right="key-del" on-selected="vm.enterText(' ')">
                 <div class="search-space"></div>
             </div>
-            <div class="btn-del col-lg-6" style="margin-left:0.5625rem"
+            <div class="btn-del col-lg-6" style="margin-left:5px"
                  focusable="{depth : $root.depth.search.val, name: 'key-del'}"
                  data-focusable-next-focus-left="key-space" on-selected="vm.onKeyboardDel()">
                 <div class="search-del"></div>
@@ -60,31 +60,12 @@
                 <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('9')">9</li>
             </ul>
         </div>
-        <div class="hotkey">
-            <div class="item-hotkey">
-                <!--<div>-->
-                    <div class="item-key" ng-repeat="item in vm.hotKey"
-                         focusable="{depth : $root.depth.search.val, nextFocus: {down : $last ? 'null' :''}}"
-                         on-selected="vm.hotkey(item)">
-                        <div class="item">{{item}}</div>
-                    </div>
-                <!--</div>-->
-            </div>
-
-            <!--<caph-list direction="horizontal" container-class="item-hotkey" items="item in vm.hotKey">-->
-            <!--<div class="item-key"-->
-            <!--focusable="{depth : $root.depth.search.val, nextFocus: {down : $last ? 'null' :''}}"-->
-            <!--on-selected="vm.hotkey(item)">-->
-            <!--<div class="item">{{item}}</div>-->
-            <!--</div>-->
-            <!--</caph-list>-->
-        </div>
     </div>
-
     <div class="col-lg-8" style="float: right">
         <div class="search-input">
             <div class="input">
-                <input class="input" input-class="search_input" id="search_txt" type="text" ng-model="vm.searchText">
+                <input class="input" input-class="search_input" id="search_txt" type="text"
+                       ng-model="vm.searchText">
             </div>
         </div>
         <span id="text-search" class="text display-block">Vui lòng nhập từ khoá tìm kiếm</span>
@@ -97,7 +78,22 @@
             </div>
         </caph-list>
     </div>
+    <div class="col-lg-4 hotkey">
+        <div class="item-hotkey" id="list_search_suggest">
+            <caph-list direction="vertical" container-class="item-hotkey"
+                       items="item in vm.listSearchMovieSugest">
+                <div class="item-key"
+                     focusable="{depth : $root.depth.search.val, nextFocus: {down : $last ? 'null' :''}}"
+                     on-focused="vm.focusSuggest()" on-blurred="vm.blurSuggest()"
+                     on-selected="vm.hotkey(item)" ng-class="{ 'itemFirstText' : $first }">
+                    <div class="item">{{item.name}}</div>
+                </div>
+            </caph-list>
+        </div>
+    </div>
 </div>
+<!--</div>-->
+
 
 <!-- dialog -->
 <!--<div id="dialog_setup" class="dialog-2 dialog_setup full_page hidden">-->

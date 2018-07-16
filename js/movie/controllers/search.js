@@ -23,15 +23,26 @@ function searchCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
                 // if (response.responseCode !== '200' || response.data.length === 0) {
                 //     utilities.showMessenge("Không tìm thấy kết quả nào.");
                 // } else {
-                    if (response.data.length > 0) {
-                        $("#text-search").addClass('display-none').removeClass('display-block');
-                        vm.showListMovie = true;
-                        vm.listSearchMovie = response.data[0].content;
-                        $("#list_search").trigger('reload');
-                    }
+                if (response.data.length > 0) {
+                    $("#text-search").addClass('display-none').removeClass('display-block');
+                    vm.showListMovie = true;
+                    vm.listSearchMovie = response.data[0].content;
+                    $("#list_search").trigger('reload');
+                }
                 // }
             });
         }, 1000);
+
+        $timeout.cancel(vm.showSearchSuggest);
+        vm.showSearchSuggest = null;
+        vm.showSearchSuggest = $timeout(function () {
+            services.getSearchSuggestion(key).then(function (response) {
+                vm.listSearchMovieSugest = response.data[0].content;
+                $("#list_search_suggest").trigger('reload');
+
+            });
+        }, 1000);
+
     }
 
     services.getSetting().then(function (response) {
@@ -46,9 +57,20 @@ function searchCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
         }
     });
 
+    // if( $('#search').addClass('display-no-top')){
+    //
+    // }
+
+    vm.focusSuggest = function () {
+        $('#search').addClass('display-no-top')
+    };
+    vm.blurSuggest = function () {
+        $('#search').removeClass('display-no-top')
+    };
+
 
     vm.hotkey = function (item) {
-        vm.searchText = item;
+
     };
 
     vm.back = function () {

@@ -137,6 +137,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         $(".home_slider").trigger('stop.owl.autoplay');
         $state.go('movieDetail', {id: currentBannerItem.itemId}, {reload: true});
     };
+
     vm.focusDetail = function () {
         $(".home_slider").trigger("play.owl.autoplay", [30000]);
         services.backgroundMenu = currentBannerItem.imageForTVLarge;
@@ -274,6 +275,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
                 transform: 'translateX(0px)'
             });
         }
+
     };
 
 
@@ -333,7 +335,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
             avPlayerDomElement: $("av-player")[0]
         });
         $("#av-player").addClass('video-trailer');
-        var mediaUrl = 'http://www.streambox.fr/playlists/test_001/stream.m3u8';
+        var mediaUrl = 'http://184.72.239.149/vod/smil:BigBuckBunny.smil/playlist.m3u8';
         // TizenAVPlayer.mediaUrl = mediaUrl;
         console.log('show-trailer');
         setTimeout(function () {
@@ -454,7 +456,6 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
     }
 
     vm.approveExit = function () {
-        // tizen.application.getCurrentApplication().exit();
         webOS.platformBack();
     };
 
@@ -464,16 +465,17 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
     };
 
     vm.focusText = function ($event, items, startIndex, $index) {
+        $("#av-container").addClass('display-trainer');
+        $("#av-player").addClass('display-trainer');
         $("#home_page").addClass('focusMenu');
+
         vm.title = items.title;
         vm.description = items.description;
+
         var $ele = $($event.currentTarget);
         var $wrapper = $ele.parent();
-        // var $scroll = $wrapper.parent();
-        console.log($wrapper, $index, 'index of vod ');
         var tempWidth;
         var blockToTransform;
-
         if ($index >= startIndex) {
             blockToTransform = $index - (startIndex - 1);
             tempWidth = $ele.outerWidth();

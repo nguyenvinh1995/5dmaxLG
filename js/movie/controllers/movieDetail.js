@@ -573,6 +573,6 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
     }
 
     $scope.$on('$viewContentLoaded', function(event) {
-        // initFocus();
+        initFocus();
     })
 }

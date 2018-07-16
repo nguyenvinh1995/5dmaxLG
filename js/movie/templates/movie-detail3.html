@@ -9,7 +9,7 @@
         <div class="season-movie">
             <span class="season">Season 1</span>
             <span class="lap-total">{{::vm.ep}} tập</span>
-        </div>fisrt
+        </div>
     </div>
     <div class="part-movie">
         <caph-list id="list_item" container-class="item-movie" direction="vertical" items="item in vm.listFilms" wrapper-class="wrapper_item_list" initial-item-index="{{index_item}}">
@@ -25,13 +25,14 @@
         </caph-list>
     </div>
 </div>
-<div id="popup_movie_list" class="dialog full_page hidden popup_movie_detail">
+<div id="popup_movie_list" class="dialog-2 full_page hidden popup_movie_detail">
     <div class="dialog_inner">
+        <div class="img-popup"></div>
         <div class="content">
-            <div>
-                <h1 class="title_messenger"></h1>
-                <p class="messenger"></p>
-            </div>
+            <!--<div>-->
+            <h1 class="title_messenger"></h1>
+            <p class="messenger"></p>
+            <!--</div>-->
         </div>
         <div class="action">
             <div>

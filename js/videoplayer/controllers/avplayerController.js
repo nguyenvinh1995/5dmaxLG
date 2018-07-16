@@ -102,80 +102,12 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
     function startingPlay($scope, services, $state, FocusUtil, focusController, $timeout, $stateParams, utilities, $rootScope, settings, $http) {
         $scope.key = settings.authToken;
 
-        // var listenerCallback = {
-        //     onbufferingstart: function () {
-        //         if (!keydown && $state.current.name == 'avplayer') {
-        //             utilities.showLoading();
-        //         }
-        //     },
-        //     onbufferingprogress: function (percent) {
-        //         if (!keydown && $state.current.name == 'avplayer') {
-        //             utilities.showLoading();
-        //         }
-        //     },
-        //     onbufferingcomplete: function () {
-        //         console.log("buffer complete");
-        //         utilities.hideLoading();
-        //         TizenAVPlayer.duration = duration = webapis.avplay.getDuration();
-        //         var status = TizenAVPlayer.checkIsPlaying();
-        //         if (status) {
-        //             $scope.isPlaying = TizenAVPlayer.checkIsPlaying();
-        //             $scope.$digest();
-        //         }
-        //     },
-        //     oncurrentplaytime: function (currentTime) {
-        //         TizenAVPlayer.currentTime = currentTime;
-        //         currentPlayingTime = currentTime;
-        //         updateCurrentProgress(currentTime, $rootScope);
-        //     },
-        //     onevent: function (eventType, eventData) {
-        //     },
-        //     onerror: function (eventType) {
-        //         console.log(eventType);
-        //         utilities.showMessenge("Đã xảy ra lỗi xảy ra");
-        //         // $rootScope.changeView();
-        //         utilities.hideLoading();
-        //     },
-        //     onsubtitlechange: function (duration, text, data3, data4) {
-        //
-        //     },
-        //     ondrmevent: function (drmEvent, drmData) {
-        //         console.log(drmEvent);
-        //         console.log(drmData);
-        //     },
-        //     onstreamcompleted: function () {
-        //         console.log("success");
-        //         if (TizenAVPlayer.currentTrack < TizenAVPlayer.mediaList.length - 1) {
-        //             TizenAVPlayer.nextVideo();
-        //             isNext = true;
-        //             console.log('next video');
-        //
-        //             // TizenAVPlayer.executeAction({
-        //             //     action: "stop"
-        //             // });
-        //             // checkSuggestMovie();
-        //
-        //         } else {
-        //             // $rootScope.changeView();
-        //             TizenAVPlayer.executeAction({
-        //                 action: "stop"
-        //             });
-        //             checkSuggestMovie();
-        //         }
-        //
-        //     }
-        // };
-
         var playlistId = $state.params.playlistId;
         var movieId = $state.params.movieId;
         currentidMovie = $state.params.movieId;
-        // TizenAVPlayer.listener = listenerCallback;
 
         //-------------------- config and play video ------------------//
-        // TizenAVPlayer.initialize({
-        //     avPlayerDomElement: $("#av-player")[0],
-        //     listener: listenerCallback
-        // });
+
         WebOsPlayer.initialize({
             avPlayerDomElement: $("av-player")[0]
             // listener: avPlayerListenerCallback()
@@ -193,6 +125,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
         };
 
         function getStreaming(idPlay, idMovie) {
+            console.log(services);
             services.currentPlayMovie = {
                 "idMovie": idPlay,
                 "idPart": idMovie
@@ -200,20 +133,21 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
 
             if (services.drmUrl) {
                 console.log("drm..........");
-                isDrm = true;
+                // isDrm = true;
                 var mediaUrl = services.drmUrl;
+                console.log(mediaUrl,'drm');
                 TizenAVPlayer.mediaUrl = mediaUrl;
                 setTimeout(function () {
                     WebOsPlayer.playVideo(mediaUrl, avPlayerListenerCallback);
                     // TizenAVPlayer.playVideo(mediaUrl, isDrm);
                     $scope.isPlaying = true;
-                    $scope.$digest();
+                    // $scope.$digest();
                     // if(TizenAVPlayer.currentTime != 0 && isNext == false){
                     //     var time = TizenAVPlayer.currentTime * 1000;
                     //     ff(time);
                     // }
                 }, 500);
-                $("#av-player").show();
+                // $("#av-player").show();
             } else {
                 console.log("not drm.....");
                 services.getStreaming(idPlay, idMovie, services.quality).then(function (response) {
@@ -222,9 +156,9 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                     if (data.streams && data.streams.errorCode == '200') {
                         var mediaUrl = data.streams.urlStreaming;
                         TizenAVPlayer.mediaUrl = mediaUrl;
+                        console.log(mediaUrl,'no-drm');
                         setTimeout(function () {
                             WebOsPlayer.playVideo(mediaUrl, avPlayerListenerCallback);
-
                             // TizenAVPlayer.playVideo(mediaUrl, isDrm);
                             $scope.isPlaying = true;
                             $scope.$digest();
@@ -298,8 +232,6 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
             getStreaming(playlistId, movieId);
 
         }
-
-
         // if ($("video").length)
         //     addVideoListener($scope);
     }
@@ -471,17 +403,11 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
         };
 
         $scope.rewindHanle = function () {
-            // TizenAVPlayer.rew(controllerConfig.rewindTimeRange, function () {
-            // }, activePlayBtn);
             WebOsPlayer.rewind(controllerConfig.rewindTimeRange, stepFfAndRw, isForward);
-
         };
 
         $scope.forwardHanle = function () {
-            // TizenAVPlayer.ff(controllerConfig.forWardTimeRange, function () {
-            // }, activePlayBtn);
             WebOsPlayer.rewind(controllerConfig.rewindTimeRange, stepFfAndRw, isForward);
-
         };
 
 
@@ -524,7 +450,6 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                     if ($state.current.name == 'avplayer') {
                         if (checkProgressBarForcus()) {
                             clearTimeout(showMediaControllerTimeout);
-                            // TizenAVPlayer.rew(controllerConfig.rewindTimeRange, stepFfAndRw, activePlayBtn);
                             WebOsPlayer.rewind(controllerConfig.rewindTimeRange, stepFfAndRw, isForward);
                             event.stopPropagation();
                             keydown = true;
@@ -540,7 +465,6 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                         if (checkProgressBarForcus()) {
                             keydown = true;
                             clearTimeout(showMediaControllerTimeout);
-                            // TizenAVPlayer.ff(controllerConfig.forWardTimeRange, stepFfAndRw, activePlayBtn);
                             WebOsPlayer.jump(controllerConfig.forWardTimeRange, stepFfAndRw, isForward);
                             event.stopPropagation();
                         } else {
@@ -585,8 +509,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                     }
                     break;
                 case 413: // MediaStop
-                    // TizenAVPlayer.executeAction({action: "stop"});
-                    WebOsPlayer.pause();
+                    WebOsPlayer.player.dispose();
                     $rootScope.changeView();
                     break;
                 case 417: // MediaFastForward
@@ -594,8 +517,6 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                     clearTimeout(showMediaControllerTimeout);
                     keydown = true;
                     WebOsPlayer.jump(controllerConfig.forWardTimeRange, stepFfAndRw, isForward);
-
-                    // TizenAVPlayer.ff(controllerConfig.forWardTimeRange, stepFfAndRw, activePlayBtn);
                     event.stopPropagation();
                     break;
                 case 412: // MediaRewind
@@ -603,7 +524,6 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                     clearTimeout(showMediaControllerTimeout);
                     keydown = true;
                     TizenAVPlayer.rew(controllerConfig.rewindTimeRange, stepFfAndRw, activePlayBtn);
-                    // TizenAVPlayer.rew(controllerConfig.rewindTimeRange, stepFfAndRw, activePlayBtn);
                     event.stopPropagation();
                     break;
                 case 48: //key 0
@@ -621,7 +541,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                 case 51: //Key 3
                     //player.getProperties();
                     break;
-                case 27: // Return
+                case 461: // Return
                     if (showMediaControllerTimeout)
                         clearTimeout(showMediaControllerTimeout);
                     if ($rootScope.$previousState.name == 'avplayer' || $state.current.name == 'avplay') {
@@ -689,28 +609,28 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
         return true;
     }
 
-    function playMedia($scope) {
-        TizenAVPlayer.close();
-        loadingProgress.css('display', 'block');
-        if ($('#controls_bar.focused-on-list-video').length === 1) {
-            focusController.focus($('.play-btn'));
-        }
-
-        document.getElementById("controls_bar").classList.remove("focused-on-list-video");
-
-        var videoUrl = TizenAVPlayer.mediaUrl,
-            name = media.name;
-
-        console.log(videoUrl);
-        loadBackground();
-        videoTitle.html(name);
-        TizenAVPlayer.close();
-        //TizenAVPlayer.executeAction({ action: "stop" });
-        setTimeout(function () {
-            WebOsPlayer.playVideo(videoUrl, avPlayerListenerCallback);
-            // TizenAVPlayer.playVideo(videoUrl, isDrm);
-        }, 1000);
-    }
+    // function playMedia($scope) {
+    //     TizenAVPlayer.close();
+    //     loadingProgress.css('display', 'block');
+    //     if ($('#controls_bar.focused-on-list-video').length === 1) {
+    //         focusController.focus($('.play-btn'));
+    //     }
+    //
+    //     document.getElementById("controls_bar").classList.remove("focused-on-list-video");
+    //
+    //     var videoUrl = TizenAVPlayer.mediaUrl,
+    //         name = media.name;
+    //
+    //     console.log(videoUrl);
+    //     loadBackground();
+    //     videoTitle.html(name);
+    //     TizenAVPlayer.close();
+    //     //TizenAVPlayer.executeAction({ action: "stop" });
+    //     setTimeout(function () {
+    //         WebOsPlayer.playVideo(videoUrl, avPlayerListenerCallback);
+    //         // TizenAVPlayer.playVideo(videoUrl, isDrm);
+    //     }, 1000);
+    // }
 
     var timeoutCheckForcus = -1;
 
@@ -749,25 +669,10 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
         });
 
         player.on('timeupdate', function () {
-            // console.log("history" + durationHistory);
-            // if (durationHistory !== 0) {
-            // console.log($rootScope.check);
-            // if ($rootScope.check === true) {
-            //     console.log("history buffer" + durationHistory);
-            //     $rootScope.isPlaying = true;
-            //     currentPlayingTime = player.currentTime();
-            //     updateCurrentProgress(currentPlayingTime);
-            // }
-            // // }
-            // else {
             $rootScope.isPlaying = true;
             currentPlayingTime = player.currentTime();
             console.log('xxxxxx', currentPlayingTime);
             updateCurrentProgress(currentPlayingTime);
-            // }
-
-            // currentPlayingTime = player.currentTime();
-            // updateCurrentProgress(currentPlayingTime);
             try {
                 if ($(".mini-player")) {
                     $('.icon-image-poster').addClass('rorate');
@@ -785,11 +690,12 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                 TizenAVPlayer.nextVideo();
                 isNext = true;
                 console.log('next video');
-                if (TizenAVPlayer.currentTrack === TizenAVPlayer.mediaList.length) {
-                    $rootScope.changeView();
-                }
+                // if (TizenAVPlayer.currentTrack === TizenAVPlayer.mediaList.length-1) {
+                //     $rootScope.changeView();
+                // }
             } else {
-                WebOsPlayer.pause();
+                // WebOsPlayer.pause();
+                WebOsPlayer.player.dispose();
                 checkSuggestMovie();
             }
         });

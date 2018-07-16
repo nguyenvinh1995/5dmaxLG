@@ -65,51 +65,69 @@
   top: 0;
   left: 0;
   z-index: 99999;
+  .img-popup{
+    //display: inline-block;
+    width: 400*$rem;
+    height: 80*$rem;
+    background: url('../images/logo.png') no-repeat;
+    background-size: 100% 100%;
+    top: 20%;
+    left: 50%;
+    @include translate(-50%, -50%);
+    position: absolute;
+
+  }
   .dialog_inner {
-    width: 900*$rem;
+    width: 100vw;
+    height: 75vh;
     display: inline-block;
     position: absolute;
     top: 50%;
     left: 50%;
     @include translate(-50%, -50%);
     padding: 40*$rem 50*$rem 30*$rem 50*$rem;
-    background-color: #fff;
+    background-color: #000;
     border-radius: 10*$rem;
     box-shadow: 0 9*$rem 24*$rem 0 rgba(0, 0, 0, 0.2);
   }
   .content {
     letter-spacing: 0.3*$rem;
+    text-align: center;
+    margin-top: 200*$rem;
     h1 {
       font-size: 53*$rem;
       font-weight: 600;
       margin: 0;
-      color: #000;
+      color: #fff;
+      margin-bottom: 200*$rem;
     }
     p {
-      font-size: 30*$rem;
-      color: #000;
+      margin-left: 16%;
+      width: 68%;
+      font-size: 38*$rem;
+      color: #fff;
       margin-top: 15*$rem;
     }
   }
   .action {
-    margin-top: 50*$rem;
+    margin-top: 200*$rem;
     text-align: center;
     button {
-      float: right;
+      //float: right;
       margin: 0*$rem 20*$rem;
-      width: 200*$rem;
-      height: 60*$rem;
+      width: 500*$rem;
+      height: 76*$rem;
       line-height: 60*$rem;
-      font-size: 30*$rem;
+      font-size: 38*$rem;
       text-align: center;
       padding: 0;
       border: none;
-      color: #00CCFF;
+      color: #fff;
       border-radius: 4*$rem;
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.4);
       display: inline-block;
       &.focused {
-        background-color: rgb(221, 221, 221);
+        background-color: rgb(248, 0, 38);
       }
     }
   }
