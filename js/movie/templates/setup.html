@@ -73,10 +73,10 @@
             <p class="content"></p>
         </div>
         <div class="action">
-            <button id="btn_approve" focusable="{depth : $root.depth.dialog.val}" on-selected="vm.approve()">ĐỒNG Ý
-            </button>
-            <button id="btn_cancle" focusable="{depth : $root.depth.dialog.val , initialFocus : true}"
+            <button id="btn_cancle" focusable="{depth : $root.depth.dialog.val}"
                     on-selected="vm.cancel()">HỦY
+            </button>
+            <button id="btn_approve" focusable="{depth : $root.depth.dialog.val}" on-selected="vm.approve()">ĐỒNG Ý
             </button>
         </div>
     </div>
@@ -89,11 +89,11 @@
             <p class="content">Bạn có muốn đăng xuất không?</p>
         </div>
         <div class="action">
+            <button id="btn_cancle_out" focusable="{depth : $root.depth.dialog.val}"
+                    on-selected="vm.cancel()">HỦY
+            </button>
             <button id="btn_approve_out" focusable="{depth : $root.depth.dialog.val}" on-selected="vm.approveLogout()">
                 ĐỒNG Ý
-            </button>
-            <button id="btn_cancle_out" focusable="{depth : $root.depth.dialog.val , initialFocus : true}"
-                    on-selected="vm.cancel()">HỦY
             </button>
         </div>
     </div>

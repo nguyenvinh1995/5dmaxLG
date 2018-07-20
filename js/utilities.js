@@ -131,9 +131,7 @@ function utilities($window, $http, $q, $filter, config, $rootScope, $httpParamSe
             if (angular.isDefined(errorCallback) && angular.isFunction(errorCallback)) {
                 errorCallback();
             }
-
         });
-
         return deferred.promise;
     }
 

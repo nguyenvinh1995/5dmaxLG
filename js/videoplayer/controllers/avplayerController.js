@@ -541,7 +541,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                 case 51: //Key 3
                     //player.getProperties();
                     break;
-                case 461: // Return
+                case 27: // Return
                     if (showMediaControllerTimeout)
                         clearTimeout(showMediaControllerTimeout);
                     if ($rootScope.$previousState.name == 'avplayer' || $state.current.name == 'avplay') {

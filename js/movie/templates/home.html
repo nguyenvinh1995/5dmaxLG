@@ -1,5 +1,6 @@
 <div id="home_page" class="home_page">
     <div class="menu_page display-none">
+        <div class="img"></div>
         <div class="text">
             <h1 class="head-menu">{{vm.title}}</h1>
             <p class="text-menu">{{vm.description}}</p>
@@ -103,7 +104,7 @@
             <p class="content">Bạn có muốn thoát khỏi ứng dụng không?</p>
         </div>
         <div class="action">
-            <button id="btn_cancle_exit" focusable="{depth : $root.depth.dialog.val , initialFocus : true}"
+            <button id="btn_cancle_exit" focusable="{depth : $root.depth.dialog.val}"
                     on-selected="vm.cancel()">HỦY
             </button>
             <button id="btn_approve_exit" focusable="{depth : $root.depth.dialog.val}"

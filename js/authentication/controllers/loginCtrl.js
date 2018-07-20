@@ -9,8 +9,8 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
     var vm = this;
     vm.showCapcha = false;
     vm.loginForm = {
-        // username: '',
-        // password: '',
+        // username: '01663842195',
+        // password: '12345678',
         username: '01653257351',
         password: '12345678',
         captcha: ''
@@ -23,9 +23,16 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
         vm.getCode = $scope.getCode;
     }, 1000);
 
+    function isANumber(str){
+        return !/\D/.test(str);
+    }
+
     vm.enterText = function (text) {
         if ($('#phone-number').hasClass('show-input')) {
-            vm.loginForm.username += text;
+            if(isANumber(text) === true){
+                vm.loginForm.username += text;
+                console.log(vm.loginForm.username);
+            }
         }
 
         if ($('#pass').hasClass('show-input')) {
@@ -65,21 +72,21 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
             $('#pass').addClass('show-input');
             $('#continue').addClass('hide');
             $('#log').removeClass('hide');
-            if($('#content-key-broard').hasClass('content-no-capslock')){
+            if ($('#content-key-broard').hasClass('content-no-capslock')) {
                 var timeFocus = setInterval(function () {
                     focusController.focus($('#focusKeybroad'));
                     if ($('#focusKeybroad').hasClass('focused')) {
                         clearInterval(timeFocus);
                     }
                 }, 100)
-            }else if($('#content-key-broard').hasClass('content-capslock')){
+            } else if ($('#content-key-broard').hasClass('content-capslock')) {
                 var timeFocus = setInterval(function () {
                     focusController.focus($('#initFocusKey'));
                     if ($('#initFocusKey').hasClass('focused')) {
                         clearInterval(timeFocus);
                     }
                 }, 100)
-            }else{
+            } else {
                 var timeFocus = setInterval(function () {
                     focusController.focus($('#log'));
                     if ($('#log').hasClass('focused')) {
@@ -88,7 +95,7 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
                 }, 100)
             }
 
-        }else{
+        } else {
             utilities.showMessenge("Vui lòng nhập số điện thoại.");
         }
     };
@@ -97,9 +104,13 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
         $state.go('trial_form');
     };
 
-    vm.goLoginForm = function () {
+    vm.goLoginForm = function (bool) {
         $state.go('login_form');
+        $rootScope.check = bool;
+        console.log($rootScope.check);
     };
+    console.log($rootScope.check);
+
 
     vm.loginCode = function () {
         $state.go('login_code');
@@ -153,9 +164,25 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
     };
 
     vm.back = function () {
-        $state.go('login');
+        // $rootScope.changeView()
+        if ($('#phone-number').hasClass('show-input')) {
+            $rootScope.changeView()
+        }
+        if ($('#pass').hasClass('show-input')) {
+            $('#phone-number').addClass('show-input');
+            $('#pass').removeClass('show-input');
+            $('#capcha').removeClass('show-input');
+            $('#continue').removeClass('hide');
+            $('#log').addClass('hide');
+        }
+        if ($('#capcha').hasClass('show-input')) {
+            $('#phone-number').removeClass('show-input');
+            $('#pass').addClass('show-input');
+            $('#capcha').removeClass('show-input');
+            $('#continue').addClass('hide');
+            $('#log').removeClass('hide');
+        }
     };
-
 
     function checkPassword() {
         if (vm.loginForm.password.trim().length < 6) {
@@ -231,7 +258,6 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
             }
         };
 
-
         lastCaptcha = vm.loginForm.captcha;
 
         services.authenticate(request).then(function (response) {
@@ -239,6 +265,11 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
                 vm.showCapcha = true;
                 getCaptcha();
                 console.log('800');
+                $('#phone-number').removeClass('show-input');
+                $('#pass').removeClass('show-input');
+                $('#capcha').addClass('show-input');
+                $('#continue').addClass('hide');
+                $('#log').removeClass('hide');
             } else if (response.responseCode == '200') {
                 var timeObject = new Date();
                 var data = response.data;
@@ -249,6 +280,22 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
                 services.auth = data;
                 services.isLogin = true;
                 services.logInRefreshHomeState = true;
+                console.log($rootScope.check);
+                if ($rootScope.check === true) {
+                    if (response.data.accessToken) {
+                        var anthorize = {
+                            header: {
+                                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                                'Authorization': "Bearer " + response.data.accessToken
+                            }
+                        };
+                        services.freeMonth(anthorize).then(function (response) {
+                            vm.show = response;
+                            utilities.showMessenge(response.message);
+                        });
+                    }
+
+                }
                 vm.loginForm = {
                     captcha: ''
                 };
@@ -257,7 +304,6 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
                     $state.go('setup', {}, {reload: true});
                     return;
                 }
-
                 if ($rootScope.errorVerify) {
                     $rootScope.errorVerify = false;
                     $rootScope.changeView();
@@ -266,7 +312,6 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
                         services.backDetailFormLogin = true;
                         var state = $rootScope.$previousState.name;
                         $state.go(state, {id: playlistId}, {reload: true});
-                        // $state.go('avplayer', {playlistId : playlistId , movieId : movieId});
                     }
                     else
                         $state.go('home', {}, {reload: true});

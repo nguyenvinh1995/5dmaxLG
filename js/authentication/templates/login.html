@@ -17,8 +17,8 @@
                             <!--on-selected="vm.goTrialForm()">Trải nghiệm miễn phí 1 tháng</button>-->
                 <!--</div>-->
                 <div class="submit_btn form_btn form-login">
-                    <button id="btn_login_first" class="btn-fisrt" focusable="{initialFocus: true , depth : $root.depth.login.val}" on-selected="vm.goLoginForm()">Đăng nhập</button>
-                    <button class="btn-fisrt" focusable="{ depth : $root.depth.login.val }" on-selected="vm.goLoginForm()">Trải nghiệm miễn phí 1 tháng</button>
+                    <button id="btn_login_first" class="btn-fisrt" focusable="{initialFocus: true , depth : $root.depth.login.val}" on-selected="vm.goLoginForm(false)">Đăng nhập</button>
+                    <button class="btn-fisrt" focusable="{ depth : $root.depth.login.val }" on-selected="vm.goLoginForm(true)">Trải nghiệm miễn phí 1 tháng</button>
                     <button class="btn-second" focusable="{ depth : $root.depth.login.val }" on-selected="vm.loginCode()">Mã Đăng Nhập</button>
                 </div>
             </div>

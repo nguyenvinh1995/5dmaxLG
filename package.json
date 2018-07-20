@@ -6,7 +6,9 @@
   "directories": {
     "lib": "lib"
   },
-  "dependencies": {},
+  "dependencies": {
+    "live-serve": "0.0.0"
+  },
   "devDependencies": {
     "lite-server": "^2.4.0"
   },

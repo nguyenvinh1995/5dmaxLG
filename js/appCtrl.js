@@ -31,6 +31,7 @@ app.factory('settings', ['$rootScope', function ($rootScope) {
         locale: 'vi-VN',
         api: {
             baseUrl: 'http://m.5dmax.vn/apiv2.php/v1/'
+            // baseUrl: 'http://5dmax.vn/apiv3.php/v1/'
         },
         os_type: 'WEB_ANDROID',
         version: '4.0.0'
@@ -679,7 +680,7 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
 
         var init = function () {
             var inEvent = function (e) {
-                if (e.keyCode == 461) {
+                if (e.keyCode == 27) {
                     try {
                         $rootScope.changeView();
                     }

@@ -339,8 +339,8 @@
   width: 1452*$rem !important;
   height: 768*$rem !important;
   top: -5*$rem !important;
-  //right: -45*$rem;
-  right: 0;
+  right: -54*$rem;
+  //right: 0;
   @include transition(0.3s);
 }
 
@@ -430,13 +430,14 @@
 
 .font70 {
   font-size: 90*$rem !important;
-  white-space: nowrap !important;
+  //white-space: nowrap !important;
   margin-top: 10% !important;
   margin-bottom: -1% !important;
+  width: 250%;
 }
 
 .scroll-movie {
   overflow: hidden;
-  width: 10000*$rem !important;
+  width: 10000000*$rem !important;
   height: 100%;
 }

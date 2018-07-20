@@ -1,4 +1,4 @@
-<div class="login_page full_page">
+<div class="login_page full_page" style="background:#000">
     <div class="inner">
         <div class="logo"></div>
         <div class="content-left content-no-capslock" id="content-key-broard">
@@ -152,11 +152,11 @@
                     <li class="symbol-num capslock num padding-symbol"
                         focusable="{depth : $root.depth.login.val }" on-selected="vm.symbol()">!#?
                     </li>
-                    <li class="num space space-num img-relative top36" style="width:53.3%;"
+                    <li class="num space space-num img-relative top36" style="width:53.9%;"
                         focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText(' ')">
                         <div class="space-icon"></div>
                     </li>
-                    <li class="num capslock img-relative top34" style="width: 15.3%" focusable="{depth : $root.depth.login.val }"
+                    <li class="num capslock img-relative top34" style="width: 15.5%" focusable="{depth : $root.depth.login.val }"
                         on-selected="vm.Del()">
                         <div class="del-icon"></div>
                     </li>
@@ -177,7 +177,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="key-broard " style="margin-top: -135px;">
+            <div class="key-broard " style="margin-top: -30px;">
                 <ul>
                     <li class="space-num hide-pass num" id="hide-pass" focusable="{depth : $root.depth.login.val }"
                         on-selected="vm.hidePass()"></li>
@@ -186,18 +186,18 @@
         </div>
         <div class="login_form page_login">
             <h1>Đăng nhập</h1>
-            <div class="phone form_input display-none input show-input" id="phone-number">
+            <div class="phone form_input opacity input show-input" id="phone-number">
                 <input id="username"
                        type="text" ng-model="vm.loginForm.username" placeholder="Số điện thoại"
                        class="phone_input">
             </div>
-            <div class="password form_input display-none input" id="pass">
+            <div class="password form_input opacity input" id="pass">
                 <input id="password" type="password"
                        ng-model="vm.loginForm.password" placeholder="Mật khẩu" class="pass_input">
             </div>
-            <div class="capcha display-none form_input input" ng-show="vm.showCapcha" id="capcha">
+            <div class="capcha opacity form_input input" ng-show="vm.showCapcha" id="capcha">
                 <div>
-                    <input id="capt" ng-model="vm.loginForm.captcha"
+                    <input id="capt" ng-model="vm.loginForm.captcha" type="text"
                            placeholder="Captcha" class="capt_input">
                     <img class="img_capcha" id="img_capcha" src="" width="" height="" alt="">
                 </div>

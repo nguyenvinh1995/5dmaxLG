@@ -168,7 +168,7 @@
       top: 26*$rem;
       right: 20*$rem;
       background: url('../images/ic-arrow-down.png') no-repeat;
-      background-size: 100% 100%;
+      background-size: 100% 100% !important;
     }
     &.focused {
       color: #000;

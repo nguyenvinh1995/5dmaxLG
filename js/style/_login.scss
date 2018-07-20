@@ -1,11 +1,25 @@
 // login page
 
 .login_page {
-  background: url('../images/app_background.jpg') no-repeat;
+  background: url('../images/bg1.png') no-repeat;
   background-size: cover;
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0), #000000);
+  }
+
   .inner {
     padding: 90*$rem;
+    position: relative;
   }
+
   .logo {
     display: inline-block;
     width: 400*$rem;
@@ -13,19 +27,23 @@
     background: url('../images/logo.png') no-repeat;
     background-size: 100% 100%;
   }
+
 }
 
 .login_screen {
+  z-index: 999;
   h1 {
     font-size: 80*$rem;
     letter-spacing: 0.8*$rem;
     margin-top: 120*$rem;
     margin-bottom: 20*$rem;
+    color: #fff !important;
+
   }
   p {
     font-size: 36*$rem;
     letter-spacing: 0.4*$rem;
-    color: #e6e6e6;
+    color: #fff !important;
     margin: 0;
   }
   button {
@@ -50,7 +68,9 @@
 
 .login {
   text-align: left !important;
-  margin-top: 200*$rem !important;
+  //margin-top: 200*$rem !important;
+  bottom: -260*$rem !important;
+  position: absolute;
   button {
     font-size: 32*$rem !important;
     height: 80*$rem !important;
@@ -58,11 +78,11 @@
   .form-login {
     margin-top: 0 !important;
     .btn-fisrt {
-      width: 540*$rem !important;
+      width: 565*$rem !important;
       margin-right: 20*$rem !important;
     }
     .btn-second {
-      width: 540*$rem !important;
+      width: 565*$rem !important;
     }
   }
 }
@@ -87,7 +107,6 @@
     &.focused {
       width: 574*$rem;
       height: 70*$rem;
-      // line-height: 70*$rem;
       background-color: #fff;
       box-shadow: 0 18*$rem 24*$rem 0 rgba(0, 0, 0, 0.07);
       color: #999;
@@ -344,49 +363,50 @@ input:focus, button:focus {
 
 .page_login {
   float: right;
-  width: 45%;
+  width: 54%;
   margin-top: 40*$rem !important;
   h1 {
     text-align: left;
     font-size: 48*$rem;
     margin-bottom: 60*$rem;
-    margin-left: 12%;
+    margin-left: 18%;
   }
 }
 
 .content-left {
   width: 45%;
-  height: 646*$rem;
+  height: 550*$rem;
   opacity: 0.86;
   border-radius: 2*$rem;
-  background-color: #414141;
+  background-color: #333333;
   margin-top: 3%;
   position: absolute;
   .key-broard {
     width: 100%;
-    height: 52%;
+    height: 48.6%;
     //margin-left: 20*$rem;
-    margin-bottom: 30*$rem;
+    margin-bottom: -30*$rem;
     ul {
       margin-top: 50*$rem;
-      margin-right: 20*$rem;
+      //margin-right: 20*$rem;
+      margin-left: -6*$rem;
       width: 93%;
       .num {
-        color: rgba(241, 233, 233, 0.5);
+        color: rgba(158, 158, 158, 0.5);
         font-weight: 500;
-        font-size: 48*$rem;
+        font-size: 40*$rem;
         text-align: center;
-        padding: 7*$rem 7*$rem 7*$rem 7*$rem;
-        margin-right: 2*$rem;
+        padding: 7*$rem 10*$rem 7*$rem 10*$rem;
+        margin-right: -3*$rem;
         width: 6%;
-        margin-bottom: 8*$rem;
+        margin-bottom: 3*$rem;
         display: inline-table;
-        background-color: #6f6f6f;
-        border: 3*$rem solid #6f6f6f;
+        background-color: #282828;
+        border: 3*$rem solid #282828;
         border-radius: 5*$rem;
         &.focused {
           border: 3*$rem solid #ffffff;
-          background-color: #414141;
+          background-color: #282828;
           color: rgba(255, 255, 255, 1);
         }
         .space-icon {
@@ -434,23 +454,23 @@ input:focus, button:focus {
       }
       .capslock {
         //padding: 2*$rem 7*$rem 4*$rem 7*$rem;
-        width: 15.7%;
-        height: 65*$rem;
+        width: 16.5%;
+        height: 53*$rem;
         &.focused {
           color: rgba(255, 255, 255, 1);
           border: 3*$rem solid #ffffff;
-          background-color: #414141;
+          background-color: #282828;
         }
       }
       .space-num {
         //padding: 1*$rem 7*$rem 1*$rem 7*$rem;
-        width: 43.9%;
+        width: 44.1%;
         margin-bottom: 7*$rem;
-        height: 65*$rem;
+        height: 53*$rem;
         &.focused {
           color: rgba(255, 255, 255, 1);
           border: 3*$rem solid #ffffff;
-          background-color: #414141;
+          background-color: #282828;
         }
       }
     }
@@ -472,15 +492,15 @@ input:focus, button:focus {
 }
 
 .top36 {
-  top: 36*$rem !important;
+  top: -37*$rem !important;
 }
 
 .top34 {
-  top: 37*$rem !important;
+  top: -37*$rem !important;
 }
 
 .margintop-85 {
-  margin-top: -85.5*$rem !important;
+  margin-top: -48*$rem !important;
   height: 18% !important;
 }
 
@@ -518,9 +538,9 @@ input:focus, button:focus {
 }
 
 .show-input {
-  display: block !important;
+  opacity: 1 !important;
   input {
-    border: 3*$rem solid rgba(255, 255, 255, 0.4);
+    border: 3*$rem solid rgba(255, 255, 255, 1);
   }
 }
 
@@ -534,4 +554,8 @@ input:focus, button:focus {
 
 .padding-cap {
   padding: 6*$rem 5*$rem 0 7*$rem !important;
+}
+
+.opacity {
+  opacity: 0.4;
 }

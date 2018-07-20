@@ -9,8 +9,14 @@ function searchCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
     var vm = this;
     vm.showListMovie = false;
     vm.listSearchMovie = [];
+    // vm.listSearchMovieSugest = [];
     vm.searchText = '';
     vm.searchData = null;
+    var heightCategory = 0;
+    var heightCate = 0;
+
+    // vm.currentCategory = 0;
+
 
     function searchMovie(key) {
         $timeout.cancel(vm.showSearch);
@@ -50,6 +56,7 @@ function searchCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
         vm.hotKey = data.hotKeywords;
         console.log(vm.hotKey);
     });
+
     $scope.$watch('vm.searchText', function (newVal, oldVal) {
         if (newVal !== oldVal) {
             searchMovie(newVal);
@@ -57,29 +64,52 @@ function searchCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
         }
     });
 
-    // if( $('#search').addClass('display-no-top')){
-    //
-    // }
+    vm.focusSuggest = function ($event, items, startIndex, $index) {
+        $('#search').addClass('display-no-top');
 
-    vm.focusSuggest = function () {
-        $('#search').addClass('display-no-top')
+        if (heightCategory == 0) {
+            heightCategory = $('#list_0').outerHeight(true);
+        }
+        console.log(heightCategory);
+        if ($index >= startIndex) {
+            $('#list_search_suggest').css({
+                transform: 'translate3d(0, -' + (($index - startIndex) * heightCategory) + 'px, 0)'
+            });
+        } else if ($index === 0) {
+            $('#list_search_suggest').css({
+                transform: 'translate3d(0, 0px, 0)'
+            });
+        }
     };
+
     vm.blurSuggest = function () {
         $('#search').removeClass('display-no-top')
     };
 
+    vm.focusItem = function ($event, $originalEvent, start, $index) {
+        if (heightCate == 0) {
+            heightCate = $('#listItem_0').outerHeight(true);
+        }
+        console.log(heightCate);
+        vm.checkItemHeight = Math.floor($index / 3);
+        if (vm.checkItemHeight >= start) {
+            $('#list_search').css({
+                transform: 'translate3d(0, -' + (vm.checkItemHeight * heightCate) + 'px, 0)'
+            });
+        } else if (vm.checkItemHeight === 0) {
+            $('#list_search').css({
+                transform: 'translate3d(0, 0px, 0)'
+            });
+        }
+    };
 
     vm.hotkey = function (item) {
-
+        $state.go('movieDetail', {id: item.id}, {reload: true});
     };
 
     vm.back = function () {
         $rootScope.changeView();
     };
-
-    // $scope.back = function () {
-    //     window.history.back();
-    // };
 
     vm.enterText = function (text) {
         vm.searchText += text;
@@ -87,9 +117,12 @@ function searchCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
 
     vm.onKeyboardDel = function () {
         vm.searchText = '';
-        vm.searchData = [];
+        // vm.searchData = [];
+        vm.listSearchMovie = [];
+        // vm.listSearchMovieSugest = [];
+        $("#text-search").addClass('display-block').removeClass('display-none');
+        $("#list_search").trigger('reload');
     };
-
 
     //     services.getSearchSuggestion(vm.searchText).then(function (response) {
     //         utilities.hideLoading();
@@ -126,8 +159,8 @@ function searchCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
     function initFocus() {
         $("#text-search").addClass('display-block').removeClass('display-none');
         var timeFocus = setInterval(function () {
-            focusController.focus($('#initFocusKeybroad'));
-            if ($('#initFocusKeybroad').hasClass('focused')) {
+            focusController.focus($('#initFocusKeySearch'));
+            if ($('#initFocusKeySearch').hasClass('focused')) {
                 clearInterval(timeFocus);
             }
         }, 100)

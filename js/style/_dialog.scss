@@ -66,16 +66,14 @@
   left: 0;
   z-index: 99999;
   .img-popup{
-    //display: inline-block;
     width: 400*$rem;
     height: 80*$rem;
     background: url('../images/logo.png') no-repeat;
     background-size: 100% 100%;
-    top: 20%;
+    top: 8%;
     left: 50%;
     @include translate(-50%, -50%);
     position: absolute;
-
   }
   .dialog_inner {
     width: 100vw;
@@ -93,18 +91,18 @@
   .content {
     letter-spacing: 0.3*$rem;
     text-align: center;
-    margin-top: 200*$rem;
+    margin-top: 80*$rem;
     h1 {
-      font-size: 53*$rem;
+      font-size: 60*$rem;
       font-weight: 600;
       margin: 0;
       color: #fff;
-      margin-bottom: 200*$rem;
+      margin-bottom: 220*$rem;
     }
     p {
       margin-left: 16%;
       width: 68%;
-      font-size: 38*$rem;
+      font-size: 42*$rem;
       color: #fff;
       margin-top: 15*$rem;
     }
@@ -112,6 +110,9 @@
   .action {
     margin-top: 200*$rem;
     text-align: center;
+    bottom: 20*$rem;
+    position: absolute;
+    left: 25%;
     button {
       //float: right;
       margin: 0*$rem 20*$rem;

@@ -20,19 +20,19 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
     var currentBannerItem = {};
     // utilities.showLoading();
     // var timeFocus = setInterval(function () {
-    services.getHomeFilm().then(function (response) {
+    services.getHomeFilmv2(2).then(function (response) {
         vm.homeFilms = response.data;
         vm.banner = vm.homeFilms[0].content;
         currentBannerItem = vm.banner[0];
         services.backgroundMenu = currentBannerItem.imageForTVLarge;
         var raw = '';
-        for (var i = 1; i < vm.homeFilms.length; i++) {
+        for (var i = 0; i < vm.homeFilms.length; i++) {
             raw += '<div class="list_movies overlay" ng-class="{ \'overlay\' : vm.currentCategory != ' + i + ' } "id="list_' + i + '">'
                 + '<p class="list_title">{{vm.homeFilms[' + i + '].name}}</p>'
                 + '<div class="movies scroll-movie">'
                 + '<div class="list-scroll-wrapper" ng-repeat="obj in vm.homeFilms[' + i + '].content" > '
-                + '<div class="item" ng-class="{ \'first_category_items\' : !$index && ' + i + ' == 1}"'
-                + 'focusable="{name:\'menu-rent-' + i + '-{{$index}}\',depth : $root.depth.list.val , nextFocus : { up : ' + i + ' == 1  ? \'btn_pl\' : \'\',right : $last ? \'menu-rent-' + i + '-0\' : \'{{\'menu-rent-' + i + '-\' + ($index + 1)}}\',down: $last ? \'\' : \'menu-rent-' + (i + 1) + '-0\'}}"'
+                + '<div class="item" ng-class="{ \'first_category_items\' : !$index && ' + i + ' == 0}"'
+                + 'focusable="{name:\'menu-rent-' + i + '-{{$index}}\',depth : $root.depth.list.val , nextFocus : { up : ' + i + ' == 0  ? \'btn_pl\' : \'\',right : $last ? \'menu-rent-' + i + '-0\' : \'{{\'menu-rent-' + i + '-\' + ($index + 1)}}\',down: $last ? \'\' : \'menu-rent-' + (i + 1) + '-0\'}}"'
                 + 'on-selected="vm.selectMovie(obj)" on-blurred="vm.blurItem($event, $originalEvent, ' + i + ' , obj , $index )" on-focused="vm.focusItem($event, $originalEvent, 4, obj , $index,' + i + ')">'
                 + '<div id="test" style="background:url(\'{{obj.coverImageH ? obj.coverImageH : obj.coverImage}}\') no-repeat"></div>'
                 + '</div>'
@@ -69,24 +69,29 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
         }
 
         ///Trailer-Focus//////
-        $timeout.cancel(vm.ShowTrailer);
-        vm.ShowTrailer = null;
-        vm.ShowTrailer = $timeout(function () {
-            var raw = '';
-            raw += '<video id=av-player class="video-js vjs-default-skin"></video>';
-            angular.element(document.getElementById('av-container-rent')).append($compile(raw)($scope));
-            showTrailer();
-            console.log('play-trailer')
-        }, 4000);
 
-        $timeout.cancel(vm.show);
-        vm.show = null;
-        vm.show = $timeout(function () {
-            $("#av-player").removeClass('display-trainer');
-            $("#av-container-rent").removeClass('display-trainer');
-            $(".movie_article_wrapper").addClass('background-none');
-        }, 7000);
-        // }
+        if (item.trailer !== 0) {
+            services.getTrailer(item.trailer).then(function (response) {
+                console.log(response);
+                if (response.responseCode == 200) {
+                    vm.ShowGif = $timeout(function () {
+                        $rootScope.mediaTrailer = response.data.streams.urlStreaming;
+                        var raw = '';
+                        raw += '<video id=av-player class="video-js vjs-default-skin"></video>';
+                        angular.element(document.getElementById('av-container')).append($compile(raw)($scope));
+                        showTrailer();
+                        console.log('play-trailer')
+                    }, 4000);
+                    $timeout.cancel(vm.show);
+                    vm.show = null;
+                    vm.show = $timeout(function () {
+                        $("#av-player").removeClass('display-trainer');
+                        $("#av-container").removeClass('display-trainer');
+                        $(".movie_article_wrapper").addClass('background-none');
+                    }, 7000);
+                }
+            });
+        }
 
         vm.currentItem = item;
 
@@ -146,7 +151,7 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
             tempWidth = $ele.outerWidth();
             console.log('scroll');
             $wrapper.css({
-                transform: 'translateX(-' + ((tempWidth * blockToTransform + (blockToTransform * 32)) / 25) + 'rem)'
+                transform: 'translateX(-' + ((tempWidth * blockToTransform + (blockToTransform * 32)) / 24) + 'rem)'
             });
         } else if ($index === 0) {
             $wrapper.css({
@@ -173,13 +178,13 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
             avPlayerDomElement: $("av-player")[0]
         });
         $("#av-player").addClass('video-trailer');
-        var mediaUrl = 'http://184.72.239.149/vod/smil:BigBuckBunny.smil/playlist.m3u8';
-        // TizenAVPlayer.mediaUrl = mediaUrl;
-        console.log('show-trailer');
+        var mediaUrl = $rootScope.mediaTrailer;
+        console.log('show-trailer',mediaUrl);
         setTimeout(function () {
             WebOsPlayer.playVideo(mediaUrl, avPlayerListenerCallback);
         }, 100);
     }
+
 
 
 ////////

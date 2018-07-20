@@ -1360,7 +1360,7 @@ video::-webkit-media-text-track-display {
   margin-right: 1em; }
 
 .display-block{
-  display: block !important;
+  display: block ;
 }
 
 @media print {

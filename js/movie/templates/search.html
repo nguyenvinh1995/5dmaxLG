@@ -68,27 +68,26 @@
                        ng-model="vm.searchText">
             </div>
         </div>
-        <span id="text-search" class="text display-block">Vui lòng nhập từ khoá tìm kiếm</span>
-        <caph-list id="list_search" container-class="search-movie" direction="vertical" ng-show="vm.showListMovie"
-                   on-focus-item-view="onFocusItemView($context)" items="item in vm.listSearchMovie">
-            <div class="item-movie" focusable="{depth : $root.depth.search.val}"
-                 on-focused="focus($event, $originalEvent)" on-selected="vm.selectMovie(item)"
-                 ng-class="{ 'itemFirstSearch' : $first }">
+        <span id="text-search" class="text display-block">{{vm.message}}</span>
+        <div id="list_search" class="search-movie col-lg-12" ng-show="vm.showListMovie" direction="vertical">
+            <div class="item-movie col-lg-4" focusable="{depth : $root.depth.search.val, nextFocus: {down : $last ? 'null' :''}}"
+                 ng-repeat="item in vm.listSearchMovie"
+                 on-focused="vm.focusItem($event, $originalEvent, 1, $index)" on-selected="vm.selectMovie(item)"
+                 ng-class="{ 'itemFirstSearch' : $first }" id="listItem_{{$index}}">
                 <div class="item" style="background-image: url({{ item.coverImageH }})"></div>
             </div>
-        </caph-list>
+        </div>
     </div>
     <div class="col-lg-4 hotkey">
         <div class="item-hotkey" id="list_search_suggest">
-            <caph-list direction="vertical" container-class="item-hotkey"
-                       items="item in vm.listSearchMovieSugest">
+            <div class="item-hotkey" ng-repeat="item in vm.listSearchMovieSugest" id="list_{{$index}}">
                 <div class="item-key"
                      focusable="{depth : $root.depth.search.val, nextFocus: {down : $last ? 'null' :''}}"
-                     on-focused="vm.focusSuggest()" on-blurred="vm.blurSuggest()"
+                     on-focused="vm.focusSuggest($event, items, 11, $index)" on-blurred="vm.blurSuggest()"
                      on-selected="vm.hotkey(item)" ng-class="{ 'itemFirstText' : $first }">
                     <div class="item">{{item.name}}</div>
                 </div>
-            </caph-list>
+            </div>
         </div>
     </div>
 </div>
