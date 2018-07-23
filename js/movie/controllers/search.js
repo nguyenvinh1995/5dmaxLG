@@ -9,7 +9,7 @@ function searchCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
     var vm = this;
     vm.showListMovie = false;
     vm.listSearchMovie = [];
-    // vm.listSearchMovieSugest = [];
+    vm.listSearchMovieSugest = [];
     vm.searchText = '';
     vm.searchData = null;
     var heightCategory = 0;
@@ -25,17 +25,20 @@ function searchCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
             utilities.showLoading();
             services.getSearch(key).then(function (response) {
                 utilities.hideLoading();
-                // vm.searchText = "";
-                // if (response.responseCode !== '200' || response.data.length === 0) {
-                //     utilities.showMessenge("Không tìm thấy kết quả nào.");
-                // } else {
-                if (response.data.length > 0) {
-                    $("#text-search").addClass('display-none').removeClass('display-block');
-                    vm.showListMovie = true;
-                    vm.listSearchMovie = response.data[0].content;
-                    $("#list_search").trigger('reload');
+                if (response.responseCode === '200') {
+                    if (response.data.length > 0) {
+                        $("#text-search").addClass('display-none').removeClass('display-block');
+                        vm.showListMovie = true;
+                        vm.listSearchMovie = response.data[0].content;
+                        $("#list_search").trigger('reload');
+                    }
+                    if (response.data.length === 0) {
+                        vm.listSearchMovie = [];
+                    }
                 }
-                // }
+                else {
+                    vm.message = response.message;
+                }
             });
         }, 1000);
 
@@ -43,12 +46,15 @@ function searchCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
         vm.showSearchSuggest = null;
         vm.showSearchSuggest = $timeout(function () {
             services.getSearchSuggestion(key).then(function (response) {
-                vm.listSearchMovieSugest = response.data[0].content;
-                $("#list_search_suggest").trigger('reload');
-
+                if (response.data.length > 0) {
+                    vm.listSearchMovieSugest = response.data[0].content;
+                    $("#list_search_suggest").trigger('reload');
+                }
+                if (response.data.length === 0) {
+                    vm.listSearchMovieSugest = [];
+                }
             });
         }, 1000);
-
     }
 
     services.getSetting().then(function (response) {
@@ -117,44 +123,43 @@ function searchCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
 
     vm.onKeyboardDel = function () {
         vm.searchText = '';
-        // vm.searchData = [];
         vm.listSearchMovie = [];
-        // vm.listSearchMovieSugest = [];
+        vm.listSearchMovieSugest = [];
         $("#text-search").addClass('display-block').removeClass('display-none');
         $("#list_search").trigger('reload');
     };
 
-    //     services.getSearchSuggestion(vm.searchText).then(function (response) {
-    //         utilities.hideLoading();
-    //         console.log(vm.Number, vm.searchText);
-    //         if (response.data.length > 0) {
-    //             vm.showListMovie = true;
-    //             vm.listSearchMovie = response.data[0].content;
-    //             $("#list_search").trigger('reload');
-    //         }
-    //     });
-    // }
+//     services.getSearchSuggestion(vm.searchText).then(function (response) {
+//         utilities.hideLoading();
+//         console.log(vm.Number, vm.searchText);
+//         if (response.data.length > 0) {
+//             vm.showListMovie = true;
+//             vm.listSearchMovie = response.data[0].content;
+//             $("#list_search").trigger('reload');
+//         }
+//     });
+// }
 
     vm.selectMovie = function (item) {
         $state.go('movieDetail', {id: item.id}, {reload: true});
     };
 
-    // function init() {
-    //     document.body.addEventListener('keydown', function (event) {
-    //         switch (event.keyCode) {
-    //             case 65376: // Done
-    //                 if ($state.current.name == 'search' && vm.searchText.trim() != '')
-    //                     searchMovie(vm.searchText);
-    //                 break;
-    //             case 13: // Done
-    //                 if ($state.current.name == 'search' && vm.searchText.trim() != '')
-    //                     searchMovie(vm.searchText);
-    //                 break;
-    //             default :
-    //                 break;
-    //         }
-    //     })
-    // }
+// function init() {
+//     document.body.addEventListener('keydown', function (event) {
+//         switch (event.keyCode) {
+//             case 65376: // Done
+//                 if ($state.current.name == 'search' && vm.searchText.trim() != '')
+//                     searchMovie(vm.searchText);
+//                 break;
+//             case 13: // Done
+//                 if ($state.current.name == 'search' && vm.searchText.trim() != '')
+//                     searchMovie(vm.searchText);
+//                 break;
+//             default :
+//                 break;
+//         }
+//     })
+// }
 
     function initFocus() {
         $("#text-search").addClass('display-block').removeClass('display-none');

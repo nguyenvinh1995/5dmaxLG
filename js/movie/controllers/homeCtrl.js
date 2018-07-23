@@ -127,7 +127,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         $(".btn-up-to-top").removeClass('display-none').addClass('display-block');
         clearTimeout(vm.ShowGif);
         $("#av-container").addClass('display-trainer');
-        $("#av-player").addClass('display-trainer');
+        // $("#av-player").addClass('display-trainer');
         WebOsPlayer.player.dispose();
     };
 
@@ -149,7 +149,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         clearTimeout(vm.ShowGif);
         $(".movie_article_wrapper").removeClass('background-none');
         $("#av-container").addClass('display-trainer');
-        $("#av-player").addClass('display-trainer');
+        // $("#av-player").addClass('display-trainer');
         WebOsPlayer.player.dispose();
         console.log('stop-trailer')
     };
@@ -188,8 +188,8 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         }
 
         ///Trailer-Focus//////
-
-        if (item.trailer !== 0) {
+        $rootScope.idTrailer = item.trailer;
+        if (item.trailer !== '0' && item.trailer) {
             services.getTrailer(item.trailer).then(function (response) {
                 console.log(response);
                 if (response.responseCode == 200) {
@@ -204,33 +204,13 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
                     $timeout.cancel(vm.show);
                     vm.show = null;
                     vm.show = $timeout(function () {
-                        $("#av-player").removeClass('display-trainer');
+                        // $("#av-player").removeClass('display-trainer');
                         $("#av-container").removeClass('display-trainer');
                         $(".movie_article_wrapper").addClass('background-none');
                     }, 7000);
                 }
             });
         }
-
-
-        // $timeout.cancel(vm.ShowGif);
-        // vm.ShowGif = null;
-        // vm.ShowGif = $timeout(function () {
-        //     var raw = '';
-        //     raw += '<video id=av-player class="video-js vjs-default-skin"></video>';
-        //     angular.element(document.getElementById('av-container')).append($compile(raw)($scope));
-        //     showTrailer();
-        //     console.log('play-trailer')
-        // }, 4000);
-        //
-        // $timeout.cancel(vm.show);
-        // vm.show = null;
-        // vm.show = $timeout(function () {
-        //     $("#av-player").removeClass('display-trainer');
-        //     $("#av-container").removeClass('display-trainer');
-        //     $(".movie_article_wrapper").addClass('background-none');
-        // }, 7000);
-        // }
 
         vm.currentItem = item;
 

@@ -130,57 +130,71 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                 "idMovie": idPlay,
                 "idPart": idMovie
             };
-
-            if (services.drmUrl) {
-                console.log("drm..........");
-                // isDrm = true;
-                var mediaUrl = services.drmUrl;
-                console.log(mediaUrl,'drm');
-                TizenAVPlayer.mediaUrl = mediaUrl;
-                setTimeout(function () {
-                    WebOsPlayer.playVideo(mediaUrl, avPlayerListenerCallback);
-                    // TizenAVPlayer.playVideo(mediaUrl, isDrm);
-                    $scope.isPlaying = true;
-                    // $scope.$digest();
-                    // if(TizenAVPlayer.currentTime != 0 && isNext == false){
-                    //     var time = TizenAVPlayer.currentTime * 1000;
-                    //     ff(time);
-                    // }
-                }, 500);
-                // $("#av-player").show();
-            } else {
-                console.log("not drm.....");
-                services.getStreaming(idPlay, idMovie, services.quality).then(function (response) {
-                    var data = response.data;
-                    isDrm = false;
-                    if (data.streams && data.streams.errorCode == '200') {
-                        var mediaUrl = data.streams.urlStreaming;
-                        TizenAVPlayer.mediaUrl = mediaUrl;
-                        console.log(mediaUrl,'no-drm');
-                        setTimeout(function () {
-                            WebOsPlayer.playVideo(mediaUrl, avPlayerListenerCallback);
-                            // TizenAVPlayer.playVideo(mediaUrl, isDrm);
-                            $scope.isPlaying = true;
-                            $scope.$digest();
-                            // if(TizenAVPlayer.currentTime != 0 && isNext == false){
-                            //     var time = TizenAVPlayer.currentTime * 1000;
-                            //     ff(time);
-                            // }
-                        }, 500);
-                        $("#av-player").show();
-                    } else if (data.streams && data.streams.popup) {
-                        utilities.hideLoading();
-                        setTimeout(function () {
-                            if (loading.addClass("hidden")) {
-                                utilities.showNetworkDisconnected();
-                            }
-                        }, 500);
-                        utilities.showMessenge(data.streams.popup.confirm);
-                    } else if (data.streams && data.streams.errorCode == utilities.errorCode.tokenExpire) {
-                        refreshToken();
-                    }
-                })
+            console.log(services.playTrailer, services.check, services.attribute);
+            if (services.check === false) {
+                if (services.drmUrl) {
+                    console.log("drm..........");
+                    // isDrm = true;
+                    var mediaUrl = services.drmUrl;
+                    console.log(mediaUrl, 'drm');
+                    TizenAVPlayer.mediaUrl = mediaUrl;
+                    setTimeout(function () {
+                        WebOsPlayer.playVideo(mediaUrl, avPlayerListenerCallback);
+                        // TizenAVPlayer.playVideo(mediaUrl, isDrm);
+                        $scope.isPlaying = true;
+                        // $scope.$digest();
+                        // if(TizenAVPlayer.currentTime != 0 && isNext == false){
+                        //     var time = TizenAVPlayer.currentTime * 1000;
+                        //     ff(time);
+                        // }
+                    }, 500);
+                    // $("#av-player").show();
+                } else {
+                    console.log("not drm.....");
+                    services.getStreaming(idPlay, idMovie, services.quality).then(function (response) {
+                        var data = response.data;
+                        isDrm = false;
+                        if (data.streams && data.streams.errorCode == '200') {
+                            var mediaUrl = data.streams.urlStreaming;
+                            TizenAVPlayer.mediaUrl = mediaUrl;
+                            console.log(mediaUrl, 'no-drm');
+                            setTimeout(function () {
+                                WebOsPlayer.playVideo(mediaUrl, avPlayerListenerCallback);
+                                // TizenAVPlayer.playVideo(mediaUrl, isDrm);
+                                $scope.isPlaying = true;
+                                $scope.$digest();
+                                // if(TizenAVPlayer.currentTime != 0 && isNext == false){
+                                //     var time = TizenAVPlayer.currentTime * 1000;
+                                //     ff(time);
+                                // }
+                            }, 500);
+                            $("#av-player").show();
+                        } else if (data.streams && data.streams.popup) {
+                            utilities.hideLoading();
+                            setTimeout(function () {
+                                if (loading.addClass("hidden")) {
+                                    utilities.showNetworkDisconnected();
+                                }
+                            }, 500);
+                            utilities.showMessenge(data.streams.popup.confirm);
+                        } else if (data.streams && data.streams.errorCode == utilities.errorCode.tokenExpire) {
+                            refreshToken();
+                        }
+                    })
+                }
             }
+            if (services.check === true) {
+                if (services.playTrailer) {
+                    var mediaUrl = services.playTrailer;
+                    TizenAVPlayer.mediaUrl = mediaUrl;
+                    setTimeout(function () {
+                        WebOsPlayer.playVideo(mediaUrl, avPlayerListenerCallback);
+                        $scope.isPlaying = true;
+                    }, 500);
+                    // $("#av-player").show();
+                }
+            }
+
         }
 
         function ff(time) {
@@ -264,9 +278,8 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
 
         var timeLeft = WebOsPlayer.duration - currentTime;
         // progressBarMarkerElement.css('width', progressBarBkgdElement.width() + '%');
-        var progress = Math.min(currentTime, WebOsPlayer.duration) / WebOsPlayer.duration * progressBarBkgdElement.width();
         // var progressbar = Math.min(currentTime, WebOsPlayer.duration) / WebOsPlayer.duration * progressBarBkgdElement.width();
-
+        var progress = Math.min(currentTime, WebOsPlayer.duration) / WebOsPlayer.duration * progressBarBkgdElement.width();
         // console.log(currentTime, WebOsPlayer.duration);
         // console.log(WebOsPlayer.formatTime(currentTime));
         // console.log(WebOsPlayer.formatTime(timeLeft));
@@ -277,7 +290,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
 
 
         if (Math.min(currentTime, WebOsPlayer.duration) === WebOsPlayer.duration) {
-            progressBarMarkerElement.css('width', progressBarBkgdElement.width() + '%');
+            // progressBarMarkerElement.css('width', progressBarBkgdElement.width() + '%');
             // progressBarMarkerElement.css('width', progress + '%');
             // progressDot.css('margin-left', (progress) + '%');
             return;
@@ -287,7 +300,6 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
         endPosElement.html(WebOsPlayer.formatTime(timeLeft));
         progressBarMarkerElement.css('width', progress + '%');
         progressDot.css('margin-left', (progress) + '%');
-
 
         // if (timeLeft == 0 && WebOsPlayer.duration > 0) {
         //     if (TizenAVPlayer.currentTrack < TizenAVPlayer.mediaList.length - 1) {
@@ -676,8 +688,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
             try {
                 if ($(".mini-player")) {
                     $('.icon-image-poster').addClass('rorate');
-                    $('#mini-icon').addClass('mini-pause');
-                    $('#mini-icon').removeClass('mini-play');
+                    $('#mini-icon').addClass('mini-pause').removeClass('mini-play');
                     $('#text-pause-play').html('Dừng');
                 }
             } catch (ex) {
@@ -685,18 +696,22 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
             }
         });
         player.on('ended', function () {
-            console.log("success",TizenAVPlayer.currentTrack,TizenAVPlayer.mediaList.length);
+
+            console.log("success", TizenAVPlayer.currentTrack, TizenAVPlayer.mediaList.length);
             if (TizenAVPlayer.currentTrack < TizenAVPlayer.mediaList.length - 1) {
                 TizenAVPlayer.nextVideo();
                 isNext = true;
                 console.log('next video');
-                // if (TizenAVPlayer.currentTrack === TizenAVPlayer.mediaList.length-1) {
-                //     $rootScope.changeView();
-                // }
+
             } else {
-                // WebOsPlayer.pause();
+                console.log(services.attribute, services.check);
+                if (services.attribute === 1 && services.check === false) {
+                    checkSuggestMovie();
+                    WebOsPlayer.player.dispose();
+
+                }
                 WebOsPlayer.player.dispose();
-                checkSuggestMovie();
+                $rootScope.changeView();
             }
         });
         player.on('canplay', function () {

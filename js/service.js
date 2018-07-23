@@ -67,11 +67,6 @@ function services($q, $http, settings, utilities) {
         return utilities.resolve(url, 'GET', angular.noop, angular.noop);
     }
 
-    // function getTrailer(id) {
-    //     var url = settings.api.baseUrl + "playlist/get-link-trailer?id=" + id  + "&device_id=111&device_type=" + settings.os_type  ;
-    //     return utilities.resolve(url, 'GET', angular.noop, angular.noop);
-    // }
-
     function getSearch(key) {
         var url = settings.api.baseUrl + "default/search?query=" + key;
         return utilities.resolve(url, 'GET', angular.noop, angular.noop);

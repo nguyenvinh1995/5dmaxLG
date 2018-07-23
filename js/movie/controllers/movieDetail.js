@@ -17,6 +17,7 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
     var currentContinueMovie = {};
     var isConfirm = false;
     var currentIsContinue = false;
+    services.check = false;
     var currentTypePopup = 0;
     var depthDialog = $rootScope.depth.dialog.val;
     var depthDetail = $rootScope.depth.detail.val;
@@ -64,6 +65,8 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
                 // $("#movie-detail").removeClass('hidden');
                 var data = response.data;
                 services.imgCurrentItem = data.detail.avatarImageH;
+                vm.idTrailer = Number(data.detail.video_trailer);
+                services.attribute = Number(data.detail.attributes);
                 console.log(services.imgCurrentItem);
                 vm.data = data;
                 vm.detailFilms = data.detail;
@@ -282,6 +285,18 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
             $state.go('login_form', {playlistId: vm.detailFilms.id, movieId: mId}, {reload: true});
         }
     };
+
+    services.getTrailer($rootScope.idTrailer).then(function (response) {
+        console.log(response);
+        services.playTrailer = response.data.streams.urlStreaming;
+    });
+
+    vm.trailer = function (check) {
+        services.check = check;
+        console.log($rootScope.idTrailer);
+        $state.go('avplayer', {playlistId: vm.detailFilms.id, movieId: vm.listFilms[0].id});
+    };
+
 
     vm.playMovie = function (item) {
         if (vm.detailFilms.drm_content_id != null && services.supportDrm == false) {
@@ -503,14 +518,14 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
             var item = services.itemFromListMovie;
             var timeFocus = setInterval(function () {
                 if (item == null) {
-                    focusController.focus($('.list_0'));
-                    if ($('.list_0').hasClass('focused') && $state.current.name == 'movieList') {
+                    focusController.focus($('.active_list_film'));
+                    if ($('.active_list_film').hasClass('focused') && $state.current.name == 'movieList') {
                         services.itemFromListMovie == null;
                         clearInterval(timeFocus);
                     }
                 } else {
-                    focusController.focus($('.list_0'));
-                    if ($('.list_0').hasClass('focused') && $state.current.name == 'movieList') {
+                    focusController.focus($('.list_' + item.id));
+                    if ($('.list_' + item.id).hasClass('focused') && $state.current.name == 'movieList') {
                         clearInterval(timeFocus);
                         services.itemFromListMovie == null;
                     }
@@ -572,7 +587,7 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
         })
     }
 
-    $scope.$on('$viewContentLoaded', function(event) {
-        initFocus();
-    })
+    // $scope.$on('$viewContentLoaded', function(event) {
+    //     initFocus();
+    // })
 }
