@@ -52,7 +52,9 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
         getFilm(id, idMovie);
     }
 
+    console.log(idMovie);
     function getFilm(id, idMovie) {
+        console.log(idMovie,id);
         services.getDetailFilm(id, idMovie).then(function (response) {
             console.log(response);
             if (response.responseCode == utilities.errorCode.success) {
@@ -65,7 +67,7 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
                 // $("#movie-detail").removeClass('hidden');
                 var data = response.data;
                 services.imgCurrentItem = data.detail.avatarImageH;
-                vm.idTrailer = Number(data.detail.video_trailer);
+                $rootScope.idTrailers = data.detail.video_trailer;
                 services.attribute = Number(data.detail.attributes);
                 console.log(services.imgCurrentItem);
                 vm.data = data;
@@ -286,14 +288,14 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
         }
     };
 
-    services.getTrailer($rootScope.idTrailer).then(function (response) {
+    services.getTrailer($rootScope.idTrailers).then(function (response) {
         console.log(response);
         services.playTrailer = response.data.streams.urlStreaming;
     });
 
     vm.trailer = function (check) {
         services.check = check;
-        console.log($rootScope.idTrailer);
+        console.log($rootScope.idTrailers);
         $state.go('avplayer', {playlistId: vm.detailFilms.id, movieId: vm.listFilms[0].id});
     };
 

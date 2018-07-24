@@ -20,7 +20,7 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
     var currentBannerItem = {};
     // utilities.showLoading();
     // var timeFocus = setInterval(function () {
-    services.getHomeFilmv2(1).then(function (response) {
+    services.getHomeFilmv2(2).then(function (response) {
         vm.homeFilms = response.data;
         vm.banner = vm.homeFilms[0].content;
         currentBannerItem = vm.banner[0];

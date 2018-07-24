@@ -973,7 +973,8 @@ html, body {
         font-style: "";
         text-transform: ""; }
   .login_form .form_input {
-    height: 2.21875rem; }
+    height: 2.21875rem;
+    margin-bottom: 1.875rem; }
     .login_form .form_input + .form_input {
       margin-top: 0.46875rem; }
     .login_form .form_input.capcha {
@@ -2411,6 +2412,10 @@ input:focus, button:focus {
     float: right;
     position: relative;
     margin-top: 10%; }
+    .relate_film_background .movie_suggetion .btn-right {
+      margin-top: -1.5625rem !important;
+      position: absolute !important;
+      margin-left: 9.375rem !important; }
     .relate_film_background .movie_suggetion button {
       font-size: 0.75rem;
       width: 5.9375rem;

@@ -23,6 +23,8 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         currentBannerItem = vm.banner[0];
         // services.backgroundSuggetionMovie = currentBannerItem.imageForTVLarge;
         services.backgroundMenu = currentBannerItem.imageForTVLarge;
+        services.idItem = vm.homeFilms[0].content[0].itemId;
+        console.log(services.idItem);
         var raw = '';
         for (var i = 1; i < vm.homeFilms.length; i++) {
             raw += '<div class="list_movies overlay" ng-class="{ \'overlay\' : vm.currentCategory != ' + i + ' } "id="list_' + i + '">'
@@ -150,6 +152,8 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         $(".movie_article_wrapper").removeClass('background-none');
         $("#av-container").addClass('display-trainer');
         // $("#av-player").addClass('display-trainer');
+        // var list = document.getElementById("av-container");
+        // list.removeChild(list.childNodes[1]);
         WebOsPlayer.player.dispose();
         console.log('stop-trailer')
     };
@@ -200,14 +204,13 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
                         angular.element(document.getElementById('av-container')).append($compile(raw)($scope));
                         showTrailer();
                         console.log('play-trailer')
-                    }, 4000);
+                    }, 7000);
                     $timeout.cancel(vm.show);
                     vm.show = null;
                     vm.show = $timeout(function () {
-                        // $("#av-player").removeClass('display-trainer');
                         $("#av-container").removeClass('display-trainer');
                         $(".movie_article_wrapper").addClass('background-none');
-                    }, 7000);
+                    }, 9000);
                 }
             });
         }

@@ -117,6 +117,7 @@
   }
   .form_input {
     height: 71*$rem;
+    margin-bottom: 60*$rem;
     & + .form_input {
       margin-top: 15*$rem;
     }
