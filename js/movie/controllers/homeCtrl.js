@@ -192,7 +192,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         }
 
         ///Trailer-Focus//////
-        $rootScope.idTrailer = item.trailer;
+        services.idTrailer = item.trailer;
         if (item.trailer !== '0' && item.trailer) {
             services.getTrailer(item.trailer).then(function (response) {
                 console.log(response);
@@ -200,8 +200,10 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
                     vm.ShowGif = $timeout(function () {
                         $rootScope.mediaTrailer = response.data.streams.urlStreaming;
                         var raw = '';
-                        raw += '<video id=av-player class="video-js vjs-default-skin"></video>';
-                        angular.element(document.getElementById('av-container')).append($compile(raw)($scope));
+                        raw += '<div id="av-container" class="display-trainer trainer">'
+                            + '<video id=av-player class="video-js vjs-default-skin"></video>'
+                            + '</div>';
+                        angular.element(document.getElementById('showTrailer')).append($compile(raw)($scope));
                         showTrailer();
                         console.log('play-trailer')
                     }, 7000);

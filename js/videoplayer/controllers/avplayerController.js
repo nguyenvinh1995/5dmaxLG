@@ -94,7 +94,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
             // if (idMovie) {
             //     mId = idMovie;
             // } else
-                mId = vm.listFilms[0].id;
+            mId = vm.listFilms[0].id;
 
             TizenAVPlayer.name = vm.detailFilms.name;
             // if (Object.keys(currentContinueMovie).length > 0) {
@@ -105,11 +105,11 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
             //         TizenAVPlayer.alias = currentContinueMovie.alias;
             //     TizenAVPlayer.currentTrack = currentContinueMovie.index - 1;
             // } else {
-                TizenAVPlayer.description = vm.listFilms[0].description;
-                if (vm.detailFilms.attributes == "1")
-                    TizenAVPlayer.alias = "";
-                else
-                    TizenAVPlayer.alias = vm.listFilms[0].alias;
+            TizenAVPlayer.description = vm.listFilms[0].description;
+            if (vm.detailFilms.attributes == "1")
+                TizenAVPlayer.alias = "";
+            else
+                TizenAVPlayer.alias = vm.listFilms[0].alias;
             // }
 
 
@@ -243,6 +243,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                 }
             }
             if (services.check === true) {
+                console.log(services.playTrailer);
                 if (services.playTrailer) {
                     var mediaUrl = services.playTrailer;
                     TizenAVPlayer.mediaUrl = mediaUrl;
@@ -251,9 +252,11 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                         $scope.isPlaying = true;
                     }, 500);
                     // $("#av-player").show();
+                } else {
+                    $rootScope.changeView();
+                    utilities.showMessge("Hiện tại không xem được trailer");
                 }
             }
-
         }
 
         function ff(time) {

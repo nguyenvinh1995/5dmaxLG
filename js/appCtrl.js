@@ -30,8 +30,8 @@ app.factory('settings', ['$rootScope', function ($rootScope) {
     var settings = {
         locale: 'vi-VN',
         api: {
-            baseUrl: 'http://m.5dmax.vn/apiv2.php/v1/'
-            // baseUrl: 'http://5dmax.vn/apiv3.php/v1/'
+            // baseUrl: 'http://m.5dmax.vn/apiv2.php/v1/'
+            baseUrl: 'http://5dmax.vn/apiv3.php/v1/'
         },
         os_type: 'WEB_ANDROID',
         version: '4.0.0'

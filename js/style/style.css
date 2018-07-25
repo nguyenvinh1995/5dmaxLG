@@ -2618,3 +2618,6 @@ input:focus, button:focus {
     -webkit-transform: translate(-50%, -50%);
     /* Safari */
     transform: translate(-50%, -50%); }
+.display-trailer {
+  display: none !important;
+}

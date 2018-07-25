@@ -288,14 +288,14 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
         }
     };
 
-    services.getTrailer($rootScope.idTrailers).then(function (response) {
+    services.getTrailer(services.idTrailer).then(function (response) {
         console.log(response);
         services.playTrailer = response.data.streams.urlStreaming;
     });
 
     vm.trailer = function (check) {
         services.check = check;
-        console.log($rootScope.idTrailers);
+        console.log(services.playTrailer);
         $state.go('avplayer', {playlistId: vm.detailFilms.id, movieId: vm.listFilms[0].id});
     };
 
