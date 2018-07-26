@@ -2,7 +2,7 @@
     <div class="inner">
         <div class="logo"></div>
         <div class="content-left content-no-capslock" id="content-key-broard">
-            <div class="key-broard no-capslock display-block">
+            <div class="key-broard no-capslock block">
                 <ul>
                     <li class="num FocusKeybroad" id="focusKeybroad"
                         focusable="{depth : $root.depth.login.val,initialFocus : true}"
@@ -164,7 +164,10 @@
             </div>
             <div class="key-broard">
                 <ul>
-                    <li class="space-num num " focusable="{depth : $root.depth.login.val }" on-selected="vm.back()">Quay
+                    <li id="back-first" class="space-num num num-disable">Quay
+                        lại
+                    </li>
+                    <li class="space-num num hide" focusable="{depth : $root.depth.login.val }" on-selected="vm.back()">Quay
                         lại
                     </li>
                     <li class="space-num num" id="continue" focusable="{depth : $root.depth.login.val }"
@@ -186,7 +189,7 @@
         </div>
         <div class="login_form page_login">
             <h1>Đăng nhập</h1>
-            <div class="phone form_input opacity input show-input" id="phone-number">
+            <div class="phone form_input opacity input show-input " id="phone-number">
                 <input id="username"
                        type="text" ng-model="vm.loginForm.username" placeholder="Số điện thoại"
                        class="phone_input">
@@ -197,8 +200,8 @@
             </div>
             <div class="capcha opacity form_input input" ng-show="vm.showCapcha" id="capcha">
                 <div>
-                    <input id="capt" ng-model="vm.loginForm.captcha" type="text"
-                           placeholder="Captcha" class="capt_input">
+                    <input id="capt" ng-model="vm.loginForm.captcha"
+                           placeholder="Mã xác nhận" class="capt_input">
                     <img class="img_capcha" id="img_capcha" src="" width="" height="" alt="">
                 </div>
             </div>

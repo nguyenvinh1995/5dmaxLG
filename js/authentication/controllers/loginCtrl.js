@@ -9,10 +9,10 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
     var vm = this;
     vm.showCapcha = false;
     vm.loginForm = {
-        // username: '01663842195',
+        username: '',
+        password: '',
+        // username: '01653257351',
         // password: '12345678',
-        username: '01653257351',
-        password: '12345678',
         captcha: ''
     };
     var playlistId = $state.params.playlistId;
@@ -23,13 +23,13 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
         vm.getCode = $scope.getCode;
     }, 1000);
 
-    function isANumber(str){
+    function isANumber(str) {
         return !/\D/.test(str);
     }
 
     vm.enterText = function (text) {
         if ($('#phone-number').hasClass('show-input')) {
-            if(isANumber(text) === true){
+            if (isANumber(text) === true) {
                 vm.loginForm.username += text;
                 console.log(vm.loginForm.username);
             }
@@ -72,6 +72,8 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
             $('#pass').addClass('show-input');
             $('#continue').addClass('hide');
             $('#log').removeClass('hide');
+            $('#back').removeClass('hide');
+            $('#back-first').addClass('hide');
             if ($('#content-key-broard').hasClass('content-no-capslock')) {
                 var timeFocus = setInterval(function () {
                     focusController.focus($('#focusKeybroad'));
@@ -109,8 +111,6 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
         $rootScope.check = bool;
         console.log($rootScope.check);
     };
-    console.log($rootScope.check);
-
 
     vm.loginCode = function () {
         $state.go('login_code');
@@ -164,11 +164,13 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
     };
 
     vm.back = function () {
-        // $rootScope.changeView()
         if ($('#phone-number').hasClass('show-input')) {
-            $rootScope.changeView()
+            $('#back').addClass('hide');
+            $('#back-first').removeClass('hide');
         }
         if ($('#pass').hasClass('show-input')) {
+            $('#back').addClass('hide');
+            $('#back-first').removeClass('hide');
             $('#phone-number').addClass('show-input');
             $('#pass').removeClass('show-input');
             $('#capcha').removeClass('show-input');
@@ -176,6 +178,8 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
             $('#log').addClass('hide');
         }
         if ($('#capcha').hasClass('show-input')) {
+            $('#back').removeClass('hide');
+            $('#back-first').addClass('hide');
             $('#phone-number').removeClass('show-input');
             $('#pass').addClass('show-input');
             $('#capcha').removeClass('show-input');
@@ -261,6 +265,7 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
         lastCaptcha = vm.loginForm.captcha;
 
         services.authenticate(request).then(function (response) {
+            console.log(services.deviceId);
             if (response.responseCode == '800') {
                 vm.showCapcha = true;
                 getCaptcha();
@@ -280,7 +285,6 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
                 services.auth = data;
                 services.isLogin = true;
                 services.logInRefreshHomeState = true;
-                console.log($rootScope.check);
                 if ($rootScope.check === true) {
                     if (response.data.accessToken) {
                         var anthorize = {
@@ -304,6 +308,7 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
                     $state.go('setup', {}, {reload: true});
                     return;
                 }
+
                 if ($rootScope.errorVerify) {
                     $rootScope.errorVerify = false;
                     $rootScope.changeView();
@@ -312,6 +317,7 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
                         services.backDetailFormLogin = true;
                         var state = $rootScope.$previousState.name;
                         $state.go(state, {id: playlistId}, {reload: true});
+                        // $state.go('avplayer', {playlistId : playlistId , movieId : movieId});
                     }
                     else
                         $state.go('home', {}, {reload: true});

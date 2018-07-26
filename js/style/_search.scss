@@ -74,7 +74,7 @@
       height: 197*$rem;
       border: 3*$rem solid transparent;
       margin-bottom: 35*$rem;
-      margin-right: 8*$rem;
+      margin-right: 16*$rem;
       opacity: 0.5;
       @extend %transition;
       .item {
@@ -344,7 +344,7 @@
 
 .display-no-top {
   .keyboard_content {
-    top: -60% !important;
+    top: -50% !important;
     @include transition(0.5s);
   }
   .hotkey {

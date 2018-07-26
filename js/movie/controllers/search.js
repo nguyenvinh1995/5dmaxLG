@@ -24,6 +24,7 @@ function searchCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
         vm.showSearch = $timeout(function () {
             utilities.showLoading();
             services.getSearch(key).then(function (response) {
+                $("#text-search-first").addClass('display-none').removeClass('display-block');
                 utilities.hideLoading();
                 if (response.responseCode === '200') {
                     if (response.data.length > 0) {
