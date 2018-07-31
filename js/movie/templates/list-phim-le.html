@@ -30,17 +30,19 @@
              style="background-image: url({{(vm.srcImg === '') ? vm.content[0].imageForTVLarge : vm.srcImg}})">
             <div class="gradient-img"></div>
             <div class="caph-list-movie">
-                <caph-list container-class="list-movie" direction="vertical" items="item in vm.content" id="list-movie"
-                           loop="true">
-                    <div class="item-wrapper"
-                         focusable="{depth : $root.depth.list.val, nextFocus: { left : $index % vm.itemInPage === 0 ? '{{vm.currentItem.name}}' : '' }}"
-                         on-focused="vm.showFilm(false, null, item)"
-                         on-selected="vm.selectMovie(item)">
+                <div id="list-movie" class="list-movie col-lg-10" direction="vertical">
+                    <div class="item-wrapper col-lg-2"
+                         focusable="{ depth : $root.depth.list.val,nextFocus: { left : $index % vm.itemInPage === 0 ? '{{vm.currentItem.name}}' : '' }}"
+                         on-focused="vm.showFilms($event, $originalEvent, 1, $index, false, null, item)"
+                         on-selected="vm.selectMovie(item)" id="movieItem_{{$index}}"
+                         ng-repeat="item in vm.content">
                         <div class="item-movie"
                              style="background-image: url({{item.coverImageH}})"
                              ng-class="{ 'itemFirst' : $first }"></div>
                     </div>
-                </caph-list>
+                </div>
+
+
             </div>
         </div>
     </div>

@@ -27,12 +27,12 @@
     background: url('../images/logo.png') no-repeat;
     background-size: 100% 100%;
   }
-  .logo-landing {
+  .logo-landing{
     width: 187*$rem !important;
     height: 37*$rem !important;
   }
-
 }
+
 
 .login_screen {
   z-index: 999;
@@ -42,7 +42,6 @@
     margin-top: 120*$rem;
     margin-bottom: 20*$rem;
     color: #fff !important;
-
   }
   p {
     font-size: 36*$rem;
@@ -97,8 +96,8 @@
   input {
     @extend %transition;
     border-radius: 6*$rem;
-    background-color: transparent;
     //background-color: rgba(77, 77, 77, 0.6);
+    background-color: transparent;
     width: 546*$rem;
     height: 66*$rem;
     // line-height: 66*$rem;
@@ -183,7 +182,7 @@
   }
   .submit_btn {
     margin-top: 75*$rem;
-    margin-bottom: -25*$rem;
+    margin-bottom: -0.75rem;
   }
 }
 
@@ -383,8 +382,8 @@ input:focus, button:focus {
 }
 
 .content-left {
-  width: 45%;
-  height: 550*$rem;
+  width: 42%;
+  height: 520*$rem;
   opacity: 0.86;
   border-radius: 2*$rem;
   background-color: #333333;
@@ -392,13 +391,13 @@ input:focus, button:focus {
   position: absolute;
   .key-broard {
     width: 100%;
-    height: 48.6%;
+    height: 52.6%;
     //margin-left: 20*$rem;
-    margin-bottom: -30*$rem;
+    //margin-bottom: -30*$rem;
     ul {
-      margin-top: 50*$rem;
+      //margin-top: 50*$rem;
       //margin-right: 20*$rem;
-      margin-left: -6*$rem;
+      margin-left: -12*$rem;
       width: 93%;
       .num {
         color: rgba(158, 158, 158, 0.5);
@@ -407,6 +406,7 @@ input:focus, button:focus {
         text-align: center;
         padding: 7*$rem 10*$rem 7*$rem 10*$rem;
         margin-right: -3*$rem;
+        //margin-left: -1*$rem;
         width: 6%;
         margin-bottom: 3*$rem;
         display: inline-table;
@@ -463,8 +463,8 @@ input:focus, button:focus {
       }
       .capslock {
         //padding: 2*$rem 7*$rem 4*$rem 7*$rem;
-        width: 16.5%;
-        height: 54*$rem;
+        width: 16.6%;
+        height: 1.65rem;
         &.focused {
           color: rgba(255, 255, 255, 1);
           border: 3*$rem solid #ffffff;
@@ -473,9 +473,9 @@ input:focus, button:focus {
       }
       .space-num {
         //padding: 1*$rem 7*$rem 1*$rem 7*$rem;
-        width: 44.1%;
+        width: 44.5%;
         margin-bottom: 7*$rem;
-        height: 54*$rem;
+        height: 1.65rem;
         &.focused {
           color: rgba(255, 255, 255, 1);
           border: 3*$rem solid #ffffff;
@@ -500,17 +500,12 @@ input:focus, button:focus {
   position: relative;
 }
 
-.top36 {
-  top: 1.012625rem !important;
-}
-
-.top34 {
-  top: 0.95rem !important;
-}
-
 .margintop-85 {
-  margin-top: -2.3rem !important;
+  margin-top: -34.5*$rem !important;
   height: 18% !important;
+}
+.margintop-22 {
+  margin-top: -22*$rem !important;
 }
 
 .content-symbol {
@@ -571,13 +566,15 @@ input:focus, button:focus {
   opacity: 0.4;
 }
 
-.num-disable {
+.num-disable{
   background-color: transparent !important;
   border: none !important;
-}
-.display-trainer{
-  display: none;
 }
 .block{
   display: block;
 }
+
+//.active{
+//  display: block !important;
+//  @include transition(.5s);
+//}

@@ -31,8 +31,8 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
                 + '<div class="movies scroll-movie">'
                 + '<div class="list-scroll-wrapper" ng-repeat="obj in vm.homeFilms[' + i + '].content" > '
                 + '<div class="item" ng-class="{ \'first_category_items\' : !$index && ' + i + ' == 0}"'
-                + 'focusable="{name:\'menu-rent-' + i + '-{{$index}}\',depth : $root.depth.list.val ,' +
-                ' nextFocus : { up : ' + i + ' == 0  ? \'btn_pl\' : \'\',right : $last ? \'menu-rent-' + i + '-0\' : \'{{\'menu-rent-' + i + '-\' + ($index + 1)}}\',down: $last ? \'\' : \'menu-rent-' + (i + 1) + '-0\'}}"'
+                + 'focusable="{name:\'menu-rent-' + i + '-{{$index}}\',depth : $root.depth.list.val , ' +
+                'nextFocus : { up : ' + i + ' == 0  ? \'btn_pl\' : \'\',right : $last ? \'menu-rent-' + i + '-0\' : \'{{\'menu-rent-' + i + '-\' + ($index + 1)}}\',down: $last ? \'\' : \'menu-rent-' + (i + 1) + '-0\'}}"'
                 + 'on-selected="vm.selectMovie(obj)" on-blurred="vm.blurItem($event, $originalEvent, ' + i + ' , obj , $index )" on-focused="vm.focusItem($event, $originalEvent, 4, obj , $index,' + i + ')">'
                 + '<div id="test" style="background:url(\'{{obj.coverImageH ? obj.coverImageH : obj.coverImage}}\') no-repeat"></div>'
                 + '</div>'
@@ -73,7 +73,7 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
                     vm.ShowGif = $timeout(function () {
                         $rootScope.mediaTrailer = response.data.streams.urlStreaming;
                         var raw = '';
-                        raw += '<div id="av-container-rent" class="trainer display-trainer">'
+                        raw += '<div id="av-container-rent" class="trainer">'
                             + '<video id=av-player class="video-js vjs-default-skin"></video>'
                             + '</div>';
                         angular.element(document.getElementById('showTrailer-rent')).append($compile(raw)($scope));
@@ -149,7 +149,8 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
             tempWidth = $ele.outerWidth();
             console.log('scroll');
             $wrapper.css({
-                transform: 'translateX(-' + ((tempWidth * blockToTransform + (blockToTransform * 37)) / 34) + 'rem)'
+                // transform: 'translateX(-' + ((tempWidth * blockToTransform + (blockToTransform * 37)) / 34) + 'rem)'
+                transform: 'translateX(-' + (($index - (startIndex - 1)) * 11.1875) + 'rem)'
             });
         } else if ($index === 0) {
             $wrapper.css({

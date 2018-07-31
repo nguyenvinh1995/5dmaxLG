@@ -1,7 +1,7 @@
 @font-face {
-    font-family: SFUIDisplay;
-    //src: url('../../js/fonts/SFUIDisplay-Regular.otf');
-    src: url('../fonts/SFUIDisplay-Regular.otf');
+  font-family: SFUIDisplay;
+  //src: url('../../js/fonts/SFUIDisplay-Regular.otf');
+  src: url('../fonts/SFUIDisplay-Regular.otf');
 }
 
 %clearfix {
@@ -29,74 +29,74 @@
 }
 
 @mixin opacity($opacity) {
-    /* IE 8 */
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+ $opacity * 100 + ")";    
-    /* Netscape */
-    -moz-opacity: $opacity;
-    /* Safari 1.x */
-    -khtml-opacity: $opacity;
-    /* Good browsers */
-    opacity: $opacity;
-  }
+  /* IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+ $opacity * 100 + ")";
+  /* Netscape */
+  -moz-opacity: $opacity;
+  /* Safari 1.x */
+  -khtml-opacity: $opacity;
+  /* Good browsers */
+  opacity: $opacity;
+}
 
 
-  @mixin transition($time) {
-    transition: all $time ease-in-out;
-    -ms-transition: all $time ease-in-out;
-    -webkit-transition: all $time ease-in-out;
-    -moz-transition: all $time ease-in-out;
-  } 
+@mixin transition($time) {
+  transition: all $time ease-in-out;
+  -ms-transition: all $time ease-in-out;
+  -webkit-transition: all $time ease-in-out;
+  -moz-transition: all $time ease-in-out;
+}
 
-  @mixin transform($transformx) {
-    -webkit-transform: $transformx;
-    -moz-transform: $transformx;
-    -ms-transform: $transformx;
-    -o-transform: $transformx;
-    transform: $transformx;
-  }
+@mixin transform($transformx) {
+  -webkit-transform: $transformx;
+  -moz-transform: $transformx;
+  -ms-transform: $transformx;
+  -o-transform: $transformx;
+  transform: $transformx;
+}
 
-  @mixin scale($scale) {
-    @include transform(scale($scale));
-  }
+@mixin scale($scale) {
+  @include transform(scale($scale));
+}
 
-  @mixin skew($skew) {
-    @include transform(skew($skew));
-  }
+@mixin skew($skew) {
+  @include transform(skew($skew));
+}
 
-  @mixin rotate($rotate) {
-    @include transform(rotate($rotate));
-  }
+@mixin rotate($rotate) {
+  @include transform(rotate($rotate));
+}
 
 
 
-  @mixin translateX($translateX) {
-    @include transform(translateX($translateX));
-  }
+@mixin translateX($translateX) {
+  @include transform(translateX($translateX));
+}
 
-  @mixin translateY($translateY) {
-    @include transform(translateY($translateY));
-  }
+@mixin translateY($translateY) {
+  @include transform(translateY($translateY));
+}
 
-  @mixin translate($x, $y){
- -ms-transform: translate($x,$y); /* IE 9 */
- -webkit-transform: translate($x,$y); /* Safari */
- transform: translate($x,$y);
+@mixin translate($x, $y){
+  -ms-transform: translate($x,$y); /* IE 9 */
+  -webkit-transform: translate($x,$y); /* Safari */
+  transform: translate($x,$y);
 }
 @mixin skewX($skewX){
-   -ms-transform: skewX($skewX); /* IE 9 */
-   -webkit-transform: skewX($skewX); /* Safari */
-   transform: skewX($skewX);
- }
+  -ms-transform: skewX($skewX); /* IE 9 */
+  -webkit-transform: skewX($skewX); /* Safari */
+  transform: skewX($skewX);
+}
 
 
- @mixin placeholder($color, $font-family, $font-size, $font-style, $text-transform){
-    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-      color: $color;
-      font-family: $font-family;
-      font-size: $font-size;
-      font-style: $font-style;
-      text-transform: $text-transform;
-    }
+@mixin placeholder($color, $font-family, $font-size, $font-style, $text-transform){
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $color;
+    font-family: $font-family;
+    font-size: $font-size;
+    font-style: $font-style;
+    text-transform: $text-transform;
+  }
   &::-moz-placeholder { /* Firefox 19+ */
     color: $color;
     font-family: $font-family;
@@ -187,17 +187,4 @@ html, body {
   padding: 25*$rem 35*$rem 25*$rem 35*$rem;
 }
 
-.content_text {
-  font-weight:bold;
-  font-size:5em;
-  color:#fff;
-}
-.movies{
-  height: 200*$rem;
-  width: 100vw;
-}
-.item-movies{
-  height: 920*$rem;
-  width: 1113*$rem;
-}
 

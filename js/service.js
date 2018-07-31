@@ -58,12 +58,13 @@ function services($q, $http, settings, utilities) {
         if (idMovie) {
             str += "&video_id=" + idMovie;
         }
+        console.log(settings.os_type, this.deviceId);
         var url = settings.api.baseUrl + str;
         return utilities.resolve(url, 'GET', angular.noop, angular.noop);
     }
 
     function getTrailer(id) {
-        var url = settings.api.baseUrl + "playlist/get-link-trailer?id=" + id  + "&device_id=" + this.deviceId + "&device_type=" + settings.os_type  ;
+        var url = settings.api.baseUrl + "playlist/get-link-trailer?id=" + id + "&device_id=" + this.deviceId + "&device_type=" + settings.os_type;
         return utilities.resolve(url, 'GET', angular.noop, angular.noop);
     }
 
@@ -153,6 +154,7 @@ function services($q, $http, settings, utilities) {
         return utilities.transformRequest(url, 'POST', null, data, header, angular.noop, angular.noop);
     }
 
+
     /*========================== authenticate ===============================*/
     function authenticate(request) {
         // console.log(request);
@@ -165,9 +167,10 @@ function services($q, $http, settings, utilities) {
         return utilities.resolveAlt(url, 'GET', null, null, anthorize.header, angular.noop, angular.noop);
     }
 
-    function getCaptcha(request) {
+    function getCaptcha(header) {
+        console.log(header);
         var url = settings.api.baseUrl + 'auth/get-captcha';
-        return utilities.resolveAlt(url, 'GET', null, null, request.header, angular.noop, angular.noop);
+        return utilities.resolveAlt(url, 'GET', null, null,header, angular.noop, angular.noop);
     }
 
     function isObject(item) {

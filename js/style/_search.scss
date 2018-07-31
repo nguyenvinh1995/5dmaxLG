@@ -1,32 +1,8 @@
 .search-page {
   top: 60*$rem;
   @extend .full_page;
-  //h1 {
-  //  width: 280*$rem;
-  //  height: 66*$rem;
-  //  opacity: 0.4;
-  //  font-size: 57*$rem;
-  //  font-weight: 500;
-  //  font-style: normal;
-  //  font-stretch: normal;
-  //  line-height: 1.16;
-  //  letter-spacing: 0.2*$rem;
-  //  text-align: left;
-  //  color: #ffffff;
-  //  margin-top: 50*$rem;
-  //  margin-left: 104*$rem;
-  //}
   .search-input {
     text-align: center;
-    //.img-search {
-    //  left: 6%;
-    //  margin: 11*$rem 0 0 1*$rem;
-    //  width: 48*$rem;
-    //  height: 48*$rem;
-    //  background: url('../images/search@3x.png') no-repeat;
-    //  background-size: 100% 100%;
-    //  position: absolute;
-    //}
     .input input {
       border: none;
       width: 1080*$rem;
@@ -58,14 +34,13 @@
   .text {
     font-size: 32*$rem;
     margin-top: 30%;
-    //margin-left: 30%;
     color: #fff;
     text-align: center;
   }
   .search-movie {
     width: 1095*$rem;
     margin-left: 2%;
-    height:9999*$rem;
+    height: 9999*$rem;
     margin-top: 1%;
     position: relative;
     overflow: hidden;
@@ -96,6 +71,7 @@
     height: 900*$rem;
     margin-top: 0*$rem !important;
     background-color: transparent;
+    @include transition(0.5s);
     ul {
       list-style-type: none;
       padding: 20*$rem;
@@ -109,15 +85,15 @@
         font-weight: 500;
         font-size: 36*$rem;
         text-align: center;
-        padding: 7*$rem 7*$rem 7*$rem 7*$rem;
-        //margin-left: 2*$rem;
-        //margin-right: 2*$rem;
-        width: 10%;
-        margin-bottom: 7*$rem;
+        padding: 10*$rem 7*$rem 7*$rem 7*$rem;
         display: inline-table;
-        background-color: #000;
+        background-color: #282828;
         border: 3*$rem solid #000;
         border-radius: 5*$rem;
+        width: 11%;
+        height: 50px;
+        margin-bottom: 1px;
+        margin-right: -6px;
       }
       .space {
         width: 41% !important;
@@ -131,13 +107,16 @@
       }
     }
     .key-image {
-      margin-bottom: 7*$rem;
+      margin-bottom: 1*$rem;
+      .btn-space{
+        margin-left: 65*$rem;
+      }
       .btn-del, .btn-space {
-        background-color: #000;
+        background-color: #282828;
         border-radius: 5*$rem;
         border: 3*$rem solid #000;
-        width: 229*$rem;
-        height: 66*$rem;
+        width: 242*$rem;
+        height: 75*$rem;
         &.focused {
           border: 3*$rem solid #fff;
           .search-del {
@@ -174,7 +153,8 @@
       }
     }
     .btn-back {
-      padding: 15*$rem 180*$rem 15*$rem 180*$rem;
+      padding: 15*$rem 0*$rem 15*$rem 0*$rem;
+      width: 77%;
       color: #ffffff;
       font-size: 32*$rem;
       border: 3*$rem solid #fff;
@@ -199,6 +179,7 @@
     position: absolute !important;
     top: 58% !important;
     overflow: hidden;
+    @include transition(0.5s);
     .item-hotkey {
       width: 100%;
       height: 70*$rem;
@@ -349,7 +330,6 @@
   }
   .hotkey {
     top: 10% !important;
-    //position: relative !important;
     @include transition(0.5s);
   }
 }

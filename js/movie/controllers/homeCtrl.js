@@ -18,11 +18,13 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
     var currentIndexBanner = 0;
     var currentBannerItem = {};
     var owl = $('.home_slider');
-
+    services.checkBanner = false;
+    services.mediaUrlBanner = '';
     services.getHomeFilm().then(function (response) {
         vm.homeFilms = response.data;
         vm.banner = vm.homeFilms[0].content;
         currentBannerItem = vm.banner[0];
+        console.log(currentBannerItem);
         // services.backgroundSuggetionMovie = currentBannerItem.imageForTVLarge;
         services.backgroundMenu = currentBannerItem.imageForTVLarge;
         services.idItem = vm.homeFilms[0].content[0].itemId;
@@ -35,7 +37,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
                 + '<div class="list-scroll-wrapper" ng-repeat="obj in vm.homeFilms[' + i + '].content" > '
                 + '<div class="item" ng-class="{ \'first_category\' : !$index && ' + i + ' == 1}"'
                 + 'focusable="{name:\'menu-type-' + i + '-{{$index}}\',depth : $root.depth.main.val , ' +
-                'nextFocus : { up : ' + i + ' == 1  ? \'btn_play\' : \'\',right : $last ? \'menu-type-' + i + '-0\' : \'\',down: \'menu-type-' + (i+1) + '-0\'}}"'
+                'nextFocus : { up : ' + i + ' == 1  ? \'btn_play\' : \'\',right : $last ? \'menu-type-' + i + '-0\' : \'\',down:\'menu-type-' + (i + 1) + '-0\'}}"'
                 + 'on-selected="vm.selectMovie(obj)" on-blurred="vm.blurItem($event, $originalEvent, ' + i + ' , obj , $index )" on-focused="vm.focusItem($event, $originalEvent, 4, obj , $index,' + i + ')">'
                 + '<div id="test" style="background:url(\'{{obj.coverImageH ? obj.coverImageH : obj.coverImage}}\') no-repeat"></div>'
                 + '</div>'
@@ -48,36 +50,32 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         utilities.hideLoading();
     });
 
-    vm.initBanner = function () {
-        console.log("init");
-        owl.owlCarousel({
-            items: 1,
-            autoplay: true,
-            autoplayTimeout: 30000,
-            autoplayHoverPause: true,
-            loop: true,
-            dots: false,
-            animateOut: 'fadeOut'
-        });
-        owl.on('translated.owl.carousel', function (event) {
-            if (currentIndexBanner >= 0 && currentIndexBanner < vm.banner.length - 1) {
-                currentIndexBanner++;
-            } else if (currentIndexBanner == vm.banner.length - 1) {
-                currentIndexBanner = 0;
-            }
-            currentBannerItem = vm.banner[currentIndexBanner];
-            console.log(currentBannerItem);
-            services.backgroundMenu = currentBannerItem.imageForTVLarge;
-        });
-    };
+    console.log(currentBannerItem);
+
+    var i = 0;
+
+    setInterval(function () {
+        $(".banner_" + [i]).removeClass('active');
+        i++;
+        if (i > (vm.banner.length - 1)) {
+            i = 0;
+            $(".banner_0").addClass('active');
+        }
+        else {
+            $(".banner_" + [i]).addClass('active');
+        }
+    }, 30000);
 
 ///// Watch-Button
 
-    vm.clickPlay = function () {
-        console.log(currentBannerItem);
-        // owl.trigger('stop.owl.autoplay');
-        services.getDetailFilm(currentBannerItem.itemId).then(function (response) {
+    vm.clickPlay = function (bool) {
+        services.checkBanner = bool;
+        console.log(vm.banner[i].id);
+        owl.trigger('stop.owl.autoplay');
+        services.getDetailFilm(vm.banner[i].itemId).then(function (response) {
                 console.log(response);
+                services.BannerId = response.data.detail.id;
+                services.BannerIdMovie = response.data.parts[0].id;
                 services.checkBanner = false;
                 if (response.responseCode === '201' || response.responseCode === '404') {
                     utilities.showMessenge(response.message);
@@ -85,7 +83,8 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
                         "max-width": "700px",
                         "top": "50%"
                     });
-                    owl.trigger("play.owl.autoplay", [30000]);
+                    // owl.trigger("play.owl.autoplay", [5000]);
+                    // owl.trigger('owl.play',5000);
                 }
                 // return;
                 // } else {
@@ -94,8 +93,30 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
                     if (response.data.streams) {
                         switch (response.data.streams.errorCode) {
                             case 201 :
-                                utilities.showMessenge(response.data.streams.message, true);
+                                // utilities.showMessenge(response.data.streams.message, true);
                                 // owl.trigger("play.owl.autoplay", [30000]);
+
+                                // popUPBanner();
+                                if (response.data.streams.errorCode == '201' && response.data.streams.popup) {
+                                    utilities.hideLoading();
+                                    if (isObject(response.data.streams.popup))
+                                        checkBuy(response.data.streams.popup);
+                                    else {
+                                        utilities.showMessenge(response.data.streams.message);
+                                        showHideDialog();
+                                    }
+                                    return;
+                                } else if (response.data.streams.errorCode == utilities.errorCode.tokenExpire) {
+                                    refreshToken(refreshTokenType.playItem);
+                                    return;
+                                }
+                                $state.go('avplayer', {
+                                    playlistId: response.data.detail.id,
+                                    movieId: response.data.parts[0].id
+                                });
+                                utilities.hideLoading();
+
+
                                 break;
                             case "401" :
                                 $state.go('login_form', {}, {reload: true});
@@ -122,14 +143,15 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         services.imgCurrentItem = vm.banner[0].coverImage;
     };
     vm.focusPlay = function () {
+        // owl.trigger("play.owl.autoplay", [5000]);
+        // owl.trigger('owl.play',5000);
         $('#av-container').remove();
         $("#home_page").removeClass('focusMenu');
         $("#home_page .menu_page").removeClass('display-none');
         vm.isFocuseMovie = false;
         // vm.checkTrailer = false;
-        // owl.trigger("play.owl.autoplay", [30000]);
         console.log("abc");
-        services.backgroundMenu = currentBannerItem.imageForTVLarge;
+        services.backgroundMenu = vm.banner[i].imageForTVLarge;
         vm.currentCategory = 0;
         $('#list_container').css({
             transform: 'translate3d(0, 260px, 0)'
@@ -139,14 +161,20 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         $(".btn-up-to-top").removeClass('display-none').addClass('display-block');
     };
 
+// if ($('#btn-detail').hasClass('focused')) {
+//     owl.trigger("play.owl.autoplay", [5000]);
+// }
+
+
 ///// Detail-Button
 
     vm.viewDetail = function () {
-        // owl.trigger('stop.owl.autoplay');
-        $state.go('movieDetail', {id: currentBannerItem.itemId}, {reload: true});
+        owl.trigger('stop.owl.autoplay');
+        $state.go('movieDetail', {id: vm.banner[i].itemId}, {reload: true});
     };
     vm.focusDetail = function () {
-        // owl.trigger("play.owl.autoplay", [30000]);
+        // owl.trigger("play.owl.autoplay", [5000]);
+        // owl.trigger('owl.play',5000);
         services.backgroundMenu = currentBannerItem.imageForTVLarge;
     };
 
@@ -162,10 +190,11 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         $('#av-container').remove();
     };
     vm.focusItem = function ($event, $originalEvent, startIndex, item, $index, category) {
+        // owl.trigger('stop.owl.autoplay');
         if (vm.isFocuseMovie == false) {
             vm.isFocuseMovie = true;
             $("#home_page .menu_page").addClass('display-none');
-            $(".home_slider").trigger('stop.owl.autoplay');
+            owl.trigger('stop.owl.autoplay');
             $("#group_btn").addClass('hidden_opacity');
             $('#list_container').removeClass('lastCategory');
             $(".btn-up-to-top").addClass('display-none').removeClass('display-block');
@@ -177,7 +206,11 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         //process
         vm.processItem = Math.floor(item.durationPercent);
         if (vm.processItem != '0') {
-            $('.progress-bar-marker').css('width', vm.processItem + '%');
+            if (vm.processItem < '100') {
+                $('.progress-bar-marker').css('width', vm.processItem + '%');
+            } else {
+                $('.progress-bar-marker').css('width', 100 + '%');
+            }
         } else {
             $('.progress-bar-marker').css('width', 1 + 'px');
         }
@@ -195,7 +228,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         }
         ///Trailer-Focus//////
         services.idTrailer = item.trailer;
-        if(services.idTrailer){
+        if (services.idTrailer) {
             if (item.trailer !== '0') {
                 services.getTrailer(item.trailer).then(function (response) {
                     console.log(response);
@@ -281,13 +314,20 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
             tempWidth = $ele.outerWidth();
             console.log('scroll');
             $wrapper.css({
-                transform: 'translateX(-' + ((tempWidth * blockToTransform + (blockToTransform * 32)) / 25) + 'rem)'
+                // transform: 'translateX(-' + ((tempWidth * blockToTransform + (blockToTransform * 40)) / 36) + 'rem)'
+                transform: 'translateX(-' + (($index - (startIndex - 1)) * 11.1875) + 'rem)'
             });
         } else if ($index === 0) {
             $wrapper.css({
                 transform: 'translateX(0px)'
             });
         }
+
+        // if(!item.coverImageH){
+        //     services.imgCurrentItem = item.coverImage;
+        // }else{
+        //     services.imgCurrentItem = item.coverImageH;
+        // }
 
     };
 
@@ -318,6 +358,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
 
     function initFocus() {
         utilities.showLoading();
+        // owl.trigger("play.owl.autoplay", [5000]);
         var timeFocus = setInterval(function () {
             focusController.focus($('#btn_watch'));
             if ($('#btn_watch').hasClass('focused')) {
@@ -359,37 +400,6 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
             WebOsPlayer.playVideo(mediaUrl, avPlayerListenerCallback);
         }, 100);
     }
-
-
-    // function showTrailer() {
-    //     // utilities.showLoading();
-    //     var listenerCallback = {
-    //         onevent: function (eventType, eventData) {
-    //         }
-    //         // onerror: function (eventType) {
-    //         //     console.log(eventType);
-    //         //     utilities.showMessenge("Đã xảy ra lỗi !");
-    //         //     utilities.hideLoading();
-    //         // }
-    //     };
-    //     TizenAVPlayer.listener = listenerCallback;
-    //     //-------------------- config and play video ------------------//
-    //     TizenAVPlayer.initialize({
-    //         avPlayerDomElement: $("#av-player")[0],
-    //         listener: listenerCallback
-    //     });
-    //     $("#av-player").addClass('video-trailer');
-    //     var mediaUrl = 'http://www.streambox.fr/playlists/test_001/stream.m3u8';
-    //     TizenAVPlayer.mediaUrl = mediaUrl;
-    //     TizenAVPlayer.executeAction({
-    //         action: "play"
-    //     });
-    //     console.log('show-trailer');
-    //     setTimeout(function () {
-    //         TizenAVPlayer.playTrailer(mediaUrl);
-    //     }, 500);
-    //     $("#av-player").show();
-    // }
 
 ///// MENU
 
@@ -474,14 +484,6 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         }
     };
 
-    function changeDepth(depth) {
-        if (depth == depthMain) {
-            setCurrentPopupDefault();
-        }
-        $timeout(function () {
-            focusController.setDepth(depth);
-        }, 500);
-    }
 
     function setCurrentPopupDefault() {
         $rootScope.currentPopup = undefined;
@@ -504,7 +506,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
     }
 
     vm.approveExit = function () {
-        webOS.platformBack();
+        tizen.application.getCurrentApplication().exit();
     };
 
     vm.cancel = function () {
@@ -513,12 +515,14 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
     };
 
     vm.focusText = function ($event, items, startIndex, $index) {
+        $('#av-container').remove();
+        owl.trigger('stop.owl.autoplay');
         $("#home_page").addClass('focusMenu');
         vm.title = items.title;
         vm.description = items.description;
         var $ele = $($event.currentTarget);
         var $wrapper = $ele.parent();
-        console.log($wrapper, $index, 'index of vod ');
+        // console.log($wrapper, $index, 'index of vod ');
         var tempWidth;
         var blockToTransform;
 
@@ -527,7 +531,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
             tempWidth = $ele.outerWidth();
             console.log('scroll');
             $wrapper.css({
-                transform: 'translateX(-' + ((tempWidth * blockToTransform + (blockToTransform * 37)) / 36) + 'rem)'
+                transform: 'translateX(-' + (($index - (startIndex - 1)) * 11.125) + 'rem)'
             });
         } else if ($index === 0) {
             $wrapper.css({
@@ -540,6 +544,209 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         // $('#av-container').remove();
 
     };
+
+    function isObject(item) {
+        return (typeof item === "object" && !Array.isArray(item) && item !== null);
+    }
+
+////Popup
+    var isConfirm = false;
+    var typePopup = {
+        isBuy: {
+            type: 1,
+            title: "Thuê phim"
+        },
+        isPackage: {
+            type: 0,
+            title: "Đăng ký gói cước"
+        }
+    };
+    var currentTypePopup = 0;
+// var depthDialog = $rootScope.depth.dialog.val;
+// var depthDetail = $rootScope.depth.main.val;
+//
+
+// function popUPBanner() {
+    vm.viewContinue = false;
+    var refreshTokenType = {
+        getDetail: '1',
+        buyPackage: '2',
+        buyFilm: '3'
+    };
+
+// function configFirmGroup() {
+//     for (var i = 0; i < vm.listFilms.length; i++) {
+//         vm.listFilms[i].durationMinute = Math.floor(vm.listFilms[i].duration / 60);
+//     }
+//     focusController.focus($('.itemFirst'));
+// }
+//
+// function setUrlFilmDrm() {
+//     if (vm.streams.errorCode == 200 && vm.detailFilms.drm_content_id) {
+//         services.drmUrl = vm.streams.urlStreaming;
+//         TizenAVPlayer.currentTime = vm.data.currentTime > 0 ? vm.data.currentTime : 0;
+//     }
+//     else
+//         services.drmUrl = undefined;
+// }
+
+
+// }
+    function showHideDialog() {
+        $rootScope.currentPopup = 'popup_movie_detail_2';
+        var $popup = $("#popup_movie_detail_2");
+        if ($state.current.name == 'home')
+            $popup = $("#popup_movie_detail_2");
+        if ($popup.hasClass('hidden')) {
+            $popup.removeClass('hidden');
+            $timeout(function () {
+                changeDepth(depthDialog);
+            }, 100)
+        } else {
+            $popup.addClass('hidden');
+            if ($state.current.name == 'avplayer')
+                changeDepth(depthMain);
+            else
+                changeDepth(depthMain);
+        }
+    }
+
+
+    function changeDepth(depth) {
+        if (depth == depthMain) {
+            setCurrentPopupDefault();
+        }
+        $timeout(function () {
+            focusController.setDepth(depth);
+        }, 500);
+        if (depth == depthDialog) {
+            var focusCancel = setInterval(function () {
+                if ($state.current.name == 'home') {
+                    focusController.focus($(".yes_buy_detail"));
+                    if ($(".yes_buy_detail").hasClass('focused')) {
+                        $rootScope.currentPopup = "popup_movie_detail_2";
+                        clearInterval(focusCancel);
+                    }
+                } else {
+                    focusController.focus($(".yes_buy_list"));
+                    if ($(".yes_buy_list").hasClass('focused')) {
+                        $rootScope.currentPopup = "popup_movie_list_2";
+                        clearInterval(focusCancel);
+                    }
+                }
+            }, 100)
+        }
+    }
+
+    function checkBuy(popup) {
+        console.log(popup);
+        services.popup = popup;
+        if (popup.is_buy_playlist == typePopup.isBuy.type && !popup.package_id) {
+            isConfirm = false;
+            currentTypePopup = typePopup.isBuy.type;
+            $(".popup_movie_detail_2 .title_messenger").html(typePopup.isBuy.title);
+            $(".popup_movie_detail_2 .messenger").html(popup.confirm);
+            showHideDialog();
+        } else if (popup.is_buy_playlist == typePopup.isPackage.type && popup.package_id) {
+            isConfirm = false;
+            currentTypePopup = typePopup.isPackage.type;
+            $(".popup_movie_detail_2 .title_messenger").html(typePopup.isPackage.title);
+            $(".popup_movie_detail_2 .messenger").html(popup.confirm);
+            showHideDialog();
+        }
+
+    }
+
+    vm.yes1 = function () {
+        console.log(services.popup, services.popup.confirm_buy_playlist);
+        switch (currentTypePopup) {
+            case typePopup.isBuy.type :
+                if (!isConfirm) {
+                    isConfirm = true;
+                    $(".popup_movie_detail_2 .messenger").html(services.popup.confirm_buy_playlist);
+                    // $("detail_home").removeClass('yes_buy_detail').addClass('yes_buy_detail_yes');
+                } else {
+                    buyFilm();
+                }
+                break;
+            case typePopup.isPackage.type :
+                if (!isConfirm) {
+                    isConfirm = true;
+                    $(".popup_movie_detail_2 .messenger").html(services.popup.confirm_register_sub);
+                    // $("detail_home").removeClass('yes_buy_detail').addClass('yes_buy_detail_yes');
+                } else {
+                    registerPackage(services.popup.package_id);
+                }
+                break;
+        }
+    };
+
+    vm.cancel1 = function () {
+        showHideDialog();
+    };
+
+    function registerPackage(id) {
+        utilities.showLoading();
+        services.registerPackage(id).then(function (response) {
+            console.log(response);
+            var responseCode = response.responseCode;
+            if (responseCode == utilities.errorCode.success) {
+                var messageRegister = response.message;
+                utilities.showMessenge(messageRegister);
+                services.getDetailFilm(vm.detailFilms.id).then(function (response) {
+                    showHideDialog();
+                    utilities.hideLoading();
+                    if (response.responseCode == utilities.errorCode.success) {
+                        var data = response.data;
+                        vm.streams = data.streams;
+                        if (vm.streams.errorCode == 200) {
+                            $state.go('avplayer', {playlistId: vm.detailFilms.id, movieId: vm.listFilms[0].id});
+                        } else {
+                            utilities.showMessenge(vm.streams.message);
+                        }
+                    }
+
+                })
+            } else if (responseCode == '401' || responseCode == '403') {
+                console.log("refreshToken");
+                refreshToken(refreshTokenType.buyPackage);
+            } else {
+                utilities.showMessenge(response.message);
+                showHideDialog();
+                utilities.hideLoading();
+            }
+        })
+    }
+
+    function buyFilm() {
+        var type = "PLAYLIST";
+        var id = services.idItem;
+        utilities.showLoading();
+        services.buy(id, type).then(function (response) {
+            if (response.responseCode == '403') {
+                utilities.hideLoading();
+                refreshToken(refreshTokenType.buyFilm);
+            } else if (response.responseCode == '200') {
+                utilities.showMessenge('Mua lẻ thành công');
+                setTimeout(function () {
+                    services.getDetailFilm(id, idMovie).then(function (response) {
+                        utilities.hideLoading();
+                        var data = response.data;
+                        vm.data = data;
+                        if (data.streams)
+                            vm.streams = data.streams;
+                        // setUrlFilmDrm();
+                        vm.playMovie(currentItemPlay);
+                    })
+                }, 500)
+
+            } else {
+                utilities.hideLoading();
+                utilities.showMessenge('Mua lẻ không thành công');
+                showHideDialog();
+            }
+        })
+    }
 
 }
 

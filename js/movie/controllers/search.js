@@ -65,10 +65,19 @@ function searchCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
     });
 
     $scope.$watch('vm.searchText', function (newVal, oldVal) {
-        if (newVal !== oldVal) {
-            searchMovie(newVal);
-            console.log('time');
+        if (newVal.trim() !== '') {
+            if (newVal !== oldVal) {
+                searchMovie(newVal);
+                console.log('time');
+            }
         }
+        if (newVal.trim() === '') {
+            $("#text-search-first").addClass('display-block').removeClass('display-none');
+            $("#text-search").addClass('display-none').removeClass('display-block');
+            vm.listSearchMovie = [];
+            vm.listSearchMovieSugest = [];
+        }
+
     });
 
     vm.focusSuggest = function ($event, items, startIndex, $index) {
@@ -123,11 +132,11 @@ function searchCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
     };
 
     vm.onKeyboardDel = function () {
-        vm.searchText = '';
-        vm.listSearchMovie = [];
-        vm.listSearchMovieSugest = [];
-        $("#text-search").addClass('display-block').removeClass('display-none');
-        $("#list_search").trigger('reload');
+        vm.searchText = vm.searchText.substring(0, vm.searchText.length - 1);
+        // vm.listSearchMovie = [];
+        // vm.listSearchMovieSugest = [];
+        // $("#text-search").addClass('display-block').removeClass('display-none');
+        // $("#list_search").trigger('reload');
     };
 
 //     services.getSearchSuggestion(vm.searchText).then(function (response) {

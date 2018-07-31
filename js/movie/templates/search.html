@@ -1,4 +1,4 @@
-<div class="search-page" id="search">
+<div class="search-page">
     <!--<h1 class="col-lg-12">Tìm Kiếm</h1>-->
     <div class="keyboard_content col-lg-4">
         <div class="col-lg-offset-2 col-lg-12">
@@ -6,12 +6,12 @@
             </button>
         </div>
         <div class="col-lg-12 key-image">
-            <div class="btn-space col-lg-6" style="margin-left: 2.1rem"
+            <div class="btn-space col-lg-6"
                  focusable="{depth : $root.depth.search.val, name: 'key-space'}"
                  data-focusable-next-focus-right="key-del" on-selected="vm.enterText(' ')">
                 <div class="search-space"></div>
             </div>
-            <div class="btn-del col-lg-6" style="margin-left:5px"
+            <div class="btn-del col-lg-6"
                  focusable="{depth : $root.depth.search.val, name: 'key-del'}"
                  data-focusable-next-focus-left="key-space" on-selected="vm.onKeyboardDel()">
                 <div class="search-del"></div>
@@ -19,7 +19,7 @@
         </div>
         <div class="col-lg-12">
             <ul>
-                <li class="num" id="initFocusKeybroad"
+                <li class="num" id="initFocusKeySearch"
                     focusable="{depth : $root.depth.search.val , name:'initFocus' , initialFocus : true }"
                     on-selected="vm.enterText('a')">A
                 </li>
@@ -64,11 +64,11 @@
     <div class="col-lg-8" style="float: right">
         <div class="search-input">
             <div class="input">
-                <input class="input" input-class="search_input" id="search_txt" type="text"
-                       ng-model="vm.searchText">
+                <input class="input" input-class="search_input" id="search_txt" type="text" ng-model="vm.searchText">
             </div>
         </div>
         <span id="text-search" class="text display-block">{{vm.message}}</span>
+        <span id="text-search-first" class="text display-block">Tìm kiếm phim và nội dung liên quan</span>
         <div id="list_search" class="search-movie col-lg-12" ng-show="vm.showListMovie" direction="vertical">
             <div class="item-movie col-lg-4" focusable="{depth : $root.depth.search.val, nextFocus: {down : $last ? 'null' :''}}"
                  ng-repeat="item in vm.listSearchMovie"
@@ -78,12 +78,13 @@
             </div>
         </div>
     </div>
+
     <div class="col-lg-4 hotkey">
         <div class="item-hotkey" id="list_search_suggest">
             <div class="item-hotkey" ng-repeat="item in vm.listSearchMovieSugest" id="list_{{$index}}">
                 <div class="item-key"
                      focusable="{depth : $root.depth.search.val, nextFocus: {down : $last ? 'null' :''}}"
-                     on-focused="vm.focusSuggest($event, items, 11, $index)" on-blurred="vm.blurSuggest()"
+                     on-focused="vm.focusSuggest($event, items, 10, $index)" on-blurred="vm.blurSuggest()"
                      on-selected="vm.hotkey(item)" ng-class="{ 'itemFirstText' : $first }">
                     <div class="item">{{item.name}}</div>
                 </div>
@@ -91,8 +92,6 @@
         </div>
     </div>
 </div>
-<!--</div>-->
-
 
 <!-- dialog -->
 <!--<div id="dialog_setup" class="dialog-2 dialog_setup full_page hidden">-->

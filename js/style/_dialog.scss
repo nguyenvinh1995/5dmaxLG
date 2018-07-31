@@ -66,6 +66,7 @@
   left: 0;
   z-index: 99999;
   .img-popup{
+    //display: inline-block;
     width: 400*$rem;
     height: 80*$rem;
     background: url('../images/logo.png') no-repeat;
@@ -132,4 +133,11 @@
       }
     }
   }
+}
+
+//.yes_buy_detail{
+//  content: 'ĐĂNG KÝ';
+//}
+.yes_buy_detail_yes{
+  content: 'ĐỒNG Ý';
 }

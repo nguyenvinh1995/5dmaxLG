@@ -15,21 +15,23 @@ function myListCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
     var enableCategory = true;
     vm.srcImg = '';
     vm.value = "";
+    var heightCategory = 0;
+
 
     getMyList();
     getHistory();
 
-    function getMyList(){
-        services.getMyList("MYLIST",0,0).then(function (response) {
-        var responseCode = response.responseCode;
-            if(responseCode == '200'){
+    function getMyList() {
+        services.getMyList("MYLIST", 0, 0).then(function (response) {
+            var responseCode = response.responseCode;
+            if (responseCode == '200') {
                 vm.lastFilm = response.data.content;
-            } else if(responseCode == utilities.errorCode.tokenExpire){
-                services.refreshToken().then(function(res){
-                    if(res.responseCode == utilities.errorCode.success){
+            } else if (responseCode == utilities.errorCode.tokenExpire) {
+                services.refreshToken().then(function (res) {
+                    if (res.responseCode == utilities.errorCode.success) {
                         getMyList();
-                    }else{
-                        // utilities.hideLoading();
+                    } else {
+                        utilities.hideLoading();
                         utilities.showMessenge(utilities.tokenExpireMessenger, true);
                         $rootScope.errorVerify = true;
                         $state.go('login_form');
@@ -39,18 +41,18 @@ function myListCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
         });
     }
 
-    function getHistory(){
-        services.getMyList("film_history",0,0).then(function (response) {
+    function getHistory() {
+        services.getMyList("film_history", 0, 0).then(function (response) {
             var responseCode = response.responseCode;
-            if(responseCode == '200') {
+            if (responseCode == '200') {
                 vm.historyFilm = response.data.content;
                 utilities.hideLoading();
-            } else if(responseCode == utilities.errorCode.tokenExpire){
-                services.refreshToken().then(function(res){
-                    if(res.responseCode == utilities.errorCode.success){
+            } else if (responseCode == utilities.errorCode.tokenExpire) {
+                services.refreshToken().then(function (res) {
+                    if (res.responseCode == utilities.errorCode.success) {
                         getHistory();
-                    }else{
-                        // utilities.hideLoading();
+                    } else {
+                        utilities.hideLoading();
                         $rootScope.errorVerify = true;
                         utilities.showMessenge(utilities.tokenExpireMessenger, true);
                         $state.go('login_form');
@@ -60,9 +62,9 @@ function myListCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
         });
     }
 
-    function getFilmByType(value){
+    function getFilmByType(value) {
         services.getMyList(value).then(function (response) {
-            if(response.responseCode == utilities.errorCode.success){
+            if (response.responseCode == utilities.errorCode.success) {
                 vm.objects = response.data.content;
                 if (vm.srcImg == "") {
                     if (vm.objects[0].imageForTVLarge) {
@@ -71,14 +73,14 @@ function myListCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
                         vm.srcImg = vm.objects[0].coverImage;
                     }
                 }
-                $timeout(function() {
+                $timeout(function () {
                     $("#my_list_caph").trigger('reload');
                 }, 10);
-            }else if(response.responseCode == utilities.errorCode.tokenExpire){
-                services.refreshToken().then(function(res){
-                    if(res.responseCode == utilities.errorCode.success){
+            } else if (response.responseCode == utilities.errorCode.tokenExpire) {
+                services.refreshToken().then(function (res) {
+                    if (res.responseCode == utilities.errorCode.success) {
                         getFilmByType(vm.value);
-                    }else{
+                    } else {
                         utilities.hideLoading();
                         utilities.showMessenge(utilities.tokenExpireMessenger, true);
                         $rootScope.errorVerify = true;
@@ -92,10 +94,13 @@ function myListCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
     vm.getFilms = function (value) {
         $(".genres2").removeClass('move-left');
         $(".img-arrow-left").addClass('display-none').removeClass('display-block');
-        if(value == vm.activeId && vm.objects.length > 0)
+        if (value == vm.activeId && vm.objects.length === 0) {
+            $('#text-my-list').addClass('display-block').removeClass('display-none');
+        }
+        if (value == vm.activeId && vm.objects.length > 0)
             return;
-        
-        if(value == 'MYLIST') {
+
+        if (value == 'MYLIST') {
             vm.currentLeftCat = 'cate-2';
             vm.activeId = "MYLIST";
         }
@@ -103,16 +108,25 @@ function myListCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
             vm.currentLeftCat = 'cate-1';
             vm.activeId = "film_history";
         }
-
         vm.value = value;
 
         getFilmByType(value);
 
         vm.srcImg = "";
-        vm.ItemImg = ""; 
+        vm.ItemImg = "";
     };
 
-    vm.showFilm = function(item) {
+    function showMessenge(messenge, long, time) {
+        if (!time)
+            time = 5000;
+        $("#mess").empty();
+        $("#mess").append('<span>' + messenge + '</span>');
+        $("#mess span").fadeIn().fadeOut(time);
+        if (long)
+            $(".message span").css({"max-width": "700px"});
+    }
+
+    vm.showFilm = function ($event, items, start, $index, item) {
         $(".genres2").addClass('move-left');
         $(".img-arrow-left").addClass('display-block').removeClass('display-none');
         if (item.imageForTVLarge) {
@@ -121,19 +135,34 @@ function myListCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
             vm.srcImg = item.coverImage;
         }
         vm.item = item;
+
+        if (heightCategory == 0) {
+            heightCategory = $('#myListItem_0').outerHeight(true);
+        }
+        console.log(heightCategory);
+        vm.checkItemHeight = Math.floor($index / 5);
+        if (vm.checkItemHeight >= start) {
+            $('#my_list_caph').css({
+                transform: 'translate3d(0, -' + (vm.checkItemHeight * heightCategory) + 'px, 0)'
+            });
+        } else if (vm.checkItemHeight === 0) {
+            $('#my_list_caph').css({
+                transform: 'translate3d(0, 0px, 0)'
+            });
+        }
     };
 
     vm.selectMovie = function (item) {
         var id;
         var idMovie;
-        if(item.parentId){
+        if (item.parentId) {
             id = item.parentId;
             idMovie = item.id;
-        } else{
+        } else {
             id = item.id;
         }
         services.itemFromListMovie = item;
-        $state.go('movieDetail', {id: id, idMovie : idMovie}, { reload : true });
+        $state.go('movieDetail', {id: id, idMovie: idMovie}, {reload: true});
     };
 
     function initFocus() {
@@ -141,7 +170,6 @@ function myListCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
             focusController.focus($('#film_history'));
             if ($('#film_history').hasClass('focused')) {
                 clearInterval(timeFocus);
-                utilities.hideLoading();
             }
         }, 100)
     }

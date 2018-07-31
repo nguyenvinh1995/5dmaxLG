@@ -1,12 +1,14 @@
 <div class="movie-detail genres2 my-list">
     <div class="tab-left">
         <div class="item">
-            <button id="film_history" focusable="{ depth : $root.depth.list.val }" data-focusable-name="cate-1" data-focusable-next-focus-right="item0" class="button-nav btn_myList"
+            <button id="film_history" focusable="{ depth : $root.depth.list.val }" data-focusable-name="cate-1"
+                    data-focusable-next-focus-right="item0" class="button-nav btn_myList"
                     on-focused="vm.getFilms('film_history')">
                 <span class="text-left">Đang xem</span>
                 <span class="total">{{vm.historyFilm.length}}</span>
             </button>
-            <button id="my_list" focusable="{ depth : $root.depth.list.val }" data-focusable-name="cate-2" data-focusable-next-focus-right="item0" class="button-nav btn_myList"
+            <button id="my_list" focusable="{ depth : $root.depth.list.val }" data-focusable-name="cate-2"
+                    data-focusable-next-focus-right="item0" class="button-nav btn_myList"
                     on-focused="vm.getFilms('MYLIST')">
                 <span class="text-left">Xem sau</span>
                 <span class="total">{{vm.lastFilm.length}}</span>
@@ -30,22 +32,25 @@
         </div>
     </div>
     <div class="tab-right">
+        <!--<span id="text-my-list" class="text display-none">Hiện tại chưa có phim</span>-->
         <div class="img-arrow-left display-none"></div>
         <div class="background-movie"
              style="background-image: url({{vm.srcImg}})">
             <div class="gradient-img"></div>
             <div class="caph-list-movie">
-            <caph-list id="my_list_caph" container-class="list-movie" direction="vertical" items="item in vm.objects" loop="true">
-                <div class="item-wrapper" focusable="{ depth : $root.depth.list.val, name: 'item' + $index}"
-                 data-focusable-next-focus-left= "{{$index % 5 == 0 ? vm.currentLeftCat : default}}"
-                     on-focused="vm.showFilm(item)"
-                     on-selected="vm.selectMovie(item)">
-                    <div class="item-movie"
-                         style="background-image: url({{item.coverImageH ? item.coverImageH : item.coverImage}})"
-                         ng-style="vm.value == 'film_history'"
-                    ></div>
+                <div id="my_list_caph" class="list-movie col-lg-10" direction="vertical">
+                    <div class="item-wrapper col-lg-2"
+                         focusable="{ depth : $root.depth.list.val, name: 'item' + $index}"
+                         data-focusable-next-focus-left="{{$index % 5 == 0 ? vm.currentLeftCat : default}}"
+                         on-focused="vm.showFilm($event, $originalEvent, 1, $index, item)"
+                         on-selected="vm.selectMovie(item)" id="myListItem_{{$index}}"
+                         ng-repeat="item in vm.objects">
+                        <div class="item-movie "
+                             style="background-image: url({{item.coverImageH ? item.coverImageH : item.coverImage}})"
+                             ng-style="vm.value == 'film_history'"
+                        ></div>
+                    </div>
                 </div>
-            </caph-list>
             </div>
         </div>
     </div>

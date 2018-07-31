@@ -669,18 +669,17 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
         function updateStatusOnline() {
             $("#mess-offline span").hide();
         }
-
         focusController.addBeforeKeydownHandler(function (context) {
-            console.log(context.event.keyCode);
-            if (context.event.keyCode === utilities.keyCode.EXIT) {
-                tizen.application.getCurrentApplication().exit();
+            console.log(context.event.keyCode, $state.current.name);
+            if (context.event.keyCode === utilities.keyCode.EXIT || (context.event.keyCode == '10009' && $state.current.name == 'login')) {
+                webOS.platformBack();
                 return;
             }
         });
 
         var init = function () {
             var inEvent = function (e) {
-                if (e.keyCode == 27) {
+                if (e.keyCode === 27) {
                     try {
                         $rootScope.changeView();
                     }
