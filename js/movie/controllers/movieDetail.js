@@ -53,8 +53,9 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
     }
 
     console.log(idMovie);
+
     function getFilm(id, idMovie) {
-        console.log(idMovie,id);
+        console.log(idMovie, id);
         services.getDetailFilm(id, idMovie).then(function (response) {
             console.log(response);
             if (response.responseCode === '201' || response.responseCode === '404') {
@@ -64,7 +65,7 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
                 return;
             }
             if (response.responseCode == utilities.errorCode.success) {
-                console.log(response.responseCode,response.errorCode);
+                console.log(response.responseCode, response.errorCode);
                 // $("#movie-detail").removeClass('hidden');
                 var data = response.data;
                 services.imgCurrentItem = data.detail.avatarImageH;
@@ -361,8 +362,8 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
         if (depth == depthDialog) {
             var focusCancel = setInterval(function () {
                 if ($state.current.name == 'movieDetail') {
-                    focusController.focus($(".yes_buy_detail"));
-                    if ($(".yes_buy_detail").hasClass('focused')) {
+                    focusController.focus($("#buy_detail"));
+                    if ($("#buy_detail").hasClass('focused')) {
                         $rootScope.currentPopup = "popup_movie_detail";
                         clearInterval(focusCancel);
                     }
@@ -397,12 +398,14 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
 
     function checkBuy(popup) {
         if (popup.is_buy_playlist == typePopup.isBuy.type && !popup.package_id) {
-            isConfirm = false;
-            currentTypePopup = typePopup.isBuy.type;
-            showHideDialog();
-            $(".popup_movie_detail .title_messenger").html(typePopup.isBuy.title);
-            $(".popup_movie_detail .messenger").html(popup.confirm);
-        } else if (popup.is_buy_playlist == typePopup.isPackage.type && popup.package_id) {
+            utilities.showMessenge('Thiết bị chưa hỗ trợ xem phim này');
+            // isConfirm = false;
+            // currentTypePopup = typePopup.isBuy.type;
+            // showHideDialog();
+            // $(".popup_movie_detail .title_messenger").html(typePopup.isBuy.title);
+            // $(".popup_movie_detail .messenger").html(popup.confirm);
+        } else
+        if (popup.is_buy_playlist == typePopup.isPackage.type && popup.package_id) {
             isConfirm = false;
             currentTypePopup = typePopup.isPackage.type;
             showHideDialog();
@@ -413,15 +416,14 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
 
     vm.yes = function () {
         switch (currentTypePopup) {
-            case typePopup.isBuy.type :
-                if (!isConfirm) {
-                    isConfirm = true;
-                    $(".popup_movie_detail .messenger").html(vm.streams.popup.confirm_buy_playlist);
-                } else {
-                    buyFilm();
-
-                }
-                break;
+            // case typePopup.isBuy.type :
+            //     if (!isConfirm) {
+            //         isConfirm = true;
+            //         $(".popup_movie_detail .messenger").html(vm.streams.popup.confirm_buy_playlist);
+            //     } else {
+            //         buyFilm();
+            //     }
+            //     break;
             case typePopup.isPackage.type :
                 if (!isConfirm) {
                     isConfirm = true;
@@ -471,35 +473,35 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
     }
 
 
-    function buyFilm() {
-        var type = "PLAYLIST";
-        var id = vm.detailFilms.id;
-        utilities.showLoading();
-        services.buy(id, type).then(function (response) {
-            if (response.responseCode == '403') {
-                utilities.hideLoading();
-                refreshToken(refreshTokenType.buyFilm);
-            } else if (response.responseCode == '200') {
-                utilities.showMessenge('Mua lẻ thành công');
-                setTimeout(function () {
-                    services.getDetailFilm(id, idMovie).then(function (response) {
-                        utilities.hideLoading();
-                        var data = response.data;
-                        vm.data = data;
-                        if (data.streams)
-                            vm.streams = data.streams;
-                        setUrlFilmDrm();
-                        vm.playMovie(currentItemPlay);
-                    })
-                }, 500)
-
-            } else {
-                utilities.hideLoading();
-                utilities.showMessenge('Mua lẻ không thành công');
-                showHideDialog();
-            }
-        })
-    }
+    // function buyFilm() {
+    //     var type = "PLAYLIST";
+    //     var id = vm.detailFilms.id;
+    //     utilities.showLoading();
+    //     services.buy(id, type).then(function (response) {
+    //         if (response.responseCode == '403') {
+    //             utilities.hideLoading();
+    //             refreshToken(refreshTokenType.buyFilm);
+    //         } else if (response.responseCode == '200') {
+    //             utilities.showMessenge('Mua lẻ thành công');
+    //             setTimeout(function () {
+    //                 services.getDetailFilm(id, idMovie).then(function (response) {
+    //                     utilities.hideLoading();
+    //                     var data = response.data;
+    //                     vm.data = data;
+    //                     if (data.streams)
+    //                         vm.streams = data.streams;
+    //                     setUrlFilmDrm();
+    //                     vm.playMovie(currentItemPlay);
+    //                 })
+    //             }, 500)
+    //
+    //         } else {
+    //             utilities.hideLoading();
+    //             utilities.showMessenge('Mua lẻ không thành công');
+    //             showHideDialog();
+    //         }
+    //     })
+    // }
 
     function focus(id) {
         var timeFocusDetail = setInterval(function () {

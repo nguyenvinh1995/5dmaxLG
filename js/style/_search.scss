@@ -90,10 +90,10 @@
         background-color: #282828;
         border: 3*$rem solid #000;
         border-radius: 5*$rem;
-        width: 11%;
-        height: 50px;
-        margin-bottom: 1px;
-        margin-right: -6px;
+        width: 12%;
+        height: 50*$rem;
+        margin-bottom: 0*$rem;
+        margin-right: -6*$rem;
       }
       .space {
         width: 41% !important;
@@ -111,11 +111,14 @@
       .btn-space{
         margin-left: 65*$rem;
       }
+      .btn-del{
+        margin-left: 1*$rem;
+      }
       .btn-del, .btn-space {
         background-color: #282828;
         border-radius: 5*$rem;
         border: 3*$rem solid #000;
-        width: 242*$rem;
+        width: 250*$rem;
         height: 75*$rem;
         &.focused {
           border: 3*$rem solid #fff;
@@ -154,7 +157,7 @@
     }
     .btn-back {
       padding: 15*$rem 0*$rem 15*$rem 0*$rem;
-      width: 77%;
+      width: 79.5%;
       color: #ffffff;
       font-size: 32*$rem;
       border: 3*$rem solid #fff;

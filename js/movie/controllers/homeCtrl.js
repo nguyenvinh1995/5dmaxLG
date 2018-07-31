@@ -243,7 +243,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
                             angular.element(document.getElementById('showTrailer')).append($compile(raw)($scope));
                             showTrailer();
                             console.log('play-trailer')
-                        }, 4000);
+                        }, 6500);
                         $timeout.cancel(vm.show);
                         vm.show = null;
                         vm.show = $timeout(function () {
@@ -492,10 +492,10 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
     function logOut() {
         $(".dialog_exit").removeClass("hidden");
         changeDepth(depthDialog);
-        focusCancel();
+        focusCancel1();
     }
 
-    function focusCancel() {
+    function focusCancel1() {
         var timeFocus = setInterval(function () {
             focusController.focus($('#btn_cancle_exit'));
             $rootScope.currentPopup = 'dialog_logout';

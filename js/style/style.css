@@ -462,7 +462,7 @@ html, body {
   letter-spacing: normal;
   color: #a8a8a8;
   white-space: nowrap;
-  margin-top: -10.5%; }
+  margin-top: -6.5%; }
 
 .opacity0 {
   opacity: 0;
@@ -1717,10 +1717,10 @@ input:focus, button:focus {
         background-color: #282828;
         border: 0.09375rem solid #000;
         border-radius: 0.15625rem;
-        width: 11%;
-        height: 50px;
-        margin-bottom: 1px;
-        margin-right: -6px; }
+        width: 12%;
+        height: 1.5625rem;
+        margin-bottom: 0rem;
+        margin-right: -0.1875rem; }
       .search-page .keyboard_content ul .space {
         width: 41% !important; }
       .search-page .keyboard_content ul .delete {
@@ -1732,11 +1732,13 @@ input:focus, button:focus {
       margin-bottom: 0.03125rem; }
       .search-page .keyboard_content .key-image .btn-space {
         margin-left: 2.03125rem; }
+      .search-page .keyboard_content .key-image .btn-del {
+        margin-left: 0.03125rem; }
       .search-page .keyboard_content .key-image .btn-del, .search-page .keyboard_content .key-image .btn-space {
         background-color: #282828;
         border-radius: 0.15625rem;
         border: 0.09375rem solid #000;
-        width: 7.5625rem;
+        width: 7.8125rem;
         height: 2.34375rem; }
         .search-page .keyboard_content .key-image .btn-del.focused, .search-page .keyboard_content .key-image .btn-space.focused {
           border: 0.09375rem solid #fff; }
@@ -1772,7 +1774,7 @@ input:focus, button:focus {
           transform: translate(-50%, -50%); }
     .search-page .keyboard_content .btn-back {
       padding: 0.46875rem 0rem 0.46875rem 0rem;
-      width: 77%;
+      width: 79.5%;
       color: #ffffff;
       font-size: 1rem;
       border: 0.09375rem solid #fff;
@@ -2580,6 +2582,9 @@ input:focus, button:focus {
       .relate_film_background .movie_suggetion button.focused {
         color: #333;
         background-color: #fff; }
+
+.opacity-1 {
+  opacity: 1 !important; }
 
 .dialog {
   overflow: hidden;

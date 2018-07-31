@@ -341,8 +341,10 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
                         focusController.setDepth($rootScope.depth.detail.val);
                     } else if ($rootScope.currentPopup == 'popup_movie_list') {
                         focusController.setDepth($rootScope.depth.listMovie.val);
-                    } else if ($rootScope.currentPopup == 'dialog_logout') {
+                    } else if ($rootScope.currentPopup == 'dialog_logout' || $rootScope.currentPopup == 'popup_movie_detail_2') {
                         focusController.setDepth($rootScope.depth.main.val);
+                    } else if ($rootScope.currentPopup == 'popup_movie_detail_1') {
+                        focusController.setDepth($rootScope.depth.player.val);
                     } else
                         focusController.setDepth($rootScope.depth.list.val);
                     $rootScope.currentPopup = undefined;

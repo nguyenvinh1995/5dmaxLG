@@ -211,19 +211,16 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                 if (services.drmUrl) {
                     console.log("drm..........");
                     isDrm = true;
-                    var mediaUrl = services.drmUrl;
-                    TizenAVPlayer.mediaUrl = mediaUrl;
-                    setTimeout(function () {
-                        // TizenAVPlayer.playVideo(mediaUrl, isDrm);
-                        WebOsPlayer.playVideo(mediaUrl, avPlayerListenerCallback);
-                        $scope.isPlaying = true;
-                        $scope.$digest();
-                        // if(TizenAVPlayer.currentTime != 0 && isNext == false){
-                        //     var time = TizenAVPlayer.currentTime * 1000;
-                        //     ff(time);
-                        // }
-                    }, 500);
-                    $("#av-player").show();
+                    utilities.showMessenge('Thiết bị chưa hỗ trợ xem phim này');
+                    $rootScope.changeView();
+                    // var mediaUrl = services.drmUrl;
+                    // TizenAVPlayer.mediaUrl = mediaUrl;
+                    // setTimeout(function () {
+                    //     WebOsPlayer.playVideo(mediaUrl, avPlayerListenerCallback);
+                    //     $scope.isPlaying = true;
+                    //     $scope.$digest();
+                    // }, 500);
+                    // $("#av-player").show();
                 } else {
                     console.log("not drm.....");
                     services.getStreaming(idPlay, idMovie, services.quality).then(function (response) {
@@ -608,6 +605,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                     if ($('.btn').hasClass('icon_play')) {
                         $scope.playPauseHandle(true);
                         showMediaController($scope, focusController);
+                        $('#controls_bar').removeClass('opacity-1');
                         return;
                     }
                     break;
@@ -615,6 +613,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                     if ($('.btn').hasClass('icon_pause')) {
                         $scope.playPauseHandle(true);
                         showMediaController($scope, focusController);
+                        $('#controls_bar').addClass('opacity-1');
                         return;
                     }
                     break;
@@ -678,6 +677,15 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                     // $scope.playPauseHandle(true);
                     $scope.playPauseHandle(true);
                     showMediaController($scope, focusController);
+
+                    if ($('.btn').hasClass('icon_play')) {
+                        $('#controls_bar').removeClass('opacity-1');
+                    }
+
+                    if ($('.btn').hasClass('icon_pause')) {
+                        $('#controls_bar').addClass('opacity-1');
+                    }
+
                     break;
                 default:
                     console.log("Unhandled key");
@@ -817,8 +825,8 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
         if (depth == depthDialog) {
             var focusCancel = setInterval(function () {
                 if ($state.current.name == 'movieDetail') {
-                    focusController.focus($(".yes_buy_detail"));
-                    if ($(".yes_buy_detail").hasClass('focused')) {
+                    focusController.focus($("#detail_player"));
+                    if ($("#detail_player").hasClass('focused')) {
                         $rootScope.currentPopup = "popup_movie_detail_1";
                         clearInterval(focusCancel);
                     }
@@ -856,11 +864,12 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
         console.log(popup);
         services.popup1 = popup;
         if (popup.is_buy_playlist == typePopup.isBuy.type && !popup.package_id) {
-            isConfirm = false;
-            currentTypePopup = typePopup.isBuy.type;
-            $(".popup_movie_detail_1 .title_messenger").html(typePopup.isBuy.title);
-            $(".popup_movie_detail_1 .messenger").html(popup.confirm);
-            showHideDialog();
+            // isConfirm = false;
+            // currentTypePopup = typePopup.isBuy.type;
+            // $(".popup_movie_detail_1 .title_messenger").html(typePopup.isBuy.title);
+            // $(".popup_movie_detail_1 .messenger").html(popup.confirm);
+            // showHideDialog();
+            utilities.showMessenge('Thiết bị chưa hỗ trợ xem phim này');
         } else if (popup.is_buy_playlist == typePopup.isPackage.type && popup.package_id) {
             isConfirm = false;
             currentTypePopup = typePopup.isPackage.type;
@@ -961,6 +970,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
             }
         })
     }
+
     function avPlayerListenerCallback(player) {
         $('.end-position').html(player.duration());
 
