@@ -85,33 +85,21 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
         };
 
         vm.watchMovie = function () {
+            getMovieSuggest();
             console.log('watch');
             var mId;
             if (vm.detailFilms.drm_content_id != null && services.supportDrm == false) {
                 utilities.showMessenge("Thiết bị chưa hỗ trợ xem phim này");
+                $rootScope.changeView();
                 return;
             }
-            // if (idMovie) {
-            //     mId = idMovie;
-            // } else
             mId = vm.listFilms[0].id;
-
             TizenAVPlayer.name = vm.detailFilms.name;
-            // if (Object.keys(currentContinueMovie).length > 0) {
-            //     TizenAVPlayer.description = currentContinueMovie.description;
-            //     if (vm.detailFilms.attributes == "1")
-            //         TizenAVPlayer.alias = "";
-            //     else
-            //         TizenAVPlayer.alias = currentContinueMovie.alias;
-            //     TizenAVPlayer.currentTrack = currentContinueMovie.index - 1;
-            // } else {
             TizenAVPlayer.description = vm.listFilms[0].description;
             if (vm.detailFilms.attributes == "1")
                 TizenAVPlayer.alias = "";
             else
                 TizenAVPlayer.alias = vm.listFilms[0].alias;
-            // }
-
 
             if (services.checkLogin() || vm.streams.errorCode != '401') {
                 if (vm.streams.errorCode == '201' && vm.streams.popup) {
@@ -142,9 +130,9 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
     }, 200);
 
     function checkSuggestMovie() {
-        setTimeout(function () {
-            $("#play_btn").blur();
-        }, 100);
+        // setTimeout(function () {
+        $("#play_btn").blur();
+        // }, 100);
         WebOsPlayer.player.dispose();
         $(".avplayer_page").addClass('display-none').removeClass('display-block');
         $(".relate_film_background").removeClass('display-none').addClass('display-block');
@@ -189,7 +177,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                 "idMovie": idPlay,
                 "idPart": idMovie
             };
-            console.log(services.playTrailer, services.check, services.attribute);
+            console.log(services.playTrailer, services.check, services.attribute,services.mediaUrlBanner);
             if (services.check === false) {
                 if (services.drmUrl) {
                     console.log("drm..........");
@@ -256,6 +244,15 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                     $rootScope.changeView();
                     utilities.showMessge("Hiện tại không xem được trailer");
                 }
+            }
+            if (services.mediaUrlBanner) {
+                var mediaUrl = services.mediaUrlBanner;
+                TizenAVPlayer.mediaUrl = mediaUrl;
+                setTimeout(function () {
+                    TizenAVPlayer.playVideo(mediaUrl, isDrm);
+                    $scope.isPlaying = true;
+                }, 500);
+                $("#av-player").show();
             }
         }
 
@@ -753,13 +750,19 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
         console.log(services.idItem);
         services.getDetailFilm(services.idItem, idMovie).then(function (response) {
             console.log(response);
+            if (response.responseCode === '201' || response.responseCode === '404') {
+                utilities.showMessenge(response.message, true);
+                $rootScope.changeView();
+                utilities.hideLoading();
+                return;
+            }
             if (response.responseCode == utilities.errorCode.success) {
-                if (response.errorCode == '201') {
-                    // utilities.showMessenge(response.message, true);
-                    $rootScope.changeView();
-                    utilities.hideLoading();
-                    return;
-                }
+                // if (response.errorCode == '201') {
+                //     // utilities.showMessenge(response.message, true);
+                //     $rootScope.changeView();
+                //     utilities.hideLoading();
+                //     return;
+                // }
                 // $("#movie-detail").removeClass('hidden');
                 var data = response.data;
                 services.imgCurrentItem = data.detail.avatarImageH;
@@ -949,7 +952,6 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
         }
     }
 
-
     function avPlayerListenerCallback(player) {
         $('.end-position').html(player.duration());
 
@@ -1000,12 +1002,12 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
             if (services.attribute === 1) {
                 if (services.check === false) {
                     checkSuggestMovie();
-                    getMovieSuggest();
                     WebOsPlayer.player.dispose();
                 }
                 if (services.check === true) {
+                    checkSuggestMovie();
                     WebOsPlayer.player.dispose();
-                    $rootScope.changeView();
+                    // $rootScope.changeView();
                 }
             }
         });

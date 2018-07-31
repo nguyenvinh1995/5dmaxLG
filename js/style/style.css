@@ -438,7 +438,7 @@ html, body {
   -webkit-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
-  content: 'Tìm kiếm & Danh mục';
+  content: 'Tìm Kiếm & Danh Mục';
   opacity: 0.6;
   width: 9.375rem;
   font-size: 0.9375rem; }
@@ -2501,7 +2501,7 @@ input:focus, button:focus {
 
 .dialog-2 {
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.9);
+  background: black;
   display: block;
   position: fixed;
   top: 0;

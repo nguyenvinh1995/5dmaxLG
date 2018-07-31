@@ -7,7 +7,9 @@
     "lib": "lib"
   },
   "dependencies": {
-    "live-serve": "0.0.0"
+    "lite": "^4.0.5",
+    "live-serve": "0.0.0",
+    "serve": "^9.4.0"
   },
   "devDependencies": {
     "lite-server": "^2.4.0"

@@ -153,9 +153,6 @@ function services($q, $http, settings, utilities) {
         return utilities.transformRequest(url, 'POST', null, data, header, angular.noop, angular.noop);
     }
 
-
-
-
     /*========================== authenticate ===============================*/
     function authenticate(request) {
         // console.log(request);
@@ -168,9 +165,9 @@ function services($q, $http, settings, utilities) {
         return utilities.resolveAlt(url, 'GET', null, null, anthorize.header, angular.noop, angular.noop);
     }
 
-    function getCaptcha(header) {
+    function getCaptcha(request) {
         var url = settings.api.baseUrl + 'auth/get-captcha';
-        return utilities.resolveAlt(url, 'GET', null, null, header, angular.noop, angular.noop);
+        return utilities.resolveAlt(url, 'GET', null, null, request.header, angular.noop, angular.noop);
     }
 
     function isObject(item) {

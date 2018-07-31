@@ -57,13 +57,14 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
         console.log(idMovie,id);
         services.getDetailFilm(id, idMovie).then(function (response) {
             console.log(response);
+            if (response.responseCode === '201' || response.responseCode === '404') {
+                utilities.showMessenge(response.message, true);
+                $rootScope.changeView();
+                utilities.hideLoading();
+                return;
+            }
             if (response.responseCode == utilities.errorCode.success) {
-                if (response.errorCode == '201') {
-                    utilities.showMessenge(response.message, true);
-                    $rootScope.changeView();
-                    utilities.hideLoading();
-                    return;
-                }
+                console.log(response.responseCode,response.errorCode);
                 // $("#movie-detail").removeClass('hidden');
                 var data = response.data;
                 services.imgCurrentItem = data.detail.avatarImageH;

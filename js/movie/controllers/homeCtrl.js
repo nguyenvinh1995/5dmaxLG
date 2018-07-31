@@ -17,6 +17,8 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
     var heightCategory = 0;
     var currentIndexBanner = 0;
     var currentBannerItem = {};
+    var owl = $('.home_slider');
+
     services.getHomeFilm().then(function (response) {
         vm.homeFilms = response.data;
         vm.banner = vm.homeFilms[0].content;
@@ -33,7 +35,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
                 + '<div class="list-scroll-wrapper" ng-repeat="obj in vm.homeFilms[' + i + '].content" > '
                 + '<div class="item" ng-class="{ \'first_category\' : !$index && ' + i + ' == 1}"'
                 + 'focusable="{name:\'menu-type-' + i + '-{{$index}}\',depth : $root.depth.main.val , ' +
-                'nextFocus : { up : ' + i + ' == 1  ? \'btn_play\' : \'\',right : $last ? \'menu-type-' + i + '-0\' : \'\',down: $last ? \'\' : \'menu-type-' + (i+1) + '-0\'}}"'
+                'nextFocus : { up : ' + i + ' == 1  ? \'btn_play\' : \'\',right : $last ? \'menu-type-' + i + '-0\' : \'\',down: \'menu-type-' + (i+1) + '-0\'}}"'
                 + 'on-selected="vm.selectMovie(obj)" on-blurred="vm.blurItem($event, $originalEvent, ' + i + ' , obj , $index )" on-focused="vm.focusItem($event, $originalEvent, 4, obj , $index,' + i + ')">'
                 + '<div id="test" style="background:url(\'{{obj.coverImageH ? obj.coverImageH : obj.coverImage}}\') no-repeat"></div>'
                 + '</div>'
@@ -48,7 +50,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
 
     vm.initBanner = function () {
         console.log("init");
-        $('.home_slider').owlCarousel({
+        owl.owlCarousel({
             items: 1,
             autoplay: true,
             autoplayTimeout: 30000,
@@ -57,15 +59,14 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
             dots: false,
             animateOut: 'fadeOut'
         });
-        $(".home_slider").on('translated.owl.carousel', function (event) {
+        owl.on('translated.owl.carousel', function (event) {
             if (currentIndexBanner >= 0 && currentIndexBanner < vm.banner.length - 1) {
                 currentIndexBanner++;
             } else if (currentIndexBanner == vm.banner.length - 1) {
                 currentIndexBanner = 0;
             }
-
             currentBannerItem = vm.banner[currentIndexBanner];
-            //console.log(currentBannerItem);
+            console.log(currentBannerItem);
             services.backgroundMenu = currentBannerItem.imageForTVLarge;
         });
     };
@@ -74,44 +75,50 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
 
     vm.clickPlay = function () {
         console.log(currentBannerItem);
-        $(".home_slider").trigger('stop.owl.autoplay');
+        // owl.trigger('stop.owl.autoplay');
         services.getDetailFilm(currentBannerItem.itemId).then(function (response) {
-            console.log(response);
-            if (response.errorCode == '201') {
-                utilities.showMessenge(response.message);
-                $(".message span").css({
-                    "max-width": "700px",
-                    "top": "50%"
-                });
-                $(".home_slider").trigger("play.owl.autoplay", [30000]);
-                return;
-            } else {
-                if (response.data.streams) {
-                    switch (response.data.streams.errorCode) {
-                        case 201 :
-                            utilities.showMessenge(response.data.streams.message, true);
-                            $(".home_slider").trigger("play.owl.autoplay", [30000]);
-                            break;
-                        case "401" :
-                            $state.go('login_form', {}, {reload: true});
-                            break;
-                        case 200 :
-                            TizenAVPlayer.name = response.data.detail.name;
-                            TizenAVPlayer.description = response.data.detail.description;
-                            TizenAVPlayer.alias = response.data.parts.alias;
-                            $state.go('avplayer', {
-                                playlistId: response.data.detail.id,
-                                movieId: response.data.parts[0].id
-                            });
-                            break;
-                        default :
-                            break;
-
+                console.log(response);
+                services.checkBanner = false;
+                if (response.responseCode === '201' || response.responseCode === '404') {
+                    utilities.showMessenge(response.message);
+                    $(".message span").css({
+                        "max-width": "700px",
+                        "top": "50%"
+                    });
+                    owl.trigger("play.owl.autoplay", [30000]);
+                }
+                // return;
+                // } else {
+                if (response.responseCode === '200') {
+                    console.log('gfdhs');
+                    if (response.data.streams) {
+                        switch (response.data.streams.errorCode) {
+                            case 201 :
+                                utilities.showMessenge(response.data.streams.message, true);
+                                // owl.trigger("play.owl.autoplay", [30000]);
+                                break;
+                            case "401" :
+                                $state.go('login_form', {}, {reload: true});
+                                break;
+                            case 200 :
+                                console.log('tesst');
+                                services.checkBanner = true;
+                                services.mediaUrlBanner = response.data.streams.urlStreaming;
+                                TizenAVPlayer.name = response.data.detail.name;
+                                TizenAVPlayer.description = response.data.detail.description;
+                                TizenAVPlayer.alias = response.data.parts.alias;
+                                $state.go('avplayer', {
+                                    playlistId: response.data.detail.id,
+                                    movieId: response.data.parts[0].id
+                                });
+                                break;
+                            default :
+                                break;
+                        }
                     }
                 }
             }
-
-        });
+        );
         services.imgCurrentItem = vm.banner[0].coverImage;
     };
     vm.focusPlay = function () {
@@ -120,7 +127,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         $("#home_page .menu_page").removeClass('display-none');
         vm.isFocuseMovie = false;
         // vm.checkTrailer = false;
-        $(".home_slider").trigger("play.owl.autoplay", [30000]);
+        // owl.trigger("play.owl.autoplay", [30000]);
         console.log("abc");
         services.backgroundMenu = currentBannerItem.imageForTVLarge;
         vm.currentCategory = 0;
@@ -135,11 +142,11 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
 ///// Detail-Button
 
     vm.viewDetail = function () {
-        $(".home_slider").trigger('stop.owl.autoplay');
+        // owl.trigger('stop.owl.autoplay');
         $state.go('movieDetail', {id: currentBannerItem.itemId}, {reload: true});
     };
     vm.focusDetail = function () {
-        $(".home_slider").trigger("play.owl.autoplay", [30000]);
+        // owl.trigger("play.owl.autoplay", [30000]);
         services.backgroundMenu = currentBannerItem.imageForTVLarge;
     };
 

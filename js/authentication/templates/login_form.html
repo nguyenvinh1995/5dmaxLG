@@ -2,7 +2,7 @@
     <div class="inner">
         <div class="logo"></div>
         <div class="content-left content-no-capslock" id="content-key-broard">
-            <div class="key-broard no-capslock block">
+            <div class="key-broard no-capslock display-block">
                 <ul>
                     <li class="num FocusKeybroad" id="focusKeybroad"
                         focusable="{depth : $root.depth.login.val,initialFocus : true}"
@@ -37,7 +37,7 @@
                     <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('r')">r</li>
                     <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('s')">s</li>
                     <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('-')">-</li>
-                    <li class="num capslock img-relative focus-capslock padding-cap" style="color: transparent"
+                    <li class="num capslock img-relative focus-capslock padding-cap" style="color: transparent;margin-top: -0.01rem;"
                         focusable="{depth : $root.depth.login.val }" on-selected="vm.capslock()">x
                         <div class="capslock-icon"></div>
                     </li>
@@ -85,7 +85,7 @@
                     <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('R')">R</li>
                     <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('S')">S</li>
                     <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('-')">-</li>
-                    <li class="num capslock img-relative focus-capslock focus-nocapslock padding-cap" style="color: transparent;"
+                    <li class="num capslock img-relative focus-capslock focus-nocapslock padding-cap" style="color: transparent;margin-top: -0.01rem;"
                         focusable="{depth : $root.depth.login.val }"
                         on-selected="vm.noCapslock()">x
                         <div class="capslock-icon"></div>
@@ -102,7 +102,7 @@
             </div>
             <div class="key-broard symbol display-none" id="symbol">
                 <ul>
-                    <li class="num"
+                    <li class="num" id="Symbol-key"
                         focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('`')">`
                     </li>
                     <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('~')">~</li>
@@ -149,34 +149,38 @@
             </div>
             <div class="key-broard margintop-85">
                 <ul>
-                    <li class="symbol-num capslock num padding-symbol"
+                    <li class="symbol-num capslock num padding-symbol " style="height: 1.7rem;"
                         focusable="{depth : $root.depth.login.val }" on-selected="vm.symbol()">!#?
                     </li>
-                    <li class="num space space-num img-relative top36" style="width:53.9%;"
-                        focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText(' ')">
+                    <li class="num space space-num img-relative" style="width:56%;color: transparent"
+                        focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText(' ')">x
                         <div class="space-icon"></div>
                     </li>
-                    <li class="num capslock img-relative top34" style="width: 15.5%" focusable="{depth : $root.depth.login.val }"
-                        on-selected="vm.Del()">
+                    <li class="num capslock img-relative" style="width: 15.9%;height: 1.7rem;color: transparent;" focusable="{depth : $root.depth.login.val }"
+                        on-selected="vm.Del()">x
                         <div class="del-icon"></div>
                     </li>
                 </ul>
             </div>
-            <div class="key-broard">
+            <div class="key-broard margintop-22">
                 <ul>
                     <li id="back-first" class="space-num num num-disable">Quay
                         lại
                     </li>
-                    <li class="space-num num hide" focusable="{depth : $root.depth.login.val }" on-selected="vm.back()">Quay
+                    <li id="back" class="space-num num hide " focusable="{depth : $root.depth.login.val }" on-selected="vm.back()">Quay
                         lại
                     </li>
                     <li class="space-num num" id="continue" focusable="{depth : $root.depth.login.val }"
                         on-selected="vm.continue()">
                         Tiếp tục
                     </li>
+                    <li class="space-num num hide" id="continue-cap" focusable="{depth : $root.depth.login.val }"
+                        on-selected="vm.continueCap()">
+                        Tiếp tục
+                    </li>
                     <li class="space-num num hide" id="log" focusable="{depth : $root.depth.login.val }"
                         on-selected="vm.login()">
-                        Đăng nhập
+                        Tiếp tục
                     </li>
                 </ul>
             </div>

@@ -7,7 +7,7 @@
         </video>
         <div id="controls_bar" class="controls-bar" ng-class="{'fade-out': isPlaying}"
              ng-mouseover="setMediaControllerTimer()">
-            <div id="play_btn" focusable="{initialFocus: true, depth : $root.depth.player.val } "
+            <div id="play_btn" focusable="{depth : $root.depth.player.val } "
                  on-selected="playPauseHandle()">
                 <div class="btn" ng-class="{'icon_pause': isPlaying, 'icon_play': !isPlaying}"></div>
             </div>

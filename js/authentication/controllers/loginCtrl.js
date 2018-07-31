@@ -11,8 +11,8 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
     vm.loginForm = {
         username: '',
         password: '',
-        // username: '01653257351',
-        // password: '12345678',
+        // username: '01692040587',
+        // password: '123456a@@',
         captcha: ''
     };
     var playlistId = $state.params.playlistId;
@@ -67,39 +67,44 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
         delete $http.defaults.headers.common.Authorization;
     }
     vm.continue = function () {
-        if (vm.loginForm.username.length !== 0 && (9 <= vm.loginForm.username.length <= 11)) {
-            $('#phone-number').removeClass('show-input');
-            $('#pass').addClass('show-input');
-            $('#continue').addClass('hide');
-            $('#log').removeClass('hide');
-            $('#back').removeClass('hide');
-            $('#back-first').addClass('hide');
-            if ($('#content-key-broard').hasClass('content-no-capslock')) {
-                var timeFocus = setInterval(function () {
-                    focusController.focus($('#focusKeybroad'));
-                    if ($('#focusKeybroad').hasClass('focused')) {
-                        clearInterval(timeFocus);
-                    }
-                }, 100)
-            } else if ($('#content-key-broard').hasClass('content-capslock')) {
-                var timeFocus = setInterval(function () {
-                    focusController.focus($('#initFocusKey'));
-                    if ($('#initFocusKey').hasClass('focused')) {
-                        clearInterval(timeFocus);
-                    }
-                }, 100)
-            } else {
-                var timeFocus = setInterval(function () {
-                    focusController.focus($('#log'));
-                    if ($('#log').hasClass('focused')) {
-                        clearInterval(timeFocus);
-                    }
-                }, 100)
+        checkFocus();
+        if ($('#phone-number').hasClass('show-input')) {
+            if (vm.showCapcha == true) {
+                $('#continue-cap').removeClass('hide');
+                $('#continue').addClass('hide');
+                $('#log').addClass('hide');
+                $('#back').removeClass('hide');
+                $('#back-first').addClass('hide');
+                $('#phone-number').removeClass('show-input');
+                $('#pass').addClass('show-input');
+                $('#capcha').removeClass('show-input');
             }
+        }
 
+        if (vm.loginForm.username.length !== 0) {
+            if (vm.showCapcha == false) {
+                $('#phone-number').removeClass('show-input');
+                $('#pass').addClass('show-input');
+                $('#continue').addClass('hide');
+                $('#log').removeClass('hide');
+                $('#back').removeClass('hide');
+                $('#back-first').addClass('hide');
+
+            }
         } else {
             utilities.showMessenge("Vui lòng nhập số điện thoại.");
         }
+    };
+
+
+    vm.continueCap = function () {
+        $('#phone-number').removeClass('show-input');
+        $('#pass').removeClass('show-input');
+        $('#capcha').addClass('show-input');
+        $('#continue').addClass('hide');
+        $('#log').removeClass('hide');
+        $('#continue-cap').addClass('hide');
+        checkFocus();
     };
 
     vm.goTrialForm = function () {
@@ -108,7 +113,7 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
 
     vm.goLoginForm = function (bool) {
         $state.go('login_form');
-        $rootScope.check = bool;
+        $rootScope.checkLogin = bool;
         console.log($rootScope.check);
     };
 
@@ -167,6 +172,9 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
         if ($('#phone-number').hasClass('show-input')) {
             $('#back').addClass('hide');
             $('#back-first').removeClass('hide');
+            $('#continue').removeClass('hide');
+            $('#log').addClass('hide');
+            $('#continue-cap').addClass('hide');
         }
         if ($('#pass').hasClass('show-input')) {
             $('#back').addClass('hide');
@@ -176,20 +184,24 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
             $('#capcha').removeClass('show-input');
             $('#continue').removeClass('hide');
             $('#log').addClass('hide');
+            $('#continue-cap').addClass('hide');
         }
         if ($('#capcha').hasClass('show-input')) {
+            $('#continue-cap').removeClass('hide');
+            $('#continue').addClass('hide');
+            $('#log').addClass('hide');
             $('#back').removeClass('hide');
             $('#back-first').addClass('hide');
             $('#phone-number').removeClass('show-input');
             $('#pass').addClass('show-input');
             $('#capcha').removeClass('show-input');
-            $('#continue').addClass('hide');
-            $('#log').removeClass('hide');
         }
+        checkFocus();
     };
 
     function checkPassword() {
-        if (vm.loginForm.password.trim().length < 6) {
+        checkFocus();
+        if (vm.loginForm.password.trim().length < 2) {
             utilities.showMessenge("Thông tin đăng nhập không hợp lệ");
             $('#phone-number').removeClass('show-input');
             $('#pass').addClass('show-input');
@@ -202,14 +214,14 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
     }
 
     function checkUsername() {
-        if (vm.loginForm.username.trim().length < 8) {
+        checkFocus();
+        if (vm.loginForm.username.trim().length < 2) {
             utilities.showMessenge("Thông tin đăng nhập không hợp lệ");
-            $('#phone-number').addClass('show-input');
-            $('#pass').removeClass('show-input');
+            $('#phone-number').removeClass('show-input');
+            $('#pass').addClass('show-input');
             $('#capcha').removeClass('show-input');
             $('#continue').removeClass('hide');
             $('#log').addClass('hide');
-
             return true;
         } else
             return false;
@@ -239,6 +251,8 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
             $('#capcha').addClass('show-input');
             $('#continue').addClass('hide');
             $('#log').removeClass('hide');
+            $('#continue-cap').addClass('hide');
+            checkFocus();
             return;
         } else if (vm.loginForm.username.trim() !== '' || vm.loginForm.password.trim() !== '') {
             if (checkUsername())
@@ -258,7 +272,7 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
             },
             header: {
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-                'Authorization': "Bearer " + services.deviceId
+                'Authorization': "Bearer " + 'xxx'
             }
         };
 
@@ -285,7 +299,7 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
                 services.auth = data;
                 services.isLogin = true;
                 services.logInRefreshHomeState = true;
-                if ($rootScope.check === true) {
+                if ($rootScope.checkLogin === true) {
                     if (response.data.accessToken) {
                         var anthorize = {
                             header: {
@@ -325,20 +339,21 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
                 console.log('200');
             } else if (response.responseCode == "403") {
                 if (vm.showCapcha == true) {
+                    $('#phone-number').removeClass('show-input');
+                    $('#pass').removeClass('show-input');
+                    $('#capcha').addClass('show-input');
                     getCaptcha();
                 }
                 utilities.showMessenge(response.message);
-                $('#phone-number').addClass('show-input');
-                $('#pass').removeClass('show-input');
+                $('#phone-number').removeClass('show-input');
+                $('#pass').addClass('show-input');
                 $('#capcha').removeClass('show-input');
-                $('#continue').removeClass('hide');
-                $('#log').addClass('hide');
-                // checkCurrentFocus();
-                // focusController.focus($(".phone_input"));
-                // focus("phone_input");
+                // $('#continue').removeClass('hide');
+                // $('#log').addClass('hide');
                 console.log('403');
             } else if (response.responseCode == "808") {
                 vm.showCapcha = true;
+                vm.loginForm.captcha = '';
                 getCaptcha();
                 $('#phone-number').removeClass('show-input');
                 $('#pass').removeClass('show-input');
@@ -347,6 +362,7 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
                 $('#log').removeClass('hide');
                 console.log('808');
                 utilities.showMessenge(response.message);
+                checkFocus();
             }
         });
 
@@ -361,7 +377,7 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
             isChangeCaptcha = true;
             var xhr = new XMLHttpRequest();
             xhr.open('GET', 'http://m.5dmax.vn/apiv2.php/v1/auth/get-captcha', true);
-            xhr.setRequestHeader("Authorization", "Bearer " + services.deviceId);
+            xhr.setRequestHeader("Authorization", "Bearer " + 'xxx');
             xhr.responseType = 'blob';
             xhr.onload = function (e) {
                 if (this.status == 200) {
@@ -493,5 +509,37 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
                 }
             }, 100)
         }
-    })
+    });
+
+    function checkFocus() {
+        if ($('#content-key-broard').hasClass('content-no-capslock')) {
+            var timeFocus = setInterval(function () {
+                focusController.focus($('#focusKeybroad'));
+                if ($('#focusKeybroad').hasClass('focused')) {
+                    clearInterval(timeFocus);
+                }
+            }, 100)
+        } else if ($('#content-key-broard').hasClass('content-capslock')) {
+            var timeFocus = setInterval(function () {
+                focusController.focus($('#initFocusKey'));
+                if ($('#initFocusKey').hasClass('focused')) {
+                    clearInterval(timeFocus);
+                }
+            }, 100)
+        }else if ($('#content-key-broard').hasClass('content-symbol')) {
+            var timeFocus = setInterval(function () {
+                focusController.focus($('#Symbol-key'));
+                if ($('#Symbol-key').hasClass('focused')) {
+                    clearInterval(timeFocus);
+                }
+            }, 100)
+        } else {
+            var timeFocus = setInterval(function () {
+                focusController.focus($('#log'));
+                if ($('#log').hasClass('focused')) {
+                    clearInterval(timeFocus);
+                }
+            }, 100)
+        }
+    }
 }
