@@ -605,7 +605,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                     if ($('.btn').hasClass('icon_play')) {
                         $scope.playPauseHandle(true);
                         showMediaController($scope, focusController);
-                        $('#controls_bar').removeClass('opacity-1');
+                        $('#controls_bar').removeClass('opacity-1').removeClass('fade-in');
                         return;
                     }
                     break;
@@ -613,7 +613,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                     if ($('.btn').hasClass('icon_pause')) {
                         $scope.playPauseHandle(true);
                         showMediaController($scope, focusController);
-                        $('#controls_bar').addClass('opacity-1');
+                        $('#controls_bar').addClass('opacity-1').addClass('fade-in');
                         return;
                     }
                     break;
@@ -650,7 +650,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                 case 51: //Key 3
                     //player.getProperties();
                     break;
-                case 27: // Return
+                case 461: // Return
                     if (showMediaControllerTimeout)
                         clearTimeout(showMediaControllerTimeout);
                     if ($rootScope.$previousState.name == 'avplayer' || $state.current.name == 'avplay') {
@@ -679,11 +679,11 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                     showMediaController($scope, focusController);
 
                     if ($('.btn').hasClass('icon_play')) {
-                        $('#controls_bar').removeClass('opacity-1');
+                        $('#controls_bar').removeClass('opacity-1').removeClass('fade-in');
                     }
 
                     if ($('.btn').hasClass('icon_pause')) {
-                        $('#controls_bar').addClass('opacity-1');
+                        $('#controls_bar').addClass('opacity-1').addClass('fade-in');
                     }
 
                     break;

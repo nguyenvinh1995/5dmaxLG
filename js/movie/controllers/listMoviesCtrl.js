@@ -107,6 +107,7 @@ function listMoviesCtrl($scope, services, focusController, FocusConstant, FocusU
     // }
 
     $scope.$on('$viewContentLoaded', function () {
+        initFocus();
     })
 
 }

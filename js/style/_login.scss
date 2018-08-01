@@ -173,10 +173,9 @@
       margin-top: 4*$rem;
       &.focused {
         background-color: $red;
-        //width: 402*$rem;
-        //height: 76*$rem;
         margin-top: 0;
         color: #fff;
+        height: 83*$rem !important;
       }
     }
   }
@@ -501,7 +500,7 @@ input:focus, button:focus {
 }
 
 .margintop-85 {
-  margin-top: -34.5*$rem !important;
+  margin-top: -30*$rem !important;
   height: 18% !important;
 }
 .margintop-22 {

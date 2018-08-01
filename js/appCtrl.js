@@ -681,7 +681,7 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
 
         var init = function () {
             var inEvent = function (e) {
-                if (e.keyCode === 27) {
+                if (e.keyCode === 461) {
                     try {
                         $rootScope.changeView();
                     }

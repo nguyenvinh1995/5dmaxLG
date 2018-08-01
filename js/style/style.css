@@ -1017,7 +1017,8 @@ html, body {
       .login_form .form_btn button.focused {
         background-color: #FF0000;
         margin-top: 0;
-        color: #fff; }
+        color: #fff;
+        height: 2.59375rem !important; }
   .login_form .submit_btn {
     margin-top: 2.34375rem;
     margin-bottom: -0.75rem; }
@@ -1297,7 +1298,7 @@ input:focus, button:focus {
   position: relative; }
 
 .margintop-85 {
-  margin-top: -1.07812rem !important;
+  margin-top: -0.9375rem !important;
   height: 18% !important; }
 
 .margintop-22 {
@@ -1692,8 +1693,7 @@ input:focus, button:focus {
         opacity: 1; }
   .search-page .keyboard_content {
     width: 100%;
-    height: 28.125rem;
-    margin-top: 0rem !important;
+    top: 0rem;
     background-color: transparent;
     -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
@@ -1821,7 +1821,6 @@ input:focus, button:focus {
         border: 0.09375rem solid #fff; }
   .search-page .col-lg-1, .search-page .col-lg-10, .search-page .col-lg-11, .search-page .col-lg-12, .search-page .col-lg-2, .search-page .col-lg-3, .search-page .col-lg-4, .search-page .col-lg-5, .search-page .col-lg-6, .search-page .col-lg-7, .search-page .col-lg-8, .search-page .col-lg-9 {
     position: relative;
-    min-height: 0.03125rem;
     float: left; }
   .search-page .col-lg-12 {
     width: 100%; }
@@ -2116,7 +2115,7 @@ input:focus, button:focus {
           background-color: #fff;
           font-weight: 600; }
   .setup_page .content {
-    width: calc(100% - 700px);
+    width: calc(100% - 420px);
     height: 100vh;
     display: inline-block;
     float: right;
@@ -2538,7 +2537,7 @@ input:focus, button:focus {
     .relate_film_background .shadow .back {
       position: absolute;
       color: white;
-      text-shadow: 1px 1px 2px black, 0 0 25px black, 0 0 5px black;
+      text-shadow: 0.03125rem 0.03125rem 0.0625rem black, 0 0 0.78125rem black, 0 0 0.15625rem black;
       background-image: url(../images/undo@3x.png);
       background-size: 100% 100%;
       background-repeat: no-repeat;
@@ -2554,13 +2553,13 @@ input:focus, button:focus {
     margin-top: -1.9%;
     position: absolute; }
   .relate_film_background h1 {
-    font-size: 38px;
+    font-size: 1.1875rem;
     white-space: nowrap;
     overflow: hidden;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
-    width: 600px;
-    margin-bottom: -37px; }
+    width: 18.75rem;
+    margin-bottom: -1.15625rem; }
   .relate_film_background .movie_suggetion {
     margin-right: 25rem;
     float: right;

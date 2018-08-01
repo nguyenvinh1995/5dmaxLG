@@ -491,11 +491,6 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
 
     function logOut() {
         $(".dialog_exit").removeClass("hidden");
-        changeDepth(depthDialog);
-        focusCancel1();
-    }
-
-    function focusCancel1() {
         var timeFocus = setInterval(function () {
             focusController.focus($('#btn_cancle_exit'));
             $rootScope.currentPopup = 'dialog_logout';
@@ -503,10 +498,11 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
                 clearInterval(timeFocus);
             }
         }, 100);
+        changeDepth(depthDialog);
     }
 
     vm.approveExit = function () {
-        tizen.application.getCurrentApplication().exit();
+        webOS.platformBack();
     };
 
     vm.cancel = function () {
