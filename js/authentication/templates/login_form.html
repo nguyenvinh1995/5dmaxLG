@@ -1,0 +1,214 @@
+<div class="login_page full_page" style="background:#000">
+    <div class="inner">
+        <div class="logo"></div>
+        <div class="content-left content-no-capslock" id="content-key-broard">
+            <div class="key-broard no-capslock display-block">
+                <ul>
+                    <li class="num FocusKeybroad" id="focusKeybroad"
+                        focusable="{depth : $root.depth.login.val,initialFocus : true}"
+                        on-selected="vm.enterText('1')">1
+                    </li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('2')">2</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('3')">3</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('4')">4</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('5')">5</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('6')">6</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('7')">7</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('8')">8</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('9')">9</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('0')">0</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('a')">a</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('b')">b</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('c')">c</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('d')">d</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('e')">e</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('f')">f</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('g')">g</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('h')">h</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('i')">i</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('j')">j</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('k')">k</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('l')">l</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('m')">m</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('n')">n</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('o')">o</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('p')">p</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('q')">q</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('r')">r</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('s')">s</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('-')">-</li>
+                    <li class="num capslock img-relative focus-capslock padding-cap" style="color: transparent;margin-top: -0.01rem;"
+                        focusable="{depth : $root.depth.login.val }" on-selected="vm.capslock()">x
+                        <div class="capslock-icon"></div>
+                    </li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('t')">t</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('u')">u</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('v')">v</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('w')">w</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('x')">x</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('y')">y</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('z')">z</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText(''')">'</li>
+                </ul>
+            </div>
+            <div class="key-broard capslock display-none">
+                <ul>
+                    <li class="num" id="initFocusKey"
+                        focusable="{depth : $root.depth.login.val}" on-selected="vm.enterText('1')">1
+                    </li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('2')">2</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('3')">3</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('4')">4</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('5')">5</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('6')">6</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('7')">7</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('8')">8</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('9')">9</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('0')">0</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('A')">A</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('B')">B</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('C')">C</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('D')">D</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('E')">E</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('F')">F</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('G')">G</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('H')">H</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('I')">I</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('J')">J</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('K')">K</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('L')">L</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('M')">M</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('N')">N</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('O')">O</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('P')">P</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('Q')">Q</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('R')">R</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('S')">S</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('-')">-</li>
+                    <li class="num capslock img-relative focus-capslock focus-nocapslock padding-cap" style="color: transparent;margin-top: -0.01rem;"
+                        focusable="{depth : $root.depth.login.val }"
+                        on-selected="vm.noCapslock()">x
+                        <div class="capslock-icon"></div>
+                    </li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('T')">T</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('U')">U</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('V')">V</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('W')">W</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('X')">X</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('Y')">Y</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('Z')">Z</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText(''')">'</li>
+                </ul>
+            </div>
+            <div class="key-broard symbol display-none" id="symbol">
+                <ul>
+                    <li class="num" id="Symbol-key"
+                        focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('`')">`
+                    </li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('~')">~</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('!')">!</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('@')">@</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('#')">#</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('$')">$</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('%')">%</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('^')">^</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('&')">&</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('*')">*</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('(')">(</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText(')')">)</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('-')">-</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('_')">_</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('=')">=</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('+')">+</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('[')">[</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText(']')">]</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('{')">{</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('}')">}</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('\')">\</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('|')">|</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText(';')">;</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText(':')">:</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText(''')">'</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('"
+                    ')">"</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText(',')">,</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('.')">.</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('<')"><</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('>')">></li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('/')">/</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('?')">?</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('¡')">¡</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('¿')">¿</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('ª')">ª</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('º')">º</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('¢')">¢</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('€')">€</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('£')">£</li>
+                    <li class="num" focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText('¥')">¥</li>
+                </ul>
+            </div>
+            <div class="key-broard margintop-85">
+                <ul>
+                    <li class="symbol-num capslock num padding-symbol " style="height: 1.65rem;"
+                        focusable="{depth : $root.depth.login.val }" on-selected="vm.symbol()">!#?
+                    </li>
+                    <li class="num space space-num img-relative" style="width:54.2%;color: transparent"
+                        focusable="{depth : $root.depth.login.val }" on-selected="vm.enterText(' ')">x
+                        <div class="space-icon"></div>
+                    </li>
+                    <li class="num capslock img-relative" style="width: 15.5%;height: 1.65rem;color: transparent;" focusable="{depth : $root.depth.login.val }"
+                        on-selected="vm.Del()">x
+                        <div class="del-icon"></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="key-broard margintop-22">
+                <ul>
+                    <li id="back-first"  style="width: 44.9%" class="space-num num num-disable">Quay
+                        lại
+                    </li>
+                    <li id="back" class="space-num num hide " focusable="{depth : $root.depth.login.val }" on-selected="vm.back()">Quay
+                        lại
+                    </li>
+                    <li class="space-num num" id="continue" focusable="{depth : $root.depth.login.val }"
+                        on-selected="vm.continue()">
+                        Tiếp tục
+                    </li>
+                    <li class="space-num num hide" id="continue-cap" focusable="{depth : $root.depth.login.val }"
+                        on-selected="vm.continueCap()">
+                        Tiếp tục
+                    </li>
+                    <li class="space-num num hide" id="log" focusable="{depth : $root.depth.login.val }"
+                        on-selected="vm.login()">
+                        Tiếp tục
+                    </li>
+                </ul>
+            </div>
+            <div class="key-broard ">
+                <ul>
+                    <li class="space-num hide-pass num" id="hide-pass" focusable="{depth : $root.depth.login.val }"
+                        on-selected="vm.hidePass()"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="login_form page_login">
+            <h1>Đăng nhập</h1>
+            <div class="phone form_input opacity input show-input " id="phone-number">
+                <input id="username"
+                       type="text" ng-model="vm.loginForm.username" placeholder="Số điện thoại"
+                       class="phone_input">
+            </div>
+            <div class="password form_input opacity input" id="pass">
+                <input id="password" type="password"
+                       ng-model="vm.loginForm.password" placeholder="Mật khẩu" class="pass_input">
+            </div>
+            <div class="capcha opacity form_input input" ng-show="vm.showCapcha" id="capcha">
+                <div>
+                    <input id="capt" ng-model="vm.loginForm.captcha"
+                           placeholder="Mã xác nhận" class="capt_input">
+                    <img class="img_capcha" id="img_capcha" src="" width="" height="" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

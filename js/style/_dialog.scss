@@ -1,0 +1,143 @@
+.dialog {
+  @extend .full_page;
+  overflow: hidden;
+  background: #263238;
+  display: inline-block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  .content {
+    display: inline-block;
+    width: 65%;
+    height: 100vh;
+    float: left;
+    letter-spacing: 0.3*$rem;
+    > div {
+      margin: 400*$rem 100*$rem 0;
+    }
+    h1 {
+      font-size: 53*$rem;
+      font-weight: normal;
+      margin: 0;
+      color: #fff;
+    }
+    p {
+      font-size: 30*$rem;
+      color: #ccc;
+      margin-top: 15*$rem;
+    }
+  }
+  .action {
+    background: #37474F;
+    width: 35%;
+    height: 100vh;
+    float: right;
+    > div {
+      margin: 400*$rem 50*$rem 0;
+    }
+    button {
+      width: 100%;
+      height: 70*$rem;
+      line-height: 70*$rem;
+      font-size: 30*$rem;
+      text-align: left;
+      padding: 0 25*$rem;
+      border: none;
+      color: #fff;
+      border-radius: 4*$rem;
+      background-color: transparent;
+      margin-bottom: 10*$rem;
+      &.focused {
+        background-color: rgba(255, 255, 255, 0.1);
+
+      }
+    }
+  }
+}
+
+.dialog-2 {
+  @extend .full_page;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 1);
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  .img-popup{
+    //display: inline-block;
+    width: 400*$rem;
+    height: 80*$rem;
+    background: url('../images/logo.png') no-repeat;
+    background-size: 100% 100%;
+    top: 8%;
+    left: 50%;
+    @include translate(-50%, -50%);
+    position: absolute;
+  }
+  .dialog_inner {
+    width: 100vw;
+    height: 75vh;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include translate(-50%, -50%);
+    padding: 40*$rem 50*$rem 30*$rem 50*$rem;
+    background-color: #000;
+    border-radius: 10*$rem;
+    box-shadow: 0 9*$rem 24*$rem 0 rgba(0, 0, 0, 0.2);
+  }
+  .content {
+    letter-spacing: 0.3*$rem;
+    text-align: center;
+    margin-top: 80*$rem;
+    h1 {
+      font-size: 60*$rem;
+      font-weight: 600;
+      margin: 0;
+      color: #fff;
+      margin-bottom: 220*$rem;
+    }
+    p {
+      margin-left: 16%;
+      width: 68%;
+      font-size: 42*$rem;
+      color: #fff;
+      margin-top: 15*$rem;
+    }
+  }
+  .action {
+    margin-top: 200*$rem;
+    text-align: center;
+    bottom: 20*$rem;
+    position: absolute;
+    left: 25%;
+    button {
+      //float: right;
+      margin: 0*$rem 20*$rem;
+      width: 500*$rem;
+      height: 76*$rem;
+      line-height: 60*$rem;
+      font-size: 38*$rem;
+      text-align: center;
+      padding: 0;
+      border: none;
+      color: #fff;
+      border-radius: 4*$rem;
+      background-color: rgba(255, 255, 255, 0.4);
+      display: inline-block;
+      &.focused {
+        background-color: rgb(248, 0, 38);
+      }
+    }
+  }
+}
+
+//.yes_buy_detail{
+//  content: 'ĐĂNG KÝ';
+//}
+.yes_buy_detail_yes{
+  content: 'ĐỒNG Ý';
+}
