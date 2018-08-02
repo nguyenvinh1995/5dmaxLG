@@ -94,9 +94,11 @@ function myListCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
     vm.getFilms = function (value) {
         $(".genres2").removeClass('move-left');
         $(".img-arrow-left").addClass('display-none').removeClass('display-block');
-        if (value == vm.activeId && vm.objects.length === 0) {
-            $('#text-my-list').addClass('display-block').removeClass('display-none');
-        }
+        // if (value === vm.activeId && vm.objects.length === 0) {
+        //     $('#text-my-list').addClass('display-block').removeClass('display-none');
+        // }else{
+        //     $('#text-my-list').addClass('display-none').removeClass('display-block');
+        // }
         if (value == vm.activeId && vm.objects.length > 0)
             return;
 

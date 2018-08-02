@@ -17,6 +17,8 @@ function SetupCtrl($scope, services, focusController, FocusUtil, $timeout, $stat
     var depthDialog = $rootScope.depth.dialog.val;
     var depthList = $rootScope.depth.list.val;
     console.log(services.isLogin);
+    services.logOutRefreshHomeState = false;
+
     if(!vm.name) {
         vm.name = "Tự Động";
     }
@@ -34,38 +36,38 @@ function SetupCtrl($scope, services, focusController, FocusUtil, $timeout, $stat
 
     function getDetail(){
         services.getDetailUser().then(function (response) {
-        var responseCode = response.responseCode;
-        switch (responseCode) {
-            case utilities.errorCode.success :
-                vm.isLogin = true;
-                getListPackage();
-                initFocus('item_setup');
-                console.log(response);
-                var data = response.data;
-                vm.detaiUser = data.user_detail;
-                vm.changeTab(1);
-            break;
-            case utilities.errorCode.login :
-                vm.isLogin = false;
-                initFocus('quality');
-                vm.changeTab(2);
-            break;
-            case utilities.errorCode.tokenExpire :
-                services.refreshToken().then(function(res){
-                    if(res.responseCode == utilities.errorCode.success){
-                        getDetail();
-                    }else{
-                        utilities.hideLoading();
-                        utilities.showMessenge(utilities.tokenExpireMessenger, true);
-                        $rootScope.errorVerify = true;
-                        $rootScope.loginFromSetup = true;
-                        $state.go('login_form');
-                    }
-                });
-            break;
-            default:
-            break;
-        }
+            var responseCode = response.responseCode;
+            switch (responseCode) {
+                case utilities.errorCode.success :
+                    vm.isLogin = true;
+                    getListPackage();
+                    initFocus('item_setup');
+                    console.log(response);
+                    var data = response.data;
+                    vm.detaiUser = data.user_detail;
+                    vm.changeTab(1);
+                    break;
+                case utilities.errorCode.login :
+                    vm.isLogin = false;
+                    initFocus('quality');
+                    vm.changeTab(2);
+                    break;
+                case utilities.errorCode.tokenExpire :
+                    services.refreshToken().then(function(res){
+                        if(res.responseCode == utilities.errorCode.success){
+                            getDetail();
+                        }else{
+                            utilities.hideLoading();
+                            utilities.showMessenge(utilities.tokenExpireMessenger, true);
+                            $rootScope.errorVerify = true;
+                            $rootScope.loginFromSetup = true;
+                            $state.go('login_form');
+                        }
+                    });
+                    break;
+                default:
+                    break;
+            }
             utilities.hideLoading();
         });
     }
@@ -157,9 +159,11 @@ function SetupCtrl($scope, services, focusController, FocusUtil, $timeout, $stat
         delete $http.defaults.headers.common.Authorization;
         initFocus('quality');
         vm.changeTab(2);
-        $(".dialog_logout").addClass("hidden");
+        $(".dialog_logout_1").addClass("hidden");
         changeDepth(depthList);
         utilities.showMessenge("Tài khoản đã được đăng xuất.");
+        clearTimeout($rootScope.showBanner);
+        services.logOutRefreshHomeState = true;
     };
 
     function getListPackageAndFocus(id) {
@@ -188,7 +192,7 @@ function SetupCtrl($scope, services, focusController, FocusUtil, $timeout, $stat
                 case utilities.errorCode.success :
                     getListPackageAndFocus("#pakage_" + id);
                     utilities.showMessenge(response.message);
-                break;
+                    break;
                 case utilities.errorCode.tokenExpire :
                     services.refreshToken().then(function(res){
                         if(res.responseCode == utilities.errorCode.success){
@@ -200,9 +204,9 @@ function SetupCtrl($scope, services, focusController, FocusUtil, $timeout, $stat
                             $state.go('login_form');
                         }
                     });
-                break;
+                    break;
                 default :
-                break;
+                    break;
             }
 
         })
@@ -230,9 +234,9 @@ function SetupCtrl($scope, services, focusController, FocusUtil, $timeout, $stat
                 case utilities.errorCode.success :
                     getListPackageAndFocus("#pakage_" + id);
                     utilities.showMessenge(response.message);
-                break;
+                    break;
                 case utilities.errorCode.created :
-                    if(response.message) 
+                    if(response.message)
                         utilities.showMessenge(response.message,false, 10000);
                     break;
                 case utilities.errorCode.tokenExpire :
@@ -246,9 +250,9 @@ function SetupCtrl($scope, services, focusController, FocusUtil, $timeout, $stat
                             $state.go('login_form');
                         }
                     });
-                break;
+                    break;
                 default :
-                break;
+                    break;
             }
         })
     }
@@ -269,10 +273,9 @@ function SetupCtrl($scope, services, focusController, FocusUtil, $timeout, $stat
     };
 
     vm.logout = function () {
-        $(".dialog_logout").removeClass("hidden");
-        $rootScope.currentPopup = 'dialog_logout';
+        $(".dialog_logout_1").removeClass("hidden");
+        $rootScope.currentPopup = 'dialog_logout_1';
         /*logout ==> refresh home page*/
-        services.logOutRefreshHomeState = true;
         changeDepth(depthDialog);
         initFocus("btn_cancle_out");
     };

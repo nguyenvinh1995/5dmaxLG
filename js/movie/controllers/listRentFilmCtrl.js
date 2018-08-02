@@ -49,8 +49,7 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
 ///// ITEM
 
     vm.blurItem = function ($event, $originalEvent, category, item, $index) {
-        // clearTimeout(vm.ShowTrailer);
-        $timeout.cancel(vm.ShowTrailer);
+         clearTimeout(vm.ShowTrailerRent);
         $(".movie_article_wrapper").removeClass('background-none');
         $('#av-container-rent').remove();
         // $("#av-player").addClass('display-trainer');
@@ -66,29 +65,30 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
         }
         ///Trailer-Focus//////
         // $rootScope.idTrailer = item.trailer;
-        if (item.trailer !== '0' && item.trailer) {
-            services.getTrailer(item.trailer).then(function (response) {
-                console.log(response);
-                if (response.responseCode == 200) {
-                    vm.ShowGif = $timeout(function () {
-                        $rootScope.mediaTrailer = response.data.streams.urlStreaming;
-                        var raw = '';
-                        raw += '<div id="av-container-rent" class="trainer">'
-                            + '<video id=av-player class="video-js vjs-default-skin"></video>'
-                            + '</div>';
-                        angular.element(document.getElementById('showTrailer-rent')).append($compile(raw)($scope));
-                        showTrailer();
-                        console.log('play-trailer')
-                    }, 4000);
-                    $timeout.cancel(vm.show);
-                    vm.show = null;
-                    vm.show = $timeout(function () {
-                        ("#av-container-rent").addClass('display-block');
-                        $(".movie_article_wrapper").addClass('background-none');
-                    }, 7000);
+        $timeout.cancel(vm.ShowTrailerRent);
+        vm.ShowTrailerRent = null;
+        vm.ShowTrailerRent = $timeout(function () {
+            if (services.idTrailer) {
+                if (item.trailer !== '0') {
+                    services.getTrailer(item.trailer).then(function (response) {
+                        console.log(response);
+                        services.mediaTrailer = response.data.streams.urlStreaming;
+                        if (response.responseCode === '200') {
+                            $rootScope.mediaTrailer = response.data.streams.urlStreaming;
+                            var raw = '';
+                            raw += '<div id="av-container" class="trainer display-trainer">'
+                                + '<video id=av-player class="video-js vjs-default-skin"></video>'
+                                + '</div>';
+                            angular.element(document.getElementById('showTrailer')).append($compile(raw)($scope));
+                            showTrailer();
+                            // console.log('play-trailer')
+                            $("#av-container").addClass('display-block');
+                            $(".movie_article_wrapper").addClass('background-none');
+                        }
+                    });
                 }
-            });
-        }
+            }
+        }, 6500);
 
         vm.currentItem = item;
 
@@ -189,7 +189,7 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
     vm.selectMovie = function (obj) {
         var id = "";
         var idMovie;
-        $timeout.cancel(vm.ShowTrailer);
+        $timeout.cancel(vm.ShowTrailerRent);
         $('#av-container-rent').remove();
         if (obj.type == 'VOD' && obj.publishedTime) {
             id = obj.parentId;

@@ -485,7 +485,7 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
                 :
                     var logIn = services.logInRefreshHomeState;
                     var logOut = services.logOutRefreshHomeState;
-                    if (logOut || logIn) {
+                    if (logOut === true || logIn === true) {
                         $state.go('home', {}, {reload: true});
                         if (logOut)
                             services.logOutRefreshHomeState = false;
@@ -548,40 +548,10 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
                         return;
                     }
                     if ($rootScope.$previousState.name === 'avplayer') {
-                        // TizenAVPlayer.executeAction({
-                        //     action: "stop"
-                        // });
                         WebOsPlayer.pause();
-                        $state.go('home', {}, {reload: true});
-                        // console.log($rootScope.$previousState.name);
-                        // console.log('false-xxxx');
-                        // var newArr = array.slice(0, -3);
-                        // var depthCurrent = newArr[newArr.length - 1];
-                        // $rootScope.changeDepth(depthCurrent);
-                        // window.history.go(-3);
-                        // console.log(newArr);
-                        // console.log(depthCurrent);
                         $state.go('home', {}, {reload: true});
                         return;
                     }
-                    // if ($rootScope.$previousState.name === 'detail') {
-                    //     console.log($rootScope.$previousState.name);
-                    //     console.log('false-xxxx');
-                    //     var newArr = array.slice(0,-3);
-                    //     var depthCurrent = newArr[newArr.length - 3];
-                    //     $rootScope.changeDepth(depthCurrent);
-                    //     window.history.go(-3);
-                    //     console.log(newArr);
-                    //     console.log(depthCurrent);
-                    //     return;
-                    // }
-                    // var newArr = array.slice(0, -1);
-                    // var depthCurrent = newArr[newArr.length - 1];
-                    // $rootScope.listState = newArr;
-                    // services.returnBack = true;
-                    // $rootScope.changeDepth(depthCurrent);
-                    // $('.trial').removeClass('trial-step');
-                    // window.history.back();
 
                     break;
                 case
@@ -671,9 +641,10 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
         function updateStatusOnline() {
             $("#mess-offline span").hide();
         }
+
         focusController.addBeforeKeydownHandler(function (context) {
             console.log(context.event.keyCode, $state.current.name);
-            if (context.event.keyCode === utilities.keyCode.EXIT || (context.event.keyCode == '10009' && $state.current.name == 'login')) {
+            if (context.event.keyCode === utilities.keyCode.EXIT || (context.event.keyCode == '461' && $state.current.name == 'login')) {
                 webOS.platformBack();
                 return;
             }
@@ -681,7 +652,7 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
 
         var init = function () {
             var inEvent = function (e) {
-                if (e.keyCode === 461) {
+                if (e.keyCode === 461 || e.keyCode === 27 || e.keyCode === 192) {
                     try {
                         $rootScope.changeView();
                     }

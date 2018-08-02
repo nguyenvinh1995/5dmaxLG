@@ -12,8 +12,9 @@
                     <span class="episode"
                           ng-if="vm.currentItem.type=== 'FILM' ">{{vm.currentItem.content_filter}}</span>
                     <span class="time"
-                          ng-if="vm.currentItem.attributes=== '1'">{{vm.currentItem.duration}} phút</span>
-                    <span class="time" ng-if="vm.currentItem.type=== 'VOD' ">{{vm.currentItem.duration}}</span>
+                          ng-if="vm.detailFilms.attributes === '1' && vm.detailFilms.duration !== null && vm.detailFilms.duration !== ''">{{vm.currentItem.duration}} phút</span>
+                    <span class="time" ng-if="vm.currentItem.type=== 'VOD'">{{vm.currentItem.duration}} phút</span>
+                    <!--<span class="ep" ng-if="vm.detailFilms.attributes === '0' && vm.detailFilms.duration !== null && vm.detailFilms.duration !== ''">{{vm.ep}} tập</span>-->
                 </div>
                 <p class="content">
                     {{vm.currentItem.description}} </p>

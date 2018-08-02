@@ -362,14 +362,14 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
         if (depth == depthDialog) {
             var focusCancel = setInterval(function () {
                 if ($state.current.name == 'movieDetail') {
-                    focusController.focus($("#buy_detail"));
-                    if ($("#buy_detail").hasClass('focused')) {
+                    focusController.focus($("#cancel_buy"));
+                    if ($("#cancel_buy").hasClass('focused')) {
                         $rootScope.currentPopup = "popup_movie_detail";
                         clearInterval(focusCancel);
                     }
                 } else {
-                    focusController.focus($(".yes_buy_list"));
-                    if ($(".yes_buy_list").hasClass('focused')) {
+                    focusController.focus($(".cancel_buy_list"));
+                    if ($(".cancel_buy_list").hasClass('focused')) {
                         $rootScope.currentPopup = "popup_movie_list";
                         clearInterval(focusCancel);
                     }

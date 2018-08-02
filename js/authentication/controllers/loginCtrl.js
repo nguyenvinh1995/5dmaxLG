@@ -299,6 +299,7 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
                 services.auth = data;
                 services.isLogin = true;
                 services.logInRefreshHomeState = true;
+                clearTimeout($rootScope.showBanner);
                 if ($rootScope.checkLogin === true) {
                     if (response.data.accessToken) {
                         var anthorize = {
@@ -319,6 +320,7 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
                 };
                 if ($rootScope.loginFromSetup) {
                     $rootScope.loginFromSetup = false;
+                    clearTimeout($rootScope.showBanner);
                     $state.go('setup', {}, {reload: true});
                     return;
                 }

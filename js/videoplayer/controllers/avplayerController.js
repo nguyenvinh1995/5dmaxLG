@@ -673,6 +673,29 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                         })
                     }
                     break;
+                case 27: // Return
+                    if (showMediaControllerTimeout)
+                        clearTimeout(showMediaControllerTimeout);
+                    if ($rootScope.$previousState.name == 'avplayer' || $state.current.name == 'avplay') {
+                        saveTime();
+                        console.log('stop');
+                        // TizenAVPlayer.executeAction({
+                        //     action: "stop"
+                        // });
+                        WebOsPlayer.player.dispose();
+                    }
+                    // setTimeout(function () {
+                    if ($state.current.name == 'avplayer') {
+                        WebOsPlayer.player.dispose();
+                        var data = {
+                            id: movieId,
+                            time: currentPlayingTime / 1000,
+                            type: "FILM"
+                        };
+                        services.saveTime(data).then(function (response) {
+                        })
+                    }
+                    break;
                 case 13 :
                     // $scope.playPauseHandle(true);
                     $scope.playPauseHandle(true);
@@ -825,8 +848,8 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
         if (depth == depthDialog) {
             var focusCancel = setInterval(function () {
                 if ($state.current.name == 'movieDetail') {
-                    focusController.focus($("#detail_player"));
-                    if ($("#detail_player").hasClass('focused')) {
+                    focusController.focus($("#cancel_buy_3"));
+                    if ($("#cancel_buy_3").hasClass('focused')) {
                         $rootScope.currentPopup = "popup_movie_detail_1";
                         clearInterval(focusCancel);
                     }

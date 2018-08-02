@@ -20,6 +20,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
     var owl = $('.home_slider');
     services.checkBanner = false;
     services.mediaUrlBanner = '';
+    services.check = false;
     services.getHomeFilm().then(function (response) {
         vm.homeFilms = response.data;
         vm.banner = vm.homeFilms[0].content;
@@ -54,7 +55,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
 
     var i = 0;
 
-    setInterval(function () {
+    $rootScope.showBanner = setInterval(function () {
         $(".banner_" + [i]).removeClass('active');
         i++;
         if (i > (vm.banner.length - 1)) {
@@ -64,7 +65,8 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         else {
             $(".banner_" + [i]).addClass('active');
         }
-    }, 30000);
+    }, 5000);
+    services.clearBanner = i ;
 
 ///// Watch-Button
 
@@ -119,12 +121,15 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
 
                                 break;
                             case "401" :
+                                clearTimeout(vm.showBanner);
+                                $(".banner_" + [i]).removeClass('active');
                                 $state.go('login_form', {}, {reload: true});
                                 break;
                             case 200 :
                                 console.log('tesst');
                                 services.checkBanner = true;
                                 services.mediaUrlBanner = response.data.streams.urlStreaming;
+                                services.attribute = Number(response.data.detail.attributes);
                                 TizenAVPlayer.name = response.data.detail.name;
                                 TizenAVPlayer.description = response.data.detail.description;
                                 TizenAVPlayer.alias = response.data.parts.alias;
@@ -173,8 +178,6 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         $state.go('movieDetail', {id: vm.banner[i].itemId}, {reload: true});
     };
     vm.focusDetail = function () {
-        // owl.trigger("play.owl.autoplay", [5000]);
-        // owl.trigger('owl.play',5000);
         services.backgroundMenu = currentBannerItem.imageForTVLarge;
     };
 
@@ -182,6 +185,9 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
 
     vm.blurItem = function ($event, $originalEvent, category, item, $index) {
         clearTimeout(vm.ShowGif);
+        // clearTimeout(vm.show);
+        // vm.ShowGif = null;
+        // vm.show = null;
         $(".movie_article_wrapper").removeClass('background-none');
         // $("#av-container").addClass('display-trainer');
         // $("#av-player").addClass('display-trainer');
@@ -190,7 +196,6 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         $('#av-container').remove();
     };
     vm.focusItem = function ($event, $originalEvent, startIndex, item, $index, category) {
-        // owl.trigger('stop.owl.autoplay');
         if (vm.isFocuseMovie == false) {
             vm.isFocuseMovie = true;
             $("#home_page .menu_page").addClass('display-none');
@@ -200,9 +205,6 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
             $(".btn-up-to-top").addClass('display-none').removeClass('display-block');
         }
 
-        // console.log(services.imgCurrentItem);
-
-        // services.imgCurrentItem = item.imageForTVLarge;
         //process
         vm.processItem = Math.floor(item.durationPercent);
         if (vm.processItem != '0') {
@@ -228,13 +230,15 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         }
         ///Trailer-Focus//////
         services.idTrailer = item.trailer;
-        if (services.idTrailer) {
-            if (item.trailer !== '0') {
-                services.getTrailer(item.trailer).then(function (response) {
-                    console.log(response);
-                    services.mediaTrailer = response.data.streams.urlStreaming;
-                    if (response.responseCode === '200') {
-                        vm.ShowGif = $timeout(function () {
+        $timeout.cancel(vm.ShowGif);
+        vm.ShowGif = null;
+        vm.ShowGif = $timeout(function () {
+            if (services.idTrailer) {
+                if (item.trailer !== '0') {
+                    services.getTrailer(item.trailer).then(function (response) {
+                        console.log(response);
+                        services.mediaTrailer = response.data.streams.urlStreaming;
+                        if (response.responseCode === '200') {
                             $rootScope.mediaTrailer = response.data.streams.urlStreaming;
                             var raw = '';
                             raw += '<div id="av-container" class="trainer display-trainer">'
@@ -242,19 +246,15 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
                                 + '</div>';
                             angular.element(document.getElementById('showTrailer')).append($compile(raw)($scope));
                             showTrailer();
-                            console.log('play-trailer')
-                        }, 6500);
-                        $timeout.cancel(vm.show);
-                        vm.show = null;
-                        vm.show = $timeout(function () {
-                            // $("#av-player").removeClass('display-trainer');
+                            // console.log('play-trailer')
                             $("#av-container").addClass('display-block');
                             $(".movie_article_wrapper").addClass('background-none');
-                        }, 7000);
-                    }
-                });
+                        }
+                    });
+                }
             }
-        }
+        }, 6500);
+
         vm.currentItem = item;
 
         if (item.imageForTVLarge) {
@@ -618,8 +618,8 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         if (depth == depthDialog) {
             var focusCancel = setInterval(function () {
                 if ($state.current.name == 'home') {
-                    focusController.focus($(".yes_buy_detail"));
-                    if ($(".yes_buy_detail").hasClass('focused')) {
+                    focusController.focus($(".cancel_buy_detail"));
+                    if ($(".cancel_buy_detail").hasClass('focused')) {
                         $rootScope.currentPopup = "popup_movie_detail_2";
                         clearInterval(focusCancel);
                     }

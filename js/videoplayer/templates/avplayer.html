@@ -1,4 +1,3 @@
-
 <div class="avplayer_page full_page display-block" id="playerNone">
     <caph-media ng-cloak id="player" class="player" ng-class="" ischannel="isChannel" subtitle="setting.subTitle">
         <video id=av-player class="video-js vjs-default-skin">
@@ -38,7 +37,7 @@
                 <header><img ng-src="{{vm.logoItem}}" width="" height="" alt="">
                 </header>
                 <h1>{{vm.name}}</h1>
-                <button id="detail-sugget"  on-selected="vm.watchMovie()"
+                <button id="detail-sugget" on-selected="vm.watchMovie()"
                         focusable="{depth : $root.depth.player.val }">
                     Xem
                 </button>
@@ -58,10 +57,11 @@
             <p class="messenger"></p>
         </div>
         <div class="action">
-            <button id="cancel_buy" class="cancel_buy_detail" focusable="{depth : depth.dialog.val}"
+            <button id="cancel_buy_3" class="cancel_buy_detail"
+                    focusable="{depth : depth.dialog.val, initialFocus : true}"
                     on-selected="vm.cancel()">HỦY
             </button>
-            <button class="yes_buy_detail" id="detail_player" focusable="{depth : depth.dialog.val , initialFocus : true}"
+            <button class="yes_buy_detail" id="detail_player" focusable="{depth : depth.dialog.val }"
                     on-selected="vm.yes()">ĐỒNG Ý
             </button>
         </div>
