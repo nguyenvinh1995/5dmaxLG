@@ -311,7 +311,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                     },
                     header: {
                         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-                        'Authorization': "Bearer " + services.deviceId
+                        'Authorization': "Bearer " + 'xxx'
                     }
                 };
                 services.authenticate(request).then(function (res) {
@@ -375,55 +375,19 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
         currentTime = currentTime < 0 ? 0 : currentTime > WebOsPlayer.duration ? WebOsPlayer.duration : currentTime;
 
         var timeLeft = WebOsPlayer.duration - currentTime;
-        // progressBarMarkerElement.css('width', progressBarBkgdElement.width() + '%');
-        // var progressbar = Math.min(currentTime, WebOsPlayer.duration) / WebOsPlayer.duration * progressBarBkgdElement.width();
         var progress = Math.min(currentTime, WebOsPlayer.duration) / WebOsPlayer.duration * progressBarBkgdElement.width();
-        // console.log(currentTime, WebOsPlayer.duration);
-        // console.log(WebOsPlayer.formatTime(currentTime));
-        // console.log(WebOsPlayer.formatTime(timeLeft));
-
-        // console.log(progress);
-
-        // console.log(WebOsPlayer.duration * progressBarBkgdElement.width());
-
+        console.log(progress,currentTime,WebOsPlayer.duration,currentPlayingTime);
 
         if (Math.min(currentTime, WebOsPlayer.duration) === WebOsPlayer.duration) {
-            // progressBarMarkerElement.css('width', progressBarBkgdElement.width() + '%');
-            // progressBarMarkerElement.css('width', progress + '%');
-            // progressDot.css('margin-left', (progress) + '%');
+            progressBarMarkerElement.css('width', progressBarBkgdElement.width() + '%');
+            progressDot.css('margin-left', (progress) + '%');
             return;
         }
-
         playPosElement.html(WebOsPlayer.formatTime(currentTime));
         endPosElement.html(WebOsPlayer.formatTime(timeLeft));
         progressBarMarkerElement.css('width', progress + '%');
         progressDot.css('margin-left', (progress) + '%');
 
-        // if (timeLeft == 0 && WebOsPlayer.duration > 0) {
-        //     if (TizenAVPlayer.currentTrack < TizenAVPlayer.mediaList.length - 1) {
-        //         TizenAVPlayer.nextVideo();
-        //         // WebOsPlayer.duration = 0;
-        //         // timeLeft = -1;
-        //         isNext = true;
-        //     } else {
-        //         WebOsPlayer.pause();
-        //         $rootScope.changeView();
-        //         // WebOsPlayer.duration = 0;
-        //         // timeLeft = -1;
-        //     }
-        // }
-
-        // if (!TizenAVPlayer.isLive) {
-        //     var progress = Math.min(currentTime, WebOsPlayer.duration) / WebOsPlayer.duration * progressBarBkgdElement.width();
-        //
-        //     if (Math.min(currentTime, WebOsPlayer.duration) === WebOsPlayer.duration) {
-        //         progressBarMarkerElement.css('width', progressBarBkgdElement.width() + '%');
-        //         return;
-        //     }
-        //
-        //     progressBarMarkerElement.css('width', progress + '%');
-        //     progressDot.css('margin-left', (progress) + '%');
-        // }
     }
 
     function initLayout() {
@@ -483,7 +447,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
             keydown = false;
             // utilities.showLoading();
             var checkPlay = setInterval(function () {
-                var currentStatus = TizenAVPlayer.checkIsPlaying();
+                var currentStatus = WebOsPlayer.player.paused();
                 if ($scope.isPlaying != currentStatus) {
                     $scope.isPlaying = currentStatus;
                     $scope.$digest();
@@ -495,7 +459,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
 
         function stepFfAndRw(diffTime) {
             try {
-                updateCurrentProgress($("video")[0].currentTime * 1000 + diffTime, $rootScope);
+                updateCurrentProgress($("video")[0].currentTime * 1 + diffTime, $rootScope);
             } catch (error) {
                 updateCurrentProgress(currentPlayingTime + diffTime, $rootScope);
             }
@@ -544,7 +508,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
 
         function checkPlay() {
             setTimeout(function () {
-                $scope.isPlaying = TizenAVPlayer.checkIsPlaying();
+                $scope.isPlaying = WebOsPlayer.player.paused();
             }, 1000);
         }
 
@@ -608,7 +572,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                     if ($('.btn').hasClass('icon_play')) {
                         $scope.playPauseHandle(true);
                         showMediaController($scope, focusController);
-                        $('#controls_bar').removeClass('opacity-1').removeClass('fade-in').add('fade-out');
+                        $('#controls_bar').removeClass('fade-in').add('fade-out');
                         return;
                     }
                     break;
@@ -616,7 +580,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                     if ($('.btn').hasClass('icon_pause')) {
                         $scope.playPauseHandle(true);
                         showMediaController($scope, focusController);
-                        $('#controls_bar').addClass('opacity-1').addClass('fade-in').remove('fade-out');
+                        $('#controls_bar').addClass('fade-in').remove('fade-out');
                         return;
                     }
                     break;
@@ -705,11 +669,11 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                     showMediaController($scope, focusController);
 
                     if ($('.btn').hasClass('icon_play')) {
-                        $('#controls_bar').removeClass('opacity-1').removeClass('fade-in').add('fade-out');
+                        $('#controls_bar').removeClass('fade-in').add('fade-out');
                     }
 
                     if ($('.btn').hasClass('icon_pause')) {
-                        $('#controls_bar').addClass('opacity-1').addClass('fade-in').remove('fade-out');
+                        $('#controls_bar').addClass('fade-in').remove('fade-out');
                     }
 
                     break;
@@ -1018,7 +982,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
         player.on('timeupdate', function () {
             $rootScope.isPlaying = true;
             currentPlayingTime = player.currentTime();
-            // console.log('xxxxxx', currentPlayingTime);
+            console.log('xxxxxx', currentPlayingTime);
             updateCurrentProgress(currentPlayingTime);
             try {
                 if ($(".mini-player")) {
@@ -1030,6 +994,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                 console.log(ex);
             }
         });
+
         player.on('ended', function () {
             console.log("success", services.attribute, services.check);
             if (services.attribute === 0) {

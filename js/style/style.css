@@ -1005,7 +1005,6 @@ html, body {
       display: inline-block;
       width: 11.25rem;
       height: 2.125rem;
-      line-height: 2.125rem;
       border-radius: 0.1875rem;
       background-color: rgba(225, 225, 225, 0.5);
       color: #fff;
@@ -1017,8 +1016,7 @@ html, body {
       .login_form .form_btn button.focused {
         background-color: #FF0000;
         margin-top: 0;
-        color: #fff;
-        height: 2.59375rem !important; }
+        color: #fff; }
   .login_form .submit_btn {
     margin-top: 2.34375rem;
     margin-bottom: -0.75rem; }

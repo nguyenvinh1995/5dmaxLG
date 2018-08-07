@@ -498,7 +498,8 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
     }
 
     vm.approveExit = function () {
-        webOS.platformBack();
+        // webOS.platformBack();
+        window.close();
     };
 
     vm.cancel = function () {

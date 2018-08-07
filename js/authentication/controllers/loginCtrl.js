@@ -9,10 +9,10 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
     var vm = this;
     vm.showCapcha = false;
     vm.loginForm = {
-        // username: '',
-        // password: '',
-        username: '01692040587',
-        password: '123456a@@',
+        username: '',
+        password: '',
+        // username: '01692040587',
+        // password: '123456a@@',
         captcha: ''
     };
     var playlistId = $state.params.playlistId;
@@ -390,10 +390,10 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
                 }
             };
             xhr.send();
-            $timeout(function () {
-                focusController.focus($(".capt_input"));
-                $("#capt input").focus();
-            }, 500);
+            // $timeout(function () {
+            //     focusController.focus($(".capt_input"));
+            //     $("#capt input").focus();
+            // }, 500);
         }
     };
 
