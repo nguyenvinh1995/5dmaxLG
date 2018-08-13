@@ -17,7 +17,7 @@
 
             <div class="end-position"></div>
         </div>
-        <article class="movie_article" ng-class="{'fade-out': isPlaying}">
+        <article class="movie_article" ng-class="{'fade-out': isPlaying}" ng-if="vm.checkPlayTrailer === false">
             <h3>{{::detailMovie.name}}</h3>
             <div class="episode_number">{{detailMovie.alias}}</div>
             <p class="content">{{detailMovie.description}}</p>

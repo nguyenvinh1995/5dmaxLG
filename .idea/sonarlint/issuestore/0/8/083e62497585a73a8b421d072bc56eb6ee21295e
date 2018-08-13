@@ -1,2 +1,8 @@
 
-fjavascript:S2814"ERename "val" as this name is already used in declaration at line 234.(§üâÜ8´ŒíÈ,
+rjavascript:UnusedVariable"CRemove the declaration of the unused 'currentIndexBanner' variable.(íŞ˜ÿÿÿÿÿ8ˆë‹šÑ,
+]javascript:S1854"<Remove this useless assignment to local variable "tempWidth"(°ç«ˆ8ˆë‹šÑ,
+ijavascript:S1854"CRemove this useless assignment to local variable "blockToTransform"(ªë¨ÿÿÿÿÿ8ˆë‹šÑ,
+fjavascript:S2814"ERename "val" as this name is already used in declaration at line 279.(§üâÜ8ñ¨ßÌÍ,
+]javascript:S1854"<Remove this useless assignment to local variable "tempWidth"(°ç«ˆ8ˆë‹šÑ,
+|javascript:S3923"[Remove this conditional structure or edit its code blocks so that they're not all the same.(Ì¼“´8ˆë‹šÑ,
+ijavascript:S1854"CRemove this useless assignment to local variable "blockToTransform"(ªë¨ÿÿÿÿÿ8ˆë‹šÑ,

@@ -298,6 +298,7 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
     services.getTrailer(services.idTrailer).then(function (response) {
         console.log(response);
         services.playTrailer = response.data.streams.urlStreaming;
+        vm.videoTrailer = services.playTrailer;
     });
 
     vm.trailer = function (check) {

@@ -52,6 +52,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
 
     var vm = this;
     var isForward = true;
+    vm.checkPlayTrailer = services.check;
 
     setTimeout(function () {
         startingPlay($scope, services, $state, FocusUtil, focusController, $timeout, $stateParams, utilities, $rootScope, settings, $http);
@@ -489,7 +490,6 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
             if (doc.getElementById("controls_bar").classList.contains("focused-on-list-video"))
                 doc.getElementById("controls_bar").classList.remove("focused-on-list-video");
         };
-
 
         $rootScope.stop = function () {
             TizenAVPlayer.close();
