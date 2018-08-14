@@ -380,7 +380,7 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
         function getCaptcha() {
             isChangeCaptcha = true;
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'http://m.5dmax.vn/apiv2.php/v1/auth/get-captcha', true);
+            xhr.open('GET', 'http://5dmax.vn/apiv3.php/v1/auth/get-captcha', true);
             xhr.setRequestHeader("Authorization", "Bearer " + 'xxx');
             xhr.responseType = 'blob';
             xhr.onload = function (e) {

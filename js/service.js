@@ -44,7 +44,7 @@ function services($q, $http, settings, utilities) {
     }
 
     function getHomeFilm() {
-        var url = settings.api.baseUrl + "film/get-home-film";
+        var url = settings.api.baseUrl + "film/get-home-film-v2";
         return utilities.resolve(url, 'GET', angular.noop, angular.noop);
     }
 

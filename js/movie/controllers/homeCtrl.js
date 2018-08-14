@@ -180,13 +180,8 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
 ///// ITEM
 
     vm.blurItem = function ($event, $originalEvent, category, item, $index) {
-        clearTimeout(vm.ShowGif);
-        // clearTimeout(vm.show);
-        // vm.ShowGif = null;
-        // vm.show = null;
+        $timeout.cancel(vm.ShowGif);
         $(".movie_article_wrapper").removeClass('background-none');
-        // $("#av-container").addClass('display-trainer');
-        // $("#av-player").addClass('display-trainer');
         WebOsPlayer.player.dispose();
         console.log('stop-trailer');
         $('#av-container').remove();
@@ -199,30 +194,6 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
             $("#group_btn").addClass('hidden_opacity');
             $('#list_container').removeClass('lastCategory');
             $(".btn-up-to-top").addClass('display-none').removeClass('display-block');
-        }
-
-        //process
-        vm.processItem = Math.floor(item.durationPercent);
-        if (vm.processItem != '0') {
-            if (vm.processItem < '100') {
-                $('.progress-bar-marker').css('width', vm.processItem + '%');
-            } else {
-                $('.progress-bar-marker').css('width', 100 + '%');
-            }
-        } else {
-            $('.progress-bar-marker').css('width', 1 + 'px');
-        }
-        console.log(vm.processItem + 'check');
-
-        vm.checkFilm = item.duration.charAt(1);
-        if (vm.checkFilm === 'h') {
-            var timeHour = Number(item.duration.slice(0, 1));
-            var timeMinute = Number(item.duration.slice(3, 5));
-            vm.time = Math.floor(((timeHour * 60) + (timeMinute)) * ((100 - vm.processItem) / 100));
-        } else {
-            var timeMinutes = Number(item.duration.slice(0, 2));
-            var timeSecond = Number(item.duration.slice(4, 6));
-            vm.time = Math.floor((((timeMinutes * 60) + (timeSecond)) * ((100 - vm.processItem) / 100)) / 60);
         }
         ///Trailer-Focus//////
         services.idTrailer = item.trailer;
@@ -249,7 +220,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
                     });
                 }
             }
-        }, 6500);
+        }, 9500);
 
         vm.currentItem = item;
 
@@ -317,6 +288,30 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
             $wrapper.css({
                 transform: 'translateX(0px)'
             });
+        }
+
+        //process
+        vm.processItem = Math.floor(item.durationPercent);
+        if (vm.processItem != '0') {
+            if (vm.processItem < '100') {
+                $('.progress-bar-marker').css('width', vm.processItem + '%');
+            } else {
+                $('.progress-bar-marker').css('width', 100 + '%');
+            }
+        } else {
+            $('.progress-bar-marker').css('width', 1 + 'px');
+        }
+        // console.log(vm.processItem + 'check');
+
+        vm.checkFilm = item.duration.charAt(1);
+        if (vm.checkFilm === 'h') {
+            var timeHour = Number(item.duration.slice(0, 1));
+            var timeMinute = Number(item.duration.slice(3, 5));
+            vm.time = Math.floor(((timeHour * 60) + (timeMinute)) * ((100 - vm.processItem) / 100));
+        } else {
+            var timeMinutes = Number(item.duration.slice(0, 2));
+            var timeSecond = Number(item.duration.slice(4, 6));
+            vm.time = Math.floor((((timeMinutes * 60) + (timeSecond)) * ((100 - vm.processItem) / 100)) / 60);
         }
 
         // if(!item.coverImageH){
@@ -535,7 +530,6 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         clearTimeout(vm.ShowGif);
         $timeout.cancel(vm.ShowTrailer);
         // $('#av-container').remove();
-
     };
 
     function isObject(item) {
