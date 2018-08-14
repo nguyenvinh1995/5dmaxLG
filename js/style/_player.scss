@@ -1,0 +1,248 @@
+.avplayer_page {
+  overflow: hidden;
+
+  .movie_article {
+    position: absolute;
+    top: 320*$rem;
+    left: 140*$rem;
+    z-index: 999;
+    opacity: 1;
+    margin: 0;
+    padding: 0;
+    @extend %transition;
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: -320*$rem;
+      left: -200*$rem;
+      width: 1726*$rem;
+      height: 898*$rem;
+      background-image: url('../images/spotlight-gradient@3x.png');
+      background-size: auto 100%;
+      background-repeat: no-repeat;
+      opacity: 1;
+      z-index: -1;
+      @extend %transition;
+    }
+    &.fade-out {
+      opacity: 0;
+      &:before {
+        opacity: 0;
+      }
+    }
+    * {
+      color: #fff;
+    }
+    .episode_number {
+      font-size: 30*$rem;
+      line-height: 36*$rem;
+      letter-spacing: 0.2*$rem;
+    }
+    .content {
+      margin-top: 20*$rem;
+    }
+  }
+}
+
+.controls-bar {
+  position: absolute;
+  bottom: 140*$rem;
+  left: 140*$rem;
+  height: 52*$rem;
+  z-index: 9999;
+  white-space: nowrap;
+  opacity: 1;
+  @extend %clearfix;
+  @extend %transition;
+  &:before {
+    content: "";
+    width: 1920*$rem;
+    height: 300*$rem;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.79) 59%, #000);
+    position: absolute;
+    left: -140*$rem;
+    bottom: 0;
+    opacity: 1;
+    z-index: -1;
+    @extend %transition;
+  }
+  &:after {
+    content: "";
+    width: 1920*$rem;
+    height: 149*$rem;
+    background-color: #000;
+    position: absolute;
+    left: -140*$rem;
+    bottom: -140*$rem;
+    opacity: 1;
+    z-index: -1;
+    @extend %transition;
+  }
+
+  &.fade-out {
+    opacity: 0;
+    &:before, &:after {
+      opacity: 0;
+    }
+  }
+  > * {
+    display: inline-block;
+    float: left;
+    position: relative;
+  }
+}
+
+.video-progress-bar-wrapper {
+  width: 1288*$rem;
+  height: 15*$rem;
+  margin: 0 15*$rem;
+  top: 0.15rem;
+}
+
+.video-progress-bar {
+  width: 320*$rem;
+  height: 12*$rem;
+  //margin-left: 103%;
+  margin-top: -15%;
+  position: absolute;
+  float: left;
+}
+
+.progress-bar-bkgd {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  background-color: #333;
+  &.focused {
+    outline: solid 2*$rem rgba(159, 165, 172, 0.5);
+  }
+}
+
+.progress-bar-marker {
+  width: 0;
+  background-color: #dd0000;
+  height: 100%;
+  color: rgb(252, 252, 252);
+  font-weight: normal;
+}
+
+#play_btn .btn {
+  width: 52*$rem;
+  height: 52*$rem;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  &.icon_pause {
+    background-image: url('../images/ic-player-pause.png');
+  }
+  &.icon_play {
+    background-image: url('../images/ic-player-play.png');
+  }
+}
+
+.play-position, .end-position {
+  font-size: 30*$rem;
+  font-weight: 500;
+  min-width: 125*$rem;
+  height: 52*$rem;
+  line-height: 52*$rem;
+}
+
+.play-position {
+  text-align: right;
+}
+
+#av-player {
+  width: 1920*$rem;
+  height: 1080*$rem;
+}
+
+.relate_film_background {
+  width: 1920*$rem;
+  height: 1080*$rem;
+  .background {
+    width: 1920*$rem;
+    height: 1080*$rem;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+  }
+  .movie-current {
+    width: 341*$rem;
+    height: 192*$rem;
+    margin-top: 96*$rem;
+    margin-left: 134*$rem;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    box-shadow: 0 4*$rem 20*$rem 0 rgba(0, 0, 0, 0.5);
+  }
+  .shadow{
+    position: relative;
+    margin-left: 150*$rem;
+    box-shadow: 0 4*$rem 20*$rem 0 rgba(0, 0, 0, 0.5);
+    width: 50*$rem;
+    height: 50*$rem;
+    border-radius: 50%;
+    margin-top: 20*$rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    .back {
+      position: absolute;
+      color: white;
+      text-shadow: 1*$rem 1*$rem 2*$rem black, 0 0 25*$rem black, 0 0 5*$rem black;
+      background-image: url(../images/undo@3x.png);
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      width: 31*$rem;
+      height: 27*$rem;
+      margin-top: 20%;
+      margin-left: 15%;
+    }
+  }
+  .text {
+    text-shadow: 2px 2px #000;
+    margin-left: 230*$rem;
+    color: #ffffff;
+    font-size: 24*$rem;
+    margin-top: -1.9%;
+    position: absolute;
+  }
+  h1{
+    font-size: 38*$rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 600*$rem;
+    margin-bottom: -37*$rem;
+  }
+  .movie_suggetion {
+    margin-right: 800*$rem;
+    float: right;
+    position: relative;
+    margin-top: 10%;
+    .btn-right {
+      margin-top: -50*$rem;
+      position: absolute;
+      margin-left: 7.375rem;
+    }
+    button {
+      font-size: 24*$rem;
+      width: 190*$rem;
+      height: 50*$rem;
+      border-radius: 2*$rem;
+      border: solid 2*$rem #ffffff;
+      color: #fff;
+      background-color: transparent;
+      margin-top: 50*$rem;
+      &.focused {
+        color: #333;
+        background-color: #fff;
+      }
+    }
+
+  }
+
+}
+.opacity-1{
+  opacity: 1 !important;
+}

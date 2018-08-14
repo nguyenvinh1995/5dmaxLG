@@ -1,0 +1,15 @@
+
+qjavascript:S930"X"prepareRegularAnimation" declared at line 1768 expects 1 argument, but 2 were provided.(ö°‹®
+qjavascript:S930"X"prepareRegularAnimation" declared at line 1768 expects 1 argument, but 2 were provided.(Ş¢ÊÊ
+^javascript:S930"F"close" declared at line 1868 expects 0 arguments, but 1 was provided.(ÓÒN
+fjavascript:UnusedVariable">Remove the declaration of the unused 'isPromiseLike' variable.(õÜÜŸşÿÿÿÿ
+mjavascript:UnusedVariable"ERemove the declaration of the unused 'cancelLastRAFRequest' variable.(¾ŸÅúÿÿÿÿ
+njavascript:UnusedVariable"FRemove the declaration of the unused 'applyAnimationClasses' variable.(½­½Éùÿÿÿÿ
+\javascript:UnusedVariable"9Remove the declaration of the unused 'BASE_TEN' variable.(Ïğ–Ç
+ejavascript:UnusedVariable"=Remove the declaration of the unused 'COMMENT_NODE' variable.(ã…°¦ûÿÿÿÿ
+_javascript:S1854"@Remove this useless assignment to local variable "isPromiseLike"(õÜÜŸşÿÿÿÿ
+Ujavascript:S1854";Remove this useless assignment to local variable "BASE_TEN"(Ïğ–Ç
+Wjavascript:S1854"=Remove this useless assignment to local variable "CSS_PREFIX"(À§¸‘
+Wjavascript:S1854"=Remove this useless assignment to local variable "CSS_PREFIX"(À§¸‘
+^javascript:S1854"?Remove this useless assignment to local variable "COMMENT_NODE"(ã…°¦ûÿÿÿÿ
+gjavascript:S1854"HRemove this useless assignment to local variable "applyAnimationClasses"(½­½Éùÿÿÿÿ

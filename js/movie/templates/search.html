@@ -1,0 +1,109 @@
+<div class="search-page">
+    <!--<h1 class="col-lg-12">Tìm Kiếm</h1>-->
+    <div class="keyboard_content col-lg-4">
+        <div class="col-lg-offset-2 col-lg-12">
+            <button class="btn-back" focusable="{depth : $root.depth.search.val}" on-selected="vm.back()">Quay lại
+            </button>
+        </div>
+        <div class="col-lg-12 key-image">
+            <div class="btn-space col-lg-6"
+                 focusable="{depth : $root.depth.search.val, name: 'key-space'}"
+                 data-focusable-next-focus-right="key-del" on-selected="vm.enterText(' ')">
+                <div class="search-space"></div>
+            </div>
+            <div class="btn-del col-lg-6"
+                 focusable="{depth : $root.depth.search.val, name: 'key-del'}"
+                 data-focusable-next-focus-left="key-space" on-selected="vm.onKeyboardDel()">
+                <div class="search-del"></div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <ul>
+                <li class="num" id="initFocusKeySearch"
+                    focusable="{depth : $root.depth.search.val , name:'initFocus' , initialFocus : true }"
+                    on-selected="vm.enterText('a')">A
+                </li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('b')">B</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('c')">C</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('d')">D</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('e')">E</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('f')">F</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('g')">G</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('h')">H</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('i')">I</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('j')">J</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('k')">K</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('l')">L</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('m')">M</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('n')">N</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('o')">O</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('p')">P</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('q')">Q</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('r')">R</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('s')">S</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('t')">T</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('u')">U</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('v')">V</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('w')">W</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('x')">X</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('y')">Y</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('z')">Z</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('0')">0</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('1')">1</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('2')">2</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('3')">3</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('4')">4</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('5')">5</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('6')">6</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('7')">7</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('8')">8</li>
+                <li class="num" focusable="{depth : $root.depth.search.val }" on-selected="vm.enterText('9')">9</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-8" style="float: right">
+        <div class="search-input">
+            <div class="input">
+                <input class="input" input-class="search_input" id="search_txt" type="text" ng-model="vm.searchText">
+            </div>
+        </div>
+        <span id="text-search" class="text display-block">{{vm.message}}</span>
+        <span id="text-search-first" class="text display-block">Tìm kiếm phim và nội dung liên quan</span>
+        <div id="list_search" class="search-movie col-lg-12" ng-show="vm.showListMovie" direction="vertical">
+            <div class="item-movie col-lg-4" focusable="{depth : $root.depth.search.val, nextFocus: {down : $last ? 'null' :''}}"
+                 ng-repeat="item in vm.listSearchMovie"
+                 on-focused="vm.focusItem($event, $originalEvent, 1, $index)" on-selected="vm.selectMovie(item)"
+                 ng-class="{ 'itemFirstSearch' : $first }" id="listItem_{{$index}}">
+                <div class="item" style="background-image: url({{ item.coverImageH }})"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 hotkey">
+        <div class="item-hotkey" id="list_search_suggest">
+            <div class="item-hotkey" ng-repeat="item in vm.listSearchMovieSugest" id="list_{{$index}}">
+                <div class="item-key"
+                     focusable="{depth : $root.depth.search.val, nextFocus: {down : $last ? 'null' :''}}"
+                     on-focused="vm.focusSuggest($event, items, 10, $index)" on-blurred="vm.blurSuggest()"
+                     on-selected="vm.hotkey(item)" ng-class="{ 'itemFirstText' : $first }">
+                    <div class="item">{{item.name}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- dialog -->
+<!--<div id="dialog_setup" class="dialog-2 dialog_setup full_page hidden">-->
+<!--<div class="dialog_inner">-->
+<!--<div class="content">-->
+<!--<h1 class="title"></h1>-->
+<!--<p class="content"></p>-->
+<!--</div>-->
+<!--<div class="action">-->
+<!--<button id="btn_cancle" focusable="{depth : $root.depth.dialog.val , initialFocus : true}"-->
+<!--on-selected="vm.cancel()">Đồng ý/button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!-- end dialog -->

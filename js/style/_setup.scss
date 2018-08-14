@@ -1,0 +1,259 @@
+// setup page
+.setup_page {
+  @extend %clearfix;
+  background-color: #000;
+  .navigation {
+    display: inline-block;
+    width: 430*$rem;
+    height: 100vh;
+    margin: 0 100*$rem;
+    float: left;
+    h3 {
+      color: #fff;
+      opacity: 0.4;
+      letter-spacing: 0.2*$rem;
+      font-size: 57*$rem;
+      line-height: 1.16;
+      padding-top: 50*$rem;
+      margin: 0;
+    }
+    .nav {
+      width: 100%;
+      margin-top: 55*$rem;
+      button {
+        width: 100%;
+        display: inline-block;
+        border: none;
+        outline: none !important;
+        height: 68*$rem;
+        line-height: 68*$rem;
+        border-radius: 6*$rem;
+        background-color: transparent;
+        color: #fff;
+        font-size: 40*$rem;
+        letter-spacing: 0.3*$rem;
+        font-weight: normal;
+        margin-bottom: 15*$rem;
+        text-align: left;
+        padding: 0 22*$rem;
+        &.focused {
+          color: #333;
+          background-color: #fff;
+          font-weight: 600;
+        }
+      }
+    }
+
+  }
+  .content {
+    width: calc(100% - 420px);
+    height: 100vh;
+    display: inline-block;
+    float: right;
+    background: url('../images/ic-setting-bg@3x.png') no-repeat;
+    background-size: 1185*$rem 600*$rem;
+    background-position: right top;
+  }
+  .display-none {
+    display: none;
+  }
+  .display-block {
+    display: block;
+  }
+}
+
+.setup_account {
+  padding-top: 195*$rem;
+  .account {
+    text-align: center;
+    .avatar {
+      width: 250*$rem;
+      height: 250*$rem;
+      background: url('../images/ic-setting-account@3x.png') no-repeat;
+      background-size: 100% 100%;
+      display: inline-block;
+    }
+    .phone {
+      font-size: 38*$rem;
+      font-weight: 500;
+      letter-spacing: -0.3*$rem;
+      margin-top: 40*$rem;
+    }
+  }
+  .packages_wrapper {
+    margin-top: 90*$rem;
+    .title {
+      font-size: 32*$rem;
+      font-weight: 600;
+      margin: 0 0 30*$rem;
+    }
+    .pakages {
+      @extend %clearfix;
+      width: 1220*$rem;
+      height: 200*$rem;
+      .item-package {
+        width: 404*$rem;
+        height: 199*$rem;
+        .pakage {
+          font-size: 38*$rem;
+          background-color: #282828;
+          border: solid 3*$rem transparent;
+          padding-top: 50*$rem;
+          width: 350*$rem;
+          height: 144*$rem;
+          display: inline-block;
+          float: left;
+          text-align: center;
+          @extend %transition;
+          &.focused {
+            border-color: #fff;
+          }
+          &.paid {
+            background-image: linear-gradient(to bottom, #ec1c24, #dd0000);
+          }
+          &:last-child {
+            margin-right: 0;
+          }
+          > span {
+            display: block;
+          }
+          .name {
+            font-weight: bold;
+            text-transform: uppercase;
+          }
+          .fee {
+            font-weight: normal;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+.setup_quality {
+  text-align: center;
+  padding-top: 207*$rem;
+  .quality_icon {
+    display: inline-block;
+    width: 226*$rem;
+    height: 226*$rem;
+    background: url('../images/ic-setting-hd@3x.png') no-repeat;
+    background-size: 100% 100%;
+    margin-bottom: 97*$rem;
+  }
+  .quality_select {
+    width: 430*$rem;
+    height: 68*$rem;
+    line-height: 68*$rem;
+    padding: 0 20*$rem;
+    border-radius: 5*$rem;
+    background-color: #666;
+    border: none;
+    outline: none;
+    box-shadow: 0 9*$rem 24*$rem 0 rgba(0, 0, 0, 0.2);
+    position: relative;
+    font-size: 38*$rem;
+    font-weight: 500;
+    letter-spacing: -0.3*$rem;
+    text-align: left;
+    color: #fff;
+    @extend %transition;
+    span {
+      position: absolute;
+      width: 34*$rem;
+      height: 20*$rem;
+      display: inline-block;
+      position: absolute;
+      top: 26*$rem;
+      right: 20*$rem;
+      background: url('../images/ic-arrow-down.png') no-repeat;
+      background-size: 100% 100% !important;
+    }
+    &.focused {
+      color: #000;
+      background-color: #fff;
+      span{
+        background: url('../images/ic-arrow-down1.png') no-repeat;
+      }
+    }
+  }
+}
+
+.quality_selection {
+  background-color: #000;
+  position: relative;
+  .options.item-option {
+    width: 760*$rem;
+    height: 800*$rem !important;
+  }
+  .quality {
+    position: absolute;
+    top: 62%;
+    left: 50%;
+    @include translate(-50%, -50%);
+  }
+  .options_wrapper {
+    width: 760*$rem;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include translate(-50%, -50%);
+  }
+  .first-item {
+    span {
+      top: 26*$rem;
+      right: 32*$rem;
+    }
+  }
+  button {
+    width: 760*$rem;
+    display: inline-block;
+    outline: none !important;
+    height: 68*$rem;
+    line-height: 55*$rem;
+    border-radius: 7*$rem;
+    border: 7*$rem solid transparent;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #000;
+    font-size: 38*$rem;
+    text-align: left;
+    padding: 0 20*$rem;
+    margin-top: 11*$rem;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: -0.3*$rem;
+    span {
+      width: 20*$rem;
+      height: 34*$rem;
+      display: inline-block;
+      position: absolute;
+      top: 11*$rem;
+      right: 25*$rem;
+      background: url('../images/ic-arrow-right.png') no-repeat;
+      background-size: 100% 100%;
+      opacity: 0.2;
+    }
+    &.focused {
+      background-color: #fff;
+      span {
+        opacity: 1;
+      }
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.navi {
+  width: 1000*$rem;
+  height: 600*$rem;
+}
+
+.item-nav {
+  width: 200*$rem;
+  height: 200*$rem;
+}

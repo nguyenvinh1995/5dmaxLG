@@ -1,0 +1,242 @@
+
+Yjavascript:S2259"@TypeError can be thrown as "xs" might be null or undefined here.(ô‹¬
+^javascript:S2259"?TypeError can be thrown as "a" might be null or undefined here.(éÈý¯ÿÿÿÿÿ
+^javascript:S2259"?TypeError can be thrown as "o" might be null or undefined here.(¾Ï£ÿÿÿÿÿ
+`javascript:S2259"FTypeError can be thrown as "interval" might be null or undefined here.(õö»‡
+‹javascript:S2583"lChange this condition so that it does not always evaluate to "true"; some subsequent code is never executed.(½§Þäþÿÿÿÿ
+‹javascript:S2583"lChange this condition so that it does not always evaluate to "true"; some subsequent code is never executed.(Ç…Ìüÿÿÿÿ
+Xjavascript:S2189"9Correct this loop's end condition as to not be invariant.(ñ¡¦Ýüÿÿÿÿ
+Sjavascript:S2189"9Correct this loop's end condition as to not be invariant.(þÝ†Û
+kjavascript:S2589"LRefactor this code so that this expression does not always evaluate to true.(ÁäÏýÿÿÿÿ
+ejavascript:S1764"KCorrect one of the identical sub-expressions on both sides of operator ">="(£Øè¦
+ejavascript:S1764"KCorrect one of the identical sub-expressions on both sides of operator ">="(½ø·œ
+ejavascript:S1764"KCorrect one of the identical sub-expressions on both sides of operator ">="(£Øè¦
+ejavascript:S1764"KCorrect one of the identical sub-expressions on both sides of operator ">="(½ø·œ
+ejavascript:S1764"KCorrect one of the identical sub-expressions on both sides of operator ">="(£Øè¦
+ejavascript:S1764"KCorrect one of the identical sub-expressions on both sides of operator ">="(½ø·œ
+ejavascript:S1764"KCorrect one of the identical sub-expressions on both sides of operator "<="(É ’‡
+gjavascript:S2814"HRename "group" as this name is already used in declaration at line 8635.(²ÜÇöúÿÿÿÿ
+^javascript:S2814"DRename "i" as this name is already used in declaration at line 3217.(ÝÌµ‘
+^javascript:S2814"DRename "i" as this name is already used in declaration at line 3217.(¬Ú€–
+^javascript:S2814"DRename "a" as this name is already used in declaration at line 3071.(ÕÕò™
+cjavascript:S2814"DRename "i" as this name is already used in declaration at line 6768.(‹òúÿùÿÿÿÿ
+^javascript:S2814"DRename "n" as this name is already used in declaration at line 3217.(ÝÌµ‘
+`javascript:S2814"FRename "Ï†i" as this name is already used in declaration at line 2997.(ÍÐ¡¯
+^javascript:S2814"DRename "k" as this name is already used in declaration at line 7590.(‘‹âŸ
+gjavascript:S2814"HRename "group" as this name is already used in declaration at line 8808.(²ÜÇöúÿÿÿÿ
+cjavascript:S2814"DRename "p" as this name is already used in declaration at line 1463.(ªû¼Üùÿÿÿÿ
+^javascript:S2814"DRename "n" as this name is already used in declaration at line 3340.(±éÛª
+_javascript:S2814"ERename "cy" as this name is already used in declaration at line 5036.(ØÞùÌ
+^javascript:S2814"DRename "b" as this name is already used in declaration at line 3071.(ÕÕò™
+^javascript:S2814"DRename "i" as this name is already used in declaration at line 3071.(ÕÕò™
+^javascript:S2814"DRename "k" as this name is already used in declaration at line 6177.(ë—ø¿
+^javascript:S2814"DRename "n" as this name is already used in declaration at line 3068.(ÕÕò™
+^javascript:S2814"DRename "c" as this name is already used in declaration at line 2021.(Þ¬£Î
+ƒ#javascript:NonEmptyCaseWithoutBreak"VEnd this switch case with an unconditional break, continue, return or throw statement.( ‘Þÿ
+ƒ#javascript:NonEmptyCaseWithoutBreak"VEnd this switch case with an unconditional break, continue, return or throw statement.(êÝÞÿ
+;javascript:S905""Refactor or remove this statement.(½Î›¼
+Sjavascript:S878"5Remove use of all comma operators in this expression.(Â™ÒÒùÿÿÿÿ
+Sjavascript:S878"5Remove use of all comma operators in this expression.(ëÚ™ùÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(þáÒúÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(³í÷›
+;javascript:S878""Remove use of this comma operator.(§À‚¤
+;javascript:S878""Remove use of this comma operator.(§À‚¤
+;javascript:S878""Remove use of this comma operator.(£ÝŸÉ
+@javascript:S878""Remove use of this comma operator.(¦ª‡ûÿÿÿÿ
+Njavascript:S878"5Remove use of all comma operators in this expression.(âëæ½
+@javascript:S878""Remove use of this comma operator.(ˆî³ÿÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(¶ÌÆ¦þÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(ÏÜŸÊ
+Njavascript:S878"5Remove use of all comma operators in this expression.(ý»Õ¢
+Njavascript:S878"5Remove use of all comma operators in this expression.(ÛïÇî
+Njavascript:S878"5Remove use of all comma operators in this expression.(«±——
+Sjavascript:S878"5Remove use of all comma operators in this expression.(ÊÜ¼Åúÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(ŸÔ´Éùÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(¯Öùæ
+@javascript:S878""Remove use of this comma operator.(à¢ãøùÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(ÎÙ
+:javascript:S878""Remove use of this comma operator.(„ßë	
+@javascript:S878""Remove use of this comma operator.(­—ÿ¼þÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(½…àó
+@javascript:S878""Remove use of this comma operator.(èÝÏèûÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(èÝÏèûÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(ñ¡¦Ýüÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(€©…¶
+@javascript:S878""Remove use of this comma operator.(÷â„Õúÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(Ø£áÌûÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(õØÙ§úÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(õ±ôíüÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(ƒ¥›Þ
+;javascript:S878""Remove use of this comma operator.(ÅÝìø
+@javascript:S878""Remove use of this comma operator.(®ïáûÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(²Ž°Çûÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(ÝÀÿ×úÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(¼»ûçúÿÿÿÿ
+:javascript:S878""Remove use of this comma operator.(±Œ×&
+@javascript:S878""Remove use of this comma operator.(–È—íýÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(’ºë
+:javascript:S878""Remove use of this comma operator.(ß¯Óa
+@javascript:S878""Remove use of this comma operator.(ýúÿûÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(‰æòÙüÿÿÿÿ
+:javascript:S878""Remove use of this comma operator.(Š¡‹
+;javascript:S878""Remove use of this comma operator.(Å°•Ã
+@javascript:S878""Remove use of this comma operator.(©ŠòÛÿÿÿÿÿ
+Njavascript:S878"5Remove use of all comma operators in this expression.(Îþ³¹
+Sjavascript:S878"5Remove use of all comma operators in this expression.(ù¼ÂÊÿÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(Î€•§úÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(Ó÷ÜÓþÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(¡á‘þÿÿÿÿ
+:javascript:S878""Remove use of this comma operator.(°±¢:
+@javascript:S878""Remove use of this comma operator.(Ó÷ÜÓþÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(À“Ï§ýÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(Ó÷ÜÓþÿÿÿÿ
+Sjavascript:S878"5Remove use of all comma operators in this expression.(Ýóõüþÿÿÿÿ
+Njavascript:S878"5Remove use of all comma operators in this expression.(–ôž­
+Sjavascript:S878"5Remove use of all comma operators in this expression.(ì±ƒ£þÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(¢ÓÆ«
+@javascript:S878""Remove use of this comma operator.(âç¡†üÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(·†—ýÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(ŒõÌ—ÿÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(ŒõÌ—ÿÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(å‘žò
+@javascript:S878""Remove use of this comma operator.(ŒõÌ—ÿÿÿÿÿ
+Sjavascript:S878"5Remove use of all comma operators in this expression.(žÀÂÕøÿÿÿÿ
+Njavascript:S878"5Remove use of all comma operators in this expression.(£ÕÞ
+Sjavascript:S878"5Remove use of all comma operators in this expression.(úƒìÐúÿÿÿÿ
+Njavascript:S878"5Remove use of all comma operators in this expression.(äó¯ù
+;javascript:S878""Remove use of this comma operator.(íŒÞ”
+Sjavascript:S878"5Remove use of all comma operators in this expression.(³š‰¤úÿÿÿÿ
+Sjavascript:S878"5Remove use of all comma operators in this expression.(•ðâûÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(ùâÈºýÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(ùâÈºýÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(Õ«Òùÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(ÚÈÍ
+Njavascript:S878"5Remove use of all comma operators in this expression.(Æ´èè
+;javascript:S878""Remove use of this comma operator.(´à®ò
+;javascript:S878""Remove use of this comma operator.(¦ëŠ•
+;javascript:S878""Remove use of this comma operator.(íŒÞ”
+Njavascript:S878"5Remove use of all comma operators in this expression.(´…Ÿ¹
+Njavascript:S878"5Remove use of all comma operators in this expression.(´…Ÿ¹
+@javascript:S878""Remove use of this comma operator.(½¤¦Åøÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(äÔ¯žÿÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(ÐîÎ¾
+:javascript:S878""Remove use of this comma operator.(—"
+Sjavascript:S878"5Remove use of all comma operators in this expression.(øùÄÖÿÿÿÿÿ
+Sjavascript:S878"5Remove use of all comma operators in this expression.(ã¼ÃÙýÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(Û‘´ƒüÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(šã…ýÿÿÿÿÿ
+Sjavascript:S878"5Remove use of all comma operators in this expression.(æÊÈ·þÿÿÿÿ
+Sjavascript:S878"5Remove use of all comma operators in this expression.(éÎð»ùÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(öÇÑŠ
+@javascript:S878""Remove use of this comma operator.(‘ì¥åùÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(Ž¿©´
+@javascript:S878""Remove use of this comma operator.(Òßç¶þÿÿÿÿ
+Sjavascript:S878"5Remove use of all comma operators in this expression.(ÂÍ‹¼ûÿÿÿÿ
+Sjavascript:S878"5Remove use of all comma operators in this expression.(œ×û‘øÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(ð†Õ±ÿÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(“ÊÊÈ
+@javascript:S878""Remove use of this comma operator.(Ï¸÷£øÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(ïçãÙ
+Sjavascript:S878"5Remove use of all comma operators in this expression.(æ†¨úÿÿÿÿ
+Sjavascript:S878"5Remove use of all comma operators in this expression.(í¢Àþÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(“ˆ¯
+@javascript:S878""Remove use of this comma operator.(÷ùþúÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(ü‡ëÿ
+;javascript:S878""Remove use of this comma operator.(Óîô¹
+Sjavascript:S878"5Remove use of all comma operators in this expression.(ëøìÖùÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(òÒúÿÿÿÿ
+Sjavascript:S878"5Remove use of all comma operators in this expression.(ÁÚåñýÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(£¯ÁÍüÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(ºèµúÿÿÿÿ
+Njavascript:S878"5Remove use of all comma operators in this expression.(ûÎÚ
+Njavascript:S878"5Remove use of all comma operators in this expression.(Ì°ç“
+@javascript:S878""Remove use of this comma operator.(Ÿ™ØÐýÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(Íþˆúýÿÿÿÿ
+:javascript:S878""Remove use of this comma operator.(þÙÒJ
+@javascript:S878""Remove use of this comma operator.(Å‡Ý²üÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(Óë
+@javascript:S878""Remove use of this comma operator.(¤ŠßÖüÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(æ–âñ
+@javascript:S878""Remove use of this comma operator.(…ò³îûÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(»Ï®¯ýÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(«ÖŽÉ
+@javascript:S878""Remove use of this comma operator.(»Ï®¯ýÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(ÜµàÓ
+;javascript:S878""Remove use of this comma operator.(½÷ÚÍ
+;javascript:S878""Remove use of this comma operator.(ÊÇ¾Ù
+;javascript:S878""Remove use of this comma operator.(„ŸÅì
+@javascript:S878""Remove use of this comma operator.(ÂçÈ´úÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(Åì‘Þúÿÿÿÿ
+:javascript:S878""Remove use of this comma operator.(É¯“
+Sjavascript:S878"5Remove use of all comma operators in this expression.(’å…·þÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(²ˆÚ
+Njavascript:S878"5Remove use of all comma operators in this expression.(Ä¬üó
+Njavascript:S878"5Remove use of all comma operators in this expression.(žÒïÛ
+;javascript:S878""Remove use of this comma operator.(Ü¦Æ¶
+;javascript:S878""Remove use of this comma operator.(Ü¦Æ¶
+@javascript:S878""Remove use of this comma operator.(°žŽçúÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(¤ïå¥ýÿÿÿÿ
+Sjavascript:S878"5Remove use of all comma operators in this expression.(Çõ‹¸øÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(Ø–‹åùÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(¾Ð®°
+@javascript:S878""Remove use of this comma operator.(œ¢ÂÐûÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(ÇŽøÁ
+;javascript:S878""Remove use of this comma operator.(§ ·ï
+@javascript:S878""Remove use of this comma operator.(¼þÿ÷ÿÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(«ä½‘ÿÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(ËÖ§´þÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(‚Þ‰—ùÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(­úü°üÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(áû…ðùÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(Õˆ·Úøÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(ÏÖ–ûÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(¥š‡ð
+@javascript:S878""Remove use of this comma operator.(ÏÖ–ûÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(ŒŽ§Æýÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(€©Þ
+;javascript:S878""Remove use of this comma operator.(§ùù–
+@javascript:S878""Remove use of this comma operator.(‡ÎÙîúÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(‡Ÿ¥žûÿÿÿÿ
+Sjavascript:S878"5Remove use of all comma operators in this expression.(—“øýÿÿÿÿ
+Njavascript:S878"5Remove use of all comma operators in this expression.(ÕöŽ 
+@javascript:S878""Remove use of this comma operator.(Ôžç–ûÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(Ä½ˆ
+@javascript:S878""Remove use of this comma operator.(ôâ„¶øÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(úÂ§‡
+Sjavascript:S878"5Remove use of all comma operators in this expression.(çÂÀùÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(óØ×ï
+:javascript:S878""Remove use of this comma operator.(Á¡Õ)
+;javascript:S878""Remove use of this comma operator.(ª§ñÂ
+Sjavascript:S878"5Remove use of all comma operators in this expression.(øÑÜÂÿÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(·¹åÝ
+@javascript:S878""Remove use of this comma operator.(çŠñ²ÿÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(Þ¥Î»ûÿÿÿÿ
+Sjavascript:S878"5Remove use of all comma operators in this expression.(çÂÀùÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(Ã£ˆ’
+@javascript:S878""Remove use of this comma operator.(¥õ«Àÿÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(˜ÿäò
+Sjavascript:S878"5Remove use of all comma operators in this expression.(øÑÜÂÿÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(À¨ô‰ùÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(ò»˜ ÿÿÿÿÿ
+@javascript:S878""Remove use of this comma operator.(ò»˜ ÿÿÿÿÿ
+bjavascript:S3686"HCorrect the use of this function; on line 1574 it was called with "new".(«±——
+gjavascript:S3686"HCorrect the use of this function; on line 1606 it was called with "new".(òµ¯Èùÿÿÿÿ
+ijavascript:S3523"OReview this "Function" call and make sure its arguments are properly validated.(šÔã¡
+Gjavascript:EmptyBlock")Either remove or fill this block of code.(Ÿ÷Ð%
+Mjavascript:EmptyBlock")Either remove or fill this block of code.(úÃíðùÿÿÿÿ
+\javascript:UnusedVariable"4Remove the declaration of the unused 'key' variable.(¥›Ê§þÿÿÿÿ
+cjavascript:UnusedVariable";Remove the declaration of the unused 'identifier' variable.(«Çáàûÿÿÿÿ
+Wjavascript:UnusedVariable"4Remove the declaration of the unused 'key' variable.(ãªµ‰
+Ojavascript:S1854"5Remove this useless assignment to local variable "p0"(¯åÿ
+Ujavascript:S1854"6Remove this useless assignment to local variable "key"(¥›Ê§þÿÿÿÿ
+Pjavascript:S1854"6Remove this useless assignment to local variable "key"(ãªµ‰
+Rjavascript:S1854"8Remove this useless assignment to local variable "group"(ý®¼¨
+\javascript:S1854"=Remove this useless assignment to local variable "identifier"(«Çáàûÿÿÿÿ
+Qjavascript:S1854"7Remove this useless assignment to local variable "Ï†00"(Æ´èè
+Ojavascript:S1854"5Remove this useless assignment to local variable "e0"(ÈÙ‘ä
+Tjavascript:S1854"5Remove this useless assignment to local variable "xs"(Õÿå“ÿÿÿÿÿ
+Tjavascript:S1854"5Remove this useless assignment to local variable "ys"(Õÿå“ÿÿÿÿÿ
+Sjavascript:S1854"4Remove this useless assignment to local variable "d"(Õÿå“ÿÿÿÿÿ
+Sjavascript:S1854"4Remove this useless assignment to local variable "i"(áÈóÝúÿÿÿÿ
+Njavascript:S1854"5Remove this useless assignment to local variable "p0"(Ë‰›Q
+Ejavascript:S1264"+Replace this "for" loop with a "while" loop(‘‹âŸ

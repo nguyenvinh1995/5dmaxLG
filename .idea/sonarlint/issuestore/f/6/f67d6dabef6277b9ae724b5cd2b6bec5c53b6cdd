@@ -1,0 +1,25 @@
+
+ijavascript:S3403"JRemove this "!==" check; it will always be true. Did you mean to use "!="?(’ü¯İùÿÿÿÿ
+fjavascript:S2589"LRefactor this code so that this expression does not always evaluate to true.(Ä²Â÷
+kjavascript:S2589"LRefactor this code so that this expression does not always evaluate to true.(µÿíÍûÿÿÿÿ
+kjavascript:S2589"LRefactor this code so that this expression does not always evaluate to true.(—¹ùÿÿÿÿ
+kjavascript:S2589"LRefactor this code so that this expression does not always evaluate to true.(’ü¯İùÿÿÿÿ
+fjavascript:S2589"LRefactor this code so that this expression does not always evaluate to true.(Ÿ¿Ã½
+`javascript:S2137"ADo not use "undefined" to declare a parameter - use another name.(Ÿ©Ë©øÿÿÿÿ
+`javascript:S2137"ADo not use "undefined" to declare a parameter - use another name.(Ÿ©Ë©øÿÿÿÿ
+njavascript:S3523"OReview this "Function" call and make sure its arguments are properly validated.(Çôî¼ùÿÿÿÿ
+Hjavascript:EmptyBlock")Either remove or fill this block of code.(Ô‰íÌ
+Vjavascript:S1854"7Remove this useless assignment to local variable "name"(ÅàÉ¿ıÿÿÿÿ
+Ujavascript:S1854"<Remove this useless assignment to local variable "container"(ÇÎH
+Ojavascript:S1854"6Remove this useless assignment to local variable "tds"(ÇÎH
+Ujavascript:S1854"<Remove this useless assignment to local variable "marginDiv"(ÇÎH
+Ujavascript:S1854";Remove this useless assignment to local variable "fragment"(•²ßÖ
+Rjavascript:S1854"8Remove this useless assignment to local variable "first"(•²ßÖ
+Xjavascript:S1854"?Remove this useless assignment to local variable "destElements"(ö’Ğy
+Wjavascript:S1854">Remove this useless assignment to local variable "srcElements"(ö’Ğy
+Pjavascript:S1854"7Remove this useless assignment to local variable "node"(ö’Ğy
+Pjavascript:S1854"6Remove this useless assignment to local variable "tmp"(ú«”è
+Njavascript:S1656"/Remove or correct this useless self-assignment.(…ÍÏğıÿÿÿÿ
+Jjavascript:S1264"+Replace this "for" loop with a "while" loop(ÒöÁşøÿÿÿÿ
+Ejavascript:S1264"+Replace this "for" loop with a "while" loop(ï¾Ü
+Ejavascript:S1264"+Replace this "for" loop with a "while" loop(³ê

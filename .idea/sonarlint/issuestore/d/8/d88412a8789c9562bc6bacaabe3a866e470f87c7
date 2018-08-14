@@ -1,0 +1,15 @@
+
+javascript:S4165"eReview this useless assignment: "current" already holds the assigned value along all execution paths.(«©£¹
+kjavascript:S2589"LRefactor this code so that this expression does not always evaluate to true.(ùĞá‡ûÿÿÿÿ
+ejavascript:S2589"LRefactor this code so that this expression does not always evaluate to true.(ğ‘öB
+`javascript:S2137"ADo not use "undefined" to declare a parameter - use another name.(—¶ûŠøÿÿÿÿ
+Wjavascript:UnusedVariable"4Remove the declaration of the unused 'cfg' variable.(ø·ïÑ
+bjavascript:UnusedVariable":Remove the declaration of the unused 'arrayMode' variable.(Æ´şÜûÿÿÿÿ
+Djavascript:UnusedVariable"!Remove unused function 'indexBy'.(ï«û‚
+bjavascript:UnusedVariable":Remove the declaration of the unused 'inherited' variable.(—ıãáûÿÿÿÿ
+Gjavascript:UnusedVariable"Remove unused function 'pluck'.(İÄ×Âÿÿÿÿÿ
+`javascript:UnusedVariable"=Remove the declaration of the unused 'ignoreUpdate' variable.(â ıí
+Rjavascript:S1854"8Remove this useless assignment to local variable "param"(¦ÚŸÍ
+\javascript:S1854"BRemove this useless assignment to local variable "surroundPattern"(¤âº
+Yjavascript:S1854"?Remove this useless assignment to local variable "ignoreUpdate"(â ıí
+[javascript:S1854"<Remove this useless assignment to local variable "inherited"(—ıãáûÿÿÿÿ
