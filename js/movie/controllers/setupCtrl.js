@@ -131,7 +131,7 @@ function SetupCtrl($scope, services, focusController, FocusUtil, $timeout, $stat
         changeDepth(depthList);
         $(".dialog_hide").addClass("hidden");
         confirm = false;
-        clearTimeout($rootScope.showBanner);
+        // clearTimeout($rootScope.showBanner);
     };
 
 

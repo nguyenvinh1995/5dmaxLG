@@ -19,6 +19,7 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
     var currentIsContinue = false;
     services.check = false;
     var currentTypePopup = 0;
+    var heightCategory = 0;
     var depthDialog = $rootScope.depth.dialog.val;
     var depthDetail = $rootScope.depth.detail.val;
     var depthList = $rootScope.depth.listMovie.val;
@@ -538,8 +539,8 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
             var item = services.itemFromListMovie;
             var timeFocus = setInterval(function () {
                 if (item == null) {
-                    focusController.focus($('.list_0'));
-                    if ($('.list_0').hasClass('focused') && $state.current.name == 'movieList') {
+                    focusController.focus($('.active_list_film'));
+                    if ($('.active_list_film').hasClass('focused') && $state.current.name == 'movieList') {
                         services.itemFromListMovie == null;
                         clearInterval(timeFocus);
                     }
@@ -606,6 +607,24 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
             }
         })
     }
+
+    vm.focusListMovie = function ($event, items, startIndex, $index) {
+        $('#search').addClass('display-no-top');
+
+        if (heightCategory == 0) {
+            heightCategory = $('#listMovie_0').outerHeight(true);
+        }
+        console.log(heightCategory);
+        if ($index >= startIndex) {
+            $('#list_item').css({
+                transform: 'translate3d(0, -' + (($index - startIndex) * heightCategory) + 'px, 0)'
+            });
+        } else if ($index === 0) {
+            $('#list_item').css({
+                transform: 'translate3d(0, 0px, 0)'
+            });
+        }
+    };
 
     // $scope.$on('$viewContentLoaded', function(event) {
     //     initFocus();

@@ -1,7 +1,8 @@
 .my-list {
   .caph-list-movie{
     .list-movie{
-      width: 1280px !important;
+      //width: 1280px !important;
+      width: 100vw !important;
       height: 9999*$rem !important;
     }
   }
@@ -62,7 +63,7 @@
   }
 
   .col-lg-10 {
-    width: 83.33333333%
+    //width: 83.33333333%
   }
 
   .col-lg-9 {

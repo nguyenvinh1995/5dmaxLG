@@ -439,7 +439,7 @@ html, body {
   transform: translateX(-50%);
   content: 'TÌM KIẾM & DANH MỤC';
   opacity: 0.6;
-  width: 10.9375rem;
+  width: 9.84375rem;
   font-size: 0.9375rem; }
 
 .btn-down-home {
@@ -697,6 +697,9 @@ html, body {
   .movie-detail .tool-movies {
     margin-top: 2.75rem; }
 
+.wrapper_item {
+  height: 9999rem !important; }
+
 .movie-detail3 {
   color: #999999;
   position: relative;
@@ -826,10 +829,10 @@ html, body {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    background-image: -webkit-gradient(linear, right top, left top, from(rgba(0, 0, 0, 0)), to(#000000));
-    background-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 0), #000000);
-    background-image: -o-linear-gradient(right, rgba(0, 0, 0, 0), #000000);
-    background-image: linear-gradient(to left, rgba(0, 0, 0, 0), #000000); }
+    background-image: -webkit-gradient(linear, right top, left top, from(transparent), to(#000000));
+    background-image: -webkit-linear-gradient(right, transparent, #000000);
+    background-image: -o-linear-gradient(right, transparent, #000000);
+    background-image: linear-gradient(to left, transparent, #000000); }
   .login_page .inner {
     padding: 2.8125rem;
     position: relative; }
@@ -1269,20 +1272,48 @@ input:focus, button:focus {
         .content-left .key-broard ul .num.focused .capslock-icon, .content-left .key-broard ul .num.focused .del-icon, .content-left .key-broard ul .num.focused .space-icon {
           opacity: 1; }
       .content-left .key-broard ul .capslock {
-        width: 16.6%;
-        height: 1.65rem; }
+        width: 3.96875rem;
+        height: 1.71875rem; }
         .content-left .key-broard ul .capslock.focused {
           color: white;
           border: 0.09375rem solid #ffffff;
           background-color: #282828; }
       .content-left .key-broard ul .space-num {
-        width: 44.5%;
+        width: 10.6875rem;
         margin-bottom: 0.21875rem;
-        height: 1.65rem; }
+        height: 1.71875rem; }
         .content-left .key-broard ul .space-num.focused {
           color: white;
           border: 0.09375rem solid #ffffff;
           background-color: #282828; }
+
+@media screen and (max-width: 1920px) {
+  .space {
+    width: 13.0625rem !important; }
+  .btn-del {
+    width: 3.6875rem !important; }
+  .margintop-85 {
+    margin-top: -0.625rem !important;
+    height: 18% !important; }
+  .num-disable {
+    width: 10.9375rem !important; } }
+
+@media screen and (max-width: 1280px) {
+  .space {
+    width: 12.65625rem !important; }
+  .btn-del {
+    width: 3.625rem !important; }
+  .margintop-85 {
+    margin-top: -1.09375rem !important;
+    height: 18% !important; }
+  .content-left .key-broard ul .capslock {
+    width: 3.875rem;
+    height: 1.65625rem; }
+  .content-left .key-broard ul .space-num {
+    width: 10.375rem;
+    height: 1.65625rem; }
+  .num-disable {
+    width: 10.625rem !important; } }
 
 .hide-pass::before {
   content: 'Hiển thị password';
@@ -1294,10 +1325,6 @@ input:focus, button:focus {
 
 .img-relative {
   position: relative; }
-
-.margintop-85 {
-  margin-top: -0.90625rem !important;
-  height: 18% !important; }
 
 .margintop-22 {
   margin-top: -0.6875rem !important; }
@@ -1730,21 +1757,20 @@ input:focus, button:focus {
       margin-bottom: 0.03125rem; }
       .search-page .keyboard_content .key-image .btn-space {
         margin-left: 2.03125rem; }
-      .search-page .keyboard_content .key-image .btn-del {
+      .search-page .keyboard_content .key-image .btn-delete {
         margin-left: 0.03125rem; }
-      .search-page .keyboard_content .key-image .btn-del, .search-page .keyboard_content .key-image .btn-space {
+      .search-page .keyboard_content .key-image .btn-delete, .search-page .keyboard_content .key-image .btn-space {
         background-color: #282828;
         border-radius: 0.15625rem;
         border: 0.09375rem solid #000;
-        width: 7.8125rem;
         height: 2.34375rem; }
-        .search-page .keyboard_content .key-image .btn-del.focused, .search-page .keyboard_content .key-image .btn-space.focused {
+        .search-page .keyboard_content .key-image .btn-delete.focused, .search-page .keyboard_content .key-image .btn-space.focused {
           border: 0.09375rem solid #fff; }
-          .search-page .keyboard_content .key-image .btn-del.focused .search-del, .search-page .keyboard_content .key-image .btn-space.focused .search-del {
+          .search-page .keyboard_content .key-image .btn-delete.focused .search-del, .search-page .keyboard_content .key-image .btn-space.focused .search-del {
             opacity: 1; }
-          .search-page .keyboard_content .key-image .btn-del.focused .search-space, .search-page .keyboard_content .key-image .btn-space.focused .search-space {
+          .search-page .keyboard_content .key-image .btn-delete.focused .search-space, .search-page .keyboard_content .key-image .btn-space.focused .search-space {
             opacity: 1; }
-        .search-page .keyboard_content .key-image .btn-del .search-del, .search-page .keyboard_content .key-image .btn-space .search-del {
+        .search-page .keyboard_content .key-image .btn-delete .search-del, .search-page .keyboard_content .key-image .btn-space .search-del {
           opacity: 0.4;
           background-repeat: no-repeat;
           background-image: url(../images/key-del.png);
@@ -1757,7 +1783,7 @@ input:focus, button:focus {
           -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
           position: absolute; }
-        .search-page .keyboard_content .key-image .btn-del .search-space, .search-page .keyboard_content .key-image .btn-space .search-space {
+        .search-page .keyboard_content .key-image .btn-delete .search-space, .search-page .keyboard_content .key-image .btn-space .search-space {
           opacity: 0.4;
           background-repeat: no-repeat;
           background-image: url(../images/key-space.png);
@@ -1772,7 +1798,6 @@ input:focus, button:focus {
           transform: translate(-50%, -50%); }
     .search-page .keyboard_content .btn-back {
       padding: 0.46875rem 0rem 0.46875rem 0rem;
-      width: 79.5%;
       color: #ffffff;
       font-size: 1rem;
       border: 0.09375rem solid #fff;
@@ -1887,12 +1912,24 @@ input:focus, button:focus {
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out; }
 
+@media screen and (max-width: 1920px) {
+  .search-page .keyboard_content .key-image .btn-delete, .search-page .keyboard_content .key-image .btn-space {
+    width: 8rem; }
+  .search-page .keyboard_content .btn-back {
+    width: 81%; } }
+
+@media screen and (max-width: 1280px) {
+  .search-page .keyboard_content .key-image .btn-delete, .search-page .keyboard_content .key-image .btn-space {
+    width: 7.8125rem; }
+  .search-page .keyboard_content .btn-back {
+    width: 79.5%; } }
+
 .caph-list-movie {
   position: absolute;
   left: 0;
   top: 19.6875rem;
   padding-left: 0.9375rem;
-  width: 1280vw;
+  width: 100vw !important;
   height: 14.0625rem;
   overflow: hidden;
   -webkit-transform: translateX(0);
@@ -1906,7 +1943,7 @@ input:focus, button:focus {
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out; }
   .caph-list-movie caph-list, .caph-list-movie .list-movie {
-    width: 1280px !important;
+    width: 100vw !important;
     height: 312.46875rem;
     overflow: hidden;
     display: block; }
@@ -2294,11 +2331,31 @@ input:focus, button:focus {
   width: 6.25rem;
   height: 6.25rem; }
 
+@media screen and (max-width: 1920px) {
+  .setup_page .content {
+    width: calc(100% - 630px);
+    height: 100vh;
+    display: inline-block;
+    float: right;
+    background: url("../images/ic-setting-bg@3x.png") no-repeat;
+    background-size: 37.03125rem 18.75rem;
+    background-position: right top; } }
+
+@media screen and (max-width: 1280px) {
+  .setup_page .content {
+    width: calc(100% - 420px);
+    height: 100vh;
+    display: inline-block;
+    float: right;
+    background: url("../images/ic-setting-bg@3x.png") no-repeat;
+    background-size: 37.03125rem 18.75rem;
+    background-position: right top; } }
+
 .my-list {
   /* bootstrap classes */
   /* end bootstrap classes*/ }
   .my-list .caph-list-movie .list-movie {
-    width: 1280px !important;
+    width: 100vw !important;
     height: 312.46875rem !important; }
   .my-list .button-nav .text-left {
     text-align: left;
@@ -2330,8 +2387,6 @@ input:focus, button:focus {
     width: 100%; }
   .my-list .col-lg-11 {
     width: 91.66666667%; }
-  .my-list .col-lg-10 {
-    width: 83.33333333%; }
   .my-list .col-lg-9 {
     width: 75%; }
   .my-list .col-lg-8 {
@@ -2423,10 +2478,10 @@ input:focus, button:focus {
     content: "";
     width: 60rem;
     height: 9.375rem;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(59%, rgba(0, 0, 0, 0.79)), to(#000));
-    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.79) 59%, #000);
-    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.79) 59%, #000);
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.79) 59%, #000);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(59%, rgba(0, 0, 0, 0.79)), to(#000));
+    background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.79) 59%, #000);
+    background-image: -o-linear-gradient(top, transparent, rgba(0, 0, 0, 0.79) 59%, #000);
+    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.79) 59%, #000);
     position: absolute;
     left: -4.375rem;
     bottom: 0;

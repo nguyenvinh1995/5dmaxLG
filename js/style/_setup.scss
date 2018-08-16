@@ -257,3 +257,31 @@
   width: 200*$rem;
   height: 200*$rem;
 }
+
+
+@media screen and (max-width: 1920px) {
+  .setup_page {
+    .content {
+      width: calc(100% - 630px);
+      height: 100vh;
+      display: inline-block;
+      float: right;
+      background: url('../images/ic-setting-bg@3x.png') no-repeat;
+      background-size: 1185*$rem 600*$rem;
+      background-position: right top;
+    }
+  }
+}
+@media screen and (max-width: 1280px) {
+  .setup_page {
+    .content {
+      width: calc(100% - 420px);
+      height: 100vh;
+      display: inline-block;
+      float: right;
+      background: url('../images/ic-setting-bg@3x.png') no-repeat;
+      background-size: 1185*$rem 600*$rem;
+      background-position: right top;
+    }
+  }
+}

@@ -27,12 +27,11 @@
     background: url('../images/logo.png') no-repeat;
     background-size: 100% 100%;
   }
-  .logo-landing{
+  .logo-landing {
     width: 187*$rem !important;
     height: 37*$rem !important;
   }
 }
-
 
 .login_screen {
   z-index: 999;
@@ -461,9 +460,8 @@ input:focus, button:focus {
         }
       }
       .capslock {
-        //padding: 2*$rem 7*$rem 4*$rem 7*$rem;
-        width: 16.6%;
-        height: 1.65rem;
+        width: 127*$rem;
+        height: 55*$rem;
         &.focused {
           color: rgba(255, 255, 255, 1);
           border: 3*$rem solid #ffffff;
@@ -471,10 +469,9 @@ input:focus, button:focus {
         }
       }
       .space-num {
-        //padding: 1*$rem 7*$rem 1*$rem 7*$rem;
-        width: 44.5%;
+        width: 342*$rem;
         margin-bottom: 7*$rem;
-        height: 1.65rem;
+        height: 55*$rem;
         &.focused {
           color: rgba(255, 255, 255, 1);
           border: 3*$rem solid #ffffff;
@@ -482,6 +479,53 @@ input:focus, button:focus {
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 1920px) {
+  .space {
+    width: 418*$rem !important;
+  }
+  .btn-del {
+    width: 118*$rem !important;
+  }
+  .margintop-85 {
+    margin-top: -20*$rem !important;
+    height: 18% !important;
+  }
+  .num-disable {
+    width: 350*$rem !important;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .space {
+    width: 405*$rem !important;
+  }
+  .btn-del {
+    width: 116*$rem !important;
+  }
+  .margintop-85 {
+    margin-top: -35*$rem !important;
+    height: 18% !important;
+  }
+
+  .content-left {
+    .key-broard {
+      ul {
+        .capslock {
+          width: 124*$rem;
+          height: 53*$rem;
+        }
+        .space-num {
+          width: 332*$rem;
+          height: 53*$rem;
+        }
+      }
+    }
+  }
+  .num-disable {
+    width: 340*$rem !important;
   }
 }
 
@@ -499,10 +543,6 @@ input:focus, button:focus {
   position: relative;
 }
 
-.margintop-85 {
-  margin-top: -29*$rem !important;
-  height: 18% !important;
-}
 .margintop-22 {
   margin-top: -22*$rem !important;
 }
@@ -565,11 +605,12 @@ input:focus, button:focus {
   opacity: 0.4;
 }
 
-.num-disable{
+.num-disable {
   background-color: transparent !important;
   border: none !important;
 }
-.block{
+
+.block {
   display: block;
 }
 

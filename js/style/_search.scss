@@ -108,17 +108,17 @@
     }
     .key-image {
       margin-bottom: 1*$rem;
-      .btn-space{
+      .btn-space {
         margin-left: 65*$rem;
       }
-      .btn-del{
+      .btn-delete {
         margin-left: 1*$rem;
       }
-      .btn-del, .btn-space {
+      .btn-delete, .btn-space {
         background-color: #282828;
         border-radius: 5*$rem;
         border: 3*$rem solid #000;
-        width: 250*$rem;
+        //width: 250*$rem;
         height: 75*$rem;
         &.focused {
           border: 3*$rem solid #fff;
@@ -157,7 +157,7 @@
     }
     .btn-back {
       padding: 15*$rem 0*$rem 15*$rem 0*$rem;
-      width: 79.5%;
+      //width: 79.5%;
       color: #ffffff;
       font-size: 32*$rem;
       border: 3*$rem solid #fff;
@@ -325,5 +325,34 @@
   .hotkey {
     top: 10% !important;
     @include transition(0.5s);
+  }
+}
+
+@media screen and (max-width: 1920px) {
+  .search-page {
+    .keyboard_content {
+      .key-image {
+        .btn-delete, .btn-space {
+          width: 256*$rem ;
+        }
+      }
+      .btn-back{
+        width: 81%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1280px) {
+  .search-page {
+    .keyboard_content {
+      .key-image {
+        .btn-delete, .btn-space {
+          width: 250*$rem ;
+        }
+      }
+      .btn-back{
+        width: 79.5%;
+      }
+    }
   }
 }

@@ -3,13 +3,15 @@
   left: 0;
   top: 630*$rem;
   padding-left: 30*$rem;
-  width: 1280vw;
+  //width: 1280vw;
+  width: 100vw !important;
   height: 450*$rem;
   overflow: hidden;
   @include translateX(0);
   @include transition(.5s);
   caph-list, .list-movie {
-    width: 1280px !important;
+    //width: 1280px !important;
+    width: 100vw !important;
     height: 9999*$rem;
     overflow: hidden;
     display: block;

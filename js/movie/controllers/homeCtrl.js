@@ -238,12 +238,12 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         if (heightCategory == 0) {
             heightCategory = $('#list_1').outerHeight(true);
         }
+        console.log(heightCategory);
         if (vm.currentCategory != category) {
             if (category == 1) {
                 $('#list_container').css({
                     transform: 'translate3d(0, 0, 0)'
                 });
-                // }
                 vm.currentCategory = 1;
             }
             if (category > vm.currentCategory) {
@@ -707,7 +707,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
 
     function buyFilm() {
         var type = "PLAYLIST";
-        var id = services.idItem;
+        var id = services.BannerId;
         utilities.showLoading();
         services.buy(id, type).then(function (response) {
             if (response.responseCode == '403') {

@@ -66,7 +66,7 @@
                     <span class="episode"
                           ng-if="vm.currentItem.type=== 'FILM' ">{{vm.currentItem.content_filter}}</span>
                     <span class="time"
-                          ng-if="vm.currentItem.attributes=== '1'">{{vm.currentItem.duration}} phút</span>
+                          ng-if="vm.currentItem.attributes=== '1' && vm.currentItem.duration !== '' && vm.currentItem.duration !== null">{{vm.currentItem.duration}} phút</span>
                     <!--<span class="time" ng-if="vm.currentItem.type=== 'VOD' ">{{vm.currentItem.duration}}</span>-->
                 </div>
                 <p ng-class="{font70:!vm.currentItem.attributes}"
