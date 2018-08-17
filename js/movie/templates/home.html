@@ -72,7 +72,7 @@
                 <p ng-class="{font70:!vm.currentItem.attributes}"
                    ng-if="vm.currentItem.attributes ==='0'|| vm.currentItem.attributes ==='1'" class="content">
                     {{vm.currentItem.description}} </p>
-                <div ng-show="!vm.currentItem.attributes" style="width: 350px;position: relative">
+                <div ng-show="!vm.currentItem.attributes" class="show-process" style="position: relative">
                     <p ng-class="{opacity0: vm.checkFilm !== 'check'}" class="content" style="white-space: nowrap;">
                         {{vm.currentItem.name}}</p>
                     <div id="progress_bar" class="video-progress-bar " style="margin-top: -7%">

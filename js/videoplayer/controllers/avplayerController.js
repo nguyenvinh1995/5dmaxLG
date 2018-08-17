@@ -132,7 +132,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                                     $state.go('login_form', {}, {reload: true});
                                     break;
                                 case 200 :
-                                    services.checkSuggest = true;
+                                    services.checkSuggest = false;
                                     services.mediaUrlSuggest = response.data.streams.urlStreaming;
                                     TizenAVPlayer.name = response.data.detail.name;
                                     TizenAVPlayer.description = response.data.detail.description;

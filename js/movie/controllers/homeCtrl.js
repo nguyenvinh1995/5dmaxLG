@@ -40,7 +40,9 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
                 + 'focusable="{name:\'menu-type-' + i + '-{{$index}}\',depth : $root.depth.main.val , ' +
                 'nextFocus : { up : ' + i + ' == 1  ? \'btn_play\' : \'\',right : $last ? \'menu-type-' + i + '-0\' : \'\',down:\'menu-type-' + (i + 1) + '-0\'}}"'
                 + 'on-selected="vm.selectMovie(obj)" on-blurred="vm.blurItem($event, $originalEvent, ' + i + ' , obj , $index )" on-focused="vm.focusItem($event, $originalEvent, 4, obj , $index,' + i + ')">'
+                + '<div class="preload-home preload">'
                 + '<div id="test" style="background:url(\'{{obj.coverImageH ? obj.coverImageH : obj.coverImage}}\') no-repeat"></div>'
+                + '</div>'
                 + '</div>'
                 + '</div>'
                 + '</div>'
@@ -73,7 +75,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
     vm.clickPlay = function (bool) {
         services.checkBanner = bool;
         console.log(vm.banner[i].id);
-        owl.trigger('stop.owl.autoplay');
+        // owl.trigger('stop.owl.autoplay');
         services.getDetailFilm(vm.banner[i].itemId).then(function (response) {
                 console.log(response);
                 services.BannerId = response.data.detail.id;
@@ -170,7 +172,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
 ///// Detail-Button
 
     vm.viewDetail = function () {
-        owl.trigger('stop.owl.autoplay');
+        // owl.trigger('stop.owl.autoplay');
         $state.go('movieDetail', {id: vm.banner[i].itemId}, {reload: true});
     };
     vm.focusDetail = function () {
@@ -190,14 +192,16 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         if (vm.isFocuseMovie == false) {
             vm.isFocuseMovie = true;
             $("#home_page .menu_page").addClass('display-none');
-            owl.trigger('stop.owl.autoplay');
+            // owl.trigger('stop.owl.autoplay');
             $("#group_btn").addClass('hidden_opacity');
             $('#list_container').removeClass('lastCategory');
             $(".btn-up-to-top").addClass('display-none').removeClass('display-block');
         }
         ///Trailer-Focus//////
+
         services.idTrailer = item.trailer;
         $timeout.cancel(vm.ShowGif);
+         console.log(services.idTrailer);
         vm.ShowGif = null;
         vm.ShowGif = $timeout(function () {
             if (services.idTrailer) {

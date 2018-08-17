@@ -19,14 +19,17 @@
     .time-movie {
       margin-left: 35*$rem;
       font-size: 24*$rem;
+      color: #a8a8a8;
       .age {
         border-radius: 4*$rem;
-        background-color: #333333;
+        //background-color: #333333;
         display: inline-block;
         text-align: center;
         width: 52*$rem;
         height: 29*$rem;
         margin: 0 5*$rem;
+        background-color: #979797;
+        color: #000;
       }
     }
     .season-movie {
@@ -73,7 +76,7 @@
           content: "";
           display: block;
           width: 100%;
-          height: 100%;
+          height: 101%;
           position: absolute;
           top: 0;
           left: 0;

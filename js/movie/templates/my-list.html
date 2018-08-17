@@ -45,10 +45,11 @@
                          on-focused="vm.showFilm($event, $originalEvent, 1, $index, item)"
                          on-selected="vm.selectMovie(item)" id="myListItem_{{$index}}"
                          ng-repeat="item in vm.objects">
-                        <div class="item-movie "
-                             style="background-image: url({{item.coverImageH ? item.coverImageH : item.coverImage}})"
-                             ng-style="vm.value == 'film_history'"
-                        ></div>
+                        <div class="preload">
+                            <div class="item-movie"
+                                 style="background-image: url({{item.coverImageH ? item.coverImageH : item.coverImage}})"
+                                 ng-style="vm.value == 'film_history'"></div>
+                        </div>
                     </div>
                 </div>
             </div>

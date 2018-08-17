@@ -45,14 +45,17 @@
   }
   .time-movie {
     font-size: 24*$rem;
+    color: #a8a8a8;
     .age {
       border-radius: 4*$rem;
-      background-color: #333333;
+      //background-color: #333333;
       display: inline-block;
       text-align: center;
       width: 52*$rem;
       height: 29*$rem;
       margin: 0 20*$rem;
+      background-color: #979797;
+      color: #000;
     }
   }
   .title-movie {
@@ -66,6 +69,7 @@
     line-height: 1.2;
     letter-spacing: 0.3*$rem;
     .descrition-movie{
+      color: #a8a8a8;
       @include ellipsis(30*$rem, 1.2, 3);
     }
   }

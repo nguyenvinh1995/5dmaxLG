@@ -380,25 +380,32 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
             console.log($rootScope.$previousState);
 
             switch ($state.current.name) {
+                // case 'login' :
+                //     tizen.application.getCurrentApplication().exit();
+                //     return;
+                //     break;
                 case 'home' :
                     if (!services.checkLogin()) {
                         $state.go('login_form', {}, {reload: true});
+                        // console.log(services.clearBanner);
+                        // clearTimeout(vm.showBanner);
+                        // $(".banner_" + [services.clearBanner]).removeClass('active');
                         $(".dialog_hide").addClass("hidden");
+                        clearTimeout(vm.ShowGif);
                         $(".movie_article_wrapper").removeClass('background-none');
                         $("#av-container").addClass('display-trailer');
-                        // TizenAVPlayer.executeAction({
-                        //     action: "stop"
-                        // });
-                        WebOsPlayer.pause();
+                        TizenAVPlayer.executeAction({
+                            action: "stop"
+                        });
                         TizenAVPlayer.close();
                     }
                     else {
+                        clearTimeout(vm.ShowGif);
                         $(".movie_article_wrapper").removeClass('background-none');
                         $("#av-container").addClass('display-trailer');
-                        // TizenAVPlayer.executeAction({
-                        //     action: "play"
-                        // });
-                        WebOsPlayer.playPause();
+                        TizenAVPlayer.executeAction({
+                            action: "play"
+                        });
                     }
                     return;
                     break;
@@ -449,11 +456,11 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
                 case
                 'avplayer'
                 :
-                    // TizenAVPlayer.executeAction({
-                    //     action: "stop"
-                    // });
-                    WebOsPlayer.pause();
-                    TizenAVPlayer.close();
+                    TizenAVPlayer.executeAction({
+                        action: "stop"
+                    });
+                    // TizenAVPlayer.close();
+                    services.mediaUrlBanner = '';
                     if (_last.val == $rootScope.depth.login.val || _last.val == $rootScope.depth.player.val) {
                         var index = 2;
                         var newArr = array.slice(0, -2);
@@ -463,24 +470,35 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
                         window.history.go(-2);
                         return;
                     }
-                    if (_last.val == $rootScope.depth.detail.val) {
-                        var newArr = array.slice(0, -2);
-                        var depthCurrent = $rootScope.depth.detail;
-                        $rootScope.listState = newArr;
-                        //
-                        if (services.indexBack == 0) {
-                            services.indexBack = 3;
-                        } else {
-                            services.indexBack += 2;
-                        }
-                        services.backDetails = true;
-                        $state.go("movieDetail", {
-                            id: services.currentPlayMovie.idMovie,
-                            idMovie: services.currentPlayMovie.idPart
-                        }, {reload: true});
-                        // $rootScope.changeDepth(depthCurrent);
-                        return;
-                    }
+                    // if ($rootScope.$previousState.name === 'movieDetail' && services.checkSuggest === true) {
+                    //     TizenAVPlayer.executeAction({
+                    //         action: "stop"
+                    //     });
+                    //     console.log('tesstt5');
+                    //     clearTimeout($rootScope.showBanner);
+                    //     $state.go('home', {}, {reload: true});
+                    //     console.log(array);
+                    //     services.checkSuggest = false;
+                    //     return;
+                    // }
+                    // if (_last.val == $rootScope.depth.detail.val) {
+                    //     var newArr = array.slice(0, -2);
+                    //     var depthCurrent = $rootScope.depth.detail;
+                    //     $rootScope.listState = newArr;
+                    //     //
+                    //     if (services.indexBack == 0) {
+                    //         services.indexBack = 3;
+                    //     } else {
+                    //         services.indexBack += 2;
+                    //     }
+                    //     // services.backDetails = true;
+                    //     $state.go("movieDetail", {
+                    //         id: services.currentPlayMovie.idMovie,
+                    //         idMovie: services.currentPlayMovie.idPart
+                    //     }, {reload: true});
+                    //     // $rootScope.changeDepth(depthCurrent);
+                    //     return;
+                    // }
                     break;
                 case
                 'setup'
@@ -488,6 +506,7 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
                     var logIn = services.logInRefreshHomeState;
                     var logOut = services.logOutRefreshHomeState;
                     if (logOut === true || logIn === true) {
+                        clearTimeout($rootScope.showBanner);
                         $state.go('home', {}, {reload: true});
                         if (logOut)
                             services.logOutRefreshHomeState = false;
@@ -497,6 +516,7 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
                     }
                     services.loginFromSetting = false;
                     if (_last.val == $rootScope.depth.login.val) {
+                        console.log('setup_2');
                         var newArr = array.slice(0, -3);
                         var depthCurrent = newArr[newArr.length - 1];
                         $rootScope.listState = newArr;
@@ -508,12 +528,10 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
                 case
                 'movieDetail'
                 :
-                    console.log(newArr);
-                    console.log(depthCurrent);
-                    console.log(_last.val);
-                    console.log($rootScope.$previousState);
+                    console.log(array, 'tesssst', $rootScope.$nextState, $rootScope.$previousState.name);
                     TizenAVPlayer.close();
                     if (_last.val == $rootScope.depth.login.val) {
+                        console.log('tesstt1');
                         var newArr = array.slice(0, -3);
                         var depthCurrent = newArr[newArr.length - 1];
                         $rootScope.listState = newArr;
@@ -522,6 +540,7 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
                         return;
                     }
                     if (_last.val == $rootScope.depth.listMovie.val) {
+                        console.log('tesstt2');
                         var newArr = array.slice(0, -5);
                         var depthCurrent = newArr[newArr.length - 1];
                         $rootScope.listState = newArr;
@@ -530,6 +549,7 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
                         return;
                     }
                     // if (_last.val == $rootScope.depth.main.val && services.backDetails == true) {
+                    //     console.log('tesstt3');
                     //     var newArr = array.slice(0, -1);
                     //     var depthCurrent = newArr[newArr.length - 1];
                     //     $rootScope.listState = newArr;
@@ -540,6 +560,7 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
                     //     return;
                     // }
                     if ((_last.val == $rootScope.depth.list.val || _last.val == $rootScope.depth.search.val) && services.backDetails == true) {
+                        console.log('tesstt4');
                         var newArr = array.slice(0, -1);
                         var depthCurrent = newArr[newArr.length - 1];
                         $rootScope.listState = newArr;
@@ -549,12 +570,61 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
                         services.indexBack = 0;
                         return;
                     }
-                    if ($rootScope.$previousState.name === 'avplayer') {
-                        WebOsPlayer.player.dispose();
+
+                    if ($rootScope.$previousState.name === 'avplayer' && services.checkSuggest === true) {
+                        TizenAVPlayer.executeAction({
+                            action: "stop"
+                        });
+                        console.log('tesstt5');
                         clearTimeout($rootScope.showBanner);
                         $state.go('home', {}, {reload: true});
+                        console.log(array);
+                        services.checkSuggest = false;
                         return;
                     }
+                    // if ($rootScope.$nextState.name === 'avplayer') {
+                    //     TizenAVPlayer.executeAction({
+                    //         action: "stop"
+                    //     });
+                    //     console.log('tesstt5');
+                    //     clearTimeout($rootScope.showBanner);
+                    //     $state.go('home', {}, {reload: true});
+                    //     console.log(array);
+                    //     return;
+                    // }
+                    // if ($rootScope.$previousState.name === 'avplayer') {
+                    //     TizenAVPlayer.executeAction({
+                    //         action: "stop"
+                    //     });
+                    //     console.log(array);
+                    //     console.log('tesstt9');
+                    //     var newArr = array.slice(0, -1);
+                    //     console.log(newArr);
+                    //     var depthCurrent = newArr[newArr.length - 1];
+                    //     $rootScope.listState = newArr;
+                    //     $rootScope.changeDepth(depthCurrent);
+                    //     window.history.go(-2);
+                    //     return;
+                    // }
+                    // if ($rootScope.$previousState.name === 'detail') {
+                    //     console.log($rootScope.$previousState.name);
+                    //     console.log('false-xxxx');
+                    //     var newArr = array.slice(0,-3);
+                    //     var depthCurrent = newArr[newArr.length - 3];
+                    //     $rootScope.changeDepth(depthCurrent);
+                    //     window.history.go(-3);
+                    //     console.log(newArr);
+                    //     console.log(depthCurrent);
+                    //     return;
+                    // }
+                    // console.log(array,'fghfhg');
+                    // var newArr = array.slice(0, -1);
+                    // var depthCurrent = newArr[newArr.length - 1];
+                    // $rootScope.listState = newArr;
+                    // services.returnBack = true;
+                    // $rootScope.changeDepth(depthCurrent);
+                    // // $('.trial').removeClass('trial-step');
+                    // window.history.back();
 
                     break;
                 case
@@ -592,6 +662,8 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
             window.history.back();
             console.log(newArr);
             console.log(depthCurrent);
+            $('#av-container').remove();
+            $('#av-container-rent').remove();
 
         };
 
@@ -604,7 +676,8 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
                     setTimeout(function () {
                         if ($state.current.name == 'avplayer' && !isSuspend) {
                             console.log('suspend');
-                            webapis.avplay.suspend();
+                            // webapis.avplay.suspend();
+                            WebOsPlayer.pause();
                             isSuspend = true;
                         }
                         $("#mess-offline").show();
@@ -617,15 +690,13 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
                             if ($state.current.name == 'avplayer' && isSuspend) {
                                 console.log('restore');
                                 isSuspend = false;
-                                webapis.avplay.restore(TizenAVPlayer.mediaUrl, TizenAVPlayer.currentTime, true);
-                                try {
-                                    if (TizenAVPlayer.isDrm) {
-                                        TizenAVPlayer.setVerimarix();
-                                    }
-                                    WebOsPlayer.playPause();
-                                } catch (ex) {
-                                    console.log(ex);
-                                }
+                                WebOsPlayer.playPause();
+                                // webapis.avplay.restore(TizenAVPlayer.mediaUrl, TizenAVPlayer.currentTime, true);
+                                // try {
+                                //     WebOsPlayer.playPause();
+                                // } catch (ex) {
+                                //     console.log(ex);
+                                // }
                             }
                             $("#mess-offline").hide();
                         }, 100);

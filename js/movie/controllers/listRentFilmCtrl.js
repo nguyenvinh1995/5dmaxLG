@@ -34,7 +34,9 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
                 + 'focusable="{name:\'menu-rent-' + i + '-{{$index}}\',depth : $root.depth.list.val , ' +
                 'nextFocus : { up : ' + i + ' == 0  ? \'btn_pl\' : \'\',right : $last ? \'menu-rent-' + i + '-0\' : \'{{\'menu-rent-' + i + '-\' + ($index + 1)}}\',down: $last ? \'\' : \'menu-rent-' + (i + 1) + '-0\'}}"'
                 + 'on-selected="vm.selectMovie(obj)" on-blurred="vm.blurItem($event, $originalEvent, ' + i + ' , obj , $index )" on-focused="vm.focusItem($event, $originalEvent, 4, obj , $index,' + i + ')">'
-                + '<div id="test" style="background:url(\'{{obj.coverImageH ? obj.coverImageH : obj.coverImage}}\') no-repeat"></div>'
+                + '<div class="preload-home preload">'
+                + '<div style="background:url(\'{{obj.coverImageH ? obj.coverImageH : obj.coverImage}}\') no-repeat"></div>'
+                + '</div>'
                 + '</div>'
                 + '</div>'
                 + '</div>'
@@ -65,6 +67,8 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
         }
         ///Trailer-Focus//////
         // $rootScope.idTrailer = item.trailer;
+        services.idTrailer = item.trailer;
+        console.log(services.idTrailer);
         $timeout.cancel(vm.ShowTrailerRent);
         vm.ShowTrailerRent = null;
         vm.ShowTrailerRent = $timeout(function () {
@@ -76,13 +80,13 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
                         if (response.responseCode === '200') {
                             $rootScope.mediaTrailer = response.data.streams.urlStreaming;
                             var raw = '';
-                            raw += '<div id="av-container" class="trainer display-trainer">'
+                            raw += '<div id="av-container-rent" class="trainer display-trainer">'
                                 + '<video id=av-player class="video-js vjs-default-skin"></video>'
                                 + '</div>';
-                            angular.element(document.getElementById('showTrailer')).append($compile(raw)($scope));
+                            angular.element(document.getElementById('showTrailer-rent')).append($compile(raw)($scope));
                             showTrailer();
                             // console.log('play-trailer')
-                            $("#av-container").addClass('display-block');
+                            $("#av-container-rent").addClass('display-block');
                             $(".movie_article_wrapper").addClass('background-none');
                         }
                     });

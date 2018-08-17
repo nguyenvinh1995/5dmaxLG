@@ -311,7 +311,6 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
 
 
     vm.playMovie = function (item) {
-
         console.log(services.isLogin, 'rtry');
         console.log(item);
         if (vm.detailFilms.drm_content_id != null && services.supportDrm == false) {

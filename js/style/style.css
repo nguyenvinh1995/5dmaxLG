@@ -10,14 +10,14 @@
 .clearfix:after, .movies:after, .background-movie:after, .movie-detail3 .part-movie .item-movie .item:after, .menu_page .item-menu:after, .setup_page:after, .setup_account .packages_wrapper .pakages:after, .controls-bar:after {
   clear: both; }
 
-.group_btn .watch, .group_btn .detail, .movies .item, .movie-detail3 .part-movie .item-movie .item:after, .movie-detail3 .part-movie .item-movie .item .img-movie, .login_form input, .content-symbol .symbol, .content-symbol .no-capslock, .content-symbol .capslock, .content-capslock .capslock, .content-capslock .no-capslock, .content-capslock .symbol, .content-no-capslock .no-capslock, .content-no-capslock .capslock, .content-no-capslock .symbol, .menu_page, .menu_page .item-menu .btn-menu, .search-page .search-input .input input, .search-page .search-input .input input::-webkit-input-placeholder, .search-page .search-movie .item-movie, .search-page .search-movie .item-movie .item, .setup_account .packages_wrapper .pakages .item-package .pakage, .setup_quality .quality_select, .avplayer_page .movie_article, .avplayer_page .movie_article:before, .controls-bar, .controls-bar:before, .controls-bar:after {
+.group_btn .watch, .group_btn .detail, .movies .item, .preload-home, .preload-movie-list, .movie-detail3 .part-movie .item-movie .item:after, .movie-detail3 .part-movie .item-movie .item .img-movie, .login_form input, .content-symbol .symbol, .content-symbol .no-capslock, .content-symbol .capslock, .content-capslock .capslock, .content-capslock .no-capslock, .content-capslock .symbol, .content-no-capslock .no-capslock, .content-no-capslock .capslock, .content-no-capslock .symbol, .menu_page, .menu_page .item-menu .btn-menu, .search-page .search-input .input input, .search-page .search-input .input input::-webkit-input-placeholder, .search-page .search-movie .item-movie, .search-page .search-movie .item-movie .item, .setup_account .packages_wrapper .pakages .item-package .pakage, .setup_quality .quality_select, .avplayer_page .movie_article, .avplayer_page .movie_article:before, .controls-bar, .controls-bar:before, .controls-bar:after {
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out; }
 
-.movies .item, .menu_page .item-menu .btn-menu {
+.movies .item, .preload-home, .menu_page .item-menu .btn-menu {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box; }
@@ -249,6 +249,11 @@ html, body {
       height: 100%;
       background-size: 100% 100% !important;
       opacity: 0.8; }
+    .movies .item .preload-home > div {
+      width: 100%;
+      height: 100%;
+      background-size: 100% 100% !important;
+      opacity: 0.8; }
 
 @-webkit-keyframes upBtn {
   0%, 100% {
@@ -328,7 +333,7 @@ html, body {
     margin: 0 0 0.15625rem; }
   .movie_article .meta {
     font-size: 0.75rem;
-    color: #999;
+    color: #a8a8a8;
     margin-top: 0.09375rem; }
     .movie_article .meta span {
       display: inline-block;
@@ -337,13 +342,14 @@ html, body {
         margin-left: 0.625rem; }
   .movie_article .episode {
     border-radius: 0.125rem;
-    background-color: #333;
-    padding: 0.03125rem 0.1875rem; }
+    background-color: #979797;
+    padding: 0.03125rem 0.1875rem;
+    color: #000; }
   .movie_article .content {
     font-size: 0.9375rem;
     line-height: 1.2;
     letter-spacing: 0.00937rem;
-    color: #999;
+    color: #a8a8a8;
     margin: 0.78125rem 0 0;
     display: block;
     /* Fallback for non-webkit */
@@ -392,7 +398,7 @@ html, body {
   position: absolute !important;
   width: 45.375rem !important;
   height: 24rem !important;
-  right: -54px !important;
+  right: -1.40625rem !important;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
@@ -469,10 +475,10 @@ html, body {
   margin: 0rem !important; }
 
 .font70 {
-  font-size: 2.8125rem !important;
+  font-size: 2.65625rem !important;
   margin-top: 15% !important;
   margin-bottom: -5% !important;
-  width: 150%;
+  width: 153%;
   white-space: nowrap;
   overflow: hidden;
   -o-text-overflow: ellipsis;
@@ -486,6 +492,22 @@ html, body {
 .display-trainer {
   display: none; }
 
+.preload {
+  background: url("../images/d-ault-image@3x.png") no-repeat;
+  background-size: 100% 100%;
+  display: inline-block; }
+
+.preload-home {
+  float: left;
+  margin-right: 0.25rem; }
+
+.preload-movie-list {
+  float: left;
+  margin-right: 1.5625rem;
+  border: 0.09375rem solid rgba(0, 0, 0, 0.3);
+  width: 14rem;
+  height: 8.03125rem; }
+
 @font-face {
   font-family: SFUIDisplay;
   src: url("../fonts/SFUIDisplay-Regular.otf"); }
@@ -497,14 +519,14 @@ html, body {
 .clearfix:after, .movies:after, .background-movie:after, .movie-detail3 .part-movie .item-movie .item:after, .menu_page .item-menu:after, .setup_page:after, .setup_account .packages_wrapper .pakages:after, .controls-bar:after {
   clear: both; }
 
-.group_btn .watch, .group_btn .detail, .movies .item, .movie-detail3 .part-movie .item-movie .item:after, .movie-detail3 .part-movie .item-movie .item .img-movie, .login_form input, .content-symbol .symbol, .content-symbol .no-capslock, .content-symbol .capslock, .content-capslock .capslock, .content-capslock .no-capslock, .content-capslock .symbol, .content-no-capslock .no-capslock, .content-no-capslock .capslock, .content-no-capslock .symbol, .menu_page, .menu_page .item-menu .btn-menu, .search-page .search-input .input input, .search-page .search-input .input input::-webkit-input-placeholder, .search-page .search-movie .item-movie, .search-page .search-movie .item-movie .item, .setup_account .packages_wrapper .pakages .item-package .pakage, .setup_quality .quality_select, .avplayer_page .movie_article, .avplayer_page .movie_article:before, .controls-bar, .controls-bar:before, .controls-bar:after {
+.group_btn .watch, .group_btn .detail, .movies .item, .preload-home, .preload-movie-list, .movie-detail3 .part-movie .item-movie .item:after, .movie-detail3 .part-movie .item-movie .item .img-movie, .login_form input, .content-symbol .symbol, .content-symbol .no-capslock, .content-symbol .capslock, .content-capslock .capslock, .content-capslock .no-capslock, .content-capslock .symbol, .content-no-capslock .no-capslock, .content-no-capslock .capslock, .content-no-capslock .symbol, .menu_page, .menu_page .item-menu .btn-menu, .search-page .search-input .input input, .search-page .search-input .input input::-webkit-input-placeholder, .search-page .search-movie .item-movie, .search-page .search-movie .item-movie .item, .setup_account .packages_wrapper .pakages .item-package .pakage, .setup_quality .quality_select, .avplayer_page .movie_article, .avplayer_page .movie_article:before, .controls-bar, .controls-bar:before, .controls-bar:after {
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out; }
 
-.movies .item, .menu_page .item-menu .btn-menu {
+.movies .item, .preload-home, .menu_page .item-menu .btn-menu {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box; }
@@ -601,15 +623,17 @@ html, body {
     color: #fff;
     margin: 0 0 0.3125rem; }
   .movie-detail .time-movie {
-    font-size: 0.75rem; }
+    font-size: 0.75rem;
+    color: #a8a8a8; }
     .movie-detail .time-movie .age {
       border-radius: 0.125rem;
-      background-color: #333333;
       display: inline-block;
       text-align: center;
       width: 1.625rem;
       height: 0.90625rem;
-      margin: 0 0.625rem; }
+      margin: 0 0.625rem;
+      background-color: #979797;
+      color: #000; }
   .movie-detail .title-movie {
     position: absolute;
     width: 33.5%;
@@ -620,6 +644,7 @@ html, body {
     line-height: 1.2;
     letter-spacing: 0.00937rem; }
     .movie-detail .des-movie .descrition-movie {
+      color: #a8a8a8;
       display: block;
       /* Fallback for non-webkit */
       display: -webkit-box;
@@ -719,15 +744,17 @@ html, body {
       margin: 0 0 0.3125rem 1.09375rem; }
     .movie-detail3 .title-movie .time-movie {
       margin-left: 1.09375rem;
-      font-size: 0.75rem; }
+      font-size: 0.75rem;
+      color: #a8a8a8; }
       .movie-detail3 .title-movie .time-movie .age {
         border-radius: 0.125rem;
-        background-color: #333333;
         display: inline-block;
         text-align: center;
         width: 1.625rem;
         height: 0.90625rem;
-        margin: 0 0.15625rem; }
+        margin: 0 0.15625rem;
+        background-color: #979797;
+        color: #000; }
     .movie-detail3 .title-movie .season-movie {
       width: 15.625rem;
       height: 2.125rem;
@@ -768,7 +795,7 @@ html, body {
           content: "";
           display: block;
           width: 100%;
-          height: 100%;
+          height: 101%;
           position: absolute;
           top: 0;
           left: 0;
@@ -1296,7 +1323,9 @@ input:focus, button:focus {
     margin-top: -0.625rem !important;
     height: 18% !important; }
   .num-disable {
-    width: 10.9375rem !important; } }
+    width: 10.9375rem !important; }
+  .show-process {
+    width: 17.1875rem; } }
 
 @media screen and (max-width: 1280px) {
   .space {
@@ -1304,7 +1333,7 @@ input:focus, button:focus {
   .btn-del {
     width: 3.625rem !important; }
   .margintop-85 {
-    margin-top: -1.09375rem !important;
+    margin-top: -0.96875rem !important;
     height: 18% !important; }
   .content-left .key-broard ul .capslock {
     width: 3.875rem;
@@ -1313,7 +1342,9 @@ input:focus, button:focus {
     width: 10.375rem;
     height: 1.65625rem; }
   .num-disable {
-    width: 10.625rem !important; } }
+    width: 10.625rem !important; }
+  .show-process {
+    width: 17.1875rem; } }
 
 .hide-pass::before {
   content: 'Hiển thị password';

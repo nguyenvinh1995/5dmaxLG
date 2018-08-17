@@ -70,11 +70,14 @@
         <span id="text-search" class="text display-block">{{vm.message}}</span>
         <span id="text-search-first" class="text display-block">Tìm kiếm phim và nội dung liên quan</span>
         <div id="list_search" class="search-movie col-lg-12" ng-show="vm.showListMovie" direction="vertical">
-            <div class="item-movie col-lg-4" focusable="{depth : $root.depth.search.val, nextFocus: {down : $last ? 'null' :''}}"
+            <div class="item-movie col-lg-4"
+                 focusable="{depth : $root.depth.search.val, nextFocus: {down : $last ? 'null' :''}}"
                  ng-repeat="item in vm.listSearchMovie"
                  on-focused="vm.focusItem($event, $originalEvent, 1, $index)" on-selected="vm.selectMovie(item)"
                  ng-class="{ 'itemFirstSearch' : $first }" id="listItem_{{$index}}">
-                <div class="item" style="background-image: url({{ item.coverImageH }})"></div>
+                <div class="preload">
+                    <div class="item" style="background-image: url({{ item.coverImageH }})"></div>
+                </div>
             </div>
         </div>
     </div>
