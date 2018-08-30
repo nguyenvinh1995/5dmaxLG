@@ -32,7 +32,8 @@
 
         <!--<div class="home_slider_wrapper">-->
         <div class="full_page home_slider" ng-show="!vm.isFocuseMovie">
-            <div class="full_page item banner_{{$index}}" id="{{item.id}}" ng-repeat="item in vm.banner" ng-class="{ 'active' : $first }">
+            <div class="full_page item banner_{{$index}}" id="{{item.id}}" ng-repeat="item in vm.banner"
+                 ng-class="{ 'active' : $first }">
                 <img class="full_page item_bg"
                      ng-src="{{::item.imageForTVLarge}}" width="" height="" alt="">
                 <article class="slider_article">
@@ -57,32 +58,34 @@
                     on-focused="vm.focusDetail()" on-selected="vm.viewDetail()">Chi tiết
             </button>
         </div>
-        <div class="movie_article_wrapper" ng-show="vm.isFocuseMovie">
-            <article class="movie_article">
-                <h3 ng-class="{font70:!vm.currentItem.attributes}">{{vm.currentItem.name}}</h3>
-                <div class="meta">
+        <div class="preload-focus">
+            <div class="movie_article_wrapper" ng-show="vm.isFocuseMovie">
+                <article class="movie_article">
+                    <h3 id="process-bar" ng-class="{font70:!vm.currentItem.attributes}">{{vm.currentItem.name}}</h3>
+                    <div class="meta">
                         <span class="year"
                               ng-if="vm.currentItem.type=== 'FILM' ">{{vm.currentItem.year_of_product}}</span>
-                    <span class="episode"
-                          ng-if="vm.currentItem.type=== 'FILM' ">{{vm.currentItem.content_filter}}</span>
-                    <span class="time"
-                          ng-if="vm.currentItem.attributes=== '1' && vm.currentItem.duration !== '' && vm.currentItem.duration !== null">{{vm.currentItem.duration}} phút</span>
-                    <!--<span class="time" ng-if="vm.currentItem.type=== 'VOD' ">{{vm.currentItem.duration}}</span>-->
-                </div>
-                <p ng-class="{font70:!vm.currentItem.attributes}"
-                   ng-if="vm.currentItem.attributes ==='0'|| vm.currentItem.attributes ==='1'" class="content">
-                    {{vm.currentItem.description}} </p>
-                <div ng-show="!vm.currentItem.attributes" class="show-process" style="position: relative">
-                    <p ng-class="{opacity0: vm.checkFilm !== 'check'}" class="content" style="white-space: nowrap;">
-                        {{vm.currentItem.name}}</p>
-                    <div id="progress_bar" class="video-progress-bar " style="margin-top: -7%">
-                        <div class="progress-bar-bkgd video">
-                            <div class="progress-bar-marker video"></div>
-                        </div>
+                        <span class="episode"
+                              ng-if="vm.currentItem.type=== 'FILM' ">{{vm.currentItem.content_filter}}</span>
+                        <span class="time"
+                              ng-if="vm.currentItem.attributes=== '1' && vm.currentItem.duration !== '' && vm.currentItem.duration !== null">{{vm.currentItem.duration}} phút</span>
+                        <!--<span class="time" ng-if="vm.currentItem.type=== 'VOD' ">{{vm.currentItem.duration}}</span>-->
                     </div>
-                    <span class="text-process"> {{vm.time}} phút</span>
-                </div>
-            </article>
+                    <p ng-class="{font70:!vm.currentItem.attributes}"
+                       ng-if="vm.currentItem.attributes ==='0'|| vm.currentItem.attributes ==='1'" class="content">
+                        {{vm.currentItem.description}} </p>
+                    <div ng-show="!vm.currentItem.attributes" class="show-process" style="position: relative">
+                        <p ng-class="{opacity0: vm.checkFilm !== 'check'}" class="content" style="white-space: nowrap;">
+                            {{vm.currentItem.name}}</p>
+                        <div id="progress_bar" class="video-progress-bar " style="margin-top: -7%">
+                            <div class="progress-bar-bkgd video">
+                                <div class="progress-bar-marker video"></div>
+                            </div>
+                        </div>
+                        <span class="text-process"> {{vm.time}} phút</span>
+                    </div>
+                </article>
+            </div>
         </div>
         <div class="btn-up-to-top text-center display-block">
             <div class="btn-back-img"></div>

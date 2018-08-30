@@ -1,7 +1,7 @@
 
-sjavascript:S1301"MReplace this "switch" statement with "if" statements to increase readability.(öÒøİúÿÿÿÿ8¥Å›ŒÓ,
-ojavascript:UnusedVariable"@Remove the declaration of the unused 'icon_likeUnLike' variable.(—ÿåÒúÿÿÿÿ8Œ“şƒÍ,
-ejavascript:UnusedVariable"6Remove the declaration of the unused 'count' variable.(™˜–ïüÿÿÿÿ8Œ“şƒÍ,
-Bjavascript:S905""Refactor or remove this statement.(Õ¯¼ú8Œ“şƒÍ,
-Bjavascript:S905""Refactor or remove this statement.(Õ¯¼ú8Œ“şƒÍ,
-hjavascript:S1854"BRemove this useless assignment to local variable "icon_likeUnLike"(—ÿåÒúÿÿÿÿ8Œ“şƒÍ,
+ojavascript:UnusedVariable"@Remove the declaration of the unused 'icon_likeUnLike' variable.(—ÿåÒúÿÿÿÿ8äÔ¶ØÕ,
+hjavascript:S1854"BRemove this useless assignment to local variable "icon_likeUnLike"(—ÿåÒúÿÿÿÿ8äÔ¶ØÕ,
+Bjavascript:S905""Refactor or remove this statement.(Õ¯¼ú8äÔ¶ØÕ,
+ejavascript:UnusedVariable"6Remove the declaration of the unused 'count' variable.(™˜–ïüÿÿÿÿ8äÔ¶ØÕ,
+Bjavascript:S905""Refactor or remove this statement.(Õ¯¼ú8äÔ¶ØÕ,
+sjavascript:S1301"MReplace this "switch" statement with "if" statements to increase readability.(öÒøİúÿÿÿÿ8äÔ¶ØÕ,

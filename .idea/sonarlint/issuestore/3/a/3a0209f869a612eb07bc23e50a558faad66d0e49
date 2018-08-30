@@ -1,0 +1,29 @@
+
+gjavascript:S2259"MTypeError can be thrown as "subClassMethods" might be null or undefined here.(Í‹ªÑ
+‡javascript:S2583"mChange this condition so that it does not always evaluate to "false"; some subsequent code is never executed.(ˆÍÒ¯
+kjavascript:S2589"LRefactor this code so that this expression does not always evaluate to true.( Ô¼•ùÿÿÿÿ
+fjavascript:S2814"LRename "buffered" as this name is already used in declaration at line 22804.(˜Ñ¤Š
+kjavascript:S2814"LRename "closeable" as this name is already used in declaration at line 5634.(•€Ò¶øÿÿÿÿ
+javascript:S1871"bEither merge this case with the identical one on line "9445" or change one of the implementations.(Øìßşÿÿÿÿ
+Njavascript:S878"5Remove use of all comma operators in this expression.(¨·«
+@javascript:S878""Remove use of this comma operator.(÷Úó€üÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(˜²—è
+@javascript:S878""Remove use of this comma operator.(÷Úó€üÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(˜²—è
+@javascript:S878""Remove use of this comma operator.(÷Úó€üÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(˜²—è
+@javascript:S878""Remove use of this comma operator.(÷Úó€üÿÿÿÿ
+;javascript:S878""Remove use of this comma operator.(¹ƒ¹
+;javascript:S878""Remove use of this comma operator.(µÔ»û
+:javascript:S878""Remove use of this comma operator.(€Ó‚[
+;javascript:S878""Remove use of this comma operator.(¢¥Ô¡
+;javascript:S878""Remove use of this comma operator.(¹ƒ¹
+;javascript:S878""Remove use of this comma operator.(¢¥Ô¡
+;javascript:S878""Remove use of this comma operator.(¹ƒ¹
+;javascript:S878""Remove use of this comma operator.(‚ò¹ê
+Sjavascript:S878"5Remove use of all comma operators in this expression.(®ËÏûÿÿÿÿ
+Sjavascript:S1854"4Remove this useless assignment to local variable "m"(Ø¹Ÿæúÿÿÿÿ
+Rjavascript:S1854"8Remove this useless assignment to local variable "count"(ü“­Ã
+Njavascript:S1656"/Remove or correct this useless self-assignment.(‚õ€•øÿÿÿÿ
+ljavascript:S1301"MReplace this "switch" statement with "if" statements to increase readability.(›‡ã¿øÿÿÿÿ
+ljavascript:S1301"MReplace this "switch" statement with "if" statements to increase readability.(›‡ã¿øÿÿÿÿ

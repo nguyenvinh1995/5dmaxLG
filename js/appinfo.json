@@ -1,0 +1,12 @@
+{
+    "id": "com.viettel.media.5d.max",
+    "version": "1.0.0",
+    "vendor": "My Company",
+    "type": "web",
+    "main": "index.html",
+    "title": "5dMax",
+    "icon": "icon.png",
+    "largeIcon": "largeIcon.png",
+    "uiRevision": 2,
+    "disableBackHistoryAPI":true
+}

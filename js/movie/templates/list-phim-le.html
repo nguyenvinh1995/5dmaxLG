@@ -26,25 +26,25 @@
     </div>
     <div class="tab-right">
         <div class="img-arrow-left display-none"></div>
-        <div class="background-movie"
-             style="background-image: url({{(vm.srcImg === '') ? vm.content[0].imageForTVLarge : vm.srcImg}})">
-            <div class="gradient-img"></div>
-            <div class="caph-list-movie">
-                <div id="list-movie" class="list-movie col-lg-10" direction="vertical">
-                    <div class="item-wrapper col-lg-2"
-                         focusable="{ depth : $root.depth.list.val,nextFocus: { left : $index % vm.itemInPage === 0 ? '{{vm.currentItem.name}}' : '' }}"
-                         on-focused="vm.showFilms($event, $originalEvent, 1, $index, false, null, item)"
-                         on-selected="vm.selectMovie(item)" id="movieItem_{{$index}}"
-                         ng-repeat="item in vm.content">
-                        <div class="preload">
-                            <div class="item-movie"
-                                 style="background-image: url({{item.coverImageH}})"
-                                 ng-class="{ 'itemFirst' : $first }"></div>
+        <div class="preload-focus">
+            <div class="background-movie"
+                 style="background-image: url({{(vm.srcImg === '') ? vm.content[0].imageForTVLarge : vm.srcImg}})">
+                <div class="gradient-img"></div>
+                <div class="caph-list-movie">
+                    <div id="list-movie" class="list-movie col-lg-10" direction="vertical">
+                        <div class="item-wrapper col-lg-2"
+                             focusable="{ depth : $root.depth.list.val,nextFocus: { left : $index % vm.itemInPage === 0 ? '{{vm.currentItem.name}}' : '' }}"
+                             on-focused="vm.showFilms($event, $originalEvent, 1, $index, false, null, item)"
+                             on-selected="vm.selectMovie(item)" id="movieItem_{{$index}}"
+                             ng-repeat="item in vm.content">
+                            <div class="preload">
+                                <div class="item-movie"
+                                     style="background-image: url({{item.coverImageH}})"
+                                     ng-class="{ 'itemFirst' : $first }"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>

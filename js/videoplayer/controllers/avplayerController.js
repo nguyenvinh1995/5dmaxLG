@@ -53,6 +53,8 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
     var vm = this;
     var isForward = true;
     vm.checkPlayTrailer = services.check;
+    $rootScope.linkM3u8 = [];
+    $rootScope.checkSelectprocess = false;
 
     setTimeout(function () {
         startingPlay($scope, services, $state, FocusUtil, focusController, $timeout, $stateParams, utilities, $rootScope, settings, $http);
@@ -68,6 +70,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
             services.getHomeFilm().then(function (response) {
                 vm.homeFilms = response.data;
                 vm.banner = vm.homeFilms[0].content;
+                // var i = Math.floor(Math.random() * vm.banner.length);
                 vm.bannerItem = vm.banner[0].imageForTVLarge;
                 vm.logoItem = vm.banner[0].logoImage;
                 vm.currentItem = vm.banner[0].coverImage;
@@ -105,43 +108,49 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                         if (response.data.streams) {
                             switch (response.data.streams.errorCode) {
                                 case 201 :
-                                    // utilities.showMessenge(response.data.streams.message, true);
-                                    // owl.trigger("play.owl.autoplay", [30000]);
-
-                                    // popUPBanner();
-                                    if (response.data.streams.errorCode == '201' && response.data.streams.popup) {
-                                        utilities.hideLoading();
-                                        if (isObject(response.data.streams.popup))
-                                            checkBuy(response.data.streams.popup);
-                                        else {
-                                            utilities.showMessenge(response.data.streams.message);
-                                            showHideDialog();
+                                    if (response.data.video.drm_content_id === null || response.data.video.drm_content_id === '') {
+                                        if (response.data.streams.errorCode == '201' && response.data.streams.popup) {
+                                            utilities.hideLoading();
+                                            if (isObject(response.data.streams.popup) && (response.data.video.drm_content_id === null || response.data.video.drm_content_id === ''))
+                                                checkBuy(response.data.streams.popup);
+                                            else {
+                                                utilities.showMessenge(response.data.streams.message);
+                                                showHideDialog();
+                                            }
+                                            return;
+                                        } else if (response.data.streams.errorCode == utilities.errorCode.tokenExpire) {
+                                            refreshToken(refreshTokenType.playItem);
+                                            return;
                                         }
-                                        return;
-                                    } else if (response.data.streams.errorCode == utilities.errorCode.tokenExpire) {
-                                        refreshToken(refreshTokenType.playItem);
-                                        return;
+                                        $state.go('avplayer', {
+                                            playlistId: response.data.detail.id,
+                                            movieId: response.data.parts[0].id
+                                        });
+                                        utilities.hideLoading();
+                                    } else {
+                                        utilities.showMessenge('Thiết bị chưa hỗ trợ xem phim này');
                                     }
-                                    $state.go('avplayer', {
-                                        playlistId: response.data.detail.id,
-                                        movieId: response.data.parts[0].id
-                                    });
-                                    utilities.hideLoading();
+
                                     break;
                                 case "401" :
                                     $state.go('login_form', {}, {reload: true});
                                     break;
                                 case 200 :
-                                    services.checkSuggest = false;
-                                    services.mediaUrlSuggest = response.data.streams.urlStreaming;
-                                    TizenAVPlayer.name = response.data.detail.name;
-                                    TizenAVPlayer.description = response.data.detail.description;
-                                    TizenAVPlayer.alias = response.data.parts.alias;
-                                    $state.go('avplayer', {
-                                        playlistId: response.data.detail.id,
-                                        movieId: response.data.parts[0].id
-                                    });
-                                    console.log('ddddd');
+                                    if (response.data.video.drm_content_id === null || response.data.video.drm_content_id === '') {
+                                        console.log('tesst', response.data.video.drm_content_id);
+                                        services.checkSuggest = false;
+                                        services.mediaUrlSuggest = response.data.streams.urlStreaming;
+                                        TizenAVPlayer.name = response.data.detail.name;
+                                        TizenAVPlayer.description = response.data.detail.description;
+                                        TizenAVPlayer.alias = response.data.parts.alias;
+                                        $state.go('avplayer', {
+                                            playlistId: response.data.detail.id,
+                                            movieId: response.data.parts[0].id
+                                        });
+                                        console.log('ddddd');
+                                    } else {
+                                        utilities.showMessenge('Thiết bị chưa hỗ trợ xem phim này');
+                                    }
                                     break;
                                 default :
                                     break;
@@ -161,9 +170,9 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
         setTimeout(function () {
             $("#play_btn").blur();
         }, 100);
-        TizenAVPlayer.executeAction({
-            action: "stop"
-        });
+        // TizenAVPlayer.executeAction({
+        //     action: "stop"
+        // });
         // TizenAVPlayer.close();
         $(".avplayer_page").addClass('display-none').removeClass('display-block');
         $(".relate_film_background").removeClass('display-none').addClass('display-block');
@@ -247,6 +256,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                                 // }
                             }, 500);
                             $("#av-player").show();
+                            getLinkM3U8(mediaUrl);
                         } else if (data.streams && data.streams.popup) {
                             utilities.hideLoading();
                             setTimeout(function () {
@@ -270,12 +280,12 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                     var mediaUrl = services.playTrailer;
                     TizenAVPlayer.mediaUrl = mediaUrl;
                     setTimeout(function () {
-                        // TizenAVPlayer.playVideo(mediaUrl, isDrm);
                         WebOsPlayer.playVideo(mediaUrl, avPlayerListenerCallback);
                         $scope.isPlaying = true;
+                        $scope.$digest();
                     }, 500);
                     $("#av-player").show();
-                    ervices.playTrailer = '';
+                    services.playTrailer = '';
                 } else {
                     $rootScope.changeView();
                     utilities.showMessenge("Đã có lỗi xảy ra");
@@ -286,15 +296,69 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                 var mediaUrl = services.mediaUrlBanner;
                 TizenAVPlayer.mediaUrl = mediaUrl;
                 setTimeout(function () {
-                    // TizenAVPlayer.playVideo(mediaUrl, isDrm);
                     WebOsPlayer.playVideo(mediaUrl, avPlayerListenerCallback);
                     $scope.isPlaying = true;
+                    $scope.$digest();
                 }, 500);
                 $("#av-player").show();
                 services.checkBanner = false;
                 services.mediaUrlBanner = '';
+                // getLinkM3U8(mediaUrl);
             }
         }
+
+        function getLinkM3U8(mediaUrl) {
+            console.log(mediaUrl);
+            var tmp = mediaUrl.lastIndexOf("/");
+            console.log(tmp);
+            if (tmp != -1) {
+                var base_url = mediaUrl.substr(0, tmp + 1);
+                console.log(base_url);
+                var m3u8 = mediaUrl;
+                $.ajax({
+                    type: "GET",
+                    url: m3u8,
+                    success: function (data) {
+                        function convertInto2KOM(m3u) {
+                            return m3u
+                                .replace('#EXTM3U', '')
+                                .split('x')
+                                .slice(1)
+                                .map(function (str) {
+                                    var channel = str.split('\n').slice(0, -1);
+                                    return {
+                                        "quality": channel[0],
+                                        "url": base_url + channel[1]
+                                    };
+                                });
+                        }
+
+                        var parseM3U = convertInto2KOM(data);
+                        vm.linkM3u8 = parseM3U;
+                        console.log(vm.linkM3u8)
+                    }
+                });
+            }
+        }
+
+        vm.selectLink = function (item, bool) {
+            $rootScope.checkLink = bool;
+            WebOsPlayer.currentTime = $rootScope.checkTime;
+            console.log(item.url, TizenAVPlayer.ffAndRewData.changeTime);
+            var mediaUrl = item.url;
+            TizenAVPlayer.mediaUrl = mediaUrl;
+            setTimeout(function () {
+                WebOsPlayer.playVideo(mediaUrl, avPlayerListenerCallback);
+                $scope.isPlaying = true;
+                $scope.$digest();
+            }, 500);
+            $("#av-player").show();
+        };
+
+        vm.selectProcess = function () {
+            $rootScope.checkSelectprocess = true;
+        };
+
 
         function ff(time) {
             TizenAVPlayer.ff(time, function () {
@@ -377,7 +441,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
 
         var timeLeft = WebOsPlayer.duration - currentTime;
         var progress = Math.min(currentTime, WebOsPlayer.duration) / WebOsPlayer.duration * progressBarBkgdElement.width();
-        console.log(progress,currentTime,WebOsPlayer.duration,currentPlayingTime);
+        console.log(progress, currentTime, WebOsPlayer.duration, currentPlayingTime);
 
         if (Math.min(currentTime, WebOsPlayer.duration) === WebOsPlayer.duration) {
             progressBarMarkerElement.css('width', progressBarBkgdElement.width() + '%');
@@ -388,7 +452,6 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
         endPosElement.html(WebOsPlayer.formatTime(timeLeft));
         progressBarMarkerElement.css('width', progress + '%');
         progressDot.css('margin-left', (progress) + '%');
-
     }
 
     function initLayout() {
@@ -527,6 +590,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                             WebOsPlayer.rewind(controllerConfig.rewindTimeRange, stepFfAndRw, isForward);
                             event.stopPropagation();
                             keydown = true;
+                            // $rootScope.checkSelectprocess = false;
                         } else {
                             showMediaController($scope, focusController);
                         }
@@ -541,6 +605,8 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                             clearTimeout(showMediaControllerTimeout);
                             WebOsPlayer.jump(controllerConfig.forWardTimeRange, stepFfAndRw, isForward);
                             event.stopPropagation();
+                            // $rootScope.checkSelectprocess = false;
+
                         } else {
                             showMediaController($scope, focusController);
                         }
@@ -858,11 +924,11 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
         console.log(popup);
         services.popup1 = popup;
         if (popup.is_buy_playlist == typePopup.isBuy.type && !popup.package_id) {
-            // isConfirm = false;
-            // currentTypePopup = typePopup.isBuy.type;
-            // $(".popup_movie_detail_1 .title_messenger").html(typePopup.isBuy.title);
-            // $(".popup_movie_detail_1 .messenger").html(popup.confirm);
-            // showHideDialog();
+            isConfirm = false;
+            currentTypePopup = typePopup.isBuy.type;
+            $(".popup_movie_detail_1 .title_messenger").html(typePopup.isBuy.title);
+            $(".popup_movie_detail_1 .messenger").html(popup.confirm);
+            showHideDialog();
             utilities.showMessenge('Thiết bị chưa hỗ trợ xem phim này');
         } else if (popup.is_buy_playlist == typePopup.isPackage.type && popup.package_id) {
             isConfirm = false;
@@ -981,7 +1047,13 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
 
         player.on('timeupdate', function () {
             $rootScope.isPlaying = true;
+
+            //  if($rootScope.checkLink === true){
+            //  }
+            // else{
             currentPlayingTime = player.currentTime();
+            // }
+            $rootScope.checkTime = currentPlayingTime;
             console.log('xxxxxx', currentPlayingTime);
             updateCurrentProgress(currentPlayingTime);
             try {

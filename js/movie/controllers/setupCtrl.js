@@ -278,7 +278,13 @@ function SetupCtrl($scope, services, focusController, FocusUtil, $timeout, $stat
         $rootScope.currentPopup = 'dialog_logout_1';
         /*logout ==> refresh home page*/
         changeDepth(depthDialog);
-        initFocus("btn_cancle_out");
+        // initFocus("btn_cancle_out");
+        var timeFocus = setInterval(function () {
+            focusController.focus($('#btn_cancle_out'));
+            if ($('#btn_cancle_out').hasClass('focused')) {
+                clearInterval(timeFocus);
+            }
+        }, 100)
     };
 
     vm.showQuality = function () {

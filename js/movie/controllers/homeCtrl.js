@@ -29,7 +29,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         // services.backgroundSuggetionMovie = currentBannerItem.imageForTVLarge;
         services.backgroundMenu = currentBannerItem.imageForTVLarge;
         services.idItem = vm.homeFilms[0].content[0].itemId;
-        console.log(services.idItem);
+        // console.log(services.idItem);
         var raw = '';
         for (var i = 1; i < vm.homeFilms.length; i++) {
             raw += '<div class="list_movies overlay" ng-class="{ \'overlay\' : vm.currentCategory != ' + i + ' } "id="list_' + i + '">'
@@ -68,7 +68,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
             $(".banner_" + [i]).addClass('active');
         }
     }, 30000);
-    services.clearBanner = i ;
+    services.clearBanner = i;
 
 ///// Watch-Button
 
@@ -100,41 +100,48 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
                                 // utilities.showMessenge(response.data.streams.message, true);
                                 // owl.trigger("play.owl.autoplay", [30000]);
 
-                                // popUPBanner();
-                                if (response.data.streams.errorCode == '201' && response.data.streams.popup) {
-                                    utilities.hideLoading();
-                                    if (isObject(response.data.streams.popup))
-                                        checkBuy(response.data.streams.popup);
-                                    else {
-                                        utilities.showMessenge(response.data.streams.message);
-                                        showHideDialog();
+                                if (response.data.video.drm_content_id === null || response.data.video.drm_content_id === '') {
+                                    if (response.data.streams.errorCode == '201' && response.data.streams.popup) {
+                                        utilities.hideLoading();
+                                        if (isObject(response.data.streams.popup))
+                                            checkBuy(response.data.streams.popup);
+                                        else {
+                                            utilities.showMessenge(response.data.streams.message);
+                                            showHideDialog();
+                                        }
+                                        return;
+                                    } else if (response.data.streams.errorCode == utilities.errorCode.tokenExpire) {
+                                        refreshToken(refreshTokenType.playItem);
+                                        return;
                                     }
-                                    return;
-                                } else if (response.data.streams.errorCode == utilities.errorCode.tokenExpire) {
-                                    refreshToken(refreshTokenType.playItem);
-                                    return;
+                                    $state.go('avplayer', {
+                                        playlistId: response.data.detail.id,
+                                        movieId: response.data.parts[0].id
+                                    });
+                                    utilities.hideLoading();
+                                } else {
+                                    utilities.showMessenge('Thiết bị chưa hỗ trợ xem phim này');
                                 }
-                                $state.go('avplayer', {
-                                    playlistId: response.data.detail.id,
-                                    movieId: response.data.parts[0].id
-                                });
-                                utilities.hideLoading();
                                 break;
                             case "401" :
                                 $state.go('login_form', {}, {reload: true});
                                 break;
                             case 200 :
-                                console.log('tesst');
-                                services.checkBanner = true;
-                                services.mediaUrlBanner = response.data.streams.urlStreaming;
-                                services.attribute = Number(response.data.detail.attributes);
-                                TizenAVPlayer.name = response.data.detail.name;
-                                TizenAVPlayer.description = response.data.detail.description;
-                                TizenAVPlayer.alias = response.data.parts.alias;
-                                $state.go('avplayer', {
-                                    playlistId: response.data.detail.id,
-                                    movieId: response.data.parts[0].id
-                                });
+                                if (response.data.video.drm_content_id === null || response.data.video.drm_content_id === '') {
+                                    console.log('tesst', response.data.video.drm_content_id);
+                                    services.checkBanner = true;
+                                    services.mediaUrlBanner = response.data.streams.urlStreaming;
+                                    services.attribute = Number(response.data.detail.attributes);
+                                    TizenAVPlayer.name = response.data.detail.name;
+                                    TizenAVPlayer.description = response.data.detail.description;
+                                    TizenAVPlayer.alias = response.data.parts.alias;
+                                    $state.go('avplayer', {
+                                        playlistId: response.data.detail.id,
+                                        movieId: response.data.parts[0].id
+                                    });
+                                } else {
+                                    utilities.showMessenge('Thiết bị chưa hỗ trợ xem phim này');
+                                }
                                 break;
                             default :
                                 break;
@@ -201,7 +208,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
 
         services.idTrailer = item.trailer;
         $timeout.cancel(vm.ShowGif);
-         console.log(services.idTrailer);
+        console.log(services.idTrailer);
         vm.ShowGif = null;
         vm.ShowGif = $timeout(function () {
             if (services.idTrailer) {
@@ -292,6 +299,17 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
             $wrapper.css({
                 transform: 'translateX(0px)'
             });
+        }
+
+        vm.filmWatched = item.duration;
+        if (vm.filmWatched) {
+            var text = item.name;
+            console.log(text.length, vm.filmWatched);
+            if (text.length <= 26) {
+                $('#process-bar').removeClass('ellipsis-2');
+            } else {
+                $('#process-bar').addClass('ellipsis-2');
+            }
         }
 
         //process

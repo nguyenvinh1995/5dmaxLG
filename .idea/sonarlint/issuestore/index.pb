@@ -193,3 +193,7 @@ a
 1js/videoplayer/videojs/videojs-contrib-hls.min.js,8/6/86a207d594b1cc9c68525823f2ec9d2b78d4a541
 Q
 !js/videoplayer/videojs/videojs.js,3/a/3a0209f869a612eb07bc23e50a558faad66d0e49
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+=
+.package.json,6/1/61cd8eb689a1491b6d07dccce731d844b1b5db37

@@ -9,6 +9,7 @@
   "dependencies": {
     "lite": "^4.0.5",
     "live-serve": "0.0.0",
+    "m3u8-file-parser": "^0.2.0",
     "serve": "^9.4.0"
   },
   "devDependencies": {

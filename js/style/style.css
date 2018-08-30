@@ -170,7 +170,7 @@ html, body {
       .group_btn .watch.focused .img-watch, .group_btn .detail.focused .img-watch {
         width: 1.5rem;
         height: 1.5rem;
-        background: url("../images/ic-detail-play-nomal-copy-2@3x2.png") no-repeat;
+        background: url("../images/ic-detail-play-nomal.svg") no-repeat;
         background-size: 100% 100%; }
       .group_btn .watch.focused .text, .group_btn .detail.focused .text {
         color: #333; }
@@ -179,7 +179,7 @@ html, body {
     top: 0.1875rem;
     width: 1.5rem;
     height: 1.5rem;
-    background: url("../images/ic-detail-play-nomal-copy-2@3x1.png") no-repeat;
+    background: url("../images/ic-detail-play-nomal-copy-2.svg") no-repeat;
     background-size: 100% 100%;
     overflow: hidden;
     margin-left: -0.15625rem; }
@@ -294,7 +294,7 @@ html, body {
   height: 24rem;
   background-position: right top !important;
   background-repeat: no-repeat !important;
-  background-size: 45.375rem 24rem !important;
+  background-size: 45.375rem auto !important;
   position: relative; }
   .movie_article_wrapper:before {
     content: "";
@@ -476,10 +476,35 @@ html, body {
 
 .font70 {
   font-size: 2.65625rem !important;
-  margin-top: 15% !important;
-  margin-bottom: -5% !important;
+  margin-top: 12% !important;
+  margin-bottom: -6% !important;
   width: 153%;
-  white-space: nowrap;
+  overflow: hidden; }
+
+.ellipsis-1 {
+  display: block;
+  /* Fallback for non-webkit */
+  display: -webkit-box;
+  height: 3.45312rem;
+  /* Fallback for non-webkit */
+  font-size: 2.65625rem;
+  line-height: 1.3;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis; }
+
+.ellipsis-2 {
+  display: block;
+  /* Fallback for non-webkit */
+  display: -webkit-box;
+  height: 6.90625rem;
+  /* Fallback for non-webkit */
+  font-size: 2.65625rem;
+  line-height: 1.3;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis; }
@@ -507,6 +532,13 @@ html, body {
   border: 0.09375rem solid rgba(0, 0, 0, 0.3);
   width: 14rem;
   height: 8.03125rem; }
+
+.preload-focus {
+  background: url("../images/d-ault-image@3x.png") no-repeat;
+  height: 24rem;
+  background-position: right top !important;
+  background-repeat: no-repeat !important;
+  background-size: 45.375rem auto !important; }
 
 @font-face {
   font-family: SFUIDisplay;
@@ -605,7 +637,7 @@ html, body {
 .background-movie {
   position: relative;
   float: right;
-  background-size: 100% 100%;
+  background-size: 100%;
   height: 24rem;
   width: 45.375rem; }
 
@@ -614,7 +646,7 @@ html, body {
   width: 100vw;
   height: 100vh;
   overflow: hidden; }
-  .movie-detail .name-movie {
+  .movie-detail auto .name-movie {
     font-size: 1.65625rem;
     font-weight: bold;
     line-height: normal;
@@ -686,15 +718,15 @@ html, body {
     .movie-detail .button-common:last-child {
       margin-bottom: 0; }
     .movie-detail .button-common .img-continue {
-      background-image: url("../images/ic-detail-play-nomal-copy-2@3x.png"); }
+      background-image: url("../images/ic-detail-play-nomal-copy-2.svg"); }
     .movie-detail .button-common .img-watch-fist {
-      background-image: url("../images/ic-detail-begining-nomal@3x.png"); }
+      background-image: url("../images/ic-detail-begining-nomal.svg"); }
     .movie-detail .button-common .img-list {
-      background-image: url("../images/focused1.png"); }
+      background-image: url("../images/episodes.svg"); }
     .movie-detail .button-common .img-add {
-      background-image: url("../images/add-circle-material@3x.png"); }
+      background-image: url("../images/add-circle-material.svg"); }
     .movie-detail .button-common .img-remove {
-      background-image: url("../images/add-circle-material@3x11.png"); }
+      background-image: url("../images/add-circle-material1.svg"); }
     .movie-detail .button-common .img-tool {
       height: 1.5rem;
       width: 1.5rem;
@@ -707,15 +739,15 @@ html, body {
       background-color: #ffffff;
       color: #333333; }
       .movie-detail .button-common.focused .img-continue {
-        background-image: url("../images/ic-detail-play-nomal@3x.png"); }
+        background-image: url("../images/ic-detail-play-nomal.svg"); }
       .movie-detail .button-common.focused .img-watch-fist {
-        background-image: url("../images/ic-detail-begining-focus@3x.png"); }
+        background-image: url("../images/ic-detail-begining-focus.svg"); }
       .movie-detail .button-common.focused .img-list {
         background-image: url("../images/focused.png"); }
       .movie-detail .button-common.focused .img-add {
-        background-image: url("../images/ic-detail-add-focus@3x.png"); }
+        background-image: url("../images/ic-detail-add-focus.svg"); }
       .movie-detail .button-common.focused .img-remove {
-        background-image: url("../images/add-circle-material-copy@3x.png"); }
+        background-image: url("../images/add-circle-material-copy.svg"); }
     .movie-detail .button-common .text-btn {
       position: absolute;
       top: 0.375rem; }
@@ -1586,19 +1618,19 @@ input:focus, button:focus {
       .menu_page .item-menu .btn-menu .imgsearch {
         width: 2.53125rem;
         height: 2.5rem;
-        background: url("../images/search@3x.png") no-repeat;
+        background: url("../images/ic-seach.svg") no-repeat;
         opacity: 0.4;
         background-size: 100% 100%; }
       .menu_page .item-menu .btn-menu .imgmovies {
         width: 3.125rem;
         height: 2.71875rem;
-        background: url("../images/xmlid-42@3x.png") no-repeat;
+        background: url("../images/xmlid-42.svg") no-repeat;
         opacity: 0.4;
         background-size: 100% 100%; }
       .menu_page .item-menu .btn-menu .imgseriesmovie {
         width: 2.5rem;
         height: 2.375rem;
-        background: url("../images/shape@3x.png") no-repeat;
+        background: url("../images/shape.svg") no-repeat;
         opacity: 0.4;
         background-size: 100% 100%; }
       .menu_page .item-menu .btn-menu .imgmylist {
@@ -1606,13 +1638,13 @@ input:focus, button:focus {
         left: 54% !important;
         width: 3.75rem;
         height: 2.5rem;
-        background: url("../images/shape1@3x.png") no-repeat;
+        background: url("../images/shape1.svg") no-repeat;
         opacity: 0.4;
         background-size: 100% 100%; }
       .menu_page .item-menu .btn-menu .imgestablish {
         width: 3.125rem;
         height: 3.125rem;
-        background: url("../images/path-4050@3x.png") no-repeat;
+        background: url("../images/path-4050.svg") no-repeat;
         opacity: 0.4;
         background-size: 100% 100%; }
       .menu_page .item-menu .btn-menu .imgsignout {

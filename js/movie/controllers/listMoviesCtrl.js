@@ -51,6 +51,13 @@ function listMoviesCtrl($scope, services, focusController, FocusConstant, FocusU
             $(".genres2").addClass('move-left');
             $(".img-arrow-left").addClass('display-block').removeClass('display-none');
             vm.srcImg = item.imageForTVLarge;
+            if (item.imageForTVLarge) {
+                vm.srcImg = item.imageForTVLarge;
+            }
+            else {
+                // services.backgroundMenu = item.coverImage;
+                vm.srcImg = item.coverImage;
+            }
             vm.item = item;
             vm.selectMovie = function (item) {
                 $rootScope.index_item = 0;

@@ -70,6 +70,7 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
                 console.log(response.responseCode, response.errorCode);
                 // $("#movie-detail").removeClass('hidden');
                 var data = response.data;
+                services.trailerId = Number(data.detail.video_trailer);
                 services.imgCurrentItem = data.detail.avatarImageH;
                 $rootScope.idTrailers = data.detail.video_trailer;
                 services.attribute = Number(data.detail.attributes);
@@ -80,6 +81,7 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
                 vm.ep = vm.listFilms.length;
                 vm.streams = data.streams;
                 setUrlFilmDrm();
+                trailerShow();
                 currentContinueMovie = findPart(vm.detailFilms.currentVideoId, vm.listFilms);
                 $rootScope.index_item = parseInt(currentContinueMovie.index);
                 if (data.currentTime && data.currentTime != 0) {
@@ -276,38 +278,62 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
             return;
         }
         if (services.checkLogin() || vm.streams.errorCode != '401' || services.isLogin === true) {
-            if (vm.streams.errorCode == '201' && vm.streams.popup) {
+            if (vm.detailFilms.drm_content_id === null || vm.detailFilms.drm_content_id === '') {
+                if (vm.streams.errorCode == '201' && vm.streams.popup) {
+                    utilities.hideLoading();
+                    if (isObject(vm.streams.popup))
+                        checkBuy(vm.streams.popup);
+                    else
+                        utilities.showMessenge(vm.streams.message);
+                    return;
+                } else if (vm.streams.errorCode == utilities.errorCode.tokenExpire) {
+                    refreshToken(refreshTokenType.playDefault);
+                    return;
+                }
+                $state.go('avplayer', {
+                    playlistId: vm.detailFilms.id,
+                    movieId: mId,
+                    drmId: vm.detailFilms.drm_content_id
+                });
                 utilities.hideLoading();
-                if (isObject(vm.streams.popup))
-                    checkBuy(vm.streams.popup);
-                else
-                    utilities.showMessenge(vm.streams.message);
-                return;
-            } else if (vm.streams.errorCode == utilities.errorCode.tokenExpire) {
-                refreshToken(refreshTokenType.playDefault);
-                return;
+            } else {
+                utilities.showMessenge('Thiết bị chưa hỗ trợ xem phim này');
             }
-
-            $state.go('avplayer', {playlistId: vm.detailFilms.id, movieId: mId, drmId: vm.detailFilms.drm_content_id});
-            utilities.hideLoading();
         }
         else {
             $state.go('login_form', {playlistId: vm.detailFilms.id, movieId: mId}, {reload: true});
         }
     };
 
-    services.getTrailer(services.idTrailer).then(function (response) {
-        console.log(response);
-        services.playTrailer = response.data.streams.urlStreaming;
-        vm.videoTrailer = services.playTrailer;
-    });
+    // services.getTrailer(services.idTrailer).then(function (response) {
+    //     console.log(response);
+    //     services.playTrailer = response.data.streams.urlStreaming;
+    //     vm.videoTrailer = services.playTrailer;
+    // });
+    //
+    // vm.trailer = function (check) {
+    //     console.log(services.check);
+    //     services.check = check;
+    //     console.log(services.playTrailer);
+    //     $state.go('avplayer', {playlistId: vm.detailFilms.id, movieId: vm.listFilms[0].id});
+    // };
 
-    vm.trailer = function (check) {
-        console.log(services.check);
-        services.check = check;
-        console.log(services.playTrailer);
-        $state.go('avplayer', {playlistId: vm.detailFilms.id, movieId: vm.listFilms[0].id});
-    };
+    function trailerShow() {
+        console.log(services.trailerId);
+        services.getTrailer(services.trailerId).then(function (response) {
+            console.log(response);
+            services.playTrailer = response.data.streams.urlStreaming;
+            vm.videoTrailer = services.playTrailer;
+        });
+
+        vm.trailer = function (check) {
+            // vm.checkPlayTrailer = check;
+            services.check = check;
+            console.log(services.idTrailer, services.playTrailer);
+            $state.go('avplayer', {playlistId: vm.detailFilms.id, movieId: vm.listFilms[0].id});
+        };
+
+    }
 
 
     vm.playMovie = function (item) {
