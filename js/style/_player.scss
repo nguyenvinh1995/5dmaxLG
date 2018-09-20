@@ -1,6 +1,5 @@
 .avplayer_page {
   overflow: hidden;
-
   .movie_article {
     position: absolute;
     top: 320*$rem;
@@ -43,6 +42,10 @@
       margin-top: 20*$rem;
     }
   }
+}
+
+.left-100{
+  left: 100*$rem !important;
 }
 
 .controls-bar {

@@ -152,7 +152,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         );
         services.imgCurrentItem = vm.banner[0].coverImage;
     };
-    vm.focusPlay = function () {
+    vm.focusPlay = function ($event, $originalEvent) {
         // owl.trigger("play.owl.autoplay", [5000]);
         // owl.trigger('owl.play',5000);
         $('#av-container').remove();
@@ -169,6 +169,24 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         $("#group_btn").removeClass('hidden_opacity');
         $(".movie_article_wrapper").removeClass('background-none');
         $(".btn-up-to-top").removeClass('display-none').addClass('display-block');
+
+        // function mouseWheelEvent(e) {
+        //     var target = event.target;
+        //     var key = new Event('keydown');
+        //     console.log('mousewheel', e, target);
+        //     if (e.wheelDelta < 0) {
+        //         console.log(key);
+        //         key.keyCode = 40;
+        //         document.dispatchEvent
+        //         console.log('mousewheel1', document.dispatchEvent);
+        //     } else {
+        //         console.log(key);
+        //         key.keyCode = 38;
+        //         document.dispatchEvent
+        //         console.log('mousewheel2', document.dispatchEvent);
+        //     }
+        // }
+        // document.addEventListener('mousewheel', mouseWheelEvent, true);
     };
 
 // if ($('#btn-detail').hasClass('focused')) {
@@ -182,7 +200,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         // owl.trigger('stop.owl.autoplay');
         $state.go('movieDetail', {id: vm.banner[i].itemId}, {reload: true});
     };
-    vm.focusDetail = function () {
+    vm.focusDetail = function ($event, $originalEvent) {
         services.backgroundMenu = currentBannerItem.imageForTVLarge;
     };
 
@@ -203,9 +221,9 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
             $("#group_btn").addClass('hidden_opacity');
             $('#list_container').removeClass('lastCategory');
             $(".btn-up-to-top").addClass('display-none').removeClass('display-block');
+            $("#home_page").removeClass('focusMenu');
         }
         ///Trailer-Focus//////
-
         services.idTrailer = item.trailer;
         $timeout.cancel(vm.ShowGif);
         console.log(services.idTrailer);
@@ -268,10 +286,12 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
                     transform: 'translate3d(0, -' + val + 'px, 0)'
                 });
                 vm.currentCategory = category;
+                $('#process-bar').removeClass('ellipsis-2');
             }
             /*key up*/
 
             if (category < vm.currentCategory && category > 1) {
+                $('#process-bar').removeClass('ellipsis-2');
                 $('#list_container').removeClass('lastCategory');
                 var val = (category - 1) * heightCategory;
                 $('#list_container').css({
@@ -280,6 +300,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
                 vm.currentCategory = category;
             }
         }
+
         var $ele = $($event.currentTarget);
         var $wrapper = $ele.parent().parent();
         // var $scroll = $wrapper.parent();
@@ -343,6 +364,7 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         // }
 
     };
+
 
 ////////
 
@@ -524,9 +546,9 @@ function HomeCtrl($scope, $timeout, $state, $window, services, settings, FocusUt
         changeDepth(depthMain);
     };
 
-    vm.focusText = function ($event, items, startIndex, $index) {
+    vm.focusText = function ($event, $originalEvent, items, startIndex, $index) {
         $('#av-container').remove();
-        owl.trigger('stop.owl.autoplay');
+        // owl.trigger('stop.owl.autoplay');
         $("#home_page").addClass('focusMenu');
         vm.title = items.title;
         vm.description = items.description;

@@ -32,6 +32,7 @@ function searchCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
                         vm.showListMovie = true;
                         vm.listSearchMovie = response.data[0].content;
                         $("#list_search").trigger('reload');
+                        checkFocusItemSuggest();
                     }
                     if (response.data.length === 0) {
                         vm.listSearchMovie = [];
@@ -41,7 +42,7 @@ function searchCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
                     vm.message = response.message;
                 }
             });
-        }, 1000);
+        }, 3000);
 
         $timeout.cancel(vm.showSearchSuggest);
         vm.showSearchSuggest = null;
@@ -55,7 +56,7 @@ function searchCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
                     vm.listSearchMovieSugest = [];
                 }
             });
-        }, 1000);
+        }, 3000);
     }
 
     services.getSetting().then(function (response) {
@@ -65,12 +66,14 @@ function searchCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
     });
 
     $scope.$watch('vm.searchText', function (newVal, oldVal) {
-        if (newVal.trim() !== '') {
-            if (newVal !== oldVal) {
-                searchMovie(newVal);
-                console.log('time');
+        // setTimeout(function () {
+            if (newVal.trim() !== '') {
+                if (newVal !== oldVal) {
+                    searchMovie(newVal);
+                    console.log('time');
+                }
             }
-        }
+        // }, 3000);
         if (newVal.trim() === '') {
             $("#text-search-first").addClass('display-block').removeClass('display-none');
             $("#text-search").addClass('display-none').removeClass('display-block');
@@ -98,6 +101,18 @@ function searchCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
         }
     };
 
+    function checkFocusItemSuggest() {
+        var checkItem = vm.listSearchMovie.length % 3;
+        console.log(vm.listSearchMovie.length, checkItem);
+        if (checkItem === 0) {
+            vm.itemLast = vm.listSearchMovie.length - 4;
+            console.log('ko du', vm.itemLast);
+        } else {
+            vm.itemLast = (vm.listSearchMovie.length - 1) - (checkItem);
+            console.log('du', vm.itemLast);
+        }
+    }
+
     vm.blurSuggest = function () {
         $('#search').removeClass('display-no-top')
     };
@@ -111,6 +126,15 @@ function searchCtrl($scope, services, focusController, FocusUtil, $timeout, $sta
         if (vm.checkItemHeight >= start) {
             $('#list_search').css({
                 transform: 'translate3d(0, -' + (vm.checkItemHeight * heightCate) + 'px, 0)'
+            });
+        } else if (vm.checkItemHeight === 0) {
+            $('#list_search').css({
+                transform: 'translate3d(0, 0px, 0)'
+            });
+        }
+        if (vm.checkItemHeight <= start) {
+            $('#list_search').css({
+                transform: 'translate3d(0, -' + ((vm.checkItemHeight - 3) * heightCate) + 'px, 0)'
             });
         } else if (vm.checkItemHeight === 0) {
             $('#list_search').css({

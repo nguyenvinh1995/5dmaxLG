@@ -13,15 +13,15 @@
     </div>
     <div class="part-movie">
         <!--<caph-list id="list_item" container-class="item-movie" direction="vertical" items="item in vm.listFilms" wrapper-class="wrapper_item_list" initial-item-index="{{index_item}}">-->
-            <!--<div id="" class="item"  ng-class="{'list_0' : $first }" focusable="{depth : $root.depth.listMovie.val}"-->
-                 <!--on-selected="vm.playMovie(item)">-->
-                <!--<img class="img-movie" src="{{item.coverImage}}" height="" width="" alt="">-->
-                <!--<div class="des-movie">-->
-                    <!--<p class="lap">{{item.alias}}</p>-->
-                    <!--<span class="des">{{item.description}}</span>-->
-                    <!--<p class="time">{{item.durationMinute}} <span> phút</span></p>-->
-                <!--</div>-->
-            <!--</div>-->
+        <!--<div id="" class="item"  ng-class="{'list_0' : $first }" focusable="{depth : $root.depth.listMovie.val}"-->
+        <!--on-selected="vm.playMovie(item)">-->
+        <!--<img class="img-movie" src="{{item.coverImage}}" height="" width="" alt="">-->
+        <!--<div class="des-movie">-->
+        <!--<p class="lap">{{item.alias}}</p>-->
+        <!--<span class="des">{{item.description}}</span>-->
+        <!--<p class="time">{{item.durationMinute}} <span> phút</span></p>-->
+        <!--</div>-->
+        <!--</div>-->
         <!--</caph-list>-->
 
         <div id="list_item" class="item-movie wrapper_item">
@@ -30,10 +30,12 @@
                  on-focused="vm.focusListMovie($event, items, 2, $index)"
                  ng-repeat="item in vm.listFilms"
                  on-selected="vm.playMovie(item)" ng-class="item.alias === 'Tập 1' ? 'active_list_film': '' ">
-                <div class="preload-movie-list preload">
-                    <div class="img-movie"
-                         style="background-image: url({{item.coverImageH ? item.coverImageH : item.coverImage}})"></div>
-                </div>                <div class="des-movie">
+                <!--<div class="preload-movie-list preload">-->
+                    <!--<div class="img-movie"-->
+                         <!--style="background-image: url({{item.coverImageH ? item.coverImageH : item.coverImage}})"></div>-->
+                <!--</div>-->
+                <img class="img-movie" src="{{item.coverImage}}" height="" width="" alt="">
+                <div class="des-movie">
                     <p class="lap">{{item.alias}}</p>
                     <span class="des">{{item.description}}</span>
                     <p class="time">{{item.durationMinute}} <span> phút</span></p>
@@ -53,10 +55,12 @@
         </div>
         <div class="action">
             <div>
-                <button id="cancel_buy" class="cancel_buy_list" focusable="{depth : depth.dialog.val, initialFocus : true}"
+                <button id="cancel_buy" class="cancel_buy_list"
+                        focusable="{depth : depth.dialog.val, initialFocus : true}"
                         on-selected="vm.cancel()">HỦY
                 </button>
-                <button class="yes_buy_list" focusable="{depth : depth.dialog.val}" on-selected="vm.yes()">ĐỒNG Ý</button>
+                <button class="yes_buy_list" focusable="{depth : depth.dialog.val}" on-selected="vm.yes()">ĐỒNG Ý
+                </button>
             </div>
         </div>
     </div>

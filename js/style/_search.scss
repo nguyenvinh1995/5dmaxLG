@@ -319,11 +319,11 @@
 
 .display-no-top {
   .keyboard_content {
-    top: -50% !important;
+    top: -56.1% !important;
     @include transition(0.5s);
   }
   .hotkey {
-    top: 10% !important;
+    top: 1.5% !important;
     @include transition(0.5s);
   }
 }

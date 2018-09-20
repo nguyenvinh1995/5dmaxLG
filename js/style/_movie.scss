@@ -53,8 +53,11 @@
     line-height: 36*$rem;
     h4 {
       letter-spacing: 0.2*$rem;
-      font-weight: bold;
+      font-weight: bold !important;
       margin: 0 0 8*$rem;
+      font-size: 36*$rem;
+      text-shadow: 1px 0px 0px #fff;
+      color: #ffffff !important;
     }
     p {
       letter-spacing: 0.3*$rem;
@@ -69,7 +72,7 @@
   position: absolute;
   top: 570*$rem;
   left: 140*$rem;
-  z-index: 999;
+  z-index: 99999;
   @include transition(0.5s);
   .watch, .detail {
     width: 165*$rem;
@@ -448,10 +451,10 @@
 }
 
 .font70 {
-  font-size: 85*$rem !important;
+  font-size: 80*$rem !important;
   margin-top: 12% !important;
   margin-bottom: -6% !important;
-  width: 153%;
+  width: 150%;
   //white-space: nowrap;
   overflow: hidden;
   //text-overflow: ellipsis;
@@ -493,8 +496,10 @@
   margin-right: 50*$rem;
   border: 3*$rem solid rgba(0, 0, 0, 0.3);
   @extend %transition;
-  width: 448*$rem;
-  height: 257*$rem;
+  //width: 448*$rem;
+  //height: 257*$rem;
+  width: 445*$rem;
+  height: 254*$rem;
 }
 
 .preload-focus{
@@ -503,4 +508,11 @@
   background-position: right top !important;
   background-repeat: no-repeat !important;
   background-size: 1452*$rem auto !important;
+}
+
+.opacity-0{
+  opacity: 0 !important;
+}
+.opacity-1{
+  opacity: 1 !important;
 }

@@ -88,7 +88,7 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
                     // console.log(data);
                     // console.log(data.currentTime);
                     vm.viewContinue = true;
-                    TizenAVPlayer.currentTime = data.currentTime;
+                    WebOsPlayer.currentTime = data.currentTime;
                     vm.currentTime = data.currentTime;
                     if (Object.keys(currentContinueMovie).length > 0) {
                         // var processBar = currentContinueMovie.duration;
@@ -157,7 +157,7 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
     function setUrlFilmDrm() {
         if (vm.streams.errorCode == 200 && vm.detailFilms.drm_content_id) {
             services.drmUrl = vm.streams.urlStreaming;
-            TizenAVPlayer.currentTime = vm.data.currentTime > 0 ? vm.data.currentTime : 0;
+            WebOsPlayer.currentTime = vm.data.currentTime > 0 ? vm.data.currentTime : 0;
         }
         else
             services.drmUrl = undefined;
@@ -254,7 +254,7 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
             mId = vm.listFilms[0].id;
         currentIsContinue = isContinue;
         if (!isContinue)
-            TizenAVPlayer.currentTime = 0;
+            WebOsPlayer.currentTime = 0;
         currentItemPlay = {
             id: mId
         };
@@ -345,7 +345,7 @@ function movieDetailCtrl($scope, $timeout, $state, $window, services, settings, 
         }
         currentItemPlay = item;
         TizenAVPlayer.name = vm.detailFilms.name;
-        TizenAVPlayer.currentTime = 0;
+        WebOsPlayer.currentTime = 0;
         TizenAVPlayer.description = item.description;
         if (vm.detailFilms.attributes == "1")
             TizenAVPlayer.alias = "";

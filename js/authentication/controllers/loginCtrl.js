@@ -9,10 +9,10 @@ function LoginCtrl($timeout, $state, $window, $http, $scope, $rootScope, service
     var vm = this;
     vm.showCapcha = false;
     vm.loginForm = {
-        // username: '',
-        // password: '',
-        username: '01676417220',
-        password: '123456a@@',
+        username: '',
+        password: '',
+        // username: '01676417220',
+        // password: '123456a@@',
         captcha: ''
     };
     var playlistId = $state.params.playlistId;

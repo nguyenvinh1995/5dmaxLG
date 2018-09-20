@@ -32,23 +32,11 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;auto
-  .name-movie {
-    font-size: 53*$rem;
-    font-weight: bold;
-    line-height: normal;
-    letter-spacing: 0.3*$rem;
-    text-align: left;
-    color: #fff;
-    margin: 0 0 10*$rem;
-    //width: 535*$rem;
-    //height: 70*$rem;
-  }
   .time-movie {
     font-size: 24*$rem;
     color: #a8a8a8;
     .age {
       border-radius: 4*$rem;
-      //background-color: #333333;
       display: inline-block;
       text-align: center;
       width: 52*$rem;
@@ -63,6 +51,31 @@
     width: 33.5%;
     padding-top: 78*$rem;
     margin-left: 140*$rem;
+    .name-movie {
+      font-size: 53*$rem;
+      font-weight: bold;
+      line-height: normal;
+      letter-spacing: 0.3*$rem;
+      text-align: left;
+      color: #fff;
+      margin: 0 0 10*$rem;
+      //width: 535*$rem;
+      //height: 70*$rem;
+    }
+    .time-movie {
+      font-size: 24*$rem;
+      color: #a8a8a8;
+      .age {
+        border-radius: 4*$rem;
+        display: inline-block;
+        text-align: center;
+        width: 52*$rem;
+        height: 29*$rem;
+        margin: 0 20*$rem;
+        background-color: #979797;
+        color: #000;
+      }
+    }
   }
   .des-movie {
     font-size: 30*$rem;
@@ -91,7 +104,7 @@
   .button-common {
     display: block;
     position: relative;
-    width: 360*$rem;
+    width: 460*$rem;
     height: 60*$rem;
     border-radius: 4*$rem;
     background-color: transparent;

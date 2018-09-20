@@ -41,7 +41,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
 
     $("#av-player").hide();
 
-    showMediaController($scope, focusController);
+    // showMediaController($scope, focusController);
 
     TizenAVPlayer.registerredHardKeys = registerKeyHandler($scope, focusController, $rootScope, $stateParams, utilities, services, $state);
 
@@ -161,8 +161,6 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
             );
             services.imgCurrentItem = vm.banner[0].coverImage;
         };
-
-
     }, 200);
 
     function checkSuggestMovie() {
@@ -209,6 +207,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
             getStreaming(playlistId, item.id);
             currentidMovie = item.id;
             TizenAVPlayer.close();
+            console.log(item);
         };
 
         function getStreaming(idPlay, idMovie) {
@@ -233,6 +232,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                     // $("#av-player").show();
                 } else {
                     console.log("not drm.....");
+                    // clearTimeout(vm.nextMovie);
                     services.getStreaming(idPlay, idMovie, services.quality).then(function (response) {
                         var data = response.data;
                         isDrm = false;
@@ -438,10 +438,50 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
 
     function updateCurrentProgress(currentTime) {
         currentTime = currentTime < 0 ? 0 : currentTime > WebOsPlayer.duration ? WebOsPlayer.duration : currentTime;
-
         var timeLeft = WebOsPlayer.duration - currentTime;
         var progress = Math.min(currentTime, WebOsPlayer.duration) / WebOsPlayer.duration * progressBarBkgdElement.width();
         console.log(progress, currentTime, WebOsPlayer.duration, currentPlayingTime);
+        // $timeout.cancel(vm.nextMovie);
+        // vm.nextMovie = null;
+        $timeout(function () {
+            if (timeLeft == 0 && WebOsPlayer.duration > 0) {
+                utilities.showLoading();
+                console.log(timeLeft);
+                // var timeLeft = 0;
+                // endPosElement.html(WebOsPlayer.formatTime(timeLeft));
+                if (TizenAVPlayer.currentTrack < TizenAVPlayer.mediaList.length - 1 && services.attribute === 0) {
+                    console.log('phim le');
+                    $timeout.cancel(vm.nextMovie);
+                    vm.nextMovie = null;
+                    vm.nextMovie = $timeout(function () {
+                        WebOsPlayer.duration = 0;
+                        WebOsPlayer.currentTime = 0;
+                        timeLeft = -1;
+                        isNext = true;
+                        console.log('phim bo');
+                        TizenAVPlayer.nextVideo();
+                        $("#av-player").show();
+                        $rootScope.checkNextMovieList = true;
+                        clearTimeout(showMediaControllerTimeout);
+                    }, 1000);
+                } else {
+                    if (services.attribute === 0) {
+                        // $timeout(function () {
+                        utilities.hideLoading();
+                        WebOsPlayer.player.dispose();
+                        $rootScope.changeView();
+                        // }, 500);
+                    } else {
+                        checkSuggestMovie();
+                        $timeout(function () {
+                            utilities.hideLoading();
+                            console.log('phim le');
+                        }, 500);
+                    }
+                }
+                // endPosElement.html(WebOsPlayer.formatTime(timeLeft));
+            }
+        }, 800);
 
         if (Math.min(currentTime, WebOsPlayer.duration) === WebOsPlayer.duration) {
             progressBarMarkerElement.css('width', progressBarBkgdElement.width() + '%');
@@ -578,7 +618,6 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
         var CurTime = new Date().getTime();
         localStorage.setItem("timeFlag", CurTime);
 
-
         TizenAVPlayer.playerKeyEventCallback = function (e) {
             if (CurTime != localStorage.getItem("timeFlag")) return;
             console.log(e.keyCode);
@@ -613,9 +652,18 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                     }
                     break;
                 case 38: //UP arrow
+
                     if ($state.current.name == 'avplayer') {
                         if ($('.controls-bar').hasClass('fade-out')) {
-                            showMediaController($scope, focusController);
+                            $timeout(function () {
+                                if ($rootScope.checkNextMovieList = true) {
+                                    $timeout(function () {
+                                        showMediaController($scope, focusController);
+                                        $rootScope.checkNextMovieList = false;
+                                    }, 8000);
+                                }
+                                showMediaController($scope, focusController);
+                            }, 1500);
                             event.stopPropagation();
                         } else if ($('.video-progress-bar-wrapper.focused').length > 0) {
                             focusController.focus($('#play-list .lastIndex'));
@@ -626,7 +674,15 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                 case 40: //DOWN arrow
                     if ($state.current.name == 'avplayer') {
                         if ($('.controls-bar').hasClass('fade-out')) {
-                            showMediaController($scope, focusController);
+                            $timeout(function () {
+                                if ($rootScope.checkNextMovieList = true) {
+                                    $timeout(function () {
+                                        showMediaController($scope, focusController);
+                                        $rootScope.checkNextMovieList = false;
+                                    }, 8000);
+                                }
+                                showMediaController($scope, focusController);
+                            }, 1500);
                             event.stopPropagation();
                         }
                     }
@@ -637,16 +693,34 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                 case 415: // MediaPlay
                     if ($('.btn').hasClass('icon_play')) {
                         $scope.playPauseHandle(true);
-                        showMediaController($scope, focusController);
-                        $('#controls_bar').removeClass('fade-in').add('fade-out');
+                        $timeout(function () {
+                            if ($rootScope.checkNextMovieList = true) {
+                                $timeout(function () {
+                                    showMediaController($scope, focusController);
+                                    $rootScope.checkNextMovieList = false;
+                                }, 8000);
+                            }
+                            showMediaController($scope, focusController);
+                        }, 1500);
+                        clearTimeout(showMediaControllerTimeout);
+                        $('.btn').removeClass('opacity-1').add('opacity-0');
                         return;
                     }
                     break;
                 case 19: // MediaPause
                     if ($('.btn').hasClass('icon_pause')) {
                         $scope.playPauseHandle(true);
-                        showMediaController($scope, focusController);
-                        $('#controls_bar').addClass('fade-in').remove('fade-out');
+                        $timeout(function () {
+                            if ($rootScope.checkNextMovieList = true) {
+                                $timeout(function () {
+                                    showMediaController($scope, focusController);
+                                    $rootScope.checkNextMovieList = false;
+                                }, 8000);
+                            }
+                            showMediaController($scope, focusController);
+                        }, 1500);
+                        clearTimeout(showMediaControllerTimeout);
+                        $('.btn').addClass('opacity-1').remove('opacity-0');
                         return;
                     }
                     break;
@@ -741,14 +815,12 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                     if ($('.btn').hasClass('icon_pause')) {
                         $('#controls_bar').addClass('fade-in').remove('fade-out');
                     }
-
                     break;
                 default:
                     console.log("Unhandled key");
             }
 
         };
-
         var keyUp = function (e) {
             if ($state.current.name == 'avplayer') {
                 if ($scope.isPlaying)
@@ -865,7 +937,7 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
     function setUrlFilmDrm() {
         if (vm.streams.errorCode == 200 && vm.detailFilms.drm_content_id) {
             services.drmUrl = vm.streams.urlStreaming;
-            TizenAVPlayer.currentTime = vm.data.currentTime > 0 ? vm.data.currentTime : 0;
+            WebOsPlayer.currentTime = vm.data.currentTime > 0 ? vm.data.currentTime : 0;
         }
         else
             services.drmUrl = undefined;
@@ -956,7 +1028,6 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                     isConfirm = true;
                     $(".popup_movie_detail_1 .messenger").html(services.popup1.confirm_register_sub);
                     $("detail_player").removeClass('yes_buy_detail').addClass('yes_buy_detail_yes');
-
                 } else {
                     registerPackage(services.popup1.package_id);
                 }
@@ -1022,7 +1093,6 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
                         vm.playMovie(currentItemPlay);
                     })
                 }, 500)
-
             } else {
                 utilities.hideLoading();
                 utilities.showMessenge('Mua lẻ không thành công');
@@ -1036,25 +1106,36 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
 
         player.on('loadedmetadata', function () {
             console.log('video is done!');
+            clearTimeout(showMediaControllerTimeout);
         });
 
         player.on('loadeddata', function () {
+            event.stopPropagation();
             var duration = WebOsPlayer.formatTime(player.duration());
-            // console.log('dura' + player.duration());
             WebOsPlayer.duration = player.duration();
             $('.end-position').html(duration);
+            $("play_btn").blur();
+            $timeout(function () {
+                clearTimeout(showMediaControllerTimeout);
+                utilities.hideLoading();
+                console.log('eeee1');
+            }, 3000);
         });
 
         player.on('timeupdate', function () {
+            $timeout(function () {
+                clearTimeout(showMediaControllerTimeout);
+                utilities.hideLoading();
+                console.log('eeee1');
+            }, 5000);
             $rootScope.isPlaying = true;
-
             //  if($rootScope.checkLink === true){
             //  }
             // else{
             currentPlayingTime = player.currentTime();
             // }
             $rootScope.checkTime = currentPlayingTime;
-            console.log('xxxxxx', currentPlayingTime);
+            // console.log('xxxxxx', currentPlayingTime);
             updateCurrentProgress(currentPlayingTime);
             try {
                 if ($(".mini-player")) {
@@ -1088,8 +1169,13 @@ function AVPlayerCtrl($scope, services, $state, FocusUtil, focusController, $tim
             }
             if (services.attribute === 1) {
                 if (services.check === false) {
-                    checkSuggestMovie();
-                    WebOsPlayer.player.dispose();
+                    utilities.showLoading();
+                    $timeout(function () {
+                        utilities.hideLoading();
+                        checkSuggestMovie();
+                        WebOsPlayer.player.dispose();
+                    }, 2000);
+
                 }
                 if (services.check === true) {
                     WebOsPlayer.player.dispose();

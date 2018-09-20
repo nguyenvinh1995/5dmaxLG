@@ -513,7 +513,6 @@ WebOsPlayer.playVideo = function (videoUrl, avPlayerListenerCallback) {
         console.log(WebOsPlayer.currentTime + 'qq');
         WebOsPlayer.player.currentTime(WebOsPlayer.currentTime);
         WebOsPlayer.currentTime = 0;
-
     } else {
         console.log(WebOsPlayer.currentTime + 'qqssss');
         WebOsPlayer.currentTime = 0;

@@ -719,11 +719,30 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
         focusController.addBeforeKeydownHandler(function (context) {
             console.log(context.event.keyCode, $state.current.name);
             if (context.event.keyCode === utilities.keyCode.EXIT || (context.event.keyCode == '461' && $state.current.name == 'login')) {
-                // webOS.platformBack();
                 window.close();
                 return;
             }
         });
+
+        // document.addEventListener('mousewheel', function (e) {
+        //
+        // });
+
+
+        function mouseWheelEvent(e) {
+            var key = new Event('keydown');
+            if (e.wheelDelta < 0) {
+                console.log(key);
+                key.keyCode = 40;
+                document.dispatchEvent(key);
+                // console.log('mousewheel1', document.dispatchEvent(key));
+            } else {
+                console.log(key);
+                key.keyCode = 38;
+                document.dispatchEvent(key);
+                // console.log('mousewheel2', document.dispatchEvent(key));
+            }
+        }
 
         var init = function () {
             var inEvent = function (e) {
@@ -740,18 +759,23 @@ app.controller('appCtrl', ['$scope', '$timeout', '$state', '$window', 'services'
                 if ($element.is(':visible')) {
                     $element.hide();
                 }
-
             };
+
+
             checkNetWork();
             // document.addEventListener('tizenhwkey', backEvent);
             document.addEventListener("keydown", inEvent, true);
+            document.addEventListener('mousewheel', mouseWheelEvent, true);
+
             // TizenInputDevice.registerMediaKeys();
             // TizenInputDevice.initialize();
             window.addEventListener('online', updateStatusOnline);
             window.addEventListener('offline', updateStatusOffline);
 
         };
+
         window.onload = init;
+
     }]);
 // if($rootScope.currentState == $rootScope.DEPTH.MAIN) {
 //     tizen.application.getCurrentApplication().exit();

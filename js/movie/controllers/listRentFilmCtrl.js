@@ -18,7 +18,7 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
     var heightCategory = 0;
     var currentIndexBanner = 0;
     var currentBannerItem = {};
-    // utilities.showLoading();
+    utilities.showLoading();
     services.getHomeFilmv2(2).then(function (response) {
         vm.homeFilms = response.data;
         vm.banner = vm.homeFilms[0].content;
@@ -46,7 +46,6 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
         lengthCategory = vm.homeFilms.length - 1;
         lastCategory = vm.homeFilms.length;
         angular.element(document.getElementById('list_container_rent')).append($compile(raw)($scope));
-        utilities.hideLoading();
     });
 ///// ITEM
 
@@ -213,6 +212,7 @@ function listRentFilmCtrl($scope, $timeout, $state, $window, services, settings,
             focusController.focus($('.first_category_items'));
             if ($('.first_category_items').hasClass('focused')) {
                 clearInterval(timeFocus);
+                utilities.hideLoading();
             }
         }, 100);
     }

@@ -9,8 +9,9 @@
             <div class="scroll-movie">
                 <div class="btn-menu margin-right-11" ng-repeat="items in $root.listMenu"
                      focusable="{ depth : {{ $root.depth.main.val }} , nextFocus: {down: 'btn_play' , top: 'null' , right : $last ? 'null' :'', left : $first ? 'null' :''}}"
-                     on-selected="vm.onSelect(items)" on-focused="vm.focusText($event, items, 5, $index)"
-                     on-blurred="vm.blurrText(items)"
+                     on-selected="vm.onSelect(items)"
+                     on-focused="vm.focusText($event, $originalEvent, items, 5, $index)"
+                     on-blurred="vm.blurrText($event, $originalEvent, items)"
                      ng-class="items.type === 'search' ? 'active':''" id="{{items.id}}">
                     <div id="img" class="img-menu" ng-class="{ imgsearch: items.type === 'search',imgmovies: items.type === 'movies',
             imgseriesmovie: items.type === 'rent-movie',imgmylist: items.type === 'my-list',
@@ -28,8 +29,6 @@
     <div class="block_top">
         <div id="showTrailer">
         </div>
-
-
         <!--<div class="home_slider_wrapper">-->
         <div class="full_page home_slider" ng-show="!vm.isFocuseMovie">
             <div class="full_page item banner_{{$index}}" id="{{item.id}}" ng-repeat="item in vm.banner"
@@ -50,12 +49,13 @@
         <div class="group_btn" id="group_btn">
             <button focusable="{initialFocus: true, depth : $root.depth.main.val, name : 'btn_play' , nextFocus: {top : 'btnSearch'}}"
                     id="btn_watch"
-                    class="watch" on-focused="vm.focusPlay()" on-blurred="vm.blurrPlay()"
+                    class="watch" on-focused="vm.focusPlay($event, $originalEvent)"
+                    on-blurred="vm.blurrPlay($event, $originalEvent)"
                     on-selected="vm.clickPlay(true)"><span
                     class="img-watch"></span><span class="text">Xem</span></button>
             <button id="btn-detail" focusable="{depth : $root.depth.main.val, nextFocus: {top: 'active'}}"
                     data-focusable-next-focus-right="null" class="detail"
-                    on-focused="vm.focusDetail()" on-selected="vm.viewDetail()">Chi tiết
+                    on-focused="vm.focusDetail($event, $originalEvent)" on-selected="vm.viewDetail()">Chi tiết
             </button>
         </div>
         <div class="preload-focus">

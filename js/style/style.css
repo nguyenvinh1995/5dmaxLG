@@ -121,8 +121,11 @@ html, body {
     line-height: 1.125rem; }
     .slider_article .content h4 {
       letter-spacing: 0.00625rem;
-      font-weight: bold;
-      margin: 0 0 0.25rem; }
+      font-weight: bold !important;
+      margin: 0 0 0.25rem;
+      font-size: 1.125rem;
+      text-shadow: 1px 0px 0px #fff;
+      color: #ffffff !important; }
     .slider_article .content p {
       letter-spacing: 0.00937rem;
       margin-top: 0.3125rem;
@@ -144,7 +147,7 @@ html, body {
   position: absolute;
   top: 17.8125rem;
   left: 4.375rem;
-  z-index: 999;
+  z-index: 99999;
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   -ms-transition: all 0.5s ease-in-out;
@@ -475,10 +478,10 @@ html, body {
   margin: 0rem !important; }
 
 .font70 {
-  font-size: 2.65625rem !important;
+  font-size: 2.5rem !important;
   margin-top: 12% !important;
   margin-bottom: -6% !important;
-  width: 153%;
+  width: 150%;
   overflow: hidden; }
 
 .ellipsis-1 {
@@ -530,8 +533,8 @@ html, body {
   float: left;
   margin-right: 1.5625rem;
   border: 0.09375rem solid rgba(0, 0, 0, 0.3);
-  width: 14rem;
-  height: 8.03125rem; }
+  width: 13.90625rem;
+  height: 7.9375rem; }
 
 .preload-focus {
   background: url("../images/d-ault-image@3x.png") no-repeat;
@@ -539,6 +542,12 @@ html, body {
   background-position: right top !important;
   background-repeat: no-repeat !important;
   background-size: 45.375rem auto !important; }
+
+.opacity-0 {
+  opacity: 0 !important; }
+
+.opacity-1 {
+  opacity: 1 !important; }
 
 @font-face {
   font-family: SFUIDisplay;
@@ -646,18 +655,10 @@ html, body {
   width: 100vw;
   height: 100vh;
   overflow: hidden; }
-  .movie-detail auto .name-movie {
-    font-size: 1.65625rem;
-    font-weight: bold;
-    line-height: normal;
-    letter-spacing: 0.00937rem;
-    text-align: left;
-    color: #fff;
-    margin: 0 0 0.3125rem; }
-  .movie-detail .time-movie {
+  .movie-detail auto .time-movie {
     font-size: 0.75rem;
     color: #a8a8a8; }
-    .movie-detail .time-movie .age {
+    .movie-detail auto .time-movie .age {
       border-radius: 0.125rem;
       display: inline-block;
       text-align: center;
@@ -671,6 +672,26 @@ html, body {
     width: 33.5%;
     padding-top: 2.4375rem;
     margin-left: 4.375rem; }
+    .movie-detail .title-movie .name-movie {
+      font-size: 1.65625rem;
+      font-weight: bold;
+      line-height: normal;
+      letter-spacing: 0.00937rem;
+      text-align: left;
+      color: #fff;
+      margin: 0 0 0.3125rem; }
+    .movie-detail .title-movie .time-movie {
+      font-size: 0.75rem;
+      color: #a8a8a8; }
+      .movie-detail .title-movie .time-movie .age {
+        border-radius: 0.125rem;
+        display: inline-block;
+        text-align: center;
+        width: 1.625rem;
+        height: 0.90625rem;
+        margin: 0 0.625rem;
+        background-color: #979797;
+        color: #000; }
   .movie-detail .des-movie {
     font-size: 0.9375rem;
     line-height: 1.2;
@@ -704,7 +725,7 @@ html, body {
   .movie-detail .button-common {
     display: block;
     position: relative;
-    width: 11.25rem;
+    width: 14.375rem;
     height: 1.875rem;
     border-radius: 0.125rem;
     background-color: transparent;
@@ -1553,7 +1574,7 @@ input:focus, button:focus {
     -ms-transition: all 0.5s ease-in-out;
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
-    z-index: 100; }
+    z-index: 9999; }
     .menu_page .item-menu .btn-menu {
       float: left;
       width: 10.8125rem;
@@ -1562,7 +1583,8 @@ input:focus, button:focus {
       position: relative;
       border: solid 0.09375rem transparent;
       display: inline-block;
-      overflow: hidden; }
+      overflow: hidden;
+      z-index: 999; }
       .menu_page .item-menu .btn-menu.focused {
         border: solid 0.09375rem #ffffff; }
         .menu_page .item-menu .btn-menu.focused .imgsearch {
@@ -1960,7 +1982,7 @@ input:focus, button:focus {
     margin-left: 0; }
 
 .display-no-top .keyboard_content {
-  top: -50% !important;
+  top: -56.1% !important;
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   -ms-transition: all 0.5s ease-in-out;
@@ -1968,7 +1990,7 @@ input:focus, button:focus {
   -moz-transition: all 0.5s ease-in-out; }
 
 .display-no-top .hotkey {
-  top: 10% !important;
+  top: 1.5% !important;
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   -ms-transition: all 0.5s ease-in-out;
@@ -2528,6 +2550,9 @@ input:focus, button:focus {
       letter-spacing: 0.00625rem; }
     .avplayer_page .movie_article .content {
       margin-top: 0.625rem; }
+
+.left-100 {
+  left: 3.125rem !important; }
 
 .controls-bar {
   position: absolute;
